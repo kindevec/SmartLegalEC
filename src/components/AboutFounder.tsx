@@ -1,12 +1,12 @@
 import React from 'react';
 import { ABOUT_QUADRANTS, METRICS, BRAND_INFO } from '../data/content';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { 
   GraduationCap, 
   Briefcase, 
   Users, 
   FileText, 
   Quote, 
-  MessageSquare, 
   Linkedin, 
   CheckCircle2,
   Scale
@@ -181,9 +181,9 @@ export const AboutFounder: React.FC = () => {
             href={whatsappDirectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm bg-[#0A66FF] hover:bg-[#0852cc] text-white shadow-md transition-all active:scale-[0.98]"
+            className="shrink-0 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full font-bold text-xs sm:text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-md transition-all active:scale-[0.98]"
           >
-            <MessageSquare className="w-4 h-4" />
+            <WhatsAppIcon className="w-4 h-4 shrink-0" />
             <span>CONTACTAR CON LUIS GUERRA</span>
           </a>
         </div>

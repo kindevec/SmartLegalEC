@@ -33,7 +33,7 @@ export function NavBar({ items, activeTab: externalActiveTab, className, onSelec
         className,
       )}
     >
-      <div className="flex items-center justify-around max-w-md mx-auto py-1.5 px-2">
+      <div className="flex items-center justify-around max-w-md mx-auto py-1 px-1 sm:px-2">
         {items.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.name;
@@ -48,7 +48,7 @@ export function NavBar({ items, activeTab: externalActiveTab, className, onSelec
                 if (onSelect) onSelect(item);
               }}
               className={cn(
-                "relative cursor-pointer text-xs font-semibold py-2 px-3 transition-colors flex flex-col items-center justify-center gap-1 min-w-[64px] select-none",
+                "relative cursor-pointer text-xs font-semibold py-1.5 px-1.5 sm:px-3 transition-colors flex flex-col items-center justify-center gap-0.5 min-w-[54px] sm:min-w-[64px] select-none",
                 "text-slate-300 hover:text-white",
                 isActive && "text-[#F59E0B] font-bold",
               )}

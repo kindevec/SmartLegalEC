@@ -1,13 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { PRACTICE_AREAS, BRAND_INFO } from '../data/content';
 import { PracticeArea, ServiceItem } from '../types';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { 
   ShieldCheck, 
   Code2, 
   Radio, 
   ChevronRight, 
   Search, 
-  MessageSquare, 
   CheckCircle2, 
   Info, 
   ArrowRight,
@@ -142,9 +142,9 @@ export const PracticeAreas: React.FC<PracticeAreasProps> = ({ onSelectServiceFor
                 href={getWhatsAppForArea(activeArea)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-[#0A66FF] hover:bg-[#0852cc] text-white shadow-sm transition-all"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-sm transition-all whitespace-nowrap"
               >
-                <MessageSquare className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>{activeArea.ctaText}</span>
               </a>
             </div>
@@ -276,9 +276,9 @@ export const PracticeAreas: React.FC<PracticeAreasProps> = ({ onSelectServiceFor
                   href={getWhatsAppForService(selectedService)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-colors"
+                  className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-colors shadow-xs"
                 >
-                  <MessageSquare className="w-4 h-4" />
+                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
                   <span>Consultar por WhatsApp</span>
                 </a>
                 

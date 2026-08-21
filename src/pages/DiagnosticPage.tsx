@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { PageRoute } from '../types';
 import { DIAGNOSTIC_QUESTIONS, BRAND_INFO } from '../data/content';
+import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { 
   Sparkles, 
   ArrowRight, 
@@ -10,7 +12,6 @@ import {
   ShieldAlert, 
   ShieldCheck, 
   RotateCcw, 
-  MessageSquare,
   FileCheck,
   Copy,
   Check
@@ -117,48 +118,73 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
 
   return (
     <div className="w-full bg-[#F8FAFC] min-h-screen pb-20">
-      {/* HEADER SECTION */}
-      <section className="relative bg-[#071326] text-white pt-28 sm:pt-32 pb-16 lg:py-20 border-b border-slate-800 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1920&q=80"
-            alt="Test LOPDP"
-            className="w-full h-full object-cover opacity-35"
-            loading="eager"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/95 via-[#071326]/75 to-transparent" />
-        </div>
+      {/* 1. HEADER SECTION with Seamless Full-Bleed Background */}
+      <section className="relative bg-[#071326] text-white min-h-[420px] sm:min-h-[480px] lg:min-h-[540px] h-auto pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12 lg:pb-16 flex flex-col justify-center border-b border-slate-800 overflow-hidden">
+        
+        {/* Full-Bleed Thematic Background Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 1.02 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 z-0 pointer-events-none"
+        >
+          <picture className="w-full h-full">
+            <source srcSet="/header-servicios.avif" type="image/avif" />
+            <source srcSet="/header-servicios.webp" type="image/webp" />
+            <img
+              src="/header-servicios.jpg"
+              alt="Test LOPDP - SmartLegalEC"
+              width="1920"
+              height="1080"
+              className="w-full h-full object-cover object-center lg:object-right"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
+          
+          {/* Smooth Continuous Cinematic Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#071326] via-[#071326]/85 via-45% to-[#071326]/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#071326] via-transparent to-[#071326]/40" />
+        </motion.div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-[#132742] text-[#D4AF37] border border-slate-700 mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span>HERRAMIENTA INTERACTIVA GRATUITA</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3 font-heading">
-              Test de Cumplimiento LOPDP
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl lg:max-w-3xl"
+          >
+            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-3.5 leading-[1.14]">
+              Test de <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Cumplimiento LOPDP</span>
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
-              Evalúa en 4 pasos el estado actual de tu empresa frente a la Ley Orgánica de Protección de Datos Personales en Ecuador e identifica contingencias normativas.
+
+            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
+              Evalúa en 4 pasos el estado actual de tu empresa frente a la <strong className="text-white font-semibold">Ley Orgánica de Protección de Datos Personales</strong> e identifica contingencias normativas y riesgos sancionatorios.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* DIAGNOSTIC CONTAINER */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8">
         {!showResults ? (
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-md">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-md"
+          >
             {/* Progress indicator */}
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
-              <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider">
+            <div className="flex items-center justify-between mb-6 sm:mb-8 pb-4 border-b border-slate-100">
+              <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider font-heading">
                 Pregunta {currentStep + 1} de {DIAGNOSTIC_QUESTIONS.length}
               </span>
               <div className="flex items-center gap-1.5">
                 {DIAGNOSTIC_QUESTIONS.map((_, i) => (
                   <div
                     key={i}
-                    className={`h-2 rounded-full transition-all ${
+                    className={`h-2 rounded-full transition-all duration-300 ${
                       i === currentStep
                         ? 'w-8 bg-[#0A66FF]'
                         : i < currentStep
@@ -170,18 +196,27 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
               </div>
             </div>
 
-            {/* Current Question */}
-            <div className="mb-8">
-              <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 leading-snug mb-6">
+            {/* Current Question with Key Animation */}
+            <motion.div 
+              key={currentStep}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.35 }}
+              className="mb-6 sm:mb-8"
+            >
+              <h2 className="text-base sm:text-lg md:text-xl font-extrabold text-slate-900 leading-snug mb-4 sm:mb-6 font-heading">
                 {DIAGNOSTIC_QUESTIONS[currentStep].title}
               </h2>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5 sm:space-y-3">
                 {DIAGNOSTIC_QUESTIONS[currentStep].options.map((opt, idx) => (
-                  <button
+                  <motion.button
                     key={idx}
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
                     onClick={() => handleSelectOption(opt.score)}
-                    className="w-full text-left p-4 sm:p-5 rounded-2xl border border-slate-200 hover:border-[#0A66FF] hover:bg-blue-50/40 transition-all flex items-start justify-between gap-4 group cursor-pointer"
+                    className="w-full text-left p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0A66FF] hover:bg-blue-50/40 transition-all flex items-start justify-between gap-3 sm:gap-4 group cursor-pointer"
                   >
                     <div>
                       <span className="text-xs sm:text-sm font-semibold text-slate-800 group-hover:text-[#0A66FF] transition-colors block">
@@ -194,10 +229,10 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
                       )}
                     </div>
                     <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#0A66FF] group-hover:translate-x-1 transition-all shrink-0 mt-1" />
-                  </button>
+                  </motion.button>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Navigation back */}
             <div className="flex items-center justify-between pt-4 border-t border-slate-100">
@@ -214,21 +249,26 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
                 100% Confidencial • Sin registro previo
               </span>
             </div>
-          </div>
+          </motion.div>
         ) : (
           /* RESULTS VIEW */
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-md">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-md"
+          >
             {/* Header badge */}
             <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 pb-8 border-b border-slate-100">
               <div className="flex items-center gap-4 text-center sm:text-left">
-                <div className={`p-4 rounded-2xl ${riskTier.bgColor} ${riskTier.borderColor} border`}>
+                <div className={`p-4 rounded-2xl ${riskTier.bgColor} ${riskTier.borderColor} border shrink-0`}>
                   {riskTier.icon}
                 </div>
                 <div>
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block font-heading">
                     Resultado del Diagnóstico
                   </span>
-                  <h2 className={`text-2xl font-extrabold ${riskTier.color}`}>
+                  <h2 className={`text-2xl font-extrabold ${riskTier.color} font-heading`}>
                     {riskTier.level}
                   </h2>
                 </div>
@@ -236,7 +276,7 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
 
               <button
                 onClick={handleReset}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 bg-slate-100 px-3.5 py-2 rounded-lg cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 bg-slate-100 px-3.5 py-2 rounded-full cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reiniciar test</span>
@@ -245,23 +285,23 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
 
             {/* Summary Text */}
             <div className="py-6">
-              <h3 className="text-sm font-bold text-slate-900 mb-2">
+              <h3 className="text-sm font-bold text-slate-900 mb-2 font-heading">
                 Evaluación Ejecutiva:
               </h3>
-              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
                 {riskTier.summary}
               </p>
             </div>
 
             {/* Action Items */}
             <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 sm:p-6 mb-8">
-              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2 font-heading">
                 <FileCheck className="w-4 h-4 text-[#0A66FF]" />
                 <span>Recomendaciones Prioritarias de Adecuación:</span>
               </h3>
               <ul className="space-y-3">
                 {riskTier.actions.map((act, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-800">
+                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-800 text-justify">
                     <CheckCircle2 className="w-4 h-4 text-[#0A66FF] shrink-0 mt-0.5" />
                     <span>{act}</span>
                   </li>
@@ -269,40 +309,40 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
               </ul>
             </div>
 
-            {/* Actions: WhatsApp Direct & Copy Report */}
-            <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-slate-100">
+            {/* Actions: WhatsApp Direct & Copy Report in horizontal layout */}
+            <div className="flex flex-row items-center gap-2.5 sm:gap-3 pt-4 border-t border-slate-100 w-full">
               <a
                 href={getWhatsAppReportUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-md transition-all"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-md transition-all whitespace-nowrap text-center"
               >
-                <MessageSquare className="w-4 h-4" />
-                <span>Enviar resultado a WhatsApp</span>
+                <WhatsAppIcon className="w-4 h-4 shrink-0" />
+                <span>Enviar a WhatsApp</span>
               </a>
 
               <button
                 onClick={handleCopyReport}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 transition-all cursor-pointer"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 transition-all cursor-pointer whitespace-nowrap text-center"
               >
-                {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-                <span>{copied ? '¡Copiado al portapapeles!' : 'Copiar reporte'}</span>
+                {copied ? <Check className="w-4 h-4 text-emerald-600 shrink-0" /> : <Copy className="w-4 h-4 shrink-0" />}
+                <span>{copied ? '¡Copiado!' : 'Copiar'}</span>
               </button>
 
               <button
                 onClick={() => onNavigate('contact')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-xs sm:text-sm font-bold bg-[#0B1D3A] hover:bg-slate-900 text-white transition-all cursor-pointer"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold bg-[#0B1D3A] hover:bg-slate-900 text-white transition-all cursor-pointer whitespace-nowrap text-center"
               >
                 <span>Agendar Asesoría</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 shrink-0" />
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
       </section>
 
       {/* INFORMATIONAL CONTEXT */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center text-xs text-slate-600 leading-relaxed">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center text-xs text-slate-600 leading-relaxed text-justify">
         <p>
           Este diagnóstico interactivo tiene fines puramente informativos y de orientación general. No constituye dictamen pericial ni asesoría jurídica vinculante. Para una auditoría legal pormenorizada de su organización, coordine una sesión formal con SmartLegalEC.
         </p>

@@ -1,6 +1,10 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { PageRoute } from '../types';
-import { BRAND_INFO, ABOUT_QUADRANTS, CORPORATE_VALUES, METRICS } from '../data/content';
+import { BRAND_INFO, METRICS } from '../data/content';
+import { Timeline, TimelineEntry } from '../components/ui/timeline';
+import { MilestoneCarousel } from '../components/MilestoneCarousel';
+import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { 
   GraduationCap, 
   Briefcase, 
@@ -11,10 +15,14 @@ import {
   Zap, 
   HeartHandshake, 
   ArrowRight, 
-  CheckCircle2, 
   ExternalLink,
-  MessageSquare,
-  Scale
+  Sparkles,
+  Server,
+  Database,
+  Cpu,
+  Scale,
+  Quote,
+  CheckCircle2
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -22,41 +30,412 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
-  const getQuadrantIcon = (name: string) => {
-    switch (name) {
-      case 'GraduationCap':
-        return <GraduationCap className="w-6 h-6 text-[#0A66FF]" />;
-      case 'Briefcase':
-        return <Briefcase className="w-6 h-6 text-[#0A66FF]" />;
-      case 'Users':
-        return <Users className="w-6 h-6 text-[#0A66FF]" />;
-      case 'FileText':
-        return <FileText className="w-6 h-6 text-[#0A66FF]" />;
-      default:
-        return <Award className="w-6 h-6 text-[#0A66FF]" />;
-    }
-  };
+  // Structured Timeline Data with High-Impact Visual Cards and Minimal Text
+  const aboutTimelineData: TimelineEntry[] = [
+    // ==========================================
+    // 01. LIDERAZGO & DIRECCIÓN (El Fundador)
+    // ==========================================
+    {
+      title: "Liderazgo & Dirección",
+      badge: "01. DIRECTOR & FUNDADOR",
+      subtitle: BRAND_INFO.founder,
+      content: (
+        <div className="space-y-5 w-full">
+          {/* Visual 2-Column Founder Showcase */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch w-full">
+            {/* Left: Punchy Executive Summary */}
+            <div className="lg:col-span-7 flex flex-col justify-between space-y-4 px-4 sm:px-0">
+              <div>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading tracking-tight">
+                  {BRAND_INFO.founder}
+                </h3>
+                <p className="text-xs sm:text-sm font-semibold text-[#0A66FF] mt-1 mb-3">
+                  {BRAND_INFO.founderTitle}
+                </p>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal text-justify">
+                  Más de una década de práctica especializada en la intersección entre el <strong className="text-slate-900 font-semibold">Derecho, la Inteligencia Artificial</strong>, la Protección de Datos y el sector de las <strong className="text-slate-900 font-semibold">Telecomunicaciones</strong> en Ecuador.
+                </p>
+              </div>
 
-  const getValueIcon = (name: string) => {
-    switch (name) {
-      case 'Award':
-        return <Award className="w-6 h-6 text-[#0A66FF]" />;
-      case 'Shield':
-        return <Shield className="w-6 h-6 text-[#0A66FF]" />;
-      case 'Zap':
-        return <Zap className="w-6 h-6 text-[#0A66FF]" />;
-      case 'HeartHandshake':
-        return <HeartHandshake className="w-6 h-6 text-[#0A66FF]" />;
-      default:
-        return <Shield className="w-6 h-6 text-[#0A66FF]" />;
-    }
-  };
+              {/* 3 Key Highlights Strip (3 Columns on mobile & desktop - No Box-in-Box) */}
+              <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1.5 w-full">
+                <div className="pr-2 sm:pr-4 flex flex-col justify-start">
+                  <Shield className="w-4 h-4 text-[#0A66FF] mb-1 shrink-0" />
+                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Oficial DPD</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Certificado SPDP</div>
+                </div>
+                <div className="px-2 sm:px-4 flex flex-col justify-start">
+                  <Scale className="w-4 h-4 text-[#D4AF37] mb-1 shrink-0" />
+                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">ARCOTEL & Telco</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Títulos habilitantes</div>
+                </div>
+                <div className="pl-2 sm:pl-4 flex flex-col justify-start">
+                  <Cpu className="w-4 h-4 text-purple-600 mb-1 shrink-0" />
+                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">SaaS & IA Law</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Contratos software</div>
+                </div>
+              </div>
+
+              {/* Action Buttons (Horizontal row on all viewports) */}
+              <div className="pt-2 flex flex-row items-center gap-2.5 sm:gap-3 w-full">
+                <a
+                  href={BRAND_INFO.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2.5 rounded-full text-xs font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all shadow-xs whitespace-nowrap text-center"
+                >
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                  <span>Perfil en LinkedIn</span>
+                </a>
+                <button
+                  onClick={() => onNavigate('contact')}
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2.5 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-all cursor-pointer shadow-xs whitespace-nowrap text-center"
+                >
+                  <span>Agendar Consulta</span>
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                </button>
+              </div>
+            </div>
+
+            {/* Right: High-Impact Visual Photo Card (Full-Bleed on Mobile) */}
+            <div className="lg:col-span-5 relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200 shadow-md group min-h-[280px] sm:min-h-[320px] h-72 sm:h-80 lg:h-auto w-full">
+              <img
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
+                alt="Abg. Luis Fernando Guerra Padilla"
+                className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                loading="eager"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5 sm:p-6 z-10 pointer-events-none">
+                <p className="text-xs sm:text-sm font-medium text-slate-200 leading-relaxed text-justify">
+                  "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // ==========================================
+    // 02. PILARES DE EXCELENCIA (Cuatro Cuadrantes Visuales)
+    // ==========================================
+    {
+      title: "Pilares de Excelencia",
+      badge: "02. CUATRO CUADRANTES",
+      subtitle: "Formación, Práctica, Gremio & Doctrina",
+      content: (
+        <div className="space-y-4 w-full">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+            Cuatro dimensiones clave que garantizan soluciones jurídicas de estándar internacional:
+          </p>
+
+          {/* 4 Rich Visual Bento Cards (Full-bleed on mobile) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
+            {/* Cuadrante 1: Formación Académica */}
+            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
+              <img
+                src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=700&q=80"
+                alt="Formación Académica"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
+              <div className="relative z-10 space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-[#0A66FF]/20 border border-[#0A66FF]/50 flex items-center justify-center backdrop-blur-md">
+                    <GraduationCap className="w-4 h-4 text-blue-300" />
+                  </div>
+                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Formación de Alto Nivel</h4>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
+                  Estudios de posgrado en Derecho y Nuevas Tecnologías, con actualización continua en estándares RGPD y LOPDP.
+                </p>
+              </div>
+            </div>
+
+            {/* Cuadrante 2: Experiencia y Especialización */}
+            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
+              <img
+                src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=700&q=80"
+                alt="Experiencia y Especialización"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
+              <div className="relative z-10 space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-[#D4AF37]/20 border border-[#D4AF37]/50 flex items-center justify-center backdrop-blur-md">
+                    <Briefcase className="w-4 h-4 text-[#D4AF37]" />
+                  </div>
+                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Práctica & Adecuación LOPDP</h4>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
+                  Adecuaciones LOPDP masivas, designación de DPD externo, contratos SaaS Cloud y trámites regulatorios ARCOTEL.
+                </p>
+              </div>
+            </div>
+
+            {/* Cuadrante 3: Actividad Profesional y Gremial */}
+            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
+              <img
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80"
+                alt="Actividad Profesional y Gremial"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
+              <div className="relative z-10 space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-purple-500/20 border border-purple-400/50 flex items-center justify-center backdrop-blur-md">
+                    <Users className="w-4 h-4 text-purple-300" />
+                  </div>
+                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Liderazgo Gremial & Foros</h4>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
+                  Participación activa en comités jurídicos, panelista en foros sobre Inteligencia Artificial y vínculo con startups.
+                </p>
+              </div>
+            </div>
+
+            {/* Cuadrante 4: Publicaciones y Análisis Jurídico */}
+            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80"
+                alt="Publicaciones y Análisis Jurídico"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
+              <div className="relative z-10 space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center backdrop-blur-md">
+                    <FileText className="w-4 h-4 text-emerald-300" />
+                  </div>
+                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Doctrina & Análisis Normativo</h4>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
+                  Autor de artículos sobre privacidad, análisis de impacto regulatorio y vocería en medios especializados.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // ==========================================
+    // 03. TRAYECTORIA & HITOS (Dynamic Interactive Carousel)
+    // ==========================================
+    {
+      title: "Trayectoria & Hitos",
+      badge: "03. EVOLUCIÓN HISTÓRICA",
+      subtitle: "2014 — 2026",
+      content: (
+        <div className="space-y-4 w-full">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+            Evolución interactiva de nuestra práctica al compás de las mayores transformaciones tecnológicas y legales del país:
+          </p>
+
+          {/* DYNAMIC INTERACTIVE CAROUSEL (100% Full-bleed on Mobile) */}
+          <MilestoneCarousel />
+        </div>
+      ),
+    },
+
+    // ==========================================
+    // 04. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
+    // ==========================================
+    {
+      title: "Filosofía Corporativa",
+      badge: "04. VALORES RECTORES",
+      subtitle: "Principios de Nuestra Práctica",
+      content: (
+        <div className="space-y-4 w-full">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+            Cuatro pilares que aseguran precisión técnica, ética inquebrantable y visión anticipatoria:
+          </p>
+
+          {/* Canvas-Anchored 2x2 Mobile / 4-Col Desktop Grid with Linear Dividers */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 border-y border-slate-200 w-full">
+            {/* Valor 1 */}
+            <div className="py-3.5 sm:py-5 px-3 sm:px-5 flex flex-col justify-start border-r border-b lg:border-b-0 border-slate-200">
+              <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
+                <div>
+                  <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
+                    Excelencia
+                  </h4>
+                  <p className="text-[10px] sm:text-xs text-[#D4AF37] font-semibold mt-0.5">
+                    Rigor de vanguardia
+                  </p>
+                </div>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center shrink-0">
+                  <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
+                </div>
+              </div>
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
+                Soluciones jurídicas precisas adaptadas a la operativa real de cada cliente.
+              </p>
+            </div>
+
+            {/* Valor 2 */}
+            <div className="py-3.5 sm:py-5 px-3 sm:px-5 flex flex-col justify-start border-b lg:border-b-0 lg:border-r border-slate-200">
+              <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
+                <div>
+                  <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
+                    Integridad
+                  </h4>
+                  <p className="text-[10px] sm:text-xs text-[#0A66FF] font-semibold mt-0.5">
+                    Ética & secreto
+                  </p>
+                </div>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-blue-50 border border-blue-200/80 flex items-center justify-center shrink-0">
+                  <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A66FF]" />
+                </div>
+              </div>
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
+                Confidencialidad absoluta y máxima transparencia profesional en cada encargo.
+              </p>
+            </div>
+
+            {/* Valor 3 */}
+            <div className="py-3.5 sm:py-5 px-3 sm:px-5 flex flex-col justify-start border-r lg:border-r border-slate-200">
+              <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
+                <div>
+                  <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
+                    Innovación
+                  </h4>
+                  <p className="text-[10px] sm:text-xs text-purple-600 font-semibold mt-0.5">
+                    Visión predictiva
+                  </p>
+                </div>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-purple-50 border border-purple-200/80 flex items-center justify-center shrink-0">
+                  <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600" />
+                </div>
+              </div>
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
+                Anticipación constante de contingencias normativas ante nuevas tecnologías.
+              </p>
+            </div>
+
+            {/* Valor 4 */}
+            <div className="py-3.5 sm:py-5 px-3 sm:px-5 flex flex-col justify-start">
+              <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
+                <div>
+                  <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
+                    Compromiso
+                  </h4>
+                  <p className="text-[10px] sm:text-xs text-emerald-600 font-semibold mt-0.5">
+                    Socio estratégico
+                  </p>
+                </div>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center shrink-0">
+                  <HeartHandshake className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
+                </div>
+              </div>
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
+                Acompañamiento cercano y directo en el logro de tus objetivos de negocio.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // ==========================================
+    // 05. IMPACTO & RESULTADOS (Canvas Linear Divider)
+    // ==========================================
+    {
+      title: "Impacto & Resultados",
+      badge: "05. MÉTRICAS CLAVE",
+      subtitle: "Resultados Tangibles en Ecuador",
+      content: (
+        <div className="space-y-4 w-full">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+            Resultados consolidados en el sector corporativo y regulatorio ecuatoriano:
+          </p>
+
+          {/* Canvas-Anchored Metric Strip with Linear Divider (No Box-in-Box) */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 border-y border-slate-200 py-6 sm:py-8 w-full">
+            {METRICS.map((metric, idx) => (
+              <div 
+                key={idx} 
+                className="py-3 sm:py-1 px-4 sm:px-6 flex flex-col justify-start text-left"
+              >
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1D3A] font-heading tracking-tight mb-1">
+                  {metric.value}
+                </div>
+                <div className="text-xs sm:text-sm font-bold text-slate-900 mb-1 font-heading">
+                  {metric.label}
+                </div>
+                <div className="text-[11px] sm:text-xs text-slate-500 leading-relaxed text-justify">
+                  {metric.detail}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+
+    // ==========================================
+    // 06. ALIANZA & CONTACTO DIRECTO
+    // ==========================================
+    {
+      title: "Alianza & Contacto",
+      badge: "06. CONVERSACIONES ESTRATÉGICAS",
+      subtitle: "Hablemos de tu Organización",
+      content: (
+        <div className="relative rounded-none sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border-y sm:border border-slate-800 overflow-hidden space-y-5 w-full">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-[#0A66FF]/15 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="relative z-10 space-y-2">
+            <span className="text-[11px] font-bold text-[#D4AF37] uppercase tracking-wider block font-heading">
+              Asesoría Legal Estratégica
+            </span>
+            <h4 className="text-xl sm:text-2xl font-extrabold text-white font-heading tracking-tight max-w-xl">
+              Inicia una conversación confidencial con nuestro equipo
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed font-normal text-justify">
+              Agenda una reunión informativa o remítenos los antecedentes de tu caso para coordinar una propuesta técnica a medida liderada por el Abg. Luis Fernando Guerra Padilla.
+            </p>
+          </div>
+
+          <div className="relative z-10 flex flex-row items-center gap-2.5 sm:gap-3.5 pt-1 w-full">
+            <button
+              onClick={() => onNavigate('contact')}
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all cursor-pointer shadow-md whitespace-nowrap text-center"
+            >
+              <span>Contactar a la Firma</span>
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+            </button>
+            <a
+              href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent('Hola SmartLegalEC, me gustaría agendar una reunión con el Abg. Luis Fernando Guerra.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md whitespace-nowrap text-center"
+            >
+              <WhatsAppIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <span>WhatsApp Directo</span>
+            </a>
+          </div>
+        </div>
+      ),
+    },
+  ];
 
   return (
-    <div className="w-full bg-[#F8FAFC] min-h-screen pb-20">
-      {/* 1. HEADER HERO */}
-      <section className="relative bg-[#071326] text-white pt-28 sm:pt-32 pb-16 lg:pb-20 border-b border-slate-800 overflow-hidden">
-        <div className="absolute inset-0 z-0">
+    <div className="w-full bg-[#F8FAFC] min-h-screen pb-24">
+      {/* 1. HEADER SECTION with Seamless Full-Bleed Background */}
+      <section className="relative bg-[#071326] text-white min-h-[420px] sm:min-h-[480px] lg:min-h-[540px] h-auto pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12 lg:pb-16 flex flex-col justify-center border-b border-slate-800 overflow-hidden">
+        
+        {/* Full-Bleed Thematic Background Image */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 1.02 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 z-0 pointer-events-none"
+        >
           <picture className="w-full h-full">
             <source srcSet="/header-about.avif" type="image/avif" />
             <source srcSet="/header-about.webp" type="image/webp" />
@@ -65,221 +444,43 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               alt="Sobre SmartLegalEC - Despacho Jurídico Boutique"
               width="1920"
               height="1080"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-center lg:object-right"
               loading="eager"
               fetchPriority="high"
               decoding="async"
             />
           </picture>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/90 via-[#071326]/40 to-transparent" />
-        </div>
+          
+          {/* Smooth Continuous Cinematic Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#071326] via-[#071326]/85 via-45% to-[#071326]/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#071326] via-transparent to-[#071326]/40" />
+        </motion.div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-[#132742] text-[#D4AF37] border border-slate-700 mb-3">
-              <Scale className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span>PERFIL INSTITUCIONAL & LIDERAZGO</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3 font-heading">
-              Sobre SmartLegalEC
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl lg:max-w-3xl"
+          >
+            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-3.5 leading-[1.14]">
+              Sobre <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">SmartLegalEC</span> & <span className="text-[#D4AF37]">Liderazgo</span>
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
-              Firma jurídica boutique especializada en asesoría de vanguardia en economía de datos, tecnología y telecomunicaciones en Ecuador.
+
+            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
+              Firma jurídica boutique liderada por el <strong className="text-white font-semibold">Abg. Luis Fernando Guerra Padilla</strong>, especializada en asesoría de vanguardia en <strong className="text-white font-semibold">Tecnología</strong> y <strong className="text-white font-semibold">Economía de Datos</strong> en Ecuador.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* 2. FOUNDER PROFILE SECTION - Editorial Clean Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-8">
-            <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider block mb-2 font-heading">
-              Director & Fundador
-            </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 mb-2 font-heading tracking-tight">
-              {BRAND_INFO.founder}
-            </h2>
-            <p className="text-xs sm:text-sm font-semibold text-slate-600 mb-6">
-              {BRAND_INFO.founderTitle}
-            </p>
-
-            <div className="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
-              <p>
-                El <strong>Abg. Luis Fernando Guerra Padilla</strong> cuenta con más de una década de ejercicio profesional especializado en la intersección entre el Derecho, las Nuevas Tecnologías y el sector de las Telecomunicaciones en Ecuador y la región andina.
-              </p>
-              <p>
-                Su práctica se enfoca en brindar soluciones legales de alto valor estratégico para empresas nacionales y multinacionales que operan con altos volúmenes de datos personales, modelos de negocio digitales basados en software, plataformas cloud y despliegues de redes e infraestructura de conectividad.
-              </p>
-              <p>
-                Ha participado activamente en la estructuración e implementación de programas de adecuación a la <strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong>, actuando como Delegado de Protección de Datos (DPD) externo y como consultor en trámites regulatorios complejos ante la <strong>Agencia de Regulación y Control de las Telecomunicaciones (ARCOTEL)</strong>.
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href={BRAND_INFO.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all shadow-xs"
-              >
-                <ExternalLink className="w-4 h-4" />
-                <span>Conectar en LinkedIn</span>
-              </a>
-              <button
-                onClick={() => onNavigate('contact')}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 transition-all cursor-pointer"
-              >
-                <span>Agendar Consulta</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* HIGHLIGHT EDITORIAL CARD */}
-          <div className="lg:col-span-4 bg-[#0B1D3A] text-white rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl border border-slate-800">
-            <h3 className="text-sm font-bold text-[#D4AF37] uppercase tracking-wider font-heading">
-              Compromiso de Asesoría Directa
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Cada consulta, contrato o proceso de adecuación es liderado y supervisado personalmente por el Abg. Luis Fernando Guerra Padilla, asegurando un estándar analítico riguroso y una comunicación directa y transparente.
-            </p>
-            <div className="pt-4 border-t border-slate-700/80">
-              <div className="text-2xl font-extrabold text-white">100%</div>
-              <div className="text-xs text-slate-400">Atención personalizada y sin intermediarios</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. FOUR STRATEGIC QUADRANTS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider block mb-2">
-            Pilares de Excelencia
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Nuestros Cuatro Cuadrantes Estratégicos
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-2">
-            La combinación de formación académica continua, experiencia práctica, actividad gremial y análisis normativo.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {ABOUT_QUADRANTS.map((quad, idx) => (
-            <div
-              key={idx}
-              className="bg-white border border-slate-200 rounded-2xl p-7 shadow-xs hover:border-blue-300 hover:shadow-md transition-all"
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
-                  {getQuadrantIcon(quad.iconName)}
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                  {quad.title}
-                </h3>
-              </div>
-
-              <ul className="space-y-3">
-                {quad.items.map((item, itemIdx) => (
-                  <li key={itemIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    <CheckCircle2 className="w-4 h-4 text-[#0A66FF] shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. CORPORATE VALUES */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider block mb-2">
-            Filosofía de Trabajo
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Nuestros Valores Corporativos
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {CORPORATE_VALUES.map((val, idx) => (
-            <div
-              key={idx}
-              className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-10 h-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center mb-4">
-                  {getValueIcon(val.iconName)}
-                </div>
-                <h3 className="text-base font-bold text-slate-900 mb-1">
-                  {val.title}
-                </h3>
-                <span className="text-xs font-bold text-[#0A66FF] block mb-3">
-                  {val.tagline}
-                </span>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {val.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. METRICS SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-xs">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-slate-100">
-            {METRICS.map((metric, idx) => (
-              <div key={idx} className="pt-6 md:pt-0 px-4">
-                <div className="text-3xl sm:text-4xl font-extrabold text-[#0B1D3A] mb-1">
-                  {metric.value}
-                </div>
-                <div className="text-sm font-bold text-slate-900 mb-1">
-                  {metric.label}
-                </div>
-                <div className="text-xs text-slate-600 max-w-xs mx-auto">
-                  {metric.detail}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. CALL TO ACTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="bg-[#0B1D3A] text-white rounded-3xl p-8 sm:p-12 text-center max-w-4xl mx-auto border border-slate-800">
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-            Hablemos sobre las necesidades legales de tu organización
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-300 mb-8 max-w-xl mx-auto">
-            Agenda una reunión informativa o envíanos los antecedentes de tu caso para coordinar una propuesta técnica a medida.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => onNavigate('contact')}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all cursor-pointer"
-            >
-              <span>Contactar a la Firma</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <a
-              href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent('Hola SmartLegalEC, me gustaría agendar una reunión con el Abg. Luis Fernando Guerra.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>WhatsApp Directo</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* 2. CONTINUOUS TIMELINE CANVAS: Presenting the complete story of Sobre Nosotros */}
+      <main className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 mt-6 sm:mt-16 w-full">
+        <Timeline 
+          data={aboutTimelineData}
+          showHeader={false}
+        />
+      </main>
     </div>
   );
 };

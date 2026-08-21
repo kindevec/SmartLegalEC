@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
   };
 
   return (
-    <footer className="relative w-full bg-[#0B1D3A] text-slate-300 border-t border-[#D0D7E2]/15 pt-8 pb-16 lg:pb-8 overflow-hidden text-xs">
+    <footer className="relative w-full bg-[#0B1D3A] text-slate-300 border-t border-[#D0D7E2]/15 pt-8 pb-24 lg:pb-8 overflow-hidden text-xs">
       {/* Top Ambient Glow / Radial Accent Line */}
       <div className="absolute top-0 right-1/2 left-1/2 h-[1px] w-2/5 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#0A66FF]/60 to-transparent pointer-events-none" />
 
