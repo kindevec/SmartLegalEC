@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DIAGNOSTIC_QUESTIONS, BRAND_INFO } from '../data/content';
-import { Sparkles, CheckCircle2, AlertTriangle, ShieldCheck, ArrowRight, RotateCcw, MessageSquare } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
+import { Sparkles, CheckCircle2, AlertTriangle, ShieldCheck, ArrowRight, RotateCcw } from 'lucide-react';
 
 interface ComplianceDiagnosticProps {
   isOpen: boolean;
@@ -73,9 +74,9 @@ export const ComplianceDiagnostic: React.FC<ComplianceDiagnosticProps> = ({ isOp
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/70 backdrop-blur-sm">
       <div
-        className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-2xl max-w-xl w-full p-5 sm:p-8 shadow-2xl border border-slate-200 max-h-[92vh] sm:max-h-[90vh] overflow-y-auto"
         role="dialog"
         aria-modal="true"
       >
@@ -188,9 +189,9 @@ export const ComplianceDiagnostic: React.FC<ComplianceDiagnosticProps> = ({ isOp
                 href={getWhatsAppDiagnosticUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-colors"
+                className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-colors shadow-sm"
               >
-                <MessageSquare className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>Enviar resultado a Abg. Luis Guerra</span>
               </a>
 

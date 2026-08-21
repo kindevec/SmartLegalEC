@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { BRAND_INFO, FAQS } from '../data/content';
 import { sanitizeInput, isValidEmail } from '../utils/security';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { 
-  MessageSquare, 
   Mail, 
   MapPin, 
   Send, 
@@ -106,8 +106,8 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
             {/* Quick WhatsApp Action Card */}
             <div className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-slate-900 to-[#0F284E] border border-slate-700/80 shadow-lg">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2.5 rounded-xl bg-[#0A66FF] text-white">
-                  <MessageSquare className="w-5 h-5" />
+                <div className="p-2.5 rounded-xl bg-[#25D366] text-white">
+                  <WhatsAppIcon className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-lg text-white">
@@ -130,9 +130,9 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                 target="_blank"
                 rel="noopener noreferrer"
                 id="contact-whatsapp-direct"
-                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm bg-[#0A66FF] hover:bg-[#0852cc] text-white shadow-md transition-all active:scale-[0.98]"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full font-bold text-xs sm:text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-md transition-all active:scale-[0.98]"
               >
-                <MessageSquare className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4 shrink-0" />
                 <span>INICIAR CHAT EN WHATSAPP</span>
               </a>
             </div>
@@ -295,7 +295,7 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all"
                   >
-                    <MessageSquare className="w-4 h-4 text-[#0A66FF]" />
+                    <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
                     <span>Enviar por WhatsApp</span>
                   </a>
                 </div>
@@ -320,9 +320,9 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                     href={getCustomWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-[#0A66FF] hover:bg-[#0852cc] text-white shadow-md transition-all"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-md transition-all"
                   >
-                    <MessageSquare className="w-4 h-4" />
+                    <WhatsAppIcon className="w-4 h-4 shrink-0" />
                     <span>ABRIR EN WHATSAPP CON DATOS PRECARGADOS</span>
                   </a>
                 </div>

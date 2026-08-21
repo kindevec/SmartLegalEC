@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Scale, BookOpen, Mail } from 'lucide-react';
+import { Home, Scale, User, BookOpen, Mail } from 'lucide-react';
 import { PageRoute } from '../types';
 import { NavBar, TubelightNavItem } from './ui/tubelight-navbar';
 
@@ -33,6 +33,15 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       },
     },
     {
+      name: 'Sobre Mí',
+      icon: User,
+      route: 'about',
+      onClick: () => {
+        onNavigate('about');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+    },
+    {
       name: 'Insights',
       icon: BookOpen,
       route: 'insights',
@@ -60,6 +69,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       case 'areas':
       case 'area-detail':
         return 'Servicios';
+      case 'about':
+        return 'Sobre Mí';
       case 'insights':
         return 'Insights';
       case 'contact':

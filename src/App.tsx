@@ -82,6 +82,26 @@ export default function App() {
     return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
+  // Dynamic Theme-Aware Smart Favicon Sync (Light & Dark Browser Theme)
+  useEffect(() => {
+    const updateFavicon = (e: MediaQueryListEvent | MediaQueryList) => {
+      const isDark = e.matches;
+      const iconPath = isDark ? '/favicon-dark.png' : '/favicon-light.png';
+      const favicon = document.getElementById('dynamic-favicon') as HTMLLinkElement | null;
+      const appleIcon = document.getElementById('dynamic-apple-icon') as HTMLLinkElement | null;
+      if (favicon) favicon.href = iconPath;
+      if (appleIcon) appleIcon.href = iconPath;
+    };
+
+    const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+    updateFavicon(matcher);
+
+    if (matcher.addEventListener) {
+      matcher.addEventListener('change', updateFavicon);
+      return () => matcher.removeEventListener('change', updateFavicon);
+    }
+  }, []);
+
   const navigateTo = (
     route: PageRoute,
     params?: { areaId?: 'lopdp' | 'tech' | 'telecom'; articleSlug?: string }

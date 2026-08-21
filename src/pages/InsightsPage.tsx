@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { PageRoute, LegalArticle } from '../types';
 import { LEGAL_ARTICLES, BRAND_INFO } from '../data/content';
+import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { 
   BookOpen, 
   Search, 
@@ -10,9 +12,8 @@ import {
   Clock, 
   Calendar, 
   Share2, 
-  MessageSquare,
-  Sparkles,
-  User,
+  Sparkles, 
+  User, 
   X
 } from 'lucide-react';
 
@@ -78,9 +79,16 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
 
   return (
     <div className="w-full bg-[#F8FAFC] min-h-screen pb-20">
-      {/* 1. HEADER SECTION */}
-      <section className="relative bg-[#071326] text-white pt-28 sm:pt-32 pb-16 lg:py-20 border-b border-slate-800 overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      {/* 1. HEADER SECTION with Seamless Full-Bleed Background */}
+      <section className="relative bg-[#071326] text-white min-h-[420px] sm:min-h-[480px] lg:min-h-[540px] h-auto pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12 lg:pb-16 flex flex-col justify-center border-b border-slate-800 overflow-hidden">
+        
+        {/* Full-Bleed Thematic Background Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 1.02 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 z-0 pointer-events-none"
+        >
           <picture className="w-full h-full">
             <source srcSet="/header-insights.avif" type="image/avif" />
             <source srcSet="/header-insights.webp" type="image/webp" />
@@ -89,43 +97,53 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               alt="Insights Jurídicos - SmartLegalEC"
               width="1920"
               height="1080"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-center lg:object-right"
               loading="eager"
               fetchPriority="high"
               decoding="async"
             />
           </picture>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/90 via-[#071326]/40 to-transparent" />
-        </div>
+          
+          {/* Smooth Continuous Cinematic Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#071326] via-[#071326]/85 via-45% to-[#071326]/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#071326] via-transparent to-[#071326]/40" />
+        </motion.div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-[#132742] text-[#D4AF37] border border-slate-700 mb-3">
-              <BookOpen className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span>CRITERIO & PUBLICACIONES JURÍDICAS</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3 font-heading">
-              Legal Insights & Análisis
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl lg:max-w-3xl"
+          >
+            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-3.5 leading-[1.14]">
+              Legal Insights & <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Criterio Jurídico</span>
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
-              Análisis técnico-jurídico y guías prácticas sobre la aplicación de la LOPDP en Ecuador, contratación tecnológica, regulación de telecomunicaciones e inteligencia artificial.
+
+            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
+              Análisis exhaustivo sobre la aplicación de la <strong className="text-white font-semibold">LOPDP</strong>, contratos de software, <strong className="text-white font-semibold">ciberseguridad</strong> e implicaciones legales de la <strong className="text-white font-semibold">Inteligencia Artificial</strong> en Ecuador.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 2. FILTER & SEARCH BAR */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 relative z-20">
-        <div className="bg-white rounded-2xl p-4 shadow-md border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+      <motion.section 
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8 relative z-20"
+      >
+        <div className="bg-white rounded-2xl p-3.5 sm:p-4 shadow-md border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Category Tabs */}
-          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+          <div className="flex overflow-x-auto no-scrollbar pb-1 sm:pb-0 flex-nowrap sm:flex-wrap items-center gap-2 w-full md:w-auto">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer shrink-0 ${
                   selectedCategory === cat
-                    ? 'bg-[#0B1D3A] text-white'
+                    ? 'bg-[#0B1D3A] text-white shadow-xs'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
@@ -146,19 +164,24 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. ARTICLES LIST */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredArticles.map((article) => (
-            <article
+          {filteredArticles.map((article, idx) => (
+            <motion.article
               key={article.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: (idx % 2) * 0.1 }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className="bg-white border border-slate-200 rounded-3xl p-7 sm:p-8 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 text-xs text-slate-600 mb-4">
-                  <span className="font-bold px-3 py-1 rounded-full bg-blue-50 text-[#0A66FF] border border-blue-100">
+                  <span className="font-bold px-3 py-1 rounded-full bg-blue-50 text-[#0A66FF] border border-blue-100 font-heading">
                     {article.category}
                   </span>
                   <div className="flex items-center gap-3">
@@ -175,23 +198,23 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
 
                 <h2 
                   onClick={() => setActiveArticle(article)}
-                  className="text-lg sm:text-xl font-bold text-slate-900 mb-3 hover:text-[#0A66FF] transition-colors cursor-pointer"
+                  className="text-lg sm:text-xl font-bold text-slate-900 mb-3 hover:text-[#0A66FF] transition-colors cursor-pointer font-heading leading-snug"
                 >
                   {article.title}
                 </h2>
 
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 text-justify">
                   {article.summary}
                 </p>
 
                 {/* Key Takeaways preview */}
                 <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 mb-6">
-                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-2">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-2 font-heading">
                     Puntos clave analizados:
                   </span>
                   <ul className="space-y-1.5 text-xs text-slate-700">
-                    {article.keyPoints.slice(0, 2).map((kp, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
+                    {article.keyPoints.slice(0, 2).map((kp, kIdx) => (
+                      <li key={kIdx} className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#0A66FF] shrink-0 mt-0.5" />
                         <span className="line-clamp-1">{kp}</span>
                       </li>
@@ -214,7 +237,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
 
@@ -238,41 +261,48 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
       </section>
 
       {/* 4. COMPLIANCE CALLOUT */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-        <div className="bg-[#0B1D3A] text-white rounded-3xl p-8 sm:p-10 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16"
+      >
+        <div className="bg-[#0B1D3A] text-white rounded-3xl p-8 sm:p-10 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-slate-300 mb-3">
               <Sparkles className="w-3.5 h-3.5 text-[#60A5FA]" />
               <span>Herramienta de Evaluación</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-heading">
               ¿Deseas verificar si tu empresa cumple con la LOPDP?
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Prueba nuestro test de autodiagnóstico interactivo con reporte inmediato de riesgos.
+            <p className="text-xs sm:text-sm text-slate-300 text-justify max-w-xl">
+              Prueba nuestro test de autodiagnóstico interactivo con reporte inmediato de riesgos y plan de acción.
             </p>
           </div>
           <button
             onClick={onOpenDiagnostic}
-            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all cursor-pointer shadow-md"
+            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 transition-all cursor-pointer shadow-md"
           >
             <span>Ejecutar Test LOPDP</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
-      </section>
+      </motion.section>
 
       {/* 5. ARTICLE DETAIL READER MODAL */}
       {activeArticle && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
           <div 
-            className="bg-white w-full max-w-3xl rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-200 my-8 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200"
+            className="bg-white w-full max-w-3xl rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-2xl border border-slate-200 my-auto sm:my-8 max-h-[92vh] sm:max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setActiveArticle(null)}
-              className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
+              aria-label="Cerrar artículo"
             >
               <X className="w-5 h-5" />
             </button>
@@ -299,7 +329,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             </div>
 
             {/* Key Points Box */}
-            <div className="bg-blue-50/70 border border-blue-100 rounded-2xl p-5 mb-8">
+            <div className="bg-blue-50/70 border border-blue-100 rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8">
               <h3 className="text-xs font-bold text-blue-950 uppercase tracking-wider mb-3">
                 Aspectos destacados del análisis:
               </h3>
@@ -321,7 +351,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             </div>
 
             {/* Footer Consultation CTA in Article */}
-            <div className="mt-10 pt-6 border-t border-slate-200 bg-slate-50 -mx-6 sm:-mx-10 -mb-6 sm:-mb-10 p-6 sm:p-8 rounded-b-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="mt-8 sm:mt-10 pt-6 border-t border-slate-200 bg-slate-50 -mx-5 sm:-mx-8 lg:-mx-10 -mb-5 sm:-mb-8 lg:-mb-10 p-5 sm:p-8 rounded-b-2xl sm:rounded-b-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <h4 className="text-xs sm:text-sm font-bold text-slate-900">
                   ¿Requieres asesoría sobre este tema en tu empresa?
@@ -331,10 +361,10 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
                 <button
                   onClick={() => handleShare(activeArticle)}
-                  className="p-2.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 transition-colors cursor-pointer text-xs flex items-center gap-1.5 shrink-0"
+                  className="w-full sm:w-auto p-2.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 transition-colors cursor-pointer text-xs flex items-center justify-center gap-1.5 shrink-0"
                   title="Compartir"
                 >
                   <Share2 className="w-4 h-4" />
@@ -345,10 +375,10 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(`Hola SmartLegalEC, leí su artículo "${activeArticle.title}" y quisiera una asesoría relacionada.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all text-center shadow-xs"
                 >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Consultar Caso</span>
+                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
+                  <span>Consultar por WhatsApp</span>
                 </a>
               </div>
             </div>
