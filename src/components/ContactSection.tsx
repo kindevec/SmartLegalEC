@@ -204,9 +204,9 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                     {errorMessage}
                   </div>
                 )}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-300 mb-1">
                       Nombre completo *
                     </label>
                     <input
@@ -215,12 +215,12 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                       placeholder="Ej. Ing. Carlos Mendoza"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder:text-slate-600 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A66FF]"
+                      className="w-full px-1 py-2 sm:py-2.5 bg-transparent border-0 border-b-2 border-slate-700 text-white placeholder:text-slate-500 text-xs sm:text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-300 mb-1">
                       Correo corporativo *
                     </label>
                     <input
@@ -229,14 +229,14 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                       placeholder="carlos@tuempresa.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder:text-slate-600 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A66FF]"
+                      className="w-full px-1 py-2 sm:py-2.5 bg-transparent border-0 border-b-2 border-slate-700 text-white placeholder:text-slate-500 text-xs sm:text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-300 mb-1">
                       Empresa u Organización *
                     </label>
                     <input
@@ -245,38 +245,38 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                       placeholder="Nombre de tu empresa"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder:text-slate-600 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A66FF]"
+                      className="w-full px-1 py-2 sm:py-2.5 bg-transparent border-0 border-b-2 border-slate-700 text-white placeholder:text-slate-500 text-xs sm:text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-300 mb-1">
                       Área de especialización requerida
                     </label>
                     <select
                       value={formData.serviceArea}
                       onChange={(e) => setFormData({ ...formData, serviceArea: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A66FF]"
+                      className="w-full px-1 py-2 sm:py-2.5 bg-slate-900 border-0 border-b-2 border-slate-700 text-white text-xs sm:text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none cursor-pointer"
                     >
-                      <option value="lopdp">Protección de Datos / Adecuación LOPDP</option>
-                      <option value="dpd">Delegado de Protección de Datos (DPD Externo)</option>
-                      <option value="tech">Contratos de Software / SaaS / Cloud / IA</option>
-                      <option value="telecom">Telecomunicaciones / ARCOTEL / Satélites</option>
-                      <option value="other">Diagnóstico integral / Otra consulta</option>
+                      <option value="lopdp" className="bg-slate-900 text-white">Protección de Datos / Adecuación LOPDP</option>
+                      <option value="dpd" className="bg-slate-900 text-white">Delegado de Protección de Datos (DPD Externo)</option>
+                      <option value="tech" className="bg-slate-900 text-white">Contratos de Software / SaaS / Cloud / IA</option>
+                      <option value="telecom" className="bg-slate-900 text-white">Telecomunicaciones / ARCOTEL / Satélites</option>
+                      <option value="other" className="bg-slate-900 text-white">Diagnóstico integral / Otra consulta</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">
                     Descripción del caso o proyecto
                   </label>
                   <textarea
-                    rows={4}
+                    rows={3}
                     placeholder="Cuéntanos brevemente sobre tu proyecto, número aproximado de colaboradores, o situación ante la normativa..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder:text-slate-600 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A66FF]"
+                    className="w-full px-1 py-2 sm:py-2.5 bg-transparent border-0 border-b-2 border-slate-700 text-white placeholder:text-slate-500 text-xs sm:text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none resize-y"
                   />
                 </div>
 

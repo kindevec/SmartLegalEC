@@ -184,7 +184,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                 />
 
                 {/* Row 1: Nombre & Empresa */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1 font-heading">
                       Nombre Completo *
@@ -195,7 +195,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Ej. Ing. Carlos Pérez"
-                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white border border-slate-300/90 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 transition-all shadow-2xs"
+                      className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none"
                     />
                   </div>
 
@@ -208,13 +208,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       placeholder="Ej. TechCorp S.A."
-                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white border border-slate-300/90 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 transition-all shadow-2xs"
+                      className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none"
                     />
                   </div>
                 </div>
 
                 {/* Row 2: Correo & Teléfono */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1 font-heading">
                       Correo Corporativo *
@@ -225,7 +225,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="carlos@empresa.com"
-                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white border border-slate-300/90 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 transition-all shadow-2xs"
+                      className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none"
                     />
                   </div>
 
@@ -238,13 +238,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+593 99 866 8139"
-                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white border border-slate-300/90 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 transition-all shadow-2xs"
+                      className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none"
                     />
                   </div>
                 </div>
 
                 {/* Row 3: Materia & Urgencia */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1 font-heading">
                       Materia Jurídica
@@ -252,7 +252,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                     <select
                       value={formData.area}
                       onChange={(e) => setFormData({ ...formData, area: e.target.value })}
-                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white border border-slate-300/90 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 cursor-pointer shadow-2xs"
+                      className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none cursor-pointer"
                     >
                       <option value="lopdp">Protección de Datos / LOPDP Ecuador</option>
                       <option value="tech">Contratos Tecnológicos / SaaS / Cloud</option>
@@ -269,7 +269,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                     <select
                       value={formData.urgency}
                       onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
-                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white border border-slate-300/90 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 cursor-pointer shadow-2xs"
+                      className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none cursor-pointer"
                     >
                       <option value="normal">Estándar (Respuesta en 24h hábiles)</option>
                       <option value="urgente">Urgente (Reunión y propuesta prioritaria)</option>
@@ -283,12 +283,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                     Resumen del Requerimiento *
                   </label>
                   <textarea
-                    rows={4}
+                    rows={3}
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Describe brevemente los antecedentes de tu consulta o el objetivo de tu proyecto..."
-                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white border border-slate-300/90 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 transition-all shadow-2xs"
+                    className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none resize-y"
                   />
                 </div>
 
