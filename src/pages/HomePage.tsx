@@ -99,13 +99,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           transition={{ duration: 1, ease: "easeOut" }}
           className="absolute inset-0 z-0"
         >
-          <img
-            src="/hero-warm-legal.jpg"
-            alt="Firma Jurídica Especializada - SmartLegalEC"
-            className="w-full h-full object-cover object-right lg:object-center"
-            loading="eager"
-            fetchPriority="high"
-          />
+          <picture className="w-full h-full">
+            <source srcSet="/hero-warm-legal.avif" type="image/avif" />
+            <source srcSet="/hero-warm-legal.webp" type="image/webp" />
+            <img
+              src="/hero-warm-legal.jpg"
+              alt="Firma Jurídica Especializada - SmartLegalEC"
+              width="1920"
+              height="1080"
+              className="w-full h-full object-cover object-right lg:object-center"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
           {/* Gentle warm dark gradient on the left side to guarantee perfect text contrast */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/95 via-[#071326]/60 to-transparent" />
         </motion.div>

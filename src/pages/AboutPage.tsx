@@ -57,13 +57,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       {/* 1. HEADER HERO */}
       <section className="relative bg-[#071326] text-white pt-28 sm:pt-32 pb-16 lg:pb-20 border-b border-slate-800 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
-            src="/header-about.jpg"
-            alt="Sobre SmartLegalEC - Despacho Jurídico Boutique"
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-            fetchPriority="high"
-          />
+          <picture className="w-full h-full">
+            <source srcSet="/header-about.avif" type="image/avif" />
+            <source srcSet="/header-about.webp" type="image/webp" />
+            <img
+              src="/header-about.jpg"
+              alt="Sobre SmartLegalEC - Despacho Jurídico Boutique"
+              width="1920"
+              height="1080"
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/90 via-[#071326]/40 to-transparent" />
         </div>
 

@@ -8,6 +8,7 @@ export const BRAND_INFO = {
   founder: 'Abg. Luis Fernando Guerra Padilla',
   founderTitle: 'Managing Partner | Abogado Especialista en Protección de Datos, Tecnología y Telecomunicaciones',
   founderEmail: 'info@smartlegalec.com',
+  email: 'info@smartlegalec.com',
   founderPhone: '+593 99 866 8139',
   address: 'Quito, Ecuador',
   schedule: 'Lunes a Viernes: 08:30 - 18:00 (Presencial & Virtual)',

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageRoute } from '../types';
 import { BRAND_INFO, FAQS, PRACTICE_AREAS } from '../data/content';
+import { sanitizeInput, isValidEmail, isValidPhone } from '../utils/security';
 import { 
   Mail, 
   Phone, 
@@ -31,14 +32,50 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
     area: 'lopdp',
     urgency: 'normal',
     message: '',
+    _hp_trap: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (formData._hp_trap) {
+      console.warn('Bot submission blocked.');
+      return;
+    }
+
+    const sanitizedName = sanitizeInput(formData.name);
+    const sanitizedCompany = sanitizeInput(formData.company);
+    const sanitizedEmail = sanitizeInput(formData.email);
+    const sanitizedPhone = sanitizeInput(formData.phone);
+    const sanitizedMessage = sanitizeInput(formData.message);
+
+    if (!sanitizedName || !sanitizedEmail || !sanitizedMessage) {
+      setErrorMessage('Por favor completa todos los campos requeridos.');
+      return;
+    }
+
+    if (!isValidEmail(sanitizedEmail)) {
+      setErrorMessage('Por favor ingresa un correo electrónico válido.');
+      return;
+    }
+
+    if (sanitizedPhone && !isValidPhone(sanitizedPhone)) {
+      setErrorMessage('Por favor ingresa un número telefónico válido.');
+      return;
+    }
+
+    setErrorMessage('');
+    setFormData({
+      ...formData,
+      name: sanitizedName,
+      company: sanitizedCompany,
+      email: sanitizedEmail,
+      phone: sanitizedPhone,
+      message: sanitizedMessage,
+    });
     setSubmitted(true);
   };
 
@@ -55,13 +92,20 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
       <section className="relative bg-[#071326] text-white pt-28 sm:pt-32 pb-14 lg:pb-16 border-b border-slate-800 overflow-hidden">
         {/* Background Image - Crystal Clear, High Definition & Vibrant */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="/header-contacto.jpg"
-            alt="Contacto y Consulta Jurídica - SmartLegalEC"
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-            fetchPriority="high"
-          />
+          <picture className="w-full h-full">
+            <source srcSet="/header-contacto.avif" type="image/avif" />
+            <source srcSet="/header-contacto.webp" type="image/webp" />
+            <img
+              src="/header-contacto.jpg"
+              alt="Contacto y Consulta Jurídica - SmartLegalEC"
+              width="1920"
+              height="1080"
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/90 via-[#071326]/40 to-transparent" />
         </div>
 
@@ -95,7 +139,24 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                   <p className="text-xs text-slate-600 mb-4">
                     Completa tus datos para coordinar una reunión presencial o virtual.
                   </p>
+                  {errorMessage && (
+                    <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
+                      {errorMessage}
+                    </div>
+                  )}
                 </div>
+
+                {/* Honeypot anti-spam trap */}
+                <input
+                  type="text"
+                  name="_hp_trap"
+                  value={formData._hp_trap}
+                  onChange={(e) => setFormData({ ...formData, _hp_trap: e.target.value })}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>

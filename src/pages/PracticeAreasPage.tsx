@@ -57,13 +57,20 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
           transition={{ duration: 0.8 }}
           className="absolute inset-0 z-0"
         >
-          <img
-            src="/header-servicios.jpg"
-            alt="Áreas de Práctica Jurídica - SmartLegalEC"
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-            fetchPriority="high"
-          />
+          <picture className="w-full h-full">
+            <source srcSet="/header-servicios.avif" type="image/avif" />
+            <source srcSet="/header-servicios.webp" type="image/webp" />
+            <img
+              src="/header-servicios.jpg"
+              alt="Áreas de Práctica Jurídica - SmartLegalEC"
+              width="1920"
+              height="1080"
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
           {/* Minimal contrast gradient only behind text */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/90 via-[#071326]/40 to-transparent" />
         </motion.div>
