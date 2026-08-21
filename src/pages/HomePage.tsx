@@ -8,7 +8,11 @@ import {
   Shield,
   FileCheck,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Scale,
+  Cpu,
+  ExternalLink,
+  ArrowRight
 } from 'lucide-react';
 
 interface HomePageProps {
@@ -413,45 +417,114 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       </motion.section>
 
       {/* ========================================================================= */}
-      {/* 3. ABOUT SECTION with Scroll Viewport Motion (After Services) */}
+      {/* 3. ABOUT SECTION with Founder Portrait & Credentials (After Services) */}
       {/* ========================================================================= */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6 }}
-        className="py-14 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="py-14 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          <div className="lg:col-span-5 space-y-3">
-            <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">
-              SOBRE NOSOTROS
+          {/* LEFT: Client / Founder Image Card */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl group min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] bg-slate-900 flex flex-col justify-end">
+              <picture className="absolute inset-0 w-full h-full block">
+                <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
+                <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
+                <img
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
+                  alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
+                  width="800"
+                  height="950"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-95 group-hover:opacity-100"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+
+              {/* Gradient Dark Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 via-55% to-transparent pointer-events-none" />
+
+              {/* Card Footer Content */}
+              <div className="relative z-10 p-5 sm:p-6 space-y-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0A66FF]/20 text-[#93C5FD] border border-[#0A66FF]/40 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md font-heading">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
+                  <span>DIRECTOR & FUNDADOR</span>
+                </div>
+
+                <h3 className="font-heading font-bold text-xl sm:text-2xl text-white leading-tight">
+                  Abg. Luis Fernando Guerra Padilla
+                </h3>
+
+                <p className="text-xs text-slate-300 italic leading-relaxed pt-1">
+                  "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
+                </p>
+              </div>
             </div>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight leading-tight">
-              Construido con Integridad, <br />
-              Impulsado por la <span className="text-[#0B1D3A]">Justicia</span>
-            </h2>
           </div>
 
-          <div className="lg:col-span-7 space-y-4">
+          {/* RIGHT: Section Editorial & Firm Story */}
+          <div className="lg:col-span-7 space-y-5">
+            <div>
+              <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200 mb-3 font-heading">
+                SOBRE NOSOTROS
+              </div>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
+                Construido con Integridad, <br />
+                Impulsado por la <span className="text-[#0B1D3A]">Justicia</span>
+              </h2>
+            </div>
+
             <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
               Firma jurídica especializada en blindar empresas y proyectos tecnológicos frente a marcos regulatorios complejos en Ecuador.
             </p>
+
             <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-              Más de una década asesorando a organizaciones en protección de datos (LOPDP), contratos de software, cloud computing e integración de IA con rigor técnico y visión comercial.
+              Más de una década de práctica especializada asesorando a organizaciones en protección de datos (<strong className="text-slate-700 font-semibold">LOPDP</strong>), contratos de software (<strong className="text-slate-700 font-semibold">SaaS & Cloud</strong>), títulos habilitantes ante <strong className="text-slate-700 font-semibold">ARCOTEL</strong> e integración ética de Inteligencia Artificial con rigor técnico y visión comercial.
             </p>
-            <div>
+
+            {/* 3 Credential Badges */}
+            <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3.5 my-2">
+              <div className="pr-2 sm:pr-4 flex flex-col justify-start">
+                <Shield className="w-4 h-4 text-[#0A66FF] mb-1 shrink-0" />
+                <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Oficial DPD</div>
+                <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Certificado SPDP</div>
+              </div>
+              <div className="px-2 sm:px-4 flex flex-col justify-start">
+                <Scale className="w-4 h-4 text-[#D4AF37] mb-1 shrink-0" />
+                <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">ARCOTEL & Telco</div>
+                <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Títulos habilitantes</div>
+              </div>
+              <div className="pl-2 sm:pl-4 flex flex-col justify-start">
+                <Cpu className="w-4 h-4 text-purple-600 mb-1 shrink-0" />
+                <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Tech Law & IA</div>
+                <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Contratos software</div>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => onNavigate('about')}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-md transition-colors cursor-pointer active:scale-95"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-md transition-colors cursor-pointer active:scale-95"
               >
-                <span>Conocer Más</span>
-                <div className="w-3.5 h-3.5 rounded-full bg-slate-950/15 flex items-center justify-center">
-                  <ArrowUpRight className="w-2.5 h-2.5 text-slate-950" />
-                </div>
+                <span>Conocer Más Sobre la Firma</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-slate-950" />
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => onNavigate('contact')}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors cursor-pointer"
+              >
+                <span>Contactar al Abogado</span>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-700" />
               </motion.button>
             </div>
           </div>
