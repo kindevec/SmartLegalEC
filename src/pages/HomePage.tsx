@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageRoute } from '../types';
 import { BRAND_INFO } from '../data/content';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowUpRight, 
   Star, 
   Shield,
-  FileCheck
+  FileCheck,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 interface HomePageProps {
@@ -15,6 +17,62 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroSlides = [
+    {
+      id: 'slide-1',
+      badge: 'Especialistas en Derecho Digital & LOPDP en Ecuador',
+      titleLine1: 'Tu Aliado en',
+      titleLine2: 'Soluciones Legales',
+      titleHighlight: 'Estratégicas',
+      description: 'Asesoría jurídica de alta especialización en Protección de Datos Personales (LOPDP), Contratos de Software, Inteligencia Artificial y Telecomunicaciones en Ecuador.',
+      imageJpg: '/hero-warm-legal.jpg',
+      imageWebp: '/hero-warm-legal.webp',
+      imageAvif: '/hero-warm-legal.avif',
+      alt: 'Firma Jurídica Especializada en Tecnología - SmartLegalEC',
+    },
+    {
+      id: 'slide-2',
+      badge: 'Blindaje Legal & Gobierno Corporativo',
+      titleLine1: 'Seguridad y',
+      titleLine2: 'Cumplimiento Normativo',
+      titleHighlight: 'Empresarial',
+      description: 'Adecuación integral a la LOPDP, designación de DPD externo y gestión de riesgos regulatorios frente a la Autoridad de Protección de Datos.',
+      imageJpg: '/hero-slider-2.jpg',
+      imageWebp: '/hero-slider-2.webp',
+      imageAvif: '/hero-slider-2.avif',
+      alt: 'Asesoría Legal Corporativa en Privacidad - SmartLegalEC',
+    },
+    {
+      id: 'slide-3',
+      badge: 'Contratos Tech • Telecomunicaciones ARCOTEL • IA',
+      titleLine1: 'Innovación Legal para',
+      titleLine2: 'Modelos de Negocio',
+      titleHighlight: 'Digitales',
+      description: 'Estructuración de contratos SaaS y Cloud, títulos habilitantes TIC ante ARCOTEL y asesoría en gobernanza e integración responsable de Inteligencia Artificial.',
+      imageJpg: '/hero-slider-3.jpg',
+      imageWebp: '/hero-slider-3.webp',
+      imageAvif: '/hero-slider-3.avif',
+      alt: 'Regulación de Telecomunicaciones e Inteligencia Artificial - SmartLegalEC',
+    },
+  ];
+
+  // Auto-advance hero slides every 6 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
 
   // Curated services structured identically to the carousel in the mockup
   const servicesCatalog = [
@@ -59,24 +117,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
   // Cases / Recent Legal Works table
   const legalWorks = [
     {
-      title: 'Adecuación Integral LOPDP para Fintech Regional',
+      sector: 'FINTECH & PAGOS DIGITALES',
+      title: 'Auditoría LOPDP y Blindaje de Pasarelas de Pago Cloud',
       category: 'PROTECCIÓN DE DATOS',
-      date: 'OCT 2025',
+      date: 'ENE 2026',
       routeId: 'lopdp' as const,
     },
     {
-      title: 'Estructuración Legal de Contratos SaaS Enterprise & SLA',
-      category: 'DERECHO TECNOLÓGICO',
-      date: 'NOV 2025',
+      sector: 'SOFTWARE ENTERPRISE',
+      title: 'Estructuración de Contratos Master SaaS y SLAs de Alta Disponibilidad',
+      category: 'CONTRATOS TECH',
+      date: 'DIC 2025',
       routeId: 'tech' as const,
     },
     {
-      title: 'Obtención y Renovación de Título Habilitante ARCOTEL',
-      category: 'TELECOMUNICACIONES',
-      date: 'ENE 2026',
+      sector: 'ISP / TELECOMUNICACIONES',
+      title: 'Regularización de Concesión y Régimen de Cumplimiento ARCOTEL',
+      category: 'REGULATORIO TIC',
+      date: 'MAR 2026',
       routeId: 'telecom' as const,
     },
     {
+      sector: 'RED DE SALUD PRIVADA',
       title: 'Implementación de Programa DPD Externo para Red de Salud',
       category: 'GOBERNANZA & PRIVACIDAD',
       date: 'FEB 2026',
@@ -88,144 +150,154 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
     <div className="w-full bg-[#FFFFFF] text-slate-900 selection:bg-[#D4AF37] selection:text-slate-950 overflow-hidden">
       
       {/* ========================================================================= */}
-      {/* 1. HERO SECTION with Motion Animations */}
+      {/* 1. HERO SECTION WITH IMAGE SLIDER */}
       {/* ========================================================================= */}
-      <section className="relative bg-[#071326] text-white pt-20 pb-8 sm:pt-24 sm:pb-10 lg:pt-28 lg:pb-12 overflow-hidden border-b border-slate-800">
+      <section className="relative bg-[#071326] text-white pt-20 pb-10 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-14 overflow-hidden border-b border-slate-800">
         
-        {/* Thematic Warm Luxury Legal Background Image */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 0.95, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="absolute inset-0 z-0"
-        >
-          <picture className="w-full h-full">
-            <source srcSet="/hero-warm-legal.avif" type="image/avif" />
-            <source srcSet="/hero-warm-legal.webp" type="image/webp" />
-            <img
-              src="/hero-warm-legal.jpg"
-              alt="Firma Jurídica Especializada - SmartLegalEC"
-              width="1920"
-              height="1080"
-              className="w-full h-full object-cover object-right lg:object-center"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </picture>
-          {/* Gentle warm dark gradient on the left side to guarantee perfect text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/95 via-[#071326]/60 to-transparent" />
-        </motion.div>
+        {/* Background Images Slider with Layered Crossfade */}
+        {heroSlides.map((slide, idx) => (
+          <motion.div 
+            key={slide.id}
+            initial={false}
+            animate={{ 
+              opacity: currentSlide === idx ? 0.95 : 0,
+              scale: currentSlide === idx ? 1 : 1.04 
+            }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className={`absolute inset-0 z-0 pointer-events-none ${currentSlide === idx ? 'visible' : 'invisible'}`}
+          >
+            <picture className="w-full h-full">
+              <source srcSet={slide.imageAvif} type="image/avif" />
+              <source srcSet={slide.imageWebp} type="image/webp" />
+              <img
+                src={slide.imageJpg}
+                alt={slide.alt}
+                width="1920"
+                height="1080"
+                className="w-full h-full object-cover object-right lg:object-center"
+                loading={idx === 0 ? "eager" : "lazy"}
+                fetchPriority={idx === 0 ? "high" : "auto"}
+                decoding="async"
+              />
+            </picture>
+          </motion.div>
+        ))}
+
+        {/* Gentle dark gradient to guarantee contrast and readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/95 via-[#071326]/70 to-[#071326]/30 pointer-events-none z-1" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="max-w-3xl space-y-6">
             
             {/* Institutional Trust Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6F0FF]/15 border border-[#0A66FF]/40 text-white backdrop-blur-md mb-6 shadow-sm"
-          >
-            <div className="w-2 h-2 rounded-full bg-[#0A66FF] animate-pulse" />
-            <span className="text-[11px] sm:text-xs font-semibold tracking-wide text-white">
-              Especialistas en Derecho Digital & LOPDP en Ecuador
-            </span>
-          </motion.div>
+            <motion.div
+              key={`badge-${currentSlide}`}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6F0FF]/15 border border-[#0A66FF]/40 text-white backdrop-blur-md mb-2 shadow-sm"
+            >
+              <div className="w-2 h-2 rounded-full bg-[#0A66FF] animate-pulse" />
+              <span className="text-[11px] sm:text-xs font-semibold tracking-wide text-white">
+                {heroSlides[currentSlide].badge}
+              </span>
+            </motion.div>
 
             {/* Main Display Headline */}
-            <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.1]">
-              Tu Aliado en <br />
-              Soluciones Legales <br />
-              <span className="text-[#D4AF37]">Estratégicas</span>
-            </h1>
+            <motion.h1 
+              key={`title-${currentSlide}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.1]"
+            >
+              {heroSlides[currentSlide].titleLine1} <br />
+              {heroSlides[currentSlide].titleLine2} <br />
+              <span className="text-[#D4AF37]">{heroSlides[currentSlide].titleHighlight}</span>
+            </motion.h1>
 
-            <p className="text-sm sm:text-base text-slate-300 max-w-2xl font-normal leading-relaxed">
-              Asesoría jurídica de alta especialización en Protección de Datos Personales (LOPDP), Contratos de Software, Inteligencia Artificial y Telecomunicaciones en Ecuador.
-            </p>
+            <motion.p 
+              key={`desc-${currentSlide}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-sm sm:text-base text-slate-300 max-w-2xl font-normal leading-relaxed min-h-[48px]"
+            >
+              {heroSlides[currentSlide].description}
+            </motion.p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => onNavigate('contact')}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-lg shadow-[#D4AF37]/20 transition-colors cursor-pointer"
-              >
-                <span>Iniciar Asesoría</span>
-                <div className="w-4 h-4 rounded-full bg-slate-950/15 flex items-center justify-center">
-                  <ArrowUpRight className="w-3 h-3 text-slate-950" />
+            {/* Action Buttons & Slider Controls */}
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => onNavigate('contact')}
+                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-lg shadow-[#D4AF37]/20 transition-colors cursor-pointer"
+                >
+                  <span>Iniciar Asesoría</span>
+                  <div className="w-4 h-4 rounded-full bg-slate-950/15 flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-slate-950" />
+                  </div>
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={onOpenDiagnostic}
+                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-colors cursor-pointer"
+                >
+                  <span>Diagnóstico LOPDP</span>
+                </motion.button>
+              </div>
+
+              {/* Slider Dots and Arrows */}
+              <div className="flex items-center gap-3 pt-2 sm:pt-0">
+                <button
+                  onClick={handlePrevSlide}
+                  aria-label="Diapositiva anterior"
+                  className="w-8 h-8 rounded-full bg-slate-900/80 hover:bg-[#0A66FF] text-slate-300 hover:text-white flex items-center justify-center border border-slate-700/80 transition-colors cursor-pointer"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+
+                <div className="flex items-center gap-1.5">
+                  {heroSlides.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      aria-label={`Ir a diapositiva ${idx + 1}`}
+                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                        currentSlide === idx 
+                          ? 'w-6 bg-[#D4AF37]' 
+                          : 'w-2 bg-slate-600 hover:bg-slate-400'
+                      }`}
+                    />
+                  ))}
                 </div>
-              </motion.button>
 
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={onOpenDiagnostic}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-colors cursor-pointer"
-              >
-                <span>Diagnóstico LOPDP</span>
-              </motion.button>
+                <button
+                  onClick={handleNextSlide}
+                  aria-label="Siguiente diapositiva"
+                  className="w-8 h-8 rounded-full bg-slate-900/80 hover:bg-[#0A66FF] text-slate-300 hover:text-white flex items-center justify-center border border-slate-700/80 transition-colors cursor-pointer"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. ABOUT SECTION with Scroll Viewport Motion */}
-      {/* ========================================================================= */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-        className="py-14 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          <div className="lg:col-span-5 space-y-3">
-            <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">
-              SOBRE NOSOTROS
-            </div>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight leading-tight">
-              Construido con Integridad, <br />
-              Impulsado por la <span className="text-[#0B1D3A]">Justicia</span>
-            </h2>
-          </div>
-
-          <div className="lg:col-span-7 space-y-4">
-            <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
-              Firma jurídica especializada en blindar empresas y proyectos tecnológicos frente a marcos regulatorios complejos en Ecuador.
-            </p>
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-              Más de una década asesorando a organizaciones en protección de datos (LOPDP), contratos de software, cloud computing e integración de IA con rigor técnico y visión comercial.
-            </p>
-            <div>
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => onNavigate('about')}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-md transition-colors cursor-pointer active:scale-95"
-              >
-                <span>Conocer Más</span>
-                <div className="w-3.5 h-3.5 rounded-full bg-slate-950/15 flex items-center justify-center">
-                  <ArrowUpRight className="w-2.5 h-2.5 text-slate-950" />
-                </div>
-              </motion.button>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ========================================================================= */}
-      {/* 3. SERVICES SECTION - Full-Width Edge to Edge */}
+      {/* 2. SERVICES SECTION - Full-Width Edge to Edge (Moved right after Hero) */}
       {/* ========================================================================= */}
       <motion.section 
         initial={{ opacity: 0, y: 35 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.7 }}
-        className="w-full bg-[#0B1D3A] text-white py-16 sm:py-20 border-y border-slate-800 mb-20"
+        className="w-full bg-[#0B1D3A] text-white py-16 sm:py-20 border-y border-slate-800"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
@@ -291,6 +363,52 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ========================================================================= */}
+      {/* 3. ABOUT SECTION with Scroll Viewport Motion (After Services) */}
+      {/* ========================================================================= */}
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+        className="py-14 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <div className="lg:col-span-5 space-y-3">
+            <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">
+              SOBRE NOSOTROS
+            </div>
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight leading-tight">
+              Construido con Integridad, <br />
+              Impulsado por la <span className="text-[#0B1D3A]">Justicia</span>
+            </h2>
+          </div>
+
+          <div className="lg:col-span-7 space-y-4">
+            <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
+              Firma jurídica especializada en blindar empresas y proyectos tecnológicos frente a marcos regulatorios complejos en Ecuador.
+            </p>
+            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+              Más de una década asesorando a organizaciones en protección de datos (LOPDP), contratos de software, cloud computing e integración de IA con rigor técnico y visión comercial.
+            </p>
+            <div>
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => onNavigate('about')}
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-md transition-colors cursor-pointer active:scale-95"
+              >
+                <span>Conocer Más</span>
+                <div className="w-3.5 h-3.5 rounded-full bg-slate-950/15 flex items-center justify-center">
+                  <ArrowUpRight className="w-2.5 h-2.5 text-slate-950" />
+                </div>
+              </motion.button>
+            </div>
           </div>
         </div>
       </motion.section>

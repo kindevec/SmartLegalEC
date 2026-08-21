@@ -17,34 +17,72 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
   };
 
   return (
-    <footer className="relative w-full bg-[#0B1D3A] text-slate-300 border-t border-[#D0D7E2]/15 pt-8 pb-16 lg:pb-8 overflow-hidden text-xs">
+    <footer className="relative w-full bg-[#0B1D3A] text-slate-300 border-t border-[#D0D7E2]/15 pt-6 pb-20 lg:pt-8 lg:pb-8 overflow-hidden text-xs">
       {/* Top Ambient Glow / Radial Accent Line */}
       <div className="absolute top-0 right-1/2 left-1/2 h-[1px] w-2/5 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#0A66FF]/60 to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Main Grid Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 pb-6 border-b border-slate-700/60">
+        {/* Main Grid Content: 2 columns on mobile, 12 on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-8 pb-5 border-b border-slate-700/60">
           
-          {/* Col 1: Brand Info & Bio */}
-          <AnimatedContainer delay={0.1} className="lg:col-span-4 space-y-3">
-            <button 
-              onClick={() => { onNavigate('home'); scrollToTop(); }}
-              className="text-left cursor-pointer focus:outline-none"
-            >
-              <Logo variant="dark" size="sm" />
-            </button>
-            <p className="text-slate-300 text-xs leading-relaxed max-w-xs">
-              Asesoría jurídica en Protección de Datos (LOPDP), Contratos Tech, Telecomunicaciones y Negocios Digitales en Ecuador.
+          {/* Col 1: Brand Info & Bio (Full width on mobile) */}
+          <AnimatedContainer delay={0.1} className="col-span-2 lg:col-span-4 space-y-2">
+            <div className="flex items-center justify-between sm:justify-start sm:gap-4">
+              <button 
+                onClick={() => { onNavigate('home'); scrollToTop(); }}
+                className="text-left cursor-pointer focus:outline-none"
+              >
+                <Logo variant="dark" size="sm" />
+              </button>
+              
+              {/* Social Links on mobile inline with logo */}
+              <div className="flex items-center gap-1.5 sm:hidden">
+                <a
+                  href={BRAND_INFO.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-[#0A66FF] hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
+                  aria-label="LinkedIn oficial de SmartLegalEC"
+                >
+                  <Linkedin className="w-3 h-3" />
+                </a>
+
+                <a
+                  href={BRAND_INFO.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-[#0A66FF] hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
+                  aria-label="Instagram oficial de SmartLegalEC"
+                >
+                  <Instagram className="w-3 h-3" />
+                </a>
+
+                <a
+                  href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(
+                    'Hola SmartLegalEC, me gustaría solicitar una consulta jurídica.'
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-[#25D366] hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
+                  aria-label="WhatsApp oficial de SmartLegalEC"
+                >
+                  <WhatsAppIcon className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed max-w-sm">
+              Asesoría jurídica especializada en Protección de Datos (LOPDP), Contratos Tech y Telecomunicaciones en Ecuador.
             </p>
             
-            {/* Social Links */}
-            <div className="flex items-center gap-2 pt-1">
+            {/* Social Links on desktop */}
+            <div className="hidden sm:flex items-center gap-2 pt-0.5">
               <a
                 href={BRAND_INFO.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-[#0A66FF] hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
+                className="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-[#0A66FF] hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
                 aria-label="LinkedIn oficial de SmartLegalEC"
               >
                 <Linkedin className="w-3.5 h-3.5" />
@@ -54,7 +92,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
                 href={BRAND_INFO.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-[#0A66FF] hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
+                className="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-[#0A66FF] hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
                 aria-label="Instagram oficial de SmartLegalEC"
               >
                 <Instagram className="w-3.5 h-3.5" />
@@ -66,7 +104,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-[#25D366] hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
+                className="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-[#25D366] hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
                 aria-label="WhatsApp oficial de SmartLegalEC"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5" />
@@ -74,17 +112,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
             </div>
           </AnimatedContainer>
 
-          {/* Col 2: Áreas de Práctica Quick Links */}
-          <AnimatedContainer delay={0.2} className="lg:col-span-3 space-y-2">
-            <div className="font-bold text-[11px] uppercase tracking-wider text-white flex items-center gap-1.5">
+          {/* Col 2: Áreas de Práctica (1 col on mobile) */}
+          <AnimatedContainer delay={0.2} className="col-span-1 lg:col-span-3 space-y-1.5">
+            <div className="font-bold text-[10px] sm:text-[11px] uppercase tracking-wider text-white flex items-center gap-1">
               <Scale className="w-3 h-3 text-[#0A66FF]" />
-              <span>Áreas de Práctica</span>
+              <span>Áreas</span>
             </div>
-            <ul className="space-y-1.5 text-xs">
+            <ul className="space-y-1 text-[11px] sm:text-xs">
               <li>
                 <button
                   onClick={() => { onNavigate('area-detail', { areaId: 'lopdp' }); scrollToTop(); }}
-                  className="text-slate-300 hover:text-white transition-colors cursor-pointer text-left"
+                  className="text-slate-300 hover:text-white transition-colors cursor-pointer text-left line-clamp-1"
                 >
                   Protección de Datos & LOPDP
                 </button>
@@ -92,7 +130,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
               <li>
                 <button
                   onClick={() => { onNavigate('area-detail', { areaId: 'tech' }); scrollToTop(); }}
-                  className="text-slate-300 hover:text-white transition-colors cursor-pointer text-left"
+                  className="text-slate-300 hover:text-white transition-colors cursor-pointer text-left line-clamp-1"
                 >
                   Tecnología & SaaS
                 </button>
@@ -100,28 +138,28 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
               <li>
                 <button
                   onClick={() => { onNavigate('area-detail', { areaId: 'telecom' }); scrollToTop(); }}
-                  className="text-slate-300 hover:text-white transition-colors cursor-pointer text-left"
+                  className="text-slate-300 hover:text-white transition-colors cursor-pointer text-left line-clamp-1"
                 >
-                  Telecomunicaciones & ARCOTEL
+                  Telecomunicaciones
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => { onNavigate('areas'); scrollToTop(); }}
-                  className="text-[#60A5FA] hover:text-[#93C5FD] transition-colors cursor-pointer inline-flex items-center gap-1 text-[11px] font-semibold"
+                  className="text-[#60A5FA] hover:text-[#93C5FD] transition-colors cursor-pointer inline-flex items-center gap-0.5 text-[10px] sm:text-[11px] font-semibold"
                 >
-                  <span>Catálogo completo →</span>
+                  <span>Ver todas →</span>
                 </button>
               </li>
             </ul>
           </AnimatedContainer>
 
-          {/* Col 3: Navegación Institucional */}
-          <AnimatedContainer delay={0.3} className="lg:col-span-2 space-y-2">
-            <div className="font-bold text-[11px] uppercase tracking-wider text-white">
+          {/* Col 3: Navegación (1 col on mobile) */}
+          <AnimatedContainer delay={0.3} className="col-span-1 lg:col-span-2 space-y-1.5">
+            <div className="font-bold text-[10px] sm:text-[11px] uppercase tracking-wider text-white">
               Navegación
             </div>
-            <ul className="space-y-1.5 text-xs">
+            <ul className="space-y-1 text-[11px] sm:text-xs">
               <li>
                 <button
                   onClick={() => { onNavigate('home'); scrollToTop(); }}
@@ -157,32 +195,31 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
             </ul>
           </AnimatedContainer>
 
-          {/* Col 4: Contacto Institucional & Datos Oficiales */}
-          <AnimatedContainer delay={0.4} className="lg:col-span-3 space-y-2">
-            <div className="font-bold text-[11px] uppercase tracking-wider text-white">
+          {/* Col 4: Contacto Institucional (Full width on mobile, compact horizontal) */}
+          <AnimatedContainer delay={0.4} className="col-span-2 lg:col-span-3 space-y-1.5">
+            <div className="font-bold text-[10px] sm:text-[11px] uppercase tracking-wider text-white">
               Contacto
             </div>
-            <div className="space-y-1.5 text-xs text-slate-300">
-              <p className="font-medium text-white text-xs">
-                Abg. Luis Fernando Guerra Padilla
-              </p>
-              <div className="flex items-center gap-1.5 text-slate-300">
-                <MapPin className="w-3 h-3 text-[#0A66FF] shrink-0" />
-                <span>Quito, Ecuador</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Mail className="w-3 h-3 text-[#0A66FF] shrink-0" />
-                <a
-                  href={`mailto:${BRAND_INFO.email}`}
-                  className="text-slate-300 hover:text-[#0A66FF] transition-colors"
-                >
-                  {BRAND_INFO.email}
-                </a>
+            <div className="space-y-1 text-[11px] sm:text-xs text-slate-300">
+              <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="w-3 h-3 text-[#0A66FF] shrink-0" />
+                  <span>Quito, Ecuador</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Mail className="w-3 h-3 text-[#0A66FF] shrink-0" />
+                  <a
+                    href={`mailto:${BRAND_INFO.email}`}
+                    className="text-slate-300 hover:text-[#0A66FF] transition-colors"
+                  >
+                    {BRAND_INFO.email}
+                  </a>
+                </div>
               </div>
               <div className="pt-1">
                 <button
                   onClick={() => { onNavigate('contact'); scrollToTop(); }}
-                  className="w-full px-3 py-1.5 rounded-lg bg-[#0A66FF] hover:bg-[#0852cc] text-white font-bold text-xs transition-all cursor-pointer text-center"
+                  className="w-full px-3 py-1.5 rounded-lg bg-[#0A66FF] hover:bg-[#0852cc] text-white font-bold text-xs transition-all cursor-pointer text-center active:scale-[0.98]"
                 >
                   Solicitar Consulta
                 </button>
@@ -193,13 +230,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
         </div>
 
         {/* Bottom Bar: Copyright & Compliance */}
-        <AnimatedContainer delay={0.5} className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-slate-400 text-[11px]">
+        <AnimatedContainer delay={0.5} className="pt-3 flex flex-row items-center justify-between gap-2 text-slate-400 text-[10px] sm:text-[11px]">
           <div>
-            © {new Date().getFullYear()} {BRAND_INFO.name} • Todos los derechos reservados.
+            © {new Date().getFullYear()} {BRAND_INFO.name}
           </div>
-          <div className="flex items-center gap-4">
-            <span>Quito, Ecuador</span>
-            <span>•</span>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span className="hidden sm:inline">Quito, Ecuador •</span>
             <button
               onClick={scrollToTop}
               className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors cursor-pointer font-semibold"
