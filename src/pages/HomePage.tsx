@@ -156,7 +156,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       {/* ========================================================================= */}
       {/* 1. HERO SECTION WITH IMAGE SLIDER */}
       {/* ========================================================================= */}
-      <section className="relative bg-[#071326] text-white pt-20 pb-10 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-14 overflow-hidden border-b border-slate-800">
+      <section className="relative bg-[#071326] text-white pt-20 pb-12 sm:pt-24 sm:pb-14 lg:pt-28 lg:pb-16 overflow-hidden">
         
         {/* Background Images Slider with Layered Crossfade */}
         {heroSlides.map((slide, idx) => (
@@ -187,8 +187,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           </motion.div>
         ))}
 
-        {/* Gentle dark gradient to guarantee contrast and readability */}
+        {/* Gentle dark gradient and bottom fade to guarantee contrast and seamless transition */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#071326]/95 via-[#071326]/70 to-[#071326]/30 pointer-events-none z-1" />
+        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#071326] via-[#071326]/70 to-transparent pointer-events-none z-1" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="max-w-3xl space-y-6">
@@ -301,8 +302,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.6 }}
-        className="w-full bg-[#071326] text-white py-12 sm:py-16 border-y border-slate-800/90 relative overflow-hidden"
+        className="w-full bg-[#071326] text-white py-12 sm:py-16 border-b border-slate-800/90 relative overflow-hidden"
       >
+        {/* Difuminado superior / Top Soft Fade & Ambient Blur */}
+        <div className="absolute top-0 inset-x-0 h-24 sm:h-32 bg-gradient-to-b from-[#071326] via-[#071326]/80 to-transparent pointer-events-none z-10" />
+        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#0A66FF]/40 to-transparent pointer-events-none z-20" />
+        <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-3/4 sm:w-1/2 h-28 bg-[#0A66FF]/15 blur-3xl pointer-events-none" />
+
         {/* Subtle Ambient Glow */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0A66FF]/5 rounded-full blur-3xl pointer-events-none" />
 
