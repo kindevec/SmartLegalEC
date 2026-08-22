@@ -4,6 +4,8 @@ import { PageRoute } from '../types';
 import { BRAND_INFO, FAQS, PRACTICE_AREAS } from '../data/content';
 import { sanitizeInput, isValidEmail, isValidPhone } from '../utils/security';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
+import { LinkedInIcon } from '../components/LinkedInIcon';
+import { InstagramIcon } from '../components/InstagramIcon';
 import { 
   Mail, 
   Phone, 
@@ -435,28 +437,33 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                 </div>
               </div>
 
-              {/* Redes */}
-              <div className="py-3.5 flex items-center justify-between gap-3">
-                <span className="text-xs font-semibold text-slate-600">
-                  Redes Profesionales:
+              {/* Redes y Canales Digitales */}
+              <div className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <span className="text-xs font-semibold text-slate-700">
+                  Redes Profesionales & Canales:
                 </span>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  {/* LinkedIn */}
                   <a
                     href={BRAND_INFO.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-[#0A66C2] text-slate-800 hover:text-white border border-slate-200 hover:border-[#0A66C2] text-xs font-semibold transition-all duration-200 shadow-2xs group"
+                    aria-label="Perfil oficial de LinkedIn"
                   >
-                    <ExternalLink className="w-3 h-3" />
+                    <LinkedInIcon className="w-4 h-4 text-[#0A66C2] group-hover:text-white transition-colors shrink-0" />
                     <span>LinkedIn</span>
                   </a>
+
+                  {/* Instagram */}
                   <a
                     href={BRAND_INFO.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-gradient-to-tr hover:from-[#FD1D1D] hover:via-[#E1306C] hover:to-[#833AB4] text-slate-800 hover:text-white border border-slate-200 hover:border-transparent text-xs font-semibold transition-all duration-200 shadow-2xs group"
+                    aria-label="Perfil oficial de Instagram"
                   >
-                    <ExternalLink className="w-3 h-3" />
+                    <InstagramIcon className="w-4 h-4 text-[#E4405F] group-hover:text-white transition-colors shrink-0" />
                     <span>Instagram</span>
                   </a>
                 </div>

@@ -462,13 +462,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6 }}
-        className="py-14 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="pt-8 pb-4 sm:pt-12 sm:pb-6 lg:pt-16 lg:pb-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
           
           {/* LEFT: Client / Founder Avatar */}
           <div className="lg:col-span-5 relative flex flex-col items-center lg:items-start justify-center">
-            <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-full mx-auto flex items-end justify-center">
+            <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-full mx-auto flex items-end justify-center">
               <picture className="w-full h-auto block">
                 <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
                 <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
@@ -477,7 +477,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
                   width="896"
                   height="1200"
-                  className="w-full max-h-[460px] lg:max-h-[500px] object-contain object-bottom drop-shadow-xl hover:scale-102 transition-transform duration-500"
+                  className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[480px] object-contain object-bottom drop-shadow-xl hover:scale-102 transition-transform duration-500"
                   loading="lazy"
                   decoding="async"
                 />
@@ -485,13 +485,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
 
             {/* Founder Caption */}
-            <div className="mt-3 text-center lg:text-left w-full space-y-1.5 px-2">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 text-[10px] font-bold uppercase tracking-wider font-heading">
+            <div className="mt-2.5 text-center lg:text-left w-full space-y-1 px-2">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 text-[10px] font-bold uppercase tracking-wider font-heading">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
                 <span>DIRECTOR & FUNDADOR</span>
               </div>
 
-              <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 leading-tight">
+              <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900 leading-tight">
                 Abg. Luis Fernando Guerra Padilla
               </h3>
 
@@ -502,9 +502,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           </div>
 
           {/* RIGHT: Section Editorial & Firm Story */}
-          <div className="lg:col-span-7 space-y-5">
+          <div className="lg:col-span-7 space-y-4">
             <div>
-              <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200 mb-3 font-heading">
+              <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200 mb-2 font-heading">
                 SOBRE NOSOTROS
               </div>
               <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
@@ -522,7 +522,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </p>
 
             {/* 3 Credential Badges */}
-            <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3.5 my-2">
+            <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1.5">
               <div className="pr-2 sm:pr-4 flex flex-col justify-start">
                 <Shield className="w-4 h-4 text-[#0A66FF] mb-1 shrink-0" />
                 <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Oficial DPD</div>
@@ -541,12 +541,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
 
             {/* Actions */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => onNavigate('about')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-md transition-colors cursor-pointer active:scale-95"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xs transition-colors cursor-pointer active:scale-95"
               >
                 <span>Conocer Más Sobre la Firma</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-slate-950" />
@@ -556,7 +556,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => onNavigate('contact')}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors cursor-pointer"
               >
                 <span>Contactar al Abogado</span>
                 <ArrowRight className="w-3.5 h-3.5 text-slate-700" />
@@ -574,12 +574,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.55 }}
-        className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="pt-2 pb-10 sm:pt-4 sm:pb-14 lg:pt-6 lg:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Minimalist Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 sm:pb-8 border-b border-slate-200 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-4 sm:pb-6 border-b border-slate-200 gap-3">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 mb-2.5 font-heading">
+            <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 mb-2 font-heading">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF]" />
               <span>PRECEDENTES & TRAYECTORIA</span>
             </div>

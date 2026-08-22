@@ -5,6 +5,7 @@ import { BRAND_INFO, METRICS } from '../data/content';
 import { Timeline, TimelineEntry } from '../components/ui/timeline';
 import { MilestoneCarousel } from '../components/MilestoneCarousel';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
+import { LinkedInIcon } from '../components/LinkedInIcon';
 import { 
   GraduationCap, 
   Briefcase, 
@@ -84,7 +85,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all shadow-xs text-center"
                 >
-                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                  <LinkedInIcon className="w-4 h-4 shrink-0" />
                   <span>Perfil en LinkedIn</span>
                 </a>
                 <button
