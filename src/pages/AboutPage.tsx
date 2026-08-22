@@ -76,20 +76,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
-              {/* Action Buttons (Horizontal row on all viewports) */}
-              <div className="pt-2 flex flex-row items-center gap-2.5 sm:gap-3 w-full">
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full">
                 <a
                   href={BRAND_INFO.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2.5 rounded-full text-xs font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all shadow-xs whitespace-nowrap text-center"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all shadow-xs text-center"
                 >
                   <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                   <span>Perfil en LinkedIn</span>
                 </a>
                 <button
                   onClick={() => onNavigate('contact')}
-                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2.5 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-all cursor-pointer shadow-xs whitespace-nowrap text-center"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-all cursor-pointer shadow-xs text-center"
                 >
                   <span>Agendar Consulta</span>
                   <ArrowRight className="w-3.5 h-3.5 shrink-0" />
@@ -401,21 +401,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          <div className="relative z-10 flex flex-row items-center gap-2.5 sm:gap-3.5 pt-1 w-full">
+          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full">
             <button
               onClick={() => onNavigate('contact')}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all cursor-pointer shadow-md whitespace-nowrap text-center"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all cursor-pointer shadow-md text-center"
             >
               <span>Contactar a la Firma</span>
-              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </button>
             <a
               href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent('Hola SmartLegalEC, me gustaría agendar una reunión con el Abg. Luis Fernando Guerra.')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md whitespace-nowrap text-center"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md text-center"
             >
-              <WhatsAppIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <WhatsAppIcon className="w-4 h-4 shrink-0" />
               <span>WhatsApp Directo</span>
             </a>
           </div>

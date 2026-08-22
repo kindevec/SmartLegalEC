@@ -145,7 +145,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#071326] text-slate-900 selection:bg-[#0A66FF] selection:text-white">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden flex flex-col bg-[#F8FAFC] text-slate-900 selection:bg-[#0A66FF] selection:text-white">
       {/* Institutional Top Navbar */}
       <Navbar
         currentPage={currentPage}
@@ -154,7 +154,7 @@ export default function App() {
       />
 
       {/* Main Multi-Page Route Render */}
-      <main className="flex-1 w-full bg-[#F8FAFC]">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden bg-[#F8FAFC]">
         <Suspense
           fallback={
             <div className="min-h-[60vh] flex flex-col items-center justify-center gap-3 py-16">

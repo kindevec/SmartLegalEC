@@ -23,13 +23,10 @@ export function NavBar({ items, activeTab: externalActiveTab, className, onSelec
   const activeTab = externalActiveTab || internalActiveTab;
 
   return (
-    <motion.nav
+    <nav
       id="tubelight-bottom-nav"
-      initial={{ y: 80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 280, damping: 28 }}
       className={cn(
-        "fixed bottom-0 left-0 right-0 z-50 bg-[#0B1D3A]/95 border-t border-slate-700/80 backdrop-blur-2xl shadow-[0_-8px_32px_rgba(0,0,0,0.5)] pb-safe",
+        "fixed bottom-0 inset-x-0 z-50 w-full max-w-full bg-[#0B1D3A]/98 border-t border-slate-700/80 backdrop-blur-2xl shadow-[0_-8px_32px_rgba(0,0,0,0.5)] pb-safe transform-gpu translate-z-0",
         className,
       )}
     >
@@ -114,7 +111,7 @@ export function NavBar({ items, activeTab: externalActiveTab, className, onSelec
           );
         })}
       </div>
-    </motion.nav>
+    </nav>
   );
 }
 

@@ -292,11 +292,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                   />
                 </div>
 
-                {/* Action Buttons: strictly horizontal */}
-                <div className="pt-2 flex flex-row items-center gap-2.5 sm:gap-3.5 w-full">
+                {/* Action Buttons */}
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full">
                   <button
                     type="submit"
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 py-3 sm:py-3.5 px-5 sm:px-7 rounded-full text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white shadow-md transition-all cursor-pointer whitespace-nowrap text-center"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 sm:py-3.5 px-6 sm:px-7 rounded-full text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white shadow-md transition-all cursor-pointer text-center"
                   >
                     <span>Enviar Requerimiento</span>
                     <Send className="w-3.5 h-3.5 shrink-0" />
@@ -306,7 +306,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                     href={getWhatsAppDirectLink()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 py-3 sm:py-3.5 px-5 sm:px-7 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md whitespace-nowrap text-center"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 sm:py-3.5 px-6 sm:px-7 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md text-center"
                   >
                     <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />
                     <span>WhatsApp Inmediato</span>
