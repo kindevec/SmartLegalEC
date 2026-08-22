@@ -428,41 +428,38 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* LEFT: Client / Founder Image Card */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl group min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] bg-slate-900 flex flex-col justify-end">
-              <picture className="absolute inset-0 w-full h-full block">
+          {/* LEFT: Client / Founder Avatar */}
+          <div className="lg:col-span-5 relative flex flex-col items-center lg:items-start justify-center">
+            <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-full mx-auto flex items-end justify-center">
+              <picture className="w-full h-auto block">
                 <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
                 <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
+                  src="/luis-guerra-portrait.png"
                   alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
-                  width="800"
-                  height="950"
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-95 group-hover:opacity-100"
+                  width="896"
+                  height="1200"
+                  className="w-full max-h-[460px] lg:max-h-[500px] object-contain object-bottom drop-shadow-xl hover:scale-102 transition-transform duration-500"
                   loading="lazy"
                   decoding="async"
                 />
               </picture>
+            </div>
 
-              {/* Gradient Dark Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 via-55% to-transparent pointer-events-none" />
-
-              {/* Card Footer Content */}
-              <div className="relative z-10 p-5 sm:p-6 space-y-2">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0A66FF]/20 text-[#93C5FD] border border-[#0A66FF]/40 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md font-heading">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
-                  <span>DIRECTOR & FUNDADOR</span>
-                </div>
-
-                <h3 className="font-heading font-bold text-xl sm:text-2xl text-white leading-tight">
-                  Abg. Luis Fernando Guerra Padilla
-                </h3>
-
-                <p className="text-xs text-slate-300 italic leading-relaxed pt-1">
-                  "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
-                </p>
+            {/* Founder Caption */}
+            <div className="mt-3 text-center lg:text-left w-full space-y-1.5 px-2">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 text-[10px] font-bold uppercase tracking-wider font-heading">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
+                <span>DIRECTOR & FUNDADOR</span>
               </div>
+
+              <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 leading-tight">
+                Abg. Luis Fernando Guerra Padilla
+              </h3>
+
+              <p className="text-xs text-slate-500 italic leading-relaxed">
+                "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
+              </p>
             </div>
           </div>
 

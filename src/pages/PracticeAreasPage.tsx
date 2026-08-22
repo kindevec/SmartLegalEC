@@ -241,25 +241,26 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
               ))}
             </div>
 
-            {/* Services Infinite Auto-Slider for this area - Full Bleed Edge-to-Edge on Mobile */}
+            {/* Services Interactive Carousel for this area - Full Bleed Edge-to-Edge on Mobile */}
             <div className="pt-6">
-              <div className="flex items-center justify-between mb-4 px-1">
+              <div className="flex items-center justify-between mb-2 px-1">
                 <div className="flex items-center gap-2.5">
                   <h3 className="text-sm sm:text-base font-bold text-slate-900 font-heading">
                     Catálogo de Servicios Específicos ({area.services.length})
                   </h3>
-                  <span className="text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0A66FF] border border-blue-100/80">
-                    Carrusel Continuo
-                  </span>
                 </div>
-                <span className="text-xs text-slate-400 font-medium hidden sm:inline-flex items-center gap-1">
-                  <span>Pausa al posar el cursor</span>
-                </span>
               </div>
 
               {/* Edge-to-edge breakout container on mobile */}
-              <div className="-mx-4 sm:-mx-6 lg:mx-0 overflow-hidden">
-                <ImageAutoSlider speed={35} pauseOnHover={true} className="py-2">
+              <div className="-mx-4 sm:-mx-6 lg:mx-0">
+                <ImageAutoSlider 
+                  autoAdvanceSeconds={4.5}
+                  resumeDelayMs={10000}
+                  pauseOnHover={true}
+                  showControls={true}
+                  showDots={true}
+                  className="py-1"
+                >
                   {area.services.map((serv, sIdx) => {
                     // Thematic service imagery mapping
                     const serviceImages: Record<string, string[]> = {

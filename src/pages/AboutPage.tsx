@@ -97,20 +97,26 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Right: High-Impact Visual Photo Card (Full-Bleed on Mobile) */}
-            <div className="lg:col-span-5 relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200 shadow-md group min-h-[280px] sm:min-h-[320px] h-72 sm:h-80 lg:h-auto w-full">
-              <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
-                alt="Abg. Luis Fernando Guerra Padilla"
-                className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                loading="eager"
-                decoding="async"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5 sm:p-6 z-10 pointer-events-none">
-                <p className="text-xs sm:text-sm font-medium text-slate-200 leading-relaxed text-justify">
-                  "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
-                </p>
+            {/* Right: Founder Avatar Silhouette */}
+            <div className="lg:col-span-5 relative flex flex-col items-center justify-center">
+              <div className="relative w-full max-w-[320px] sm:max-w-[360px] mx-auto flex items-end justify-center">
+                <picture className="w-full h-auto block">
+                  <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
+                  <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
+                  <img
+                    src="/luis-guerra-portrait.png"
+                    alt="Abg. Luis Fernando Guerra Padilla"
+                    width="896"
+                    height="1200"
+                    className="w-full max-h-[380px] sm:max-h-[420px] object-contain object-bottom drop-shadow-xl hover:scale-102 transition-transform duration-500"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </picture>
               </div>
+              <p className="mt-3 text-xs sm:text-sm font-medium text-slate-600 leading-relaxed text-center italic">
+                "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
+              </p>
             </div>
           </div>
         </div>
@@ -425,9 +431,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="w-full bg-[#F8FAFC] min-h-screen pb-24">
+    <div className="w-full bg-[#F8FAFC] min-h-screen pb-4 sm:pb-8">
       {/* 1. HEADER SECTION with Seamless Full-Bleed Background */}
-      <section className="relative bg-[#071326] text-white min-h-[420px] sm:min-h-[480px] lg:min-h-[540px] h-auto pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12 lg:pb-16 flex flex-col justify-center border-b border-slate-800 overflow-hidden">
+      <section className="relative bg-[#071326] text-white min-h-[340px] sm:min-h-[400px] lg:min-h-[440px] h-auto pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8 lg:pb-10 flex flex-col justify-center border-b border-slate-800 overflow-hidden">
         
         {/* Full-Bleed Thematic Background Image */}
         <motion.div 
@@ -475,7 +481,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 2. CONTINUOUS TIMELINE CANVAS: Presenting the complete story of Sobre Nosotros */}
-      <main className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 mt-6 sm:mt-16 w-full">
+      <main className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 mt-4 sm:mt-8 w-full">
         <Timeline 
           data={aboutTimelineData}
           showHeader={false}
