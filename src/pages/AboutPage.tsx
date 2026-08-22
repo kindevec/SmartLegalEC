@@ -259,10 +259,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       subtitle: "Principios de Nuestra Práctica",
       content: (
         <div className="space-y-4 w-full">
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Cuatro pilares que aseguran precisión técnica, ética inquebrantable y visión anticipatoria:
-          </p>
-
           {/* Canvas-Anchored 2x2 Mobile / 4-Col Desktop Grid with Linear Dividers */}
           <div className="grid grid-cols-2 lg:grid-cols-4 border-y border-slate-200 w-full">
             {/* Valor 1 */}
@@ -358,10 +354,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       subtitle: "Resultados Tangibles en Ecuador",
       content: (
         <div className="space-y-4 w-full">
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Resultados consolidados en el sector corporativo y regulatorio ecuatoriano:
-          </p>
-
           {/* Canvas-Anchored Metric Strip with Linear Divider (No Box-in-Box) */}
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 border-y border-slate-200 py-6 sm:py-8 w-full">
             {METRICS.map((metric, idx) => (
