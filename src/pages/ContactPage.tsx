@@ -246,13 +246,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                 {/* Row 3: Materia & Urgencia */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1 font-heading">
+                    <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5 font-heading">
                       Materia Jurídica
                     </label>
                     <select
                       value={formData.area}
                       onChange={(e) => setFormData({ ...formData, area: e.target.value })}
-                      className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none cursor-pointer"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-slate-50/70 hover:bg-slate-50 border border-slate-200/90 hover:border-slate-300 rounded-xl text-slate-800 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 transition-all shadow-xs cursor-pointer"
                     >
                       <option value="lopdp">Protección de Datos / LOPDP Ecuador</option>
                       <option value="tech">Contratos Tecnológicos / SaaS / Cloud</option>
@@ -263,13 +263,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1 font-heading">
+                    <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5 font-heading">
                       Nivel de Urgencia
                     </label>
                     <select
                       value={formData.urgency}
                       onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
-                      className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none cursor-pointer"
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-slate-50/70 hover:bg-slate-50 border border-slate-200/90 hover:border-slate-300 rounded-xl text-slate-800 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 transition-all shadow-xs cursor-pointer"
                     >
                       <option value="normal">Estándar (Respuesta en 24h hábiles)</option>
                       <option value="urgente">Urgente (Reunión y propuesta prioritaria)</option>

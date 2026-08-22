@@ -250,13 +250,13 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
                       Área de especialización requerida
                     </label>
                     <select
                       value={formData.serviceArea}
                       onChange={(e) => setFormData({ ...formData, serviceArea: e.target.value })}
-                      className="w-full px-1 py-2 sm:py-2.5 bg-slate-900 border-0 border-b-2 border-slate-700 text-white text-xs sm:text-sm focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none cursor-pointer"
+                      className="w-full px-3.5 sm:px-4 py-2.5 bg-slate-950/80 hover:bg-slate-950 border border-slate-700/90 hover:border-slate-600 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/20 transition-all shadow-xs cursor-pointer"
                     >
                       <option value="lopdp" className="bg-slate-900 text-white">Protección de Datos / Adecuación LOPDP</option>
                       <option value="dpd" className="bg-slate-900 text-white">Delegado de Protección de Datos (DPD Externo)</option>
