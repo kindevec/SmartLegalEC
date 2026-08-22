@@ -6,11 +6,17 @@ import {
   ArrowUpRight, 
   Star, 
   Shield,
+  ShieldCheck,
+  CheckCircle2,
   FileCheck,
   ChevronLeft,
   ChevronRight,
   Scale,
   Cpu,
+  Code2,
+  Radio,
+  Building2,
+  Sparkles,
   ExternalLink,
   ArrowRight
 } from 'lucide-react';
@@ -122,34 +128,66 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
     }
   ];
 
-  // Cases / Recent Legal Works table
+  // Case Studies & Strategic Legal Works dataset
   const legalWorks = [
     {
+      id: 'case-fintech',
       sector: 'FINTECH & PAGOS DIGITALES',
       title: 'Auditoría LOPDP y Blindaje de Pasarelas de Pago Cloud',
       category: 'PROTECCIÓN DE DATOS',
+      categoryKey: 'lopdp',
       date: 'ENE 2026',
+      icon: ShieldCheck,
+      iconColor: 'text-[#0A66FF]',
+      iconBg: 'bg-blue-50 border-blue-100',
+      description: 'Adecuación integral del flujo de datos transaccionales, mapeo de transferencias internacionales y Registro de Actividades de Tratamiento (RAT) para procesador regional de pagos.',
+      outcome: '100% de cumplimiento ante la SPDP sin observaciones ni multas regulatorias.',
+      tags: ['LOPDP Ecuador', 'PCI-DSS', 'Encargo Cloud', 'Evaluación EIPD'],
       routeId: 'lopdp' as const,
     },
     {
-      sector: 'SOFTWARE ENTERPRISE',
+      id: 'case-saas',
+      sector: 'SOFTWARE ENTERPRISE & IA',
       title: 'Estructuración de Contratos Master SaaS y SLAs de Alta Disponibilidad',
       category: 'CONTRATOS TECH',
+      categoryKey: 'tech',
       date: 'DIC 2025',
+      icon: Code2,
+      iconColor: 'text-purple-600',
+      iconBg: 'bg-purple-50 border-purple-100',
+      description: 'Redacción de Acuerdos de Nivel de Servicio (SLA 99.9%), cesión y custodia de código fuente, limitación de responsabilidad transfronteriza y políticas de uso ético de IA.',
+      outcome: 'Blindaje de propiedad intelectual de código y contratos listos para rondas de inversión.',
+      tags: ['SaaS B2B', 'SLA 99.9%', 'IP Protection', 'Modelos IA'],
       routeId: 'tech' as const,
     },
     {
-      sector: 'ISP / TELECOMUNICACIONES',
+      id: 'case-telco',
+      sector: 'ISP & TELECOMUNICACIONES',
       title: 'Regularización de Concesión y Régimen de Cumplimiento ARCOTEL',
       category: 'REGULATORIO TIC',
+      categoryKey: 'telecom',
       date: 'MAR 2026',
+      icon: Radio,
+      iconColor: 'text-[#D4AF37]',
+      iconBg: 'bg-amber-50 border-amber-100',
+      description: 'Tramitación y defensa técnica-jurídica para renovación de títulos habilitantes, adecuación al régimen de tarifas y homologación de servicios de valor agregado ante ARCOTEL.',
+      outcome: 'Resolución favorable y título habilitante otorgado por la autoridad reguladora.',
+      tags: ['ARCOTEL', 'Títulos Habilitantes', 'Servicios PVA', 'Espectro'],
       routeId: 'telecom' as const,
     },
     {
-      sector: 'RED DE SALUD PRIVADA',
-      title: 'Implementación de Programa DPD Externo para Red de Salud',
-      category: 'GOBERNANZA & PRIVACIDAD',
+      id: 'case-health',
+      sector: 'RED DE SALUD & DATOS SENSIBLES',
+      title: 'Implementación de Programa DPD Externo para Red de Clínicas',
+      category: 'GOBERNANZA DPD',
+      categoryKey: 'lopdp',
       date: 'FEB 2026',
+      icon: Building2,
+      iconColor: 'text-emerald-600',
+      iconBg: 'bg-emerald-50 border-emerald-100',
+      description: 'Designación de Delegado de Protección de Datos (DPD) certificado para salvaguardar historiales clínicos digitales, consentimiento informado y atención de derechos ARCO.',
+      outcome: 'Gobernanza continua y blindaje sobre más de 250,000 registros médicos sensibles.',
+      tags: ['Oficial DPD', 'Datos de Salud', 'Derechos ARCO', 'Auditoría SPDP'],
       routeId: 'lopdp' as const,
     },
   ];
@@ -529,85 +567,115 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       </motion.section>
 
       {/* ========================================================================= */}
-      {/* 4. RECENT LEGAL WORKS with Interactive Table Rows */}
+      {/* 4. RECENT LEGAL WORKS / CASE STUDIES - Minimalist Editorial Showcase */}
       {/* ========================================================================= */}
       <motion.section 
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-        className="py-14 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        transition={{ duration: 0.55 }}
+        className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-        
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
+        {/* Minimalist Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 sm:pb-8 border-b border-slate-200 gap-4">
           <div>
-            <div className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 mb-3 border border-slate-200 font-heading">
-              CASOS DE ÉXITO Y TRAYECTORIA
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 mb-2.5 font-heading">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF]" />
+              <span>PRECEDENTES & TRAYECTORIA</span>
             </div>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">
-              Algunos de Nuestros Casos Legales
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
+              Casos de Éxito & Asesorías Clave
             </h2>
           </div>
 
-          <div className="flex flex-col items-start md:items-end gap-3 w-full md:w-auto">
-            <p className="text-xs text-slate-500 max-w-xs md:text-right text-justify sm:text-right">
-              Explora una selección de materias y asesorías corporativas que hemos manejado con éxito.
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <p className="text-xs text-slate-500 max-w-sm text-justify sm:text-right">
+              Precedentes en blindaje normativo, gobernanza de datos y regulación tecnológica en Ecuador.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+            <button
               onClick={() => onNavigate('areas')}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 transition-colors cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-[#0B1D3A] hover:bg-slate-900 text-white transition-all cursor-pointer shadow-xs whitespace-nowrap group"
             >
-              <span>Ver Todos los Servicios</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </motion.button>
+              <span>Ver todas las áreas</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            </button>
           </div>
         </div>
 
-        {/* Table Header */}
-        <div className="hidden md:grid grid-cols-12 gap-4 pb-4 border-b border-slate-200 text-xs font-extrabold text-slate-400 uppercase tracking-wider font-heading">
-          <div className="col-span-6">Título del Caso / Asesoría</div>
-          <div className="col-span-3 text-center">Categoría</div>
-          <div className="col-span-2 text-center">Fecha</div>
-          <div className="col-span-1 text-right">Acción</div>
-        </div>
-
-        {/* Table Rows with Stagger Animation */}
-        <div className="divide-y divide-slate-100">
+        {/* Minimalist Editorial List (Zero nested boxes) */}
+        <div className="divide-y divide-slate-200">
           {legalWorks.map((work, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, x: -15 }}
-              whileInView={{ opacity: 1, x: 0 }}
+            <motion.article
+              key={work.id}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              whileHover={{ x: 4, transition: { duration: 0.15 } }}
+              transition={{ duration: 0.4, delay: idx * 0.06 }}
               onClick={() => onNavigate('area-detail', { areaId: work.routeId })}
-              className="py-4 sm:py-5 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-center hover:bg-slate-50 rounded-xl px-2 sm:px-3 transition-colors cursor-pointer group"
+              className="py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-8 items-start hover:bg-slate-50/80 -mx-3 px-3 sm:-mx-6 sm:px-6 rounded-2xl transition-all duration-200 cursor-pointer group"
             >
-              <div className="md:col-span-6">
-                <h3 className="font-heading font-bold text-sm sm:text-base md:text-lg text-slate-900 group-hover:text-[#0A66FF] transition-colors leading-snug">
-                  {work.title}
-                </h3>
-              </div>
-              <div className="flex items-center justify-between md:contents">
-                <div className="md:col-span-3 md:text-center">
-                  <span className="inline-block px-3 py-1 rounded-full text-[10px] font-extrabold bg-slate-100 text-slate-700 border border-slate-200">
-                    {work.category}
+              {/* Col 1: Numeric Index & Sector Tag */}
+              <div className="lg:col-span-3 space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs font-bold text-[#D4AF37]">
+                    0{idx + 1}
+                  </span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">
+                    {work.date}
                   </span>
                 </div>
-                <div className="md:col-span-2 md:text-center text-xs font-mono font-semibold text-slate-500">
-                  {work.date}
+                <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider block font-heading">
+                  {work.sector}
+                </span>
+                <span className="text-[11px] text-slate-500 font-medium block">
+                  {work.category}
+                </span>
+              </div>
+
+              {/* Col 2: Headline, Strategic Context & Outcome */}
+              <div className="lg:col-span-7 space-y-2">
+                <h3 className="font-heading font-extrabold text-base sm:text-lg lg:text-xl text-slate-900 group-hover:text-[#0A66FF] transition-colors leading-snug">
+                  {work.title}
+                </h3>
+
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify sm:text-left font-normal">
+                  {work.description}
+                </p>
+
+                {/* Outcome Statement (Clean inline typography, no nested boxes) */}
+                <div className="pt-1 flex items-start gap-2 text-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
+                  <p className="font-semibold text-slate-800 leading-snug">
+                    <strong className="text-slate-900 font-bold">Impacto:</strong> {work.outcome}
+                  </p>
                 </div>
-                <div className="md:col-span-1 text-right">
-                  <div className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-700 group-hover:bg-[#D4AF37] group-hover:border-[#D4AF37] group-hover:text-slate-950 transition-all inline-flex">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
+
+                {/* Minimalist Deliverables List */}
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-[11px] text-slate-400">
+                  <span className="font-semibold text-slate-500">Materia:</span>
+                  {work.tags.map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="text-slate-600 after:content-['•'] last:after:content-none after:ml-2 after:text-slate-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </motion.div>
+
+              {/* Col 3: Action Trigger */}
+              <div className="lg:col-span-2 flex lg:flex-col items-center lg:items-end justify-between lg:justify-center h-full pt-2 lg:pt-0">
+                <span className="text-xs font-bold text-slate-500 group-hover:text-[#0A66FF] transition-colors lg:hidden inline-flex items-center gap-1">
+                  <span>Consultar área</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-slate-200 group-hover:border-[#0A66FF] group-hover:bg-[#0A66FF] text-slate-400 group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs group-hover:scale-105">
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+              </div>
+            </motion.article>
           ))}
         </div>
       </motion.section>
