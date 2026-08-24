@@ -91,7 +91,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
-              Blindaje normativo integral en <strong className="text-white font-semibold">Privacidad (LOPDP)</strong>, <strong className="text-white font-semibold">Contratación Tecnológica & SaaS</strong> y regulación ante <strong className="text-white font-semibold">ARCOTEL</strong> en Ecuador.
+              Blindaje normativo integral en <strong className="text-white font-semibold">Protección de Datos y Privacidad</strong>, <strong className="text-white font-semibold">Tecnología y Negocios Digitales</strong> y <strong className="text-white font-semibold">Telecomunicaciones y Regulación</strong> en Ecuador.
             </p>
           </motion.div>
         </div>
@@ -125,7 +125,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Protección de Datos
+              Protección de Datos y Privacidad
             </button>
             <button
               onClick={() => setSelectedFilter('tech')}
@@ -135,7 +135,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Tecnología & SaaS
+              Tecnología y Negocios Digitales
             </button>
             <button
               onClick={() => setSelectedFilter('telecom')}
@@ -145,7 +145,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Telecomunicaciones
+              Telecomunicaciones y Regulación
             </button>
           </div>
 

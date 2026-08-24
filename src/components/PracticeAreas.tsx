@@ -160,7 +160,7 @@ export const PracticeAreas: React.FC<PracticeAreasProps> = ({ onSelectServiceFor
               <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
-                placeholder="Filtrar por término (ej. DPD, SaaS, ARCOTEL)..."
+                placeholder="Filtrar por término (ej. DPD, SaaS, Títulos)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#0A66FF] text-slate-800"
