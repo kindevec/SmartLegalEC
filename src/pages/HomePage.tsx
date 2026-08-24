@@ -462,105 +462,110 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6 }}
-        className="pt-8 pb-4 sm:pt-12 sm:pb-6 lg:pt-16 lg:pb-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full bg-[#0B1D3A] text-white py-12 sm:py-16 lg:py-20 relative overflow-hidden"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
-          
-          {/* LEFT: Client / Founder Avatar */}
-          <div className="lg:col-span-5 relative flex flex-col items-center lg:items-start justify-center">
-            <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-full mx-auto flex items-end justify-center">
-              <picture className="w-full h-auto block">
-                <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
-                <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
-                <img
-                  src="/luis-guerra-portrait.png"
-                  alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
-                  width="896"
-                  height="1200"
-                  className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[480px] object-contain object-bottom drop-shadow-xl hover:scale-102 transition-transform duration-500"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-            </div>
-
-            {/* Founder Caption */}
-            <div className="mt-2.5 text-center lg:text-left w-full space-y-1 px-2">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 text-[10px] font-bold uppercase tracking-wider font-heading">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
-                <span>DIRECTOR & FUNDADOR</span>
+        {/* Subtle decorative glow to match services */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0A66FF]/5 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+            
+            {/* LEFT: Client / Founder Avatar */}
+            <div className="lg:col-span-5 relative flex flex-col items-center lg:items-start justify-center">
+              <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-full mx-auto flex items-end justify-center">
+                <picture className="w-full h-auto block">
+                  <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
+                  <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
+                  <img
+                    src="/luis-guerra-portrait.png"
+                    alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
+                    width="896"
+                    height="1200"
+                    className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[480px] object-contain object-bottom drop-shadow-xl hover:scale-102 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
 
-              <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900 leading-tight">
-                Abg. Luis Fernando Guerra Padilla
-              </h3>
+              {/* Founder Caption */}
+              <div className="mt-2.5 text-center lg:text-left w-full space-y-1 px-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#0A66FF]/20 text-[#93C5FD] border border-[#0A66FF]/30 text-[10px] font-bold uppercase tracking-wider font-heading">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
+                  <span>DIRECTOR & FUNDADOR</span>
+                </div>
 
-              <p className="text-xs text-slate-500 italic leading-relaxed">
-                "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
+                <h3 className="font-heading font-bold text-base sm:text-lg text-white leading-tight">
+                  Abg. Luis Fernando Guerra Padilla
+                </h3>
+
+                <p className="text-xs text-slate-300 italic leading-relaxed">
+                  "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
+                </p>
+              </div>
+            </div>
+
+            {/* RIGHT: Section Editorial & Firm Story */}
+            <div className="lg:col-span-7 space-y-4">
+              <div>
+                <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/20 text-[#93C5FD] border border-[#0A66FF]/30 mb-2 font-heading">
+                  SOBRE NOSOTROS
+                </div>
+                <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
+                  Construido con Integridad, <br />
+                  Impulsado por la <span className="text-[#D4AF37]">Justicia</span>
+                </h2>
+              </div>
+
+              <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed">
+                Firma jurídica especializada en blindar empresas y proyectos tecnológicos frente a marcos regulatorios complejos en Ecuador.
               </p>
-            </div>
-          </div>
 
-          {/* RIGHT: Section Editorial & Firm Story */}
-          <div className="lg:col-span-7 space-y-4">
-            <div>
-              <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200 mb-2 font-heading">
-                SOBRE NOSOTROS
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Más de una década de práctica especializada asesorando a organizaciones en protección de datos (<strong className="text-white font-semibold">LOPDP</strong>), contratos de software (<strong className="text-white font-semibold">SaaS & Cloud</strong>), títulos habilitantes ante <strong className="text-white font-semibold">ARCOTEL</strong> e integración ética de Inteligencia Artificial con rigor técnico y visión comercial.
+              </p>
+
+              {/* 3 Credential Badges */}
+              <div className="grid grid-cols-3 divide-x divide-slate-800 border-y border-slate-800 py-3 my-1.5">
+                <div className="pr-2 sm:pr-4 flex flex-col justify-start">
+                  <Shield className="w-4 h-4 text-[#0A66FF] mb-1 shrink-0" />
+                  <div className="text-[11px] sm:text-xs font-bold text-white leading-tight">Oficial DPD</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-400 leading-tight mt-0.5">Certificado SPDP</div>
+                </div>
+                <div className="px-2 sm:px-4 flex flex-col justify-start">
+                  <Scale className="w-4 h-4 text-[#D4AF37] mb-1 shrink-0" />
+                  <div className="text-[11px] sm:text-xs font-bold text-white leading-tight">ARCOTEL & Telco</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-400 leading-tight mt-0.5">Títulos habilitantes</div>
+                </div>
+                <div className="pl-2 sm:pl-4 flex flex-col justify-start">
+                  <Cpu className="w-4 h-4 text-purple-400 mb-1 shrink-0" />
+                  <div className="text-[11px] sm:text-xs font-bold text-white leading-tight">Tech Law & IA</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-400 leading-tight mt-0.5">Contratos software</div>
+                </div>
               </div>
-              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
-                Construido con Integridad, <br />
-                Impulsado por la <span className="text-[#0B1D3A]">Justicia</span>
-              </h2>
-            </div>
 
-            <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
-              Firma jurídica especializada en blindar empresas y proyectos tecnológicos frente a marcos regulatorios complejos en Ecuador.
-            </p>
+              {/* Actions */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => onNavigate('about')}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xs transition-colors cursor-pointer active:scale-95"
+                >
+                  <span>Conocer Más Sobre la Firma</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-950" />
+                </motion.button>
 
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-              Más de una década de práctica especializada asesorando a organizaciones en protección de datos (<strong className="text-slate-700 font-semibold">LOPDP</strong>), contratos de software (<strong className="text-slate-700 font-semibold">SaaS & Cloud</strong>), títulos habilitantes ante <strong className="text-slate-700 font-semibold">ARCOTEL</strong> e integración ética de Inteligencia Artificial con rigor técnico y visión comercial.
-            </p>
-
-            {/* 3 Credential Badges */}
-            <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1.5">
-              <div className="pr-2 sm:pr-4 flex flex-col justify-start">
-                <Shield className="w-4 h-4 text-[#0A66FF] mb-1 shrink-0" />
-                <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Oficial DPD</div>
-                <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Certificado SPDP</div>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => onNavigate('contact')}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-colors cursor-pointer"
+                >
+                  <span>Contactar al Abogado</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-white" />
+                </motion.button>
               </div>
-              <div className="px-2 sm:px-4 flex flex-col justify-start">
-                <Scale className="w-4 h-4 text-[#D4AF37] mb-1 shrink-0" />
-                <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">ARCOTEL & Telco</div>
-                <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Títulos habilitantes</div>
-              </div>
-              <div className="pl-2 sm:pl-4 flex flex-col justify-start">
-                <Cpu className="w-4 h-4 text-purple-600 mb-1 shrink-0" />
-                <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Tech Law & IA</div>
-                <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Contratos software</div>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => onNavigate('about')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xs transition-colors cursor-pointer active:scale-95"
-              >
-                <span>Conocer Más Sobre la Firma</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-950" />
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => onNavigate('contact')}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors cursor-pointer"
-              >
-                <span>Contactar al Abogado</span>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-700" />
-              </motion.button>
             </div>
           </div>
         </div>
@@ -574,109 +579,111 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.55 }}
-        className="pt-2 pb-10 sm:pt-4 sm:pb-14 lg:pt-6 lg:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full bg-[#071326] text-white py-12 sm:py-16 lg:py-20 relative overflow-hidden border-t border-slate-800/80"
       >
-        {/* Minimalist Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-4 sm:pb-6 border-b border-slate-200 gap-3">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 mb-2 font-heading">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF]" />
-              <span>PRECEDENTES & TRAYECTORIA</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Minimalist Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-4 sm:pb-6 border-b border-slate-800/80 gap-3">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-[#0A66FF]/20 text-[#93C5FD] border border-[#0A66FF]/30 mb-2 font-heading">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF]" />
+                <span>PRECEDENTES & TRAYECTORIA</span>
+              </div>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
+                Casos de Éxito & Asesorías Clave
+              </h2>
             </div>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
-              Casos de Éxito & Asesorías Clave
-            </h2>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <p className="text-xs text-slate-400 max-w-sm text-justify sm:text-right font-normal">
+                Precedentes en blindaje normativo, gobernanza de datos y regulación tecnológica en Ecuador.
+              </p>
+              <button
+                onClick={() => onNavigate('areas')}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all cursor-pointer shadow-xs whitespace-nowrap group"
+              >
+                <span>Ver todas las áreas</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <p className="text-xs text-slate-500 max-w-sm text-justify sm:text-right">
-              Precedentes en blindaje normativo, gobernanza de datos y regulación tecnológica en Ecuador.
-            </p>
-            <button
-              onClick={() => onNavigate('areas')}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-[#0B1D3A] hover:bg-slate-900 text-white transition-all cursor-pointer shadow-xs whitespace-nowrap group"
-            >
-              <span>Ver todas las áreas</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-            </button>
-          </div>
-        </div>
-
-        {/* Minimalist Editorial List (Zero nested boxes) */}
-        <div className="divide-y divide-slate-200">
-          {legalWorks.map((work, idx) => (
-            <motion.article
-              key={work.id}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.06 }}
-              onClick={() => onNavigate('area-detail', { areaId: work.routeId })}
-              className="py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-8 items-start hover:bg-slate-50/80 -mx-3 px-3 sm:-mx-6 sm:px-6 rounded-2xl transition-all duration-200 cursor-pointer group"
-            >
-              {/* Col 1: Numeric Index & Sector Tag */}
-              <div className="lg:col-span-3 space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-xs font-bold text-[#D4AF37]">
-                    0{idx + 1}
-                  </span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">
-                    {work.date}
-                  </span>
-                </div>
-                <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider block font-heading">
-                  {work.sector}
-                </span>
-                <span className="text-[11px] text-slate-500 font-medium block">
-                  {work.category}
-                </span>
-              </div>
-
-              {/* Col 2: Headline, Strategic Context & Outcome */}
-              <div className="lg:col-span-7 space-y-2">
-                <h3 className="font-heading font-extrabold text-base sm:text-lg lg:text-xl text-slate-900 group-hover:text-[#0A66FF] transition-colors leading-snug">
-                  {work.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify sm:text-left font-normal">
-                  {work.description}
-                </p>
-
-                {/* Outcome Statement (Clean inline typography, no nested boxes) */}
-                <div className="pt-1 flex items-start gap-2 text-xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
-                  <p className="font-semibold text-slate-800 leading-snug">
-                    <strong className="text-slate-900 font-bold">Impacto:</strong> {work.outcome}
-                  </p>
-                </div>
-
-                {/* Minimalist Deliverables List */}
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-[11px] text-slate-400">
-                  <span className="font-semibold text-slate-500">Materia:</span>
-                  {work.tags.map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="text-slate-600 after:content-['•'] last:after:content-none after:ml-2 after:text-slate-300"
-                    >
-                      {tag}
+          {/* Minimalist Editorial List (Zero nested boxes) */}
+          <div className="divide-y divide-slate-800/80">
+            {legalWorks.map((work, idx) => (
+              <motion.article
+                key={work.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.06 }}
+                onClick={() => onNavigate('area-detail', { areaId: work.routeId })}
+                className="py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-8 items-start hover:bg-white/5 -mx-3 px-3 sm:-mx-6 sm:px-6 rounded-2xl transition-all duration-200 cursor-pointer group"
+              >
+                {/* Col 1: Numeric Index & Sector Tag */}
+                <div className="lg:col-span-3 space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold text-[#D4AF37]">
+                      0{idx + 1}
                     </span>
-                  ))}
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">
+                      {work.date}
+                    </span>
+                  </div>
+                  <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider block font-heading">
+                    {work.sector}
+                  </span>
+                  <span className="text-[11px] text-slate-400 font-medium block">
+                    {work.category}
+                  </span>
                 </div>
-              </div>
 
-              {/* Col 3: Action Trigger */}
-              <div className="lg:col-span-2 flex lg:flex-col items-center lg:items-end justify-between lg:justify-center h-full pt-2 lg:pt-0">
-                <span className="text-xs font-bold text-slate-500 group-hover:text-[#0A66FF] transition-colors lg:hidden inline-flex items-center gap-1">
-                  <span>Consultar área</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
+                {/* Col 2: Headline, Strategic Context & Outcome */}
+                <div className="lg:col-span-7 space-y-2">
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg lg:text-xl text-white group-hover:text-[#60A5FA] transition-colors leading-snug">
+                    {work.title}
+                  </h3>
 
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-slate-200 group-hover:border-[#0A66FF] group-hover:bg-[#0A66FF] text-slate-400 group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs group-hover:scale-105">
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify sm:text-left font-normal">
+                    {work.description}
+                  </p>
+
+                  {/* Outcome Statement (Clean inline typography, no nested boxes) */}
+                  <div className="pt-1 flex items-start gap-2 text-xs">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
+                    <p className="font-semibold text-slate-200 leading-snug">
+                      <strong className="text-white font-bold">Impacto:</strong> {work.outcome}
+                    </p>
+                  </div>
+
+                  {/* Minimalist Deliverables List */}
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-[11px] text-slate-400">
+                    <span className="font-semibold text-slate-500">Materia:</span>
+                    {work.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="text-slate-300 after:content-['•'] last:after:content-none after:ml-2 after:text-slate-500"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.article>
-          ))}
+
+                {/* Col 3: Action Trigger */}
+                <div className="lg:col-span-2 flex lg:flex-col items-center lg:items-end justify-between lg:justify-center h-full pt-2 lg:pt-0">
+                  <span className="text-xs font-bold text-slate-400 group-hover:text-[#60A5FA] transition-colors lg:hidden inline-flex items-center gap-1">
+                    <span>Consultar área</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-slate-700 group-hover:border-[#60A5FA] group-hover:bg-[#60A5FA] text-slate-300 group-hover:text-slate-950 flex items-center justify-center transition-all duration-300 shadow-2xs group-hover:scale-105">
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </motion.section>
 
@@ -688,39 +695,41 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.7 }}
-        className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="w-full bg-[#071326] py-12 sm:py-16 relative overflow-hidden"
       >
-        <div className="bg-gradient-to-r from-[#071326] via-[#0B1D3A] to-[#132742] text-white rounded-2xl sm:rounded-[32px] p-6 sm:p-10 lg:p-14 border border-slate-800 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-10">
-          <div className="max-w-2xl space-y-3 sm:space-y-4 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30 font-heading">
-              DIAGNÓSTICO GRATUITO LOPDP
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-gradient-to-r from-[#071326] via-[#0B1D3A] to-[#132742] text-white rounded-2xl sm:rounded-[32px] p-6 sm:p-10 lg:p-14 border border-slate-800 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-10">
+            <div className="max-w-2xl space-y-3 sm:space-y-4 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30 font-heading">
+                DIAGNÓSTICO GRATUITO LOPDP
+              </div>
+              <h3 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-white leading-tight">
+                ¿Tu empresa cumple con la normativa vigente en Ecuador?
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify">
+                Realiza nuestro test de autodiagnóstico interactivo en menos de 2 minutos para conocer tu nivel de riesgo sancionatorio y recibir recomendaciones inmediatas.
+              </p>
             </div>
-            <h3 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-white leading-tight">
-              ¿Tu empresa cumple con la normativa vigente en Ecuador?
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify">
-              Realiza nuestro test de autodiagnóstico interactivo en menos de 2 minutos para conocer tu nivel de riesgo sancionatorio y recibir recomendaciones inmediatas.
-            </p>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={onOpenDiagnostic}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xl transition-colors cursor-pointer"
-            >
-              <span>Hacer Test de Cumplimiento</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => onNavigate('contact')}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-6 sm:py-4 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-colors cursor-pointer"
-            >
-              <span>Contactar a un Abogado</span>
-            </motion.button>
+            
+            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={onOpenDiagnostic}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xl transition-colors cursor-pointer"
+              >
+                <span>Hacer Test de Cumplimiento</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => onNavigate('contact')}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-6 sm:py-4 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-colors cursor-pointer"
+              >
+                <span>Contactar a un Abogado</span>
+              </motion.button>
+            </div>
           </div>
         </div>
       </motion.section>
