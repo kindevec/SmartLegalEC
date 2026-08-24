@@ -48,7 +48,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       imageJpg: '/hero-panoramic-legaltech.jpg',
       imageWebp: '/hero-panoramic-legaltech.webp',
       imageAvif: '/hero-panoramic-legaltech.avif',
-      alt: 'Firma Jurídica Especializada en Tecnología - SmartLegalEC',
+      alt: 'Infraestructura de Centros de Datos, Ciberseguridad y Protección de Datos - SmartLegalEC',
     },
     {
       id: 'slide-2',
@@ -60,7 +60,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       imageJpg: '/hero-slider-2.jpg',
       imageWebp: '/hero-slider-2.webp',
       imageAvif: '/hero-slider-2.avif',
-      alt: 'Asesoría Legal Corporativa en Privacidad - SmartLegalEC',
+      alt: 'Laboratorio de Desarrollo de Software, Cloud Computing e IA - SmartLegalEC',
     },
     {
       id: 'slide-3',
@@ -72,7 +72,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       imageJpg: '/hero-slider-3.jpg',
       imageWebp: '/hero-slider-3.webp',
       imageAvif: '/hero-slider-3.avif',
-      alt: 'Regulación de Telecomunicaciones e Inteligencia Artificial - SmartLegalEC',
+      alt: 'Estación Terrena de Telecomunicaciones, Satélites y Conectividad Global - SmartLegalEC',
     },
   ];
 
