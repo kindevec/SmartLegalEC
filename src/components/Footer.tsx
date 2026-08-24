@@ -241,7 +241,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
                 href="https://kindevx.web.app" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:text-white transition-colors underline"
+                className="text-[#0A66FF] hover:text-blue-400 transition-colors font-bold underline"
               >
                 Kindev
               </a>{' '}
