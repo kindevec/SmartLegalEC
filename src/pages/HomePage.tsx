@@ -182,6 +182,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       outcome: '100% de cumplimiento ante la SPDP sin observaciones ni multas regulatorias.',
       tags: ['LOPDP Ecuador', 'PCI-DSS', 'Encargo Cloud', 'Evaluación EIPD'],
       image: '/case-fintech.jpg',
+      imageWebp: '/case-fintech.webp',
+      imageAvif: '/case-fintech.avif',
       routeId: 'lopdp' as const,
     },
     {
@@ -198,6 +200,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       outcome: 'Blindaje de propiedad intelectual de código y contratos listos para rondas de inversión.',
       tags: ['SaaS B2B', 'SLA 99.9%', 'IP Protection', 'Modelos IA'],
       image: '/case-saas.jpg',
+      imageWebp: '/case-saas.webp',
+      imageAvif: '/case-saas.avif',
       routeId: 'tech' as const,
     },
     {
@@ -214,6 +218,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       outcome: 'Resolución favorable y título habilitante otorgado por la autoridad reguladora.',
       tags: ['Telecomunicaciones', 'Títulos Habilitantes', 'Servicios Regulados', 'Espectro'],
       image: '/case-telco.jpg',
+      imageWebp: '/case-telco.webp',
+      imageAvif: '/case-telco.avif',
       routeId: 'telecom' as const,
     },
     {
@@ -230,6 +236,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       outcome: 'Gobernanza continua y blindaje sobre más de 250,000 registros médicos sensibles.',
       tags: ['Oficial DPD', 'Datos de Salud', 'Derechos ARCO', 'Auditoría SPDP'],
       image: '/case-health.jpg',
+      imageWebp: '/case-health.webp',
+      imageAvif: '/case-health.avif',
       routeId: 'lopdp' as const,
     },
   ];
@@ -808,12 +816,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 {/* Mobile View */}
                 <div className="flex flex-col gap-3 lg:hidden">
                   <div className="w-full aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/60 shadow-2xs">
-                    <img 
-                      src={work.image} 
-                      alt={work.title} 
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+                    <picture className="w-full h-full block">
+                      <source srcSet={work.imageAvif} type="image/avif" />
+                      <source srcSet={work.imageWebp} type="image/webp" />
+                      <img 
+                        src={work.image} 
+                        alt={work.title} 
+                        width="1200"
+                        height="800"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
                   </div>
                   <h3 className="font-heading font-extrabold text-base text-slate-900 leading-snug">
                     {work.title}
@@ -880,12 +895,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   {/* Right Column: Case Image & Arrow */}
                   <div className="lg:col-span-3 flex items-center justify-end gap-4 w-full">
                     <div className="flex-1 aspect-[3/2] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-2xs relative group-hover:border-[#0A66FF]/60 transition-all">
-                      <img 
-                        src={work.image} 
-                        alt={work.title} 
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-104"
-                        loading="lazy"
-                      />
+                      <picture className="w-full h-full block">
+                        <source srcSet={work.imageAvif} type="image/avif" />
+                        <source srcSet={work.imageWebp} type="image/webp" />
+                        <img 
+                          src={work.image} 
+                          alt={work.title} 
+                          width="1200"
+                          height="800"
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-104"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
 
