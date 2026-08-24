@@ -235,7 +235,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
             © {new Date().getFullYear()} {BRAND_INFO.name}
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
-            <span className="hidden sm:inline">Quito, Ecuador •</span>
+            <span className="hidden sm:inline">
+              Quito, Ecuador • Creado por{' '}
+              <a 
+                href="https://kindevx.web.app" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-white transition-colors underline"
+              >
+                Kindev
+              </a>{' '}
+              •
+            </span>
             <button
               onClick={scrollToTop}
               className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors cursor-pointer font-semibold"
