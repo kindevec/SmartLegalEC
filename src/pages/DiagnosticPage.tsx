@@ -346,6 +346,9 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
         <p>
           Este diagnóstico interactivo tiene fines puramente informativos y de orientación general. No constituye dictamen pericial ni asesoría jurídica vinculante. Para una auditoría legal pormenorizada de su organización, coordine una sesión formal con SmartLegalEC.
         </p>
+        <p className="mt-2 text-slate-500 italic">
+          🔒 Toda la información analizada y los reportes generados se encuentran bajo estricta reserva, amparados por el secreto profesional del abogado y las garantías de confidencialidad de la LOPDP en Ecuador.
+        </p>
       </section>
     </div>
   );

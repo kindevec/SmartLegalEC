@@ -109,7 +109,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                     alt="Abg. Luis Fernando Guerra Padilla"
                     width="896"
                     height="1200"
-                    className="w-full max-h-[380px] sm:max-h-[420px] object-contain object-bottom drop-shadow-xl hover:scale-102 transition-transform duration-500"
+                    className="w-full max-h-[380px] sm:max-h-[420px] object-contain object-bottom drop-shadow-xl transition-opacity duration-300"
                     loading="eager"
                     decoding="async"
                   />

@@ -64,7 +64,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
     id: 'lopdp',
     name: 'Protección de Datos y Privacidad',
     badge: 'Cumplimiento LOPDP Ecuador',
-    tagline: 'Protección de datos más allá del simple cumplimiento',
+    tagline: 'Gobernanza de Datos y Cumplimiento Normativo Estratégico',
     description:
       'La protección de datos personales se ha convertido en una obligación transversal para las organizaciones. No se trata únicamente de contar con políticas o documentos, sino de identificar cómo se utilizan los datos, gestionar los riesgos asociados y establecer medidas que funcionen en la operación diaria. En SmartLegalEC asesoramos a empresas y organizaciones en el cumplimiento de la Ley Orgánica de Protección de Datos Personales (LOPDP) y su normativa relacionada, mediante soluciones adaptadas a su actividad, tamaño, nivel de riesgo y realidad operativa.',
     iconName: 'ShieldCheck',

@@ -300,8 +300,8 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                   </a>
                 </div>
 
-                <p className="text-[11px] text-slate-500 text-center sm:text-left">
-                  🔒 Garantizamos absoluta confidencialidad y secreto profesional conforme al Código Orgánico de la Función Judicial.
+                <p className="text-[11px] text-slate-500 text-center sm:text-left leading-relaxed">
+                  🔒 Toda la información provista a través de este portal está amparada bajo el secreto profesional de la abogacía y será tratada con absoluta confidencialidad, bajo riguroso apego a la LOPDP ecuatoriana y al Código Orgánico de la Función Judicial.
                 </p>
               </form>
             ) : (

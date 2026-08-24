@@ -294,7 +294,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   onClick={onOpenDiagnostic}
                   className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-colors cursor-pointer"
                 >
-                  <span>Diagnóstico LOPDP</span>
+                  <span>Evaluación LOPDP</span>
                 </motion.button>
               </div>
 
@@ -485,7 +485,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                     alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
                     width="896"
                     height="1200"
-                    className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[480px] object-contain object-bottom drop-shadow-xl hover:scale-102 transition-transform duration-500"
+                    className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[480px] object-contain object-bottom drop-shadow-xl transition-opacity duration-300"
                     loading="lazy"
                     decoding="async"
                   />
@@ -709,13 +709,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           <div className="bg-gradient-to-r from-[#071326] via-[#0B1D3A] to-[#132742] text-white rounded-2xl sm:rounded-[32px] p-6 sm:p-10 lg:p-14 border border-slate-800 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-10">
             <div className="max-w-2xl space-y-3 sm:space-y-4 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30 font-heading">
-                DIAGNÓSTICO GRATUITO LOPDP
+                EVALUACIÓN DE RIESGO LOPDP
               </div>
               <h3 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-white leading-tight">
                 ¿Tu empresa cumple con la normativa vigente en Ecuador?
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify">
-                Realiza nuestro test de autodiagnóstico interactivo en menos de 2 minutos para conocer tu nivel de riesgo sancionatorio y recibir recomendaciones inmediatas.
+                Realice una pre-evaluación analítica del estado de cumplimiento LOPDP de su organización para identificar posibles brechas de seguridad y exposición regulatoria.
               </p>
             </div>
             
@@ -726,7 +726,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 onClick={onOpenDiagnostic}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xl transition-colors cursor-pointer"
               >
-                <span>Hacer Test de Cumplimiento</span>
+                <span>Iniciar Evaluación LOPDP</span>
                 <ArrowUpRight className="w-4 h-4" />
               </motion.button>
               <motion.button
