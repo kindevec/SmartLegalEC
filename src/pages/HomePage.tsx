@@ -143,6 +143,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       description: 'Adecuación integral del flujo de datos transaccionales, mapeo de transferencias internacionales y Registro de Actividades de Tratamiento (RAT) para procesador regional de pagos.',
       outcome: '100% de cumplimiento ante la SPDP sin observaciones ni multas regulatorias.',
       tags: ['LOPDP Ecuador', 'PCI-DSS', 'Encargo Cloud', 'Evaluación EIPD'],
+      image: '/case-fintech.jpg',
       routeId: 'lopdp' as const,
     },
     {
@@ -158,6 +159,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       description: 'Redacción de Acuerdos de Nivel de Servicio (SLA 99.9%), cesión y custodia de código fuente, limitación de responsabilidad transfronteriza y políticas de uso ético de IA.',
       outcome: 'Blindaje de propiedad intelectual de código y contratos listos para rondas de inversión.',
       tags: ['SaaS B2B', 'SLA 99.9%', 'IP Protection', 'Modelos IA'],
+      image: '/case-saas.jpg',
       routeId: 'tech' as const,
     },
     {
@@ -173,6 +175,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       description: 'Tramitación y defensa técnica-jurídica para renovación de títulos habilitantes, adecuación al régimen de tarifas y homologación de servicios de valor agregado ante ARCOTEL.',
       outcome: 'Resolución favorable y título habilitante otorgado por la autoridad reguladora.',
       tags: ['ARCOTEL', 'Títulos Habilitantes', 'Servicios PVA', 'Espectro'],
+      image: '/case-telco.jpg',
       routeId: 'telecom' as const,
     },
     {
@@ -188,6 +191,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       description: 'Designación de Delegado de Protección de Datos (DPD) certificado para salvaguardar historiales clínicos digitales, consentimiento informado y atención de derechos ARCO.',
       outcome: 'Gobernanza continua y blindaje sobre más de 250,000 registros médicos sensibles.',
       tags: ['Oficial DPD', 'Datos de Salud', 'Derechos ARCO', 'Auditoría SPDP'],
+      image: '/case-health.jpg',
       routeId: 'lopdp' as const,
     },
   ];
@@ -624,67 +628,95 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.06 }}
                 onClick={() => onNavigate('area-detail', { areaId: work.routeId })}
-                className="py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-8 items-start hover:bg-[#F0F4FA]/50 -mx-3 px-3 sm:-mx-6 sm:px-6 rounded-2xl transition-all duration-200 cursor-pointer group"
+                className="py-6 sm:py-8 -mx-3 px-3 sm:-mx-6 sm:px-6 rounded-2xl transition-all duration-200 cursor-pointer group hover:bg-[#F0F4FA]/50"
               >
-                {/* Col 1: Numeric Index & Sector Tag */}
-                <div className="lg:col-span-3 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold text-[#D4AF37]">
-                      0{idx + 1}
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">
-                      {work.date}
-                    </span>
+                {/* Mobile View */}
+                <div className="flex flex-col gap-3 lg:hidden">
+                  <div className="w-full aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/60 shadow-2xs">
+                    <img 
+                      src={work.image} 
+                      alt={work.title} 
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
-                  <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider block font-heading">
-                    {work.sector}
-                  </span>
-                  <span className="text-[11px] text-slate-500 font-medium block">
-                    {work.category}
-                  </span>
-                </div>
-
-                {/* Col 2: Headline, Context & Outcome */}
-                <div className="lg:col-span-7 space-y-2">
-                  <h3 className="font-heading font-extrabold text-base sm:text-lg lg:text-xl text-slate-900 group-hover:text-[#0A66FF] transition-colors leading-snug">
+                  <h3 className="font-heading font-extrabold text-base text-slate-900 leading-snug">
                     {work.title}
                   </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify sm:text-left font-normal">
-                    {work.description}
-                  </p>
-
-                  {/* Outcome Statement */}
-                  <div className="pt-1 flex items-start gap-2 text-xs">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
-                    <p className="font-semibold text-slate-800 leading-snug">
-                      <strong className="text-slate-900 font-bold">Impacto:</strong> {work.outcome}
-                    </p>
-                  </div>
-
-                  {/* Minimalist Deliverables List */}
-                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-[11px] text-slate-400">
-                    <span className="font-semibold text-slate-500">Materia:</span>
-                    {work.tags.map((tag, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-slate-600 after:content-['•'] last:after:content-none after:ml-2 after:text-slate-300"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  <div className="pt-1">
+                    <span className="w-full inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold bg-[#0A66FF] text-white shadow-xs transition-transform active:scale-98">
+                      <span>Consultar área</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
                   </div>
                 </div>
 
-                {/* Col 3: Action Trigger */}
-                <div className="lg:col-span-2 flex lg:flex-col items-center lg:items-end justify-between lg:justify-center h-full pt-2 lg:pt-0">
-                  <span className="text-xs font-bold text-slate-500 group-hover:text-[#0A66FF] transition-colors lg:hidden inline-flex items-center gap-1">
-                    <span>Consultar área</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
+                {/* Desktop View */}
+                <div className="hidden lg:grid lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
+                  {/* Left Column: Metadata and Case Info */}
+                  <div className="lg:col-span-9 grid grid-cols-12 gap-6 items-start">
+                    <div className="col-span-3 space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs font-bold text-[#D4AF37]">
+                          0{idx + 1}
+                        </span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">
+                          {work.date}
+                        </span>
+                      </div>
+                      <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider block font-heading">
+                        {work.sector}
+                      </span>
+                      <span className="text-[11px] text-slate-500 font-medium block">
+                        {work.category}
+                      </span>
+                    </div>
 
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-slate-200 group-hover:border-[#0A66FF] group-hover:bg-[#0A66FF] text-slate-400 group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs group-hover:scale-105">
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <div className="col-span-9 space-y-2">
+                      <h3 className="font-heading font-extrabold text-base sm:text-lg lg:text-xl text-slate-900 group-hover:text-[#0A66FF] transition-colors leading-snug">
+                        {work.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify sm:text-left font-normal">
+                        {work.description}
+                      </p>
+
+                      <div className="pt-1 flex items-start gap-2 text-xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
+                        <p className="font-semibold text-slate-800 leading-snug">
+                          <strong className="text-slate-900 font-bold">Impacto:</strong> {work.outcome}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-[11px] text-slate-400">
+                        <span className="font-semibold text-slate-500">Materia:</span>
+                        {work.tags.map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="text-slate-600 after:content-['•'] last:after:content-none after:ml-2 after:text-slate-300"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Case Image & Arrow */}
+                  <div className="lg:col-span-3 flex items-center justify-end gap-4 w-full">
+                    <div className="flex-1 aspect-[3/2] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-2xs relative group-hover:border-[#0A66FF]/60 transition-all">
+                      <img 
+                        src={work.image} 
+                        alt={work.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-104"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-slate-200 group-hover:border-[#0A66FF] group-hover:bg-[#0A66FF] text-slate-400 group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs group-hover:scale-105 shrink-0">
+                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
                   </div>
                 </div>
               </motion.article>
