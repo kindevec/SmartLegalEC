@@ -181,7 +181,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
                   onClick={() => { onNavigate('insights'); scrollToTop(); }}
                   className="text-slate-300 hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Legal Insights
+                  Criterio Jurídico
                 </button>
               </li>
               <li>

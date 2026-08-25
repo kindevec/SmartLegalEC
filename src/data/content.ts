@@ -1,12 +1,12 @@
-import { PracticeArea, Pillar, Metric, AboutQuadrant, CorporateValue, DiagnosticQuestion, LegalArticle } from '../types';
+import { PracticeArea, Pillar, Metric, AboutQuadrant, CorporateValue, DiagnosticQuestion, LegalArticle, Client } from '../types';
 
 export const BRAND_INFO = {
   name: 'SMARTLEGALEC',
   slogan: 'Tecnología • Protección de Datos • Telecomunicaciones',
   domain: 'smartlegalec.com',
   location: 'Quito, Ecuador',
-  founder: 'Abg. Luis Fernando Guerra Padilla',
-  founderTitle: 'Managing Partner | Abogado Especialista en Protección de Datos, Tecnología y Telecomunicaciones',
+  founder: 'Luis Fernando Guerra Padilla',
+  founderTitle: 'Abogado especializado en Protección de Datos, Tecnología y Telecomunicaciones',
   founderEmail: 'info@smartlegalec.com',
   email: 'info@smartlegalec.com',
   founderPhone: '+593 99 866 8139',
@@ -27,12 +27,12 @@ export const HERO_PILLARS: Pillar[] = [
   {
     number: '02',
     title: 'Conocimiento jurídico y visión tecnológica',
-    description: 'Entendemos el código, la arquitectura cloud y los modelos de negocio digitales tanto como la normativa vigente.',
+    description: 'Entendemos la arquitectura de software, servicios cloud y modelos de negocio digitales tanto como la normativa vigente.',
   },
   {
     number: '03',
     title: 'Enfoque en riesgos, cumplimiento y negocio',
-    description: 'Alineamos el marco regulatorio ecuatoriano e internacional con la rentabilidad y escalabilidad de tu empresa.',
+    description: 'Una solución jurídica debe ser técnicamente correcta, pero también debe funcionar para el negocio.',
   },
 ];
 
@@ -40,7 +40,7 @@ export const METRICS: Metric[] = [
   {
     value: '10+',
     label: 'Años de experiencia',
-    detail: 'Asesorando empresas nacionales y multinacionales en el sector digital.',
+    detail: 'Asesorando a empresas nacionales e internacionales en entornos regulados.',
   },
   {
     value: '50+',
@@ -50,12 +50,12 @@ export const METRICS: Metric[] = [
   {
     value: '12+',
     label: 'Industrias y sectores',
-    detail: 'Fintech, SaaS, telecomunicaciones, salud, retail, banca y educación.',
+    detail: 'Tecnología, SaaS, telecomunicaciones, salud, consumo masivo, retail y finanzas.',
   },
   {
     value: '100%',
     label: 'Compromiso y personalización',
-    detail: 'Atención directa por especialistas de alto nivel sin intermediarios.',
+    detail: 'Atención directa por especialistas de alto nivel con soluciones aplicables a la práctica.',
   },
 ];
 
@@ -64,9 +64,9 @@ export const PRACTICE_AREAS: PracticeArea[] = [
     id: 'lopdp',
     name: 'Protección de Datos y Privacidad',
     badge: 'Cumplimiento LOPDP Ecuador',
-    tagline: 'Gobernanza de Datos y Cumplimiento Normativo Estratégico',
+    tagline: 'Protección de datos más allá del cumplimiento',
     description:
-      'La protección de datos personales se ha convertido en una obligación transversal para las organizaciones. No se trata únicamente de contar con políticas o documentos, sino de identificar cómo se utilizan los datos, gestionar los riesgos asociados y establecer medidas que funcionen en la operación diaria. En SmartLegalEC asesoramos a empresas y organizaciones en el cumplimiento de la Ley Orgánica de Protección de Datos Personales (LOPDP) y su normativa relacionada, mediante soluciones adaptadas a su actividad, tamaño, nivel de riesgo y realidad operativa.',
+      'La protección de datos personales se ha convertido en una obligación transversal para las organizaciones. No se trata únicamente de contar con políticas o documentos, sino de identificar cómo se utilizan los datos, gestionar los riesgos asociados y establecer medidas que funcionen en la operación diaria. En SmartLegalEC asesoramos a empresas y organizaciones en el cumplimiento de la Ley Orgánica de Protección de Datos Personales y su normativa relacionada, mediante soluciones adaptadas a su actividad, tamaño, nivel de riesgo y realidad operativa.',
     iconName: 'ShieldCheck',
     closingText:
       '¿Necesitas evaluar el cumplimiento de tu organización? Podemos revisar tu situación actual, identificar los principales riesgos y definir las acciones necesarias.',
@@ -75,7 +75,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
     regulations: [
       'Ley Orgánica de Protección de Datos Personales (LOPDP - R.O. 459)',
       'Reglamento General a la Ley Orgánica de Protección de Datos Personales',
-      'Resoluciones y Guías de la Superintendencia de Protección de Datos Personales',
+      'Resoluciones y Guías de la Autoridad de Protección de Datos Personales',
       'Estándares internacionales de privacidad (RGPD / ISO 27701)',
     ],
     targetAudience: [
@@ -93,14 +93,14 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         title: 'Implementación y adecuación a la LOPDP',
         shortDesc: 'Evaluación de brechas y desarrollo de medidas jurídicas y organizativas necesarias.',
         fullDesc:
-          'Evaluamos el nivel de cumplimiento de la organización, identificamos brechas y desarrollamos las medidas jurídicas y organizativas necesarias para adecuar sus procesos de captación, almacenamiento, uso y supresión de datos.',
+          'Evaluamos el nivel de cumplimiento de la organización, identificamos brechas y desarrollamos las medidas jurídicas y organizativas necesarias para adecuar sus procesos.',
       },
       {
         id: 'lopdp-2',
         category: 'lopdp',
         tag: 'DPO / DPD As a Service',
-        title: 'Delegado de Protección de Datos (DPD) externo',
-        shortDesc: 'Supervisión independiente, asesoramiento continuo y enlace con la autoridad.',
+        title: 'Delegado de Protección de Datos externo',
+        shortDesc: 'Supervisión independiente, asesoramiento continuo y acompañamiento.',
         fullDesc:
           'Prestamos el servicio de DPD externo para organizaciones que requieren o deciden contar con esta figura, brindando asesoramiento, supervisión y acompañamiento independiente en materia de protección de datos.',
       },
@@ -109,63 +109,63 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         category: 'lopdp',
         tag: 'Diagnóstico & Auditoría',
         title: 'Auditorías y evaluaciones de cumplimiento',
-        shortDesc: 'Revisión exhaustiva de flujos documentales y prácticas operativas.',
+        shortDesc: 'Revisión de procesos, documentos y prácticas operativas.',
         fullDesc:
-          'Revisamos procesos, documentos y prácticas para identificar incumplimientos, riesgos potenciales y oportunidades de mejora sustancial frente a posibles fiscalizaciones.',
+          'Revisamos procesos, documentos y prácticas para identificar incumplimientos, riesgos y oportunidades de mejora.',
       },
       {
         id: 'lopdp-4',
         category: 'lopdp',
         tag: 'EIPD & Riesgos',
-        title: 'Gestión de riesgos y evaluaciones de impacto (EIPD)',
-        shortDesc: 'Identificación de riesgos y desarrollo formal de Evaluaciones de Impacto.',
+        title: 'Gestión de riesgos y evaluaciones de impacto',
+        shortDesc: 'Identificación de riesgos y desarrollo de evaluaciones de impacto.',
         fullDesc:
-          'Identificamos y evaluamos los riesgos derivados del tratamiento de datos personales y desarrollamos evaluaciones de impacto (EIPD) cuando la naturaleza o volumen del tratamiento lo requiere según la ley.',
+          'Identificamos y evaluamos los riesgos derivados del tratamiento de datos personales y desarrollamos evaluaciones de impacto cuando la naturaleza del tratamiento lo requiere.',
       },
       {
         id: 'lopdp-5',
         category: 'lopdp',
         tag: 'Contratos & Terceros',
         title: 'Contratos y relaciones con terceros',
-        shortDesc: 'Contratos de encargo, cláusulas de transferencia y corresponsabilidad.',
+        shortDesc: 'Contratos de encargo, transferencias y corresponsabilidad.',
         fullDesc:
-          'Elaboramos y revisamos contratos de encargo de tratamiento, transferencias internacionales, corresponsabilidad y demás relaciones jurídicas que involucren intercambio de datos personales con proveedores o filiales.',
+          'Elaboramos y revisamos contratos de encargo, transferencia, corresponsabilidad y otras relaciones jurídicas que involucren tratamiento o intercambio de datos personales.',
       },
       {
         id: 'lopdp-6',
         category: 'lopdp',
         tag: 'Privacy by Design',
         title: 'Privacidad en proyectos y nuevas tecnologías',
-        shortDesc: 'Privacidad desde el diseño en plataformas, IA, biometría y videovigilancia.',
+        shortDesc: 'Protección de datos desde el diseño en apps, IA, biometría y videovigilancia.',
         fullDesc:
-          'Asesoramos en la incorporación de protección de datos desde el diseño (Privacy by Design) en aplicaciones móviles, plataformas SaaS, modelos de inteligencia artificial, biometría y sistemas de videovigilancia.',
+          'Asesoramos en la incorporación de protección de datos desde el diseño en aplicaciones, plataformas, inteligencia artificial, biometría, videovigilancia y otros proyectos tecnológicos.',
       },
       {
         id: 'lopdp-7',
         category: 'lopdp',
         tag: 'Incident Response',
-        title: 'Gestión de incidentes y vulneraciones de seguridad',
-        shortDesc: 'Evaluación jurídica inmediata y notificación reglamentaria ante brechas.',
+        title: 'Gestión de incidentes y vulneraciones',
+        shortDesc: 'Evaluación jurídica inmediata y determinación de acciones y notificaciones.',
         fullDesc:
-          'Acompañamos la evaluación jurídica de incidentes de seguridad, contención de contingencias legales y la determinación de las acciones y notificaciones formales que correspondan ante la Autoridad de Protección de Datos.',
+          'Acompañamos la evaluación jurídica de incidentes de seguridad y la determinación de las acciones y notificaciones que correspondan.',
       },
       {
         id: 'lopdp-8',
         category: 'lopdp',
         tag: 'Gobierno de Datos',
         title: 'Políticas, procedimientos y documentación',
-        shortDesc: 'Instrumentos jurídicos e inventarios de bases de datos operacionales.',
+        shortDesc: 'Instrumentos jurídicos y organizativos para integrar la protección a los procesos.',
         fullDesc:
-          'Desarrollamos instrumentos jurídicos y organizativos (políticas de privacidad, protocolos de ejercicio de derechos ARCO+, registros de actividades de tratamiento) que integran la protección de datos a los procesos cotidianos.',
+          'Desarrollamos instrumentos jurídicos y organizativos que permitan integrar la protección de datos a los procesos de la organización.',
       },
       {
         id: 'lopdp-9',
         category: 'lopdp',
         tag: 'Cultura Corporativa',
-        title: 'Capacitación in-company especializada',
-        shortDesc: 'Formación para comités directivos, áreas tecnológicas, comerciales y RRHH.',
+        title: 'Capacitación',
+        shortDesc: 'Capacitaciones generales o especializadas para directivos y equipos operativos.',
         fullDesc:
-          'Diseñamos capacitaciones generales o especializadas para equipos directivos, jurídicos, comerciales, tecnológicos y de talento humano que intervienen en el tratamiento diario de información.',
+          'Diseñamos capacitaciones generales o especializadas para equipos directivos, jurídicos, comerciales, tecnológicos, talento humano y demás áreas que intervienen en el tratamiento de información.',
       },
     ],
   },
@@ -190,7 +190,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
     targetAudience: [
       'Empresas de desarrollo de software, Software as a Service (SaaS) y Apps móviles',
       'Compañías corporativas en procesos de transformación digital y migración Cloud',
-      'Fintechs, procesadores de pago y plataformas de banca digital',
+      'Fintechs, procesadores de pago y plataformas de comercio digital',
       'Startups tecnológicas en rondas de inversión y formalización de PI',
       'Proveedores de infraestructura TI, hosting y centros de datos',
     ],
@@ -200,72 +200,72 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         category: 'tech',
         tag: 'SaaS & Licencias',
         title: 'Contratos de software y SaaS',
-        shortDesc: 'Licenciamiento, suscripciones recurrentes, soporte y Acuerdos de Nivel de Servicio (SLA).',
+        shortDesc: 'Licenciamiento, suscripción, implementación, soporte y mantenimiento.',
         fullDesc:
-          'Elaboramos, revisamos y negociamos contratos de licenciamiento, modelos de suscripción SaaS, implementación, soporte técnico, mantenimiento y prestación de servicios tecnológicos para clientes nacionales y extranjeros.',
+          'Elaboramos, revisamos y negociamos contratos de licenciamiento, suscripción, implementación, soporte, mantenimiento y prestación de servicios tecnológicos.',
       },
       {
         id: 'tech-2',
         category: 'tech',
         tag: 'Desarrollo de Software',
         title: 'Desarrollo e implementación de software',
-        shortDesc: 'Alcance, entregables ágiles, propiedad intelectual, garantías y terminación.',
+        shortDesc: 'Alcance, entregables, niveles de servicio, propiedad intelectual y garantías.',
         fullDesc:
-          'Definimos jurídicamente aspectos críticos como alcance técnico, entregables por hitos, niveles de servicio (SLA), titularidad de código fuente, propiedad intelectual, criterios de aceptación, responsabilidades y garantías.',
+          'Definimos jurídicamente aspectos relacionados con alcance, entregables, niveles de servicio, propiedad intelectual, aceptación, responsabilidades, garantías y terminación.',
       },
       {
         id: 'tech-3',
         category: 'tech',
-        tag: 'Cloud & DevOps',
+        tag: 'Cloud & Servicios',
         title: 'Cloud computing y servicios tecnológicos',
-        shortDesc: 'Contratación de infraestructura IaaS/PaaS, continuidad operativa y seguridad.',
+        shortDesc: 'Contratación de infraestructura y plataformas en la nube con seguridad y continuidad.',
         fullDesc:
-          'Asesoramos en la contratación de infraestructura y plataformas en la nube (AWS, Azure, Google Cloud), definiendo responsabilidades, disponibilidad, seguridad informática, custodia de información y continuidad del servicio.',
+          'Asesoramos en la contratación de infraestructura, plataformas y servicios en la nube, incluyendo responsabilidades, seguridad, disponibilidad, tratamiento de información y continuidad del servicio.',
       },
       {
         id: 'tech-4',
         category: 'tech',
         tag: 'Vendor Management',
         title: 'Outsourcing y proveedores tecnológicos',
-        shortDesc: 'Relaciones con proveedores críticos, confidencialidad (NDA) y mitigación de dependencia.',
+        shortDesc: 'Estructuración de relaciones con proveedores, confidencialidad y riesgos.',
         fullDesc:
-          'Analizamos y estructuramos relaciones con proveedores tecnológicos estratégicos, considerando riesgos contractuales, confidencialidad, propiedad intelectual y continuidad del negocio ante contingencias de proveedores.',
+          'Analizamos y estructuramos relaciones con proveedores tecnológicos, considerando riesgos contractuales, confidencialidad, seguridad, propiedad intelectual y protección de datos.',
       },
       {
         id: 'tech-5',
         category: 'tech',
         tag: 'E-Commerce',
         title: 'Comercio electrónico y negocios digitales',
-        shortDesc: 'Términos y condiciones, checkout electrónico, protección al consumidor y pasarelas de pago.',
+        shortDesc: 'Términos y condiciones, contratación electrónica, privacidad y consumidores.',
         fullDesc:
-          'Asesoramos en términos y condiciones, contratación electrónica, regulación de plataformas digitales, relaciones de consumo digital, pasarelas de pago y cumplimiento normativo en comercio electrónico.',
+          'Asesoramos en términos y condiciones, contratación electrónica, relaciones con consumidores, privacidad y demás aspectos jurídicos de plataformas y servicios digitales.',
       },
       {
         id: 'tech-6',
         category: 'tech',
         tag: 'Inteligencia Artificial',
         title: 'Inteligencia artificial y nuevas tecnologías',
-        shortDesc: 'Análisis de riesgos normativos, gobernanza de modelos de IA y propiedad intelectual.',
+        shortDesc: 'Análisis de riesgos jurídicos en IA y tecnologías emergentes.',
         fullDesc:
-          'Analizamos los riesgos jurídicos asociados con la implementación, entrenamiento y uso de soluciones basadas en inteligencia artificial generativa, algoritmos de decisión y tecnologías emergentes.',
+          'Analizamos los riesgos jurídicos asociados con la implementación y utilización de soluciones basadas en inteligencia artificial y otras tecnologías emergentes.',
       },
       {
         id: 'tech-7',
         category: 'tech',
         tag: 'Propiedad Intelectual',
-        title: 'Propiedad intelectual y activos de tecnología',
-        shortDesc: 'Titularidad de software, cesión de derechos patrimoniales y protección de código.',
+        title: 'Propiedad intelectual y tecnología',
+        shortDesc: 'Licencias, titularidad de desarrollos y derechos sobre software y contenidos.',
         fullDesc:
-          'Asesoramos en esquemas de cesión de derechos sobre software, licencias open source vs comerciales, protección de secretos empresariales y resguardo patrimonial de activos intangibles digitales.',
+          'Asesoramos en licencias, titularidad de desarrollos, derechos sobre software, contenidos y otros activos vinculados con proyectos tecnológicos.',
       },
       {
         id: 'tech-8',
         category: 'tech',
         tag: 'Negociación Tech',
-        title: 'Negociación de contratos tecnológicos complejos',
-        shortDesc: 'Acompañamiento en mesas de negociación entre clientes corporativos y proveedores.',
+        title: 'Negociación de contratos tecnológicos',
+        shortDesc: 'Acompañamiento en negociaciones entre clientes y proveedores.',
         fullDesc:
-          'Acompañamos negociaciones de alto impacto entre clientes y proveedores para identificar riesgos ocultos, equilibrar responsabilidades y construir acuerdos comercialmente viables y blindados.',
+          'Acompañamos negociaciones entre clientes y proveedores para identificar riesgos y construir acuerdos jurídicamente sólidos y comercialmente viables.',
       },
     ],
   },
@@ -278,7 +278,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       'El desarrollo de servicios de telecomunicaciones requiere comprender no solamente el negocio y la tecnología, sino también un marco regulatorio especializado que condiciona su implementación y operación. SmartLegalEC asesora a empresas nacionales e internacionales en proyectos relacionados con telecomunicaciones, conectividad y servicios tecnológicos regulados en Ecuador.',
     iconName: 'Radio',
     closingText:
-      '¿Estás desarrollando un proyecto de telecomunicaciones en Ecuador? Podemos ayudarte a determinar sus requisitos regulatorios y acompañarte durante su implementación ante las entidades de control.',
+      '¿Estás desarrollando un proyecto de telecomunicaciones en Ecuador? Podemos ayudarte a determinar sus requisitos regulatorios y acompañarte durante su implementación.',
     ctaText: 'Consultar proyectos de telecomunicaciones',
     whatsappMessage: 'Hola SmartLegalEC, necesito asesoría jurídica y regulatoria en proyectos de telecomunicaciones / títulos ARCOTEL.',
     regulations: [
@@ -300,206 +300,309 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         id: 'telecom-1',
         category: 'telecom',
         tag: 'Títulos Habilitantes',
-        title: 'Títulos habilitantes ante ARCOTEL',
-        shortDesc: 'Identificación, solicitud, modificación y renovación de títulos ante la autoridad.',
+        title: 'Títulos habilitantes',
+        shortDesc: 'Identificación, solicitud, modificación, renovación y gestión ante ARCOTEL.',
         fullDesc:
-          'Asesoramos en la identificación, estructuración de solicitudes, modificaciones, cesiones y renovaciones de títulos habilitantes (autorizaciones, licencias y registros) para servicios de telecomunicaciones en Ecuador.',
+          'Asesoramos en la identificación, solicitud, modificación, renovación y gestión de títulos habilitantes necesarios para la prestación de servicios de telecomunicaciones.',
       },
       {
         id: 'telecom-2',
         category: 'telecom',
-        tag: 'Nuevos Modelos Telco',
-        title: 'Servicios de telecomunicaciones y conectividad',
-        shortDesc: 'Requisitos jurídicos para ISPs, carriers y nuevos operadores de conectividad.',
+        tag: 'Modelos Telco',
+        title: 'Servicios de telecomunicaciones',
+        shortDesc: 'Requisitos jurídicos y regulatorios para modelos de negocio en conectividad.',
         fullDesc:
-          'Analizamos los requisitos jurídicos y regulatorios aplicables a proyectos y modelos de negocio que involucren servicios portadores, valor agregado, acceso a Internet y redes privadas de datos.',
+          'Analizamos los requisitos jurídicos y regulatorios aplicables a proyectos y modelos de negocio que involucren servicios de telecomunicaciones.',
       },
       {
         id: 'telecom-3',
         category: 'telecom',
         tag: 'Espectro',
-        title: 'Espectro radioeléctrico y frecuencias',
-        shortDesc: 'Asesoría en asignación, régimen de tarifas y uso de bandas de frecuencias.',
+        title: 'Espectro radioeléctrico',
+        shortDesc: 'Asesoría jurídica en uso, asignación y regulación de frecuencias.',
         fullDesc:
-          'Brindamos asesoría jurídica en asuntos relacionados con el uso, asignación, renovación, obligaciones regulatorias y régimen tarifario aplicable al espectro radioeléctrico en Ecuador.',
+          'Brindamos asesoría jurídica en asuntos relacionados con el uso, asignación y regulación del espectro.',
       },
       {
         id: 'telecom-4',
         category: 'telecom',
         tag: 'Satélites & Espacio',
         title: 'Servicios satelitales y segmento espacial',
-        shortDesc: 'Regulación de constelaciones LEO/GEO, gateways y servicios de comunicación satelital.',
+        shortDesc: 'Acompañamiento en segmento espacial, constelaciones y comunicaciones satelitales.',
         fullDesc:
-          'Acompañamos proyectos relacionados con provisión de segmento espacial, constelaciones satelitales, estaciones terrenas, acceso a Internet de alta velocidad y comunicaciones móviles por satélite.',
+          'Acompañamos proyectos relacionados con segmento espacial, servicios satelitales, acceso a Internet y comunicaciones móviles por satélite.',
       },
       {
         id: 'telecom-5',
         category: 'telecom',
-        tag: 'Compliance Sectorial',
-        title: 'Cumplimiento regulatorio sectorial',
-        shortDesc: 'Auditoría de obligaciones legales de títulos habilitantes y resoluciones ARCOTEL.',
+        tag: 'Compliance Regulatorio',
+        title: 'Cumplimiento regulatorio',
+        shortDesc: 'Asesoría en obligaciones derivadas de títulos habilitantes y disposiciones oficiales.',
         fullDesc:
-          'Asesoramos en el cumplimiento continuo de obligaciones técnicas, legales y financieras derivadas de títulos habilitantes y disposiciones emitidas por el Ministerio de Telecomunicaciones y ARCOTEL.',
+          'Asesoramos en el cumplimiento de obligaciones derivadas de títulos habilitantes, regulación sectorial y disposiciones emitidas por las autoridades competentes.',
       },
       {
         id: 'telecom-6',
         category: 'telecom',
-        tag: 'Derecho Administrativo',
-        title: 'Procedimientos y requerimientos administrativos',
-        shortDesc: 'Acompañamiento y defensa jurídica en trámites y procedimientos administrativos sancionadores.',
+        tag: 'Procedimientos',
+        title: 'Procedimientos administrativos',
+        shortDesc: 'Acompañamiento en trámites y procedimientos administrativos sectoriales.',
         fullDesc:
-          'Brindamos acompañamiento jurídico especializado en inspecciones, requerimientos de información, contestaciones y procedimientos administrativos ante la autoridad de control.',
+          'Brindamos acompañamiento jurídico en trámites, requerimientos y procedimientos administrativos relacionados con la operación de servicios regulados.',
       },
       {
         id: 'telecom-7',
         category: 'telecom',
-        tag: 'Infraestructura Telco',
-        title: 'Contratos de telecomunicaciones y coubicación',
-        shortDesc: 'Arrendamiento de fibra oscura, coubicación de torres e interconexión de redes.',
+        tag: 'Contratos Telco',
+        title: 'Contratos de telecomunicaciones y tecnología',
+        shortDesc: 'Elaboración y revisión de contratos de infraestructura, conectividad y servicios.',
         fullDesc:
-          'Elaboramos y revisamos contratos de infraestructura pasiva, coubicación en torres, derechos de vía, provisión de capacidad y convenios de interconexión técnica y comercial.',
+          'Elaboramos y revisamos contratos vinculados con infraestructura, conectividad, servicios, proveedores y proyectos del sector.',
       },
       {
         id: 'telecom-8',
         category: 'telecom',
-        tag: 'Relacionamiento Institucional',
-        title: 'Gestiones y representación institucional',
-        shortDesc: 'Representación técnica-jurídica en mesas de trabajo y consultas públicas con entes reguladores.',
+        tag: 'Relaciones Institucionales',
+        title: 'Relaciones con autoridades',
+        shortDesc: 'Acompañamiento jurídico ante ARCOTEL y otras autoridades competentes.',
         fullDesc:
-          'Acompañamos jurídicamente las gestiones ante ARCOTEL, MINTEL y demás entidades públicas relacionadas con proyectos de inversión y despliegue de infraestructura de comunicaciones.',
+          'Acompañamos jurídicamente las gestiones que deban realizarse ante ARCOTEL y otras autoridades o instituciones relacionadas con el proyecto.',
       },
     ],
+  },
+];
+
+export const CLIENTS: Client[] = [
+  {
+    id: 'metroeje',
+    name: 'METROEJE CIA. LTDA.',
+    sector: 'Movilidad & Transporte',
+    description: 'Metroeje',
+    link: 'https://metroeje.com',
+  },
+  {
+    id: 'global-support',
+    name: 'GLOBAL SUPPORT S.A.',
+    sector: 'Tecnología & Soporte IT',
+    description: 'Global Support',
+    link: 'https://globalsupport.com.ec',
+  },
+  {
+    id: 'factec',
+    name: 'FACTEC S.A.',
+    sector: 'Facturación & Soluciones Digitales',
+    description: 'Factec S.A.',
+  },
+  {
+    id: 'dr-salazar',
+    name: 'CENTRO OFTALMOLÓGICO DR. RAÚL SALAZAR',
+    sector: 'Salud & Medicina Especializada',
+    description: 'Dr. Raúl Salazar Zambrano - Oftalmólogo Quito',
+    link: 'https://oftalmologodrraulsalazar.com',
+  },
+  {
+    id: 'quala',
+    name: 'QUALA ECUADOR S.A.',
+    sector: 'Consumo Masivo Multinacional',
+    description: 'Multinacional de consumo masivo con presencia en 8 países de Centro y Sur América.',
+    link: 'https://quala.com.ec',
+  },
+  {
+    id: 'scrumz',
+    name: 'SCRUMZ GESTIÓN INMOBILIARIA CIA. LTDA.',
+    sector: 'Gestión Inmobiliaria & Bienes Raíces',
+    description: 'Scrumz Gestión Inmobiliaria',
+  },
+  {
+    id: 'zhm-seguros',
+    name: 'ZHM SEGUROS S.A.',
+    sector: 'Seguros Corporativos',
+    description: 'Agencia Asesora Productora de Seguros - Especialistas en seguros corporativos.',
+    link: 'https://zhmseguros.com',
+  },
+  {
+    id: 'ponte-selva',
+    name: 'INDUSTRIA PIOLERA PONTE SELVA S.A.',
+    sector: 'Industria Textil & Manufactura',
+    description: 'Empresa Textil en Ecuador - Ponte Selva',
+    link: 'https://ponteselva.com',
+  },
+  {
+    id: 'medicgo',
+    name: 'MEDICGO S.A.S.',
+    sector: 'Salud Digital & Servicios Médicos',
+    description: 'MEDICGO – Tu salud nuestra pasión.',
+    link: 'https://medicgo.ec',
   },
 ];
 
 export const LEGAL_ARTICLES: LegalArticle[] = [
   {
     id: 'art-1',
-    slug: 'guia-dpd-externo-ecuador',
-    title: 'Delegado de Protección de Datos (DPD) en Ecuador: ¿Cuándo es obligatorio y cómo estructurarlo?',
-    category: 'LOPDP & Privacidad',
-    date: '14 de Febrero, 2026',
+    slug: 'estructurar-juridicamente-ecosistema-tecnologico',
+    title: 'Estructurar jurídicamente un ecosistema tecnológico',
+    category: 'Contratos Tech & SaaS',
+    date: '18 de Febrero, 2026',
     readTime: '6 min de lectura',
-    author: 'Abg. Luis Fernando Guerra Padilla',
-    summary: 'Análisis pormenorizado sobre los criterios normativos de la LOPDP para la designación de un DPD, ventajas del esquema de DPD externo y sus responsabilidades ante la Superintendencia.',
+    author: 'Luis Fernando Guerra Padilla',
+    summary: 'En los negocios tecnológicos, un contrato rara vez funciona de manera aislada. La importancia de estructurar coherentemente toda la cadena entre fabricantes, distribuidores, partners y clientes finales.',
     keyPoints: [
-      'Criterios legales de designación obligatoria según el volumen y naturaleza del tratamiento.',
-      'Diferencias críticas entre un oficial de cumplimiento interno y un DPD externo independiente.',
-      'Funciones operativas: atención de derechos ARCO+, enlace con la autoridad y supervisión del RAT.',
-      'Régimen de responsabilidad y mitigación de sanciones económicas.',
+      'Modelar integralmente la cadena comercial: fabricantes, distribuidores, partners y usuarios.',
+      'Definición de reglas comerciales, licenciamiento, garantías, soporte técnico y responsabilidades.',
+      'Mitigar vacíos entre lo que se asume frente al fabricante y lo que se traslada al cliente final.',
+      'Hacer viable y escalable el negocio cuando el modelo contractual acompaña al comercial.',
     ],
     content: [
-      'La Ley Orgánica de Protección de Datos Personales (LOPDP) en Ecuador incorporó la figura del Delegado de Protección de Datos (DPD) como una pieza angular para garantizar que las organizaciones traten la información de manera lícita, leal y transparente.',
-      'Si bien muchas organizaciones asumen que la designación del DPD es optativa, la normativa ecuatoriana y su reglamento establecen supuestos específicos donde es imperativa: entidades públicas, organizaciones que realicen tratamiento masivo o a gran escala, y aquellas que procesen categorías especiales de datos personales (salud, biométricos, financieros o de menores).',
-      'Contar con un DPD Externo bajo la modalidad de servicio profesional permite a las empresas acceder a un equipo con experiencia especializada multidisciplinaria, manteniendo la independencia de criterio que la ley exige para evitar conflictos de interés con áreas comerciales o de TI.',
-      'En SmartLegalEC estructuramos el servicio de DPD Externo mediante un plan de supervisión continua, protocolos de respuesta ante incidentes y canales formales para atender solicitudes de los titulares de datos y requerimientos de la Superintendencia.',
+      'En los negocios tecnológicos, un contrato rara vez funciona de manera aislada.',
+      'Tuve la oportunidad de participar en la estructuración integral del modelo contractual y comercial regional de un grupo dedicado a la distribución de tecnología, con operaciones en varios países.',
+      'El proyecto implicó modelar las distintas relaciones que forman parte del negocio: fabricantes, distribuidores, partners, canales, clientes y usuarios finales, procurando que las condiciones jurídicas y comerciales mantuvieran coherencia a lo largo de toda la cadena.',
+      'El trabajo comprendió no solo contratos, sino también aspectos como: condiciones comerciales y reglas aplicables a cada canal, licenciamiento y condiciones de uso, responsabilidades de los distintos participantes, precios, pagos y condiciones asociadas a la comercialización, garantías y niveles de servicio, soporte técnico, propiedad intelectual, confidencialidad y protección de datos personales, limitaciones de responsabilidad, así como terminación y efectos posteriores de las relaciones comerciales.',
+      'Uno de los principales retos de este tipo de estructuras es evitar vacíos entre lo que una empresa asume frente a un fabricante y aquello que puede trasladar o exigir a sus partners, clientes o usuarios finales.',
+      'Por eso, estructurar jurídicamente un negocio tecnológico exige algo más que redactar buenos contratos: es necesario entender cómo se comercializa el producto, cómo se relacionan sus participantes, cómo circulan las obligaciones y dónde se encuentran los riesgos.',
+      'Cuando el modelo contractual acompaña correctamente al modelo comercial, el Derecho deja de ser únicamente un mecanismo de protección y se convierte también en una herramienta para hacer viable y escalable el negocio.',
     ],
   },
   {
     id: 'art-2',
-    slug: 'clausulas-criticas-contratos-saas',
-    title: 'Cláusulas críticas en Contratos SaaS: Niveles de Servicio (SLA), Propiedad Intelectual y Custodia de Datos',
-    category: 'Contratos Tech & SaaS',
-    date: '28 de Enero, 2026',
-    readTime: '8 min de lectura',
-    author: 'Abg. Luis Fernando Guerra Padilla',
-    summary: 'Aspectos esenciales que toda empresa tecnológica y cliente corporativo debe blindar al negociar suscripciones de software en la nube bajo la legislación ecuatoriana e internacional.',
+    slug: 'abogado-in-house-prevenir-contener-oportunidades',
+    title: 'El abogado in-house: prevenir, contener y generar oportunidades',
+    category: 'Telecomunicaciones & ARCOTEL',
+    date: '02 de Febrero, 2026',
+    readTime: '7 min de lectura',
+    author: 'Luis Fernando Guerra Padilla',
+    summary: 'La función jurídica dentro de una empresa va mucho más allá de responder consultas o gestionar contingencias: prevención, contención y generación de oportunidades.',
     keyPoints: [
-      'Delimitación precisa de Acuerdos de Nivel de Servicio (SLA) y penalidades por indisponibilidad.',
-      'Protección irrestricta de la titularidad de los datos del cliente y exportabilidad sin trabas.',
-      'Cláusulas de indemnidad ante reclamaciones de terceros por infracción de patentes o derechos de autor.',
-      'Armonización contractual entre el proveedor del SaaS y los términos del hosting Cloud subyacente (AWS, Azure, GCP).',
+      'PREVENCIÓN: Anticiparse oportunamente para encontrar alternativas que permitan avanzar con riesgo razonable.',
+      'CONTENCIÓN: Coordinación técnica y probatoria rigurosa con más de 80% de resultados favorables en procedimientos sancionatorios.',
+      'GENERACIÓN DE OPORTUNIDADES: Identificar qué sí puede hacerse mediante una interpretación regulatoria profunda.',
+      'El abogado in-house como socio estratégico que entiende el negocio.',
     ],
     content: [
-      'Los modelos de Software as a Service (SaaS) han transformado la forma en que las organizaciones acceden a herramientas críticas. Sin embargo, la estandarización de los contratos de adhesión a menudo traslada riesgos desproporcionados al usuario corporativo.',
-      'Uno de los errores más frecuentes es no definir con claridad los tiempos de respuesta y solución ante caídas críticas de la plataforma. Un SLA no debe limitarse a porcentajes globales de "uptime", sino detallar penalidades aplicables mediante créditos en facturación o derecho de terminación sin penalidad.',
-      'Asimismo, en el contexto de la LOPDP en Ecuador, el contrato SaaS debe calificar expresamente al proveedor como "Encargado del Tratamiento", estableciendo compromisos estrictos de confidencialidad, no utilización de datos para fines propios y obligación de notificación inmediata en caso de brechas de seguridad.',
-      'Una revisión jurídica preventiva permite a los proveedores de software cerrar ventas con grandes clientes sin frenos legales y a los compradores proteger la continuidad de sus operaciones.',
+      'Trabajar durante varios años como abogado in-house en una de las principales compañías de telecomunicaciones del país me permitió entender que la función jurídica dentro de una empresa va mucho más allá de responder consultas o gestionar contingencias. La asesoría legal puede aportar al negocio desde tres dimensiones: prevención, contención y generación de oportunidades.',
+      'PREVENCIÓN: El primer trabajo del abogado es anticiparse. Participar oportunamente en nuevos productos, contratos, decisiones comerciales, proyectos tecnológicos o cambios regulatorios permite identificar riesgos antes de que se conviertan en contingencias. Prevenir no significa impedir que el negocio avance. Significa encontrar alternativas que permitan alcanzar el objetivo empresarial con un nivel de riesgo jurídicamente razonable.',
+      'CONTENCIÓN: No todos los riesgos pueden evitarse. Durante mi experiencia in-house tuve a mi cargo aproximadamente 25 procedimientos administrativos sancionatorios, además de otros asuntos regulatorios y de competencia, alcanzando resultados favorables en alrededor del 80 % de los casos. Cuando una contingencia se materializa, el rol jurídico cambia: hay que entender los hechos, coordinar con las áreas técnicas y comerciales, reconstruir decisiones, analizar evidencia y desarrollar una estrategia que permita reducir su impacto.',
+      'GENERACIÓN DE OPORTUNIDADES: Esta es probablemente la dimensión menos visible de la asesoría jurídica. Conocer profundamente la regulación permite también identificar qué sí puede hacerse. Una interpretación regulatoria, una estructura contractual diferente o la identificación temprana de una alternativa jurídica pueden permitir lanzar un producto, desarrollar una alianza o ejecutar una operación que inicialmente parecía compleja.',
+      'Por eso, el abogado in-house no debería ser únicamente quien identifica riesgos. Debe entender el negocio lo suficiente para prevenir cuando sea posible, contener cuando sea necesario y encontrar oportunidades cuando el marco jurídico lo permita.',
     ],
   },
   {
     id: 'art-3',
-    slug: 'regulacion-satelital-arcotel-ecuador',
-    title: 'Despliegue satelital y conectividad en Ecuador: Marco regulatorio ante ARCOTEL',
-    category: 'Telecomunicaciones & ARCOTEL',
-    date: '10 de Enero, 2026',
-    readTime: '7 min de lectura',
-    author: 'Abg. Luis Fernando Guerra Padilla',
-    summary: 'Requisitos jurídicos y títulos habilitantes necesarios para la prestación de servicios de provisión de segmento espacial, estaciones terrenas y conectividad satelital en territorio ecuatoriano.',
+    slug: 'proteccion-datos-no-existe-implementacion-igual',
+    title: 'Protección de datos: no existe una implementación igual a otra',
+    category: 'LOPDP & Privacidad',
+    date: '15 de Enero, 2026',
+    readTime: '6 min de lectura',
+    author: 'Luis Fernando Guerra Padilla',
+    summary: 'Implementar un marco de protección de datos personales no consiste en replicar políticas ni plantillas. Metodología basada en la realidad operativa de cada organización.',
     keyPoints: [
-      'Procedimiento para el registro y autorización de constelaciones de satélites no geoestacionarios (NGSO/LEO) y geoestacionarios (GSO).',
-      'Régimen de asignación y uso de frecuencias del espectro radioeléctrico para gateways y enlaces de bajada/subida.',
-      'Obligaciones de cumplimiento continuo y régimen tributario sectorial.',
-      'Interconexión y coordinación con redes terrestres de telecomunicaciones.',
+      'Experiencia multisectorial: tecnología, salud, finanzas, educación, retail, consumo masivo e industria.',
+      'Diferentes escenarios: adecuaciones desde cero, grupos regionales y respuestas a procesos de control SPDP.',
+      'Metodología fundamental: entender la organización antes de diseñar su cumplimiento.',
+      'La protección de datos no se implementa desde una plantilla, sino desde la realidad operativa.',
     ],
     content: [
-      'El crecimiento exponencial de las constelaciones de satélites de órbita baja (LEO) ha abierto oportunidades sin precedentes para llevar conectividad a zonas remotas y sectores industriales en Ecuador como minería, energía, agroindustria y marítimo.',
-      'Sin embargo, operar legalmente servicios satelitales en Ecuador exige cumplir un riguroso marco administrado por la Agencia de Regulación y Control de las Telecomunicaciones (ARCOTEL), que incluye la obtención de títulos habilitantes para el segmento espacial y la autorización correspondiente para el uso de frecuencias.',
-      'El análisis preliminar de viabilidad regulatoria permite a los operadores internacionales y distribuidores locales estructurar sus modelos comerciales conforme a la Ley Orgánica de Telecomunicaciones (LOT), evitando sanciones y retrasos en la comercialización.',
-      'SmartLegalEC acompaña a empresas de telecomunicaciones en todas las etapas del trámite ante ARCOTEL, desde la preparación técnica-jurídica hasta la emisión definitiva del título habilitante.',
+      'Implementar un marco de protección de datos personales no consiste en replicar políticas, formatos o procedimientos de una organización a otra.',
+      'A lo largo de los últimos años he tenido la oportunidad de participar en implementaciones y proyectos de cumplimiento de protección de datos en organizaciones nacionales y grupos con presencia regional, pertenecientes a sectores muy distintos: tecnología y distribución de software, telecomunicaciones, instituciones financieras, salud, educación, retail, productos de consumo masivo, construcción, industria, asistencia social, organizaciones no gubernamentales y entidades vinculadas al deporte, entre otros.',
+      'Algunos proyectos han implicado implementar integralmente la normativa ecuatoriana. Otros han requerido estructurar marcos de privacidad para grupos con operaciones en distintos países, armonizando criterios y necesidades regionales con las exigencias locales.',
+      'También existen escenarios distintos: organizaciones que empiezan desde cero y otras que deben fortalecer su cumplimiento como consecuencia de observaciones, procesos de control o medidas dispuestas por la Autoridad de Protección de Datos Personales.',
+      'Cada realidad exige una aproximación diferente. Una institución de salud maneja información y riesgos distintos a los de un distribuidor regional de tecnología. Una organización de asistencia humanitaria enfrenta desafíos diferentes a una institución financiera. Y una organización sometida a medidas correctivas necesita prioridades distintas a una empresa que está construyendo preventivamente su programa de cumplimiento.',
+      'Sin embargo, la metodología siempre debe comenzar por lo mismo: entender la organización antes de diseñar su cumplimiento. Eso implica conocer sus procesos, tratamientos de datos, sistemas, proveedores, transferencias, estructura organizacional, riesgos y necesidades reales.',
+      'Solo después tiene sentido desarrollar políticas, contratos, registros, evaluaciones de riesgo, procedimientos de derechos, gestión de incidentes, programas de capacitación y demás instrumentos de cumplimiento. La protección de datos no se implementa desde una plantilla. Se implementa desde la realidad de cada organización.',
     ],
   },
   {
     id: 'art-4',
-    slug: 'gobernanza-ia-empresas-ecuador',
-    title: 'Inteligencia Artificial en la empresa: Riesgos jurídicos, propiedad intelectual y privacidad',
-    category: 'Inteligencia Artificial',
-    date: '18 de Diciembre, 2025',
-    readTime: '5 min de lectura',
-    author: 'Abg. Luis Fernando Guerra Padilla',
-    summary: 'Guía práctica para implementar herramientas de IA generativa y algoritmos predictivos en la operativa empresarial mitigando contingencias de fuga de información y derechos de autor.',
+    slug: 'ser-delegado-proteccion-datos-mas-que-requisito',
+    title: 'Ser Delegado de Protección de Datos: mucho más que cumplir un requisito',
+    category: 'LOPDP & Privacidad',
+    date: '20 de Diciembre, 2025',
+    readTime: '6 min de lectura',
+    author: 'Luis Fernando Guerra Padilla',
+    summary: 'El Delegado de Protección de Datos no debe ser una figura decorativa. El verdadero valor de un DPD independiente como puente entre la normativa y la operación.',
     keyPoints: [
-      'Políticas internas de uso aceptable de IA (Shadow AI y protección de secretos comerciales).',
-      'Titularidad de creaciones generadas con asistencia de IA según el Código Ingenios.',
-      'Evaluaciones de Impacto en Protección de Datos (EIPD) para modelos de perfilamiento algorítmico.',
-      'Responsabilidad civil y transparencia hacia clientes finales.',
+      'El DPD como punto de conexión entre la normativa y la operación diaria de la empresa.',
+      'Funciones clave: asesorar nuevos tratamientos, auditar proveedores, evaluar riesgos y gestionar incidentes.',
+      'Independencia indispensable: asesorar, supervisar y advertir sin suplantar a la administración.',
+      'Un buen DPD ayuda a que los problemas no lleguen a producirse.',
     ],
     content: [
-      'La adopción acelerada de asistentes de IA y modelos generativos en departamentos comerciales, de marketing, desarrollo y legal está generando una zona gris de riesgos que las organizaciones deben regular de forma inmediata.',
-      'El ingreso inadvertido de código propietario, datos financieros o bases de datos de clientes en herramientas de IA públicas puede constituir una violación directa al deber de confidencialidad y a la LOPDP.',
-      'Es indispensable que las compañías establezcan una Política Corporativa de Gobernanza de Inteligencia Artificial que defina qué herramientas están autorizadas, qué tipo de información está estrictamente prohibido compartir y cómo se auditan los resultados generados.',
+      'El Delegado de Protección de Datos Personales no debería convertirse en una figura que existe únicamente para cumplir una obligación normativa.',
+      'Actualmente ejerzo como Delegado de Protección de Datos externo para organizaciones de distintos sectores, entre ellos educación, salud, tecnología, productos de consumo masivo, construcción, asistencia social, servicios, retail y tecnologías de la información.',
+      'Esa diversidad me ha permitido comprobar que el verdadero valor del DPD aparece cuando conoce suficientemente la organización para convertirse en un punto de conexión entre la normativa y la operación.',
+      'En la práctica, el trabajo va mucho más allá de responder consultas sobre la Ley. Implica, entre otras actividades: asesorar sobre nuevos tratamientos y proyectos, revisar contratos y relaciones con proveedores, evaluar riesgos relacionados con datos personales, acompañar evaluaciones de impacto, asesorar frente a incidentes y vulneraciones de seguridad, supervisar la atención de derechos de los titulares, capacitar y generar cultura interna, realizar seguimiento al programa de cumplimiento, emitir criterios con independencia cuando una decisión puede generar riesgos para los titulares o para la propia organización, y servir como punto de contacto frente a la Autoridad de Protección de Datos Personales.',
+      'Existe además un elemento que considero fundamental: la independencia. El DPD asesora, supervisa y advierte. No sustituye a la administración ni debe convertirse en quien toma las decisiones que posteriormente tendrá que supervisar.',
+      'Precisamente por eso, un DPD externo puede aportar una mirada independiente y, al mismo tiempo, aprovechar la experiencia obtenida frente a problemáticas similares en organizaciones de diferentes industrias. Después de ejercer esta función en distintos sectores, tengo claro que un buen DPD no es aquel que aparece únicamente cuando existe un problema: es aquel que logra involucrarse suficientemente para ayudar a que muchos de esos problemas no lleguen a producirse.',
     ],
   },
 ];
 
 export const ABOUT_QUADRANTS: AboutQuadrant[] = [
   {
-    title: 'Formación Académica de Alto Nivel',
+    title: 'Formación académica',
     iconName: 'GraduationCap',
     items: [
-      'Estudios universitarios y de posgrado especializados en Derecho, Empresa y Nuevas Tecnologías.',
-      'Capacitación continua en estándares internacionales de Privacidad (RGPD / LOPDP) y Gobernanza Digital.',
-      'Enfoque multidisciplinario que combina rigor dogmático con entendimiento de arquitecturas de TI.',
+      'Estudios universitarios y de posgrado relacionados con derecho, empresa, tecnología y áreas de especialización.',
+      'Actualización continua en marcos regulatorios de privacidad, inteligencia artificial y telecomunicaciones.',
+      'Enfoque multidisciplinario combinando rigor jurídico y entendimiento técnico-operativo.',
     ],
   },
   {
-    title: 'Experiencia y Especialización',
+    title: 'Experiencia y especialización',
     iconName: 'Briefcase',
     items: [
-      'Trayectoria profesional consolidada en adecuación integral a la LOPDP y designación como DPD externo.',
-      'Estructuración y negociación de contratos de software SaaS, Cloud, Outsourcing y desarrollo a medida.',
-      'Asesoría técnica y regulatoria en proyectos de telecomunicaciones y trámites ante ARCOTEL.',
+      'Trayectoria profesional en protección de datos, tecnología, telecomunicaciones y asesoría empresarial.',
+      'Desempeño activo como Delegado de Protección de Datos externo para organizaciones de diversos sectores.',
+      'Estructuración y negociación de contratos tecnológicos de software, licenciamiento, cloud y outsourcing.',
     ],
   },
   {
-    title: 'Actividad Profesional y Gremial',
+    title: 'Actividad profesional',
     iconName: 'Users',
     items: [
-      'Participación activa en organizaciones profesionales, comités jurídicos y gremios tecnológicos.',
-      'Panelista y expositor en foros y conferencias sobre derecho digital, ciberseguridad e inteligencia artificial.',
-      'Vinculación constante con el ecosistema de innovación, startups y empresas multinacionales en Ecuador.',
+      'Participación en organizaciones profesionales, gremios, eventos especializados y espacios del sector.',
+      'Acompañamiento institucional y representación jurídica técnica ante entidades regulatorias como ARCOTEL.',
+      'Asesoría continua a equipos directivos, legales y de tecnología en entornos de innovación.',
     ],
   },
   {
-    title: 'Publicaciones y Análisis Jurídico',
+    title: 'Publicaciones y medios',
     iconName: 'FileText',
     items: [
-      'Autor de artículos y análisis de coyuntura normativa sobre privacidad, protección de datos y telecomunicaciones.',
-      'Apariciones en medios de comunicación y espacios especializados analizando el impacto de nuevas leyes.',
-      'Generación de contenido de valor para directivos y líderes del sector tecnológico y empresarial.',
+      'Artículos, análisis, entrevistas, conferencias y participación en medios sobre protección de datos, tecnología y telecomunicaciones.',
+      'Generación de criterio jurídico práctico para la toma de decisiones empresariales informadas.',
+      'Difusión y capacitación continua sobre cumplimiento normativo y cultura de privacidad.',
     ],
   },
 ];
+
+export const FOUNDER_EXPERIENCE_AREAS = [
+  {
+    title: 'Protección de Datos y Privacidad',
+    description:
+      'Implementación de programas de cumplimiento, Delegado de Protección de Datos externo, auditorías, gestión de riesgos, evaluaciones de impacto, contratos, políticas y procedimientos, gestión de incidentes y asesoramiento especializado.',
+  },
+  {
+    title: 'Tecnología',
+    description:
+      'Contratos tecnológicos, software y SaaS, licenciamiento, servicios digitales, outsourcing, cloud computing, propiedad intelectual y acompañamiento jurídico en proyectos de transformación digital.',
+  },
+  {
+    title: 'Telecomunicaciones',
+    description:
+      'Regulación sectorial, títulos habilitantes, servicios de telecomunicaciones, asuntos relacionados con espectro y servicios satelitales, contratos y procedimientos administrativos.',
+  },
+  {
+    title: 'Asesoría corporativa',
+    description:
+      'Acompañamiento jurídico a empresas nacionales e internacionales, negociación contractual y soporte especializado a equipos legales, directivos y de negocio.',
+  },
+];
+
+export const PHILOSOPHY = {
+  premise: 'Una solución jurídica debe ser técnicamente correcta, pero también debe funcionar para el negocio.',
+  explanation:
+    'Por eso procuro comprender el contexto de cada proyecto, identificar sus riesgos y traducir obligaciones jurídicas complejas en decisiones y soluciones que puedan aplicarse en la práctica.',
+};
 
 export const CORPORATE_VALUES: CorporateValue[] = [
   {
@@ -570,7 +673,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
 export const FAQS = [
   {
     q: '¿Por qué es urgente que mi empresa en Ecuador se adecúe a la LOPDP?',
-    a: 'La Ley Orgánica de Protección de Datos Personales (LOPDP) establece obligaciones directas para todas las personas naturales y jurídicas que traten datos en Ecuador. Su régimen sancionador contempla multas económicas significativas y la obligación de reparar a los titulares de datos ante vulneraciones.',
+    a: 'La Ley Orgánica de Protección de Datos Personales (LOPDP) establece obligaciones directas para todas las organizaciones que traten datos en Ecuador. Su régimen sancionador contempla multas económicas y medidas correctivas ante incumplimientos o vulneraciones.',
   },
   {
     q: '¿Cuándo es necesario nombrar un Delegado de Protección de Datos (DPD)?',
@@ -578,11 +681,10 @@ export const FAQS = [
   },
   {
     q: '¿Qué diferencia a SmartLegalEC de un estudio jurídico tradicional?',
-    a: 'Hablamos el idioma de la tecnología. No solo revisamos normas legales, sino que comprendemos la arquitectura técnica de un SaaS, una API, un pipeline de datos o una constelación satelital, traduciendo requerimientos técnicos en contratos y medidas jurídicas que funcionan.',
+    a: 'Una solución jurídica debe ser técnicamente correcta, pero también debe funcionar para el negocio. Entendemos la tecnología y la operación para estructurar contratos y medidas jurídicas que se apliquen en la práctica.',
   },
   {
     q: '¿Cómo coordinamos una primera consulta o diagnóstico?',
-    a: 'Puedes escribirnos directamente a nuestro WhatsApp oficial o completar el formulario de contacto para agendar una sesión inicial con el Abg. Luis Fernando Guerra Padilla.',
+    a: 'Puedes escribirnos directamente a nuestro WhatsApp oficial o completar el formulario de contacto para agendar una sesión inicial con Luis Fernando Guerra Padilla.',
   },
 ];
-

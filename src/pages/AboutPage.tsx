@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PageRoute } from '../types';
-import { BRAND_INFO, METRICS } from '../data/content';
+import { BRAND_INFO, METRICS, CLIENTS, ABOUT_QUADRANTS, FOUNDER_EXPERIENCE_AREAS, PHILOSOPHY } from '../data/content';
 import { Timeline, TimelineEntry } from '../components/ui/timeline';
 import { MilestoneCarousel } from '../components/MilestoneCarousel';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
@@ -23,7 +23,8 @@ import {
   Cpu,
   Scale,
   Quote,
-  CheckCircle2
+  CheckCircle2,
+  Building2
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -31,7 +32,37 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
-  // Structured Timeline Data with High-Impact Visual Cards and Minimal Text
+  const getQuadrantIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'GraduationCap':
+        return <GraduationCap className="w-5 h-5 text-blue-300" />;
+      case 'Briefcase':
+        return <Briefcase className="w-5 h-5 text-[#D4AF37]" />;
+      case 'Users':
+        return <Users className="w-5 h-5 text-purple-300" />;
+      case 'FileText':
+        return <FileText className="w-5 h-5 text-emerald-300" />;
+      default:
+        return <Scale className="w-5 h-5 text-blue-300" />;
+    }
+  };
+
+  const getQuadrantBg = (iconName: string) => {
+    switch (iconName) {
+      case 'GraduationCap':
+        return 'bg-[#0A66FF]/20 border-[#0A66FF]/50';
+      case 'Briefcase':
+        return 'bg-[#D4AF37]/20 border-[#D4AF37]/50';
+      case 'Users':
+        return 'bg-purple-500/20 border-purple-400/50';
+      case 'FileText':
+        return 'bg-emerald-500/20 border-emerald-400/50';
+      default:
+        return 'bg-blue-500/20 border-blue-400/50';
+    }
+  };
+
+  // Structured Timeline Data matching the official content
   const aboutTimelineData: TimelineEntry[] = [
     // ==========================================
     // 01. LIDERAZGO & DIRECCIÓN (El Fundador)
@@ -41,39 +72,51 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       badge: "01. DIRECTOR & FUNDADOR",
       subtitle: BRAND_INFO.founder,
       content: (
-        <div className="space-y-5 w-full">
+        <div className="space-y-6 w-full">
           {/* Visual 2-Column Founder Showcase */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch w-full">
-            {/* Left: Punchy Executive Summary */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch w-full">
+            {/* Left: Complete Executive Biography */}
             <div className="lg:col-span-7 flex flex-col justify-between space-y-4 px-4 sm:px-0">
               <div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading tracking-tight">
                   {BRAND_INFO.founder}
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#0A66FF] mt-1 mb-3">
+                <p className="text-xs sm:text-sm font-semibold text-[#0A66FF] mt-1 mb-4">
                   {BRAND_INFO.founderTitle}
                 </p>
-                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal text-justify">
-                  Más de una década de práctica especializada en la intersección entre el <strong className="text-slate-900 font-semibold">Derecho, la Inteligencia Artificial</strong>, la Protección de Datos y el sector de las <strong className="text-slate-900 font-semibold">Telecomunicaciones</strong> en Ecuador.
-                </p>
+                
+                <div className="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed font-normal text-justify">
+                  <p>
+                    Soy abogado ecuatoriano con experiencia en asesoría jurídica a empresas nacionales e internacionales, particularmente en asuntos relacionados con <strong className="text-slate-900 font-semibold">protección de datos personales, tecnología, telecomunicaciones y entornos empresariales regulados</strong>.
+                  </p>
+                  <p>
+                    Mi práctica profesional se ha desarrollado en la intersección entre <strong className="text-slate-900 font-semibold">derecho, tecnología y negocio</strong>. Esto me ha permitido participar tanto en proyectos de cumplimiento normativo como en negociaciones contractuales, implementación de soluciones tecnológicas y asuntos regulatorios que requieren comprender no solo la norma, sino también la operación y los objetivos de cada organización.
+                  </p>
+                  <p>
+                    En protección de datos personales he acompañado procesos integrales de adecuación a la LOPDP, evaluaciones de riesgo e impacto, desarrollo de políticas y procedimientos, revisión de relaciones con proveedores, gestión de incidentes y asesoramiento continuo a organizaciones. Asimismo, desempeño funciones como <strong className="text-slate-900 font-semibold">Delegado de Protección de Datos externo</strong>, brindando acompañamiento independiente en el cumplimiento de la normativa.
+                  </p>
+                  <p>
+                    En el ámbito tecnológico, mi experiencia comprende la elaboración, revisión y negociación de contratos de software, licenciamiento, servicios tecnológicos, outsourcing, cloud y otras relaciones vinculadas con proyectos de transformación digital. En telecomunicaciones, he participado en asuntos regulatorios, contractuales y administrativos relacionados con la operación del sector y con proyectos que requieren interacción con las autoridades ecuatorianas.
+                  </p>
+                </div>
               </div>
 
-              {/* 3 Key Highlights Strip (3 Columns on mobile & desktop - No Box-in-Box) */}
-              <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1.5 w-full">
+              {/* 3 Key Highlights Strip */}
+              <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-2 w-full">
                 <div className="pr-2 sm:pr-4 flex flex-col justify-start">
                   <Shield className="w-4 h-4 text-[#0A66FF] mb-1 shrink-0" />
-                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Oficial DPD</div>
-                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Certificado SPDP</div>
+                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Protección de Datos</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">LOPDP & DPD Externo</div>
                 </div>
                 <div className="px-2 sm:px-4 flex flex-col justify-start">
-                  <Scale className="w-4 h-4 text-[#D4AF37] mb-1 shrink-0" />
-                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">ARCOTEL & Telco</div>
-                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Títulos habilitantes</div>
+                  <Cpu className="w-4 h-4 text-purple-600 mb-1 shrink-0" />
+                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Tecnología & SaaS</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Contratos & Cloud</div>
                 </div>
                 <div className="pl-2 sm:pl-4 flex flex-col justify-start">
-                  <Cpu className="w-4 h-4 text-purple-600 mb-1 shrink-0" />
-                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">SaaS & IA Law</div>
-                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Contratos software</div>
+                  <Scale className="w-4 h-4 text-[#D4AF37] mb-1 shrink-0" />
+                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Telecomunicaciones</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Regulación ARCOTEL</div>
                 </div>
               </div>
 
@@ -92,7 +135,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('contact')}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-all cursor-pointer shadow-xs text-center"
                 >
-                  <span>Agendar Consulta</span>
+                  <span>Conversemos</span>
                   <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                 </button>
               </div>
@@ -109,14 +152,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                     alt="Abg. Luis Fernando Guerra Padilla"
                     width="896"
                     height="1200"
-                    className="w-full max-h-[380px] sm:max-h-[420px] object-contain object-bottom drop-shadow-xl transition-opacity duration-300"
+                    className="w-full max-h-[380px] sm:max-h-[440px] object-contain object-bottom drop-shadow-xl transition-opacity duration-300"
                     loading="eager"
                     decoding="async"
                   />
                 </picture>
               </div>
               <p className="mt-3 text-xs sm:text-sm font-medium text-slate-600 leading-relaxed text-center italic">
-                "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
+                "Una solución jurídica debe ser técnicamente correcta, pero también debe funcionar para el negocio."
               </p>
             </div>
           </div>
@@ -125,106 +168,59 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 02. PILARES DE EXCELENCIA (Cuatro Cuadrantes Visuales)
+    // 02. FORMA DE TRABAJAR & EXPERIENCIA PROFESIONAL
     // ==========================================
     {
-      title: "Pilares de Excelencia",
-      badge: "02. CUATRO CUADRANTES",
-      subtitle: "Formación, Práctica, Gremio & Doctrina",
+      title: "Forma de Trabajar & Áreas",
+      badge: "02. FILOSOFÍA & PRÁCTICA",
+      subtitle: "Enfoque Técnico, Negocio y Realidad Operativa",
       content: (
-        <div className="space-y-4 w-full">
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Cuatro dimensiones clave que garantizan soluciones jurídicas de estándar internacional:
-          </p>
-
-          {/* 4 Rich Visual Bento Cards (Full-bleed on mobile) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
-            {/* Cuadrante 1: Formación Académica */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
-              <img
-                src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=700&q=80"
-                alt="Formación Académica"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
-              <div className="relative z-10 space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-[#0A66FF]/20 border border-[#0A66FF]/50 flex items-center justify-center backdrop-blur-md">
-                    <GraduationCap className="w-4 h-4 text-blue-300" />
-                  </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Formación de Alto Nivel</h4>
-                </div>
-                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
-                  Estudios de posgrado en Derecho y Nuevas Tecnologías, con actualización continua en estándares RGPD y LOPDP.
-                </p>
+        <div className="space-y-6 w-full">
+          {/* Philosophy Banner */}
+          <div className="bg-[#0B1D3A] text-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-slate-800 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#0A66FF]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10 space-y-3">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#93C5FD]">
+                <Quote className="w-4 h-4 text-[#D4AF37]" />
+                <span>Mi forma de trabajar</span>
               </div>
+              <blockquote className="font-heading text-lg sm:text-xl font-bold text-white leading-snug">
+                "{PHILOSOPHY.premise}"
+              </blockquote>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify max-w-3xl">
+                {PHILOSOPHY.explanation}
+              </p>
             </div>
+          </div>
 
-            {/* Cuadrante 2: Experiencia y Especialización */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
-              <img
-                src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=700&q=80"
-                alt="Experiencia y Especialización"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
-              <div className="relative z-10 space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-[#D4AF37]/20 border border-[#D4AF37]/50 flex items-center justify-center backdrop-blur-md">
-                    <Briefcase className="w-4 h-4 text-[#D4AF37]" />
+          {/* 4 Professional Experience Pillars */}
+          <div className="space-y-3">
+            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-500 font-heading">
+              Experiencia Profesional
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {FOUNDER_EXPERIENCE_AREAS.map((exp, idx) => (
+                <div 
+                  key={idx}
+                  className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#0A66FF]/40 transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-2 h-2 rounded-full bg-[#0A66FF]" />
+                      <h5 className="font-heading font-bold text-base text-slate-900">
+                        {exp.title}
+                      </h5>
+                    </div>
+                    <p className="text-xs text-slate-600 leading-relaxed text-justify">
+                      {exp.description}
+                    </p>
                   </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Práctica & Adecuación LOPDP</h4>
-                </div>
-                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
-                  Adecuaciones LOPDP masivas, designación de DPD externo, contratos SaaS Cloud y trámites regulatorios ARCOTEL.
-                </p>
-              </div>
-            </div>
-
-            {/* Cuadrante 3: Actividad Profesional y Gremial */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
-              <img
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80"
-                alt="Actividad Profesional y Gremial"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
-              <div className="relative z-10 space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-purple-500/20 border border-purple-400/50 flex items-center justify-center backdrop-blur-md">
-                    <Users className="w-4 h-4 text-purple-300" />
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                    <span>Área 0{idx + 1}</span>
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                   </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Liderazgo Gremial & Foros</h4>
                 </div>
-                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
-                  Participación activa en comités jurídicos, panelista en foros sobre Inteligencia Artificial y vínculo con startups.
-                </p>
-              </div>
-            </div>
-
-            {/* Cuadrante 4: Publicaciones y Análisis Jurídico */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80"
-                alt="Publicaciones y Análisis Jurídico"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
-              <div className="relative z-10 space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center backdrop-blur-md">
-                    <FileText className="w-4 h-4 text-emerald-300" />
-                  </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Doctrina & Análisis Normativo</h4>
-                </div>
-                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
-                  Autor de artículos sobre privacidad, análisis de impacto regulatorio y vocería en medios especializados.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -232,130 +228,148 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 03. TRAYECTORIA & HITOS (Dynamic Interactive Carousel)
+    // 03. FORMACIÓN, EXPERIENCIA Y PARTICIPACIÓN
+    // ==========================================
+    {
+      title: "Formación & Trayectoria",
+      badge: "03. CUATRO BLOQUES",
+      subtitle: "Formación Académica, Práctica, Gremio & Medios",
+      content: (
+        <div className="space-y-4 w-full">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+            Cuatro dimensiones clave que integran formación universitaria, trayectoria especializada, liderazgo gremial y difusión jurídica:
+          </p>
+
+          {/* 4 Visual Bento Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
+            {ABOUT_QUADRANTS.map((quad, idx) => (
+              <div 
+                key={idx}
+                className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full bg-slate-900"
+              >
+                <img
+                  src={
+                    idx === 0 ? "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=700&q=80" :
+                    idx === 1 ? "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=700&q=80" :
+                    idx === 2 ? "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80" :
+                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80"
+                  }
+                  alt={quad.title}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-35 group-hover:opacity-45"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/70 to-slate-950/30" />
+                <div className="relative z-10 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <div className={`w-8 h-8 rounded-lg ${getQuadrantBg(quad.iconName)} flex items-center justify-center backdrop-blur-md`}>
+                      {getQuadrantIcon(quad.iconName)}
+                    </div>
+                    <h4 className="text-sm sm:text-base font-bold text-white font-heading">{quad.title}</h4>
+                  </div>
+                  <ul className="space-y-1.5 text-xs text-slate-300 leading-relaxed">
+                    {quad.items.map((item, iIdx) => (
+                      <li key={iIdx} className="flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] shrink-0 mt-1.5" />
+                        <span className="text-justify">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+
+    // ==========================================
+    // 04. CLIENTES DESTACADOS (Empresas & Organizaciones)
+    // ==========================================
+    {
+      title: "Clientes & Organizaciones",
+      badge: "04. CLIENTES DE CONFIANZA",
+      subtitle: "Empresas Nacionales y Grupos con Presencia Regional",
+      content: (
+        <div className="space-y-4 w-full">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+            Acompañamos jurídicamente a empresas líderes y organizaciones en diversos sectores de la economía:
+          </p>
+
+          {/* Clients Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            {CLIENTS.map((client, idx) => (
+              <div
+                key={client.id}
+                className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#0A66FF]/50 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-[10px] font-bold text-[#0A66FF] uppercase tracking-wider font-mono">
+                      0{idx + 1}
+                    </span>
+                    <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
+                      {client.sector}
+                    </span>
+                  </div>
+                  <h4 className="font-heading font-extrabold text-sm text-slate-900 mb-1 leading-snug">
+                    {client.name}
+                  </h4>
+                  {client.description && (
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      {client.description}
+                    </p>
+                  )}
+                </div>
+
+                {client.link && (
+                  <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
+                    <a
+                      href={client.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] font-bold text-[#0A66FF] hover:underline inline-flex items-center gap-1"
+                    >
+                      <span>Visitar sitio</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+
+    // ==========================================
+    // 05. TRAYECTORIA & HITOS (Dynamic Interactive Carousel)
     // ==========================================
     {
       title: "Trayectoria & Hitos",
-      badge: "03. EVOLUCIÓN HISTÓRICA",
+      badge: "05. EVOLUCIÓN HISTÓRICA",
       subtitle: "2014 — 2026",
       content: (
         <div className="space-y-4 w-full">
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Evolución interactiva de nuestra práctica al compás de las mayores transformaciones tecnológicas y legales del país:
+            Evolución de nuestra práctica profesional en telecomunicaciones, tecnología y protección de datos en Ecuador:
           </p>
 
-          {/* DYNAMIC INTERACTIVE CAROUSEL (100% Full-bleed on Mobile) */}
           <MilestoneCarousel />
         </div>
       ),
     },
 
     // ==========================================
-    // 04. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
+    // 06. FILOSOFÍA & RESULTADOS
     // ==========================================
     {
-      title: "Filosofía Corporativa",
-      badge: "04. VALORES RECTORES",
-      subtitle: "Principios de Nuestra Práctica",
-      content: (
-        <div className="space-y-4 w-full">
-          {/* Canvas-Anchored 2x2 Mobile / 4-Col Desktop Grid with Linear Dividers */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 border-y border-slate-200 w-full">
-            {/* Valor 1 */}
-            <div className="py-3.5 sm:py-5 px-3 sm:px-5 flex flex-col justify-start border-r border-b lg:border-b-0 border-slate-200">
-              <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
-                <div>
-                  <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
-                    Excelencia
-                  </h4>
-                  <p className="text-[10px] sm:text-xs text-[#D4AF37] font-semibold mt-0.5">
-                    Rigor de vanguardia
-                  </p>
-                </div>
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center shrink-0">
-                  <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
-                </div>
-              </div>
-              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
-                Soluciones jurídicas precisas adaptadas a la operativa real de cada cliente.
-              </p>
-            </div>
-
-            {/* Valor 2 */}
-            <div className="py-3.5 sm:py-5 px-3 sm:px-5 flex flex-col justify-start border-b lg:border-b-0 lg:border-r border-slate-200">
-              <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
-                <div>
-                  <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
-                    Integridad
-                  </h4>
-                  <p className="text-[10px] sm:text-xs text-[#0A66FF] font-semibold mt-0.5">
-                    Ética & secreto
-                  </p>
-                </div>
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-blue-50 border border-blue-200/80 flex items-center justify-center shrink-0">
-                  <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A66FF]" />
-                </div>
-              </div>
-              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
-                Confidencialidad absoluta y máxima transparencia profesional en cada encargo.
-              </p>
-            </div>
-
-            {/* Valor 3 */}
-            <div className="py-3.5 sm:py-5 px-3 sm:px-5 flex flex-col justify-start border-r lg:border-r border-slate-200">
-              <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
-                <div>
-                  <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
-                    Innovación
-                  </h4>
-                  <p className="text-[10px] sm:text-xs text-purple-600 font-semibold mt-0.5">
-                    Visión predictiva
-                  </p>
-                </div>
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-purple-50 border border-purple-200/80 flex items-center justify-center shrink-0">
-                  <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600" />
-                </div>
-              </div>
-              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
-                Anticipación constante de contingencias normativas ante nuevas tecnologías.
-              </p>
-            </div>
-
-            {/* Valor 4 */}
-            <div className="py-3.5 sm:py-5 px-3 sm:px-5 flex flex-col justify-start">
-              <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
-                <div>
-                  <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
-                    Compromiso
-                  </h4>
-                  <p className="text-[10px] sm:text-xs text-emerald-600 font-semibold mt-0.5">
-                    Socio estratégico
-                  </p>
-                </div>
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center shrink-0">
-                  <HeartHandshake className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
-                </div>
-              </div>
-              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
-                Acompañamiento cercano y directo en el logro de tus objetivos de negocio.
-              </p>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-
-    // ==========================================
-    // 05. IMPACTO & RESULTADOS (Canvas Linear Divider)
-    // ==========================================
-    {
-      title: "Impacto & Resultados",
-      badge: "05. MÉTRICAS CLAVE",
+      title: "Valores & Resultados",
+      badge: "06. MÉTRICAS CLAVE",
       subtitle: "Resultados Tangibles en Ecuador",
       content: (
-        <div className="space-y-4 w-full">
-          {/* Canvas-Anchored Metric Strip with Linear Divider (No Box-in-Box) */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 border-y border-slate-200 py-6 sm:py-8 w-full">
+        <div className="space-y-6 w-full">
+          {/* Metrics Strip */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 border-y border-slate-200 py-6 sm:py-8 w-full bg-white rounded-2xl">
             {METRICS.map((metric, idx) => (
               <div 
                 key={idx} 
@@ -378,25 +392,25 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 06. ALIANZA & CONTACTO DIRECTO
+    // 07. CONVERSEMOS / CONTACTO
     // ==========================================
     {
-      title: "Alianza & Contacto",
-      badge: "06. CONVERSACIONES ESTRATÉGICAS",
-      subtitle: "Hablemos de tu Organización",
+      title: "Conversemos",
+      badge: "07. ASESORÍA DIRECTA",
+      subtitle: "Hablemos de tu Proyecto",
       content: (
-        <div className="relative rounded-none sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border-y sm:border border-slate-800 overflow-hidden space-y-5 w-full">
+        <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border border-slate-800 overflow-hidden space-y-5 w-full">
           <div className="absolute top-0 right-0 w-72 h-72 bg-[#0A66FF]/15 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 space-y-2">
             <span className="text-[11px] font-bold text-[#D4AF37] uppercase tracking-wider block font-heading">
-              Asesoría Legal Estratégica
+              Asesoría Legal Especializada
             </span>
             <h4 className="text-xl sm:text-2xl font-extrabold text-white font-heading tracking-tight max-w-xl">
-              Inicia una conversación confidencial con nuestro equipo
+              ¿Tu empresa enfrenta un desafío jurídico?
             </h4>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed font-normal text-justify">
-              Agenda una reunión informativa o remítenos los antecedentes de tu caso para coordinar una propuesta técnica a medida liderada por el Abg. Luis Fernando Guerra Padilla.
+              Si tu empresa enfrenta un desafío jurídico relacionado con protección de datos, tecnología o telecomunicaciones, estaré encantado de conocer el proyecto y analizar cómo podemos ayudarte.
             </p>
           </div>
 
@@ -405,11 +419,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               onClick={() => onNavigate('contact')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all cursor-pointer shadow-md text-center"
             >
-              <span>Contactar a la Firma</span>
+              <span>Contactar</span>
               <ArrowRight className="w-4 h-4 shrink-0" />
             </button>
             <a
-              href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent('Hola SmartLegalEC, me gustaría agendar una reunión con el Abg. Luis Fernando Guerra.')}`}
+              href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent('Hola Luis Fernando Guerra, me gustaría agendar una consulta sobre un requerimiento jurídico.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md text-center"
@@ -440,7 +454,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <source srcSet="/header-about.webp" type="image/webp" />
             <img
               src="/header-about.jpg"
-              alt="Sobre SmartLegalEC - Despacho Jurídico Boutique"
+              alt="Sobre Luis Fernando Guerra Padilla - SmartLegalEC"
               width="1920"
               height="1080"
               className="w-full h-full object-cover object-center lg:object-right"
@@ -463,17 +477,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             className="max-w-2xl lg:max-w-3xl"
           >
             <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-3.5 leading-[1.14]">
-              Sobre <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">SmartLegalEC</span> & <span className="text-[#D4AF37]">Liderazgo</span>
+              Sobre <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Mí</span> & <span className="text-[#D4AF37]">SmartLegalEC</span>
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
-              Firma jurídica boutique liderada por el <strong className="text-white font-semibold">Abg. Luis Fernando Guerra Padilla</strong>, especializada en asesoría de vanguardia en <strong className="text-white font-semibold">Tecnología</strong> y <strong className="text-white font-semibold">Economía de Datos</strong> en Ecuador.
+              Abogado especializado en <strong className="text-white font-semibold">Protección de Datos</strong>, <strong className="text-white font-semibold">Tecnología</strong> y <strong className="text-white font-semibold">Telecomunicaciones</strong> en Ecuador.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* 2. CONTINUOUS TIMELINE CANVAS: Presenting the complete story of Sobre Nosotros */}
+      {/* 2. CONTINUOUS TIMELINE CANVAS: Presenting the complete story of Sobre Mí */}
       <main className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 mt-4 sm:mt-8 w-full">
         <Timeline 
           data={aboutTimelineData}

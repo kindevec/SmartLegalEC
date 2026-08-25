@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageRoute } from '../types';
-import { BRAND_INFO } from '../data/content';
+import { BRAND_INFO, CLIENTS } from '../data/content';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowUpRight, 
@@ -726,7 +726,81 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       </section>
 
       {/* ========================================================================= */}
-      {/* 5. CALL TO ACTION & COMPLIANCE BANNER with Motion */}
+      {/* 5. CLIENTES Y ORGANIZACIONES */}
+      {/* ========================================================================= */}
+      <section 
+        className="w-full bg-[#F8FAFC] text-slate-900 py-12 sm:py-16 relative overflow-hidden border-t border-slate-200/80"
+      >
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55 }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        >
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-slate-200 gap-3 mb-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 mb-2 font-heading">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF]" />
+                <span>EXPERIENCIA DE CONFIANZA</span>
+              </div>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
+                Clientes & Organizaciones
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 max-w-sm text-justify sm:text-right font-normal">
+              Asesoría jurídica especializada a empresas nacionales y grupos con presencia regional en diversos sectores de la economía.
+            </p>
+          </div>
+
+          {/* Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {CLIENTS.map((client, idx) => (
+              <div
+                key={client.id}
+                className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#0A66FF]/50 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-bold text-[#0A66FF] uppercase tracking-wider font-mono">
+                      0{idx + 1}
+                    </span>
+                    <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-md">
+                      {client.sector}
+                    </span>
+                  </div>
+                  <h3 className="font-heading font-extrabold text-sm sm:text-base text-slate-900 mb-1.5 leading-snug">
+                    {client.name}
+                  </h3>
+                  {client.description && (
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {client.description}
+                    </p>
+                  )}
+                </div>
+
+                {client.link && (
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <a
+                      href={client.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold text-[#0A66FF] hover:underline inline-flex items-center gap-1"
+                    >
+                      <span>Sitio web</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 6. CALL TO ACTION & COMPLIANCE BANNER with Motion */}
       {/* ========================================================================= */}
       <section 
         className="w-full bg-[#F0F4FA] py-12 sm:py-16 relative overflow-hidden"

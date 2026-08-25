@@ -72,3 +72,11 @@ export interface DiagnosticQuestion {
   }[];
 }
 
+export interface Client {
+  id: string;
+  name: string;
+  description?: string;
+  sector?: string;
+  link?: string;
+}
+
