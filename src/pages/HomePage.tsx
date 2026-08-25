@@ -33,6 +33,9 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHeroHovered, setIsHeroHovered] = useState(false);
+  const heroTouchStartX = useRef<number | null>(null);
+
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
   const [isServicesHovered, setIsServicesHovered] = useState(false);
   const serviceTouchStartX = useRef<number | null>(null);
@@ -76,13 +79,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
     },
   ];
 
-  // Auto-advance hero slides every 6 seconds
+  // Smart Auto-advance Hero Slider:
+  // 1. Resets countdown completely upon manual interaction (currentSlide change).
+  // 2. Pauses rotation when user is hovering or reading (isHeroHovered).
+  // 3. Pauses on tab visibility change to avoid rapid catch-up skips.
   useEffect(() => {
+    if (isHeroHovered) return;
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 6000);
+    }, 7500); // 7.5s comfortable reading time
+
     return () => clearInterval(timer);
-  }, [heroSlides.length]);
+  }, [currentSlide, isHeroHovered, heroSlides.length]);
 
   const handlePrevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
@@ -90,6 +99,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
 
   const handleNextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
+
+  const goToSlide = (idx: number) => {
+    setCurrentSlide(idx);
+  };
+
+  const handleHeroTouchStart = (e: React.TouchEvent) => {
+    heroTouchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleHeroTouchEnd = (e: React.TouchEvent) => {
+    if (heroTouchStartX.current === null) return;
+    const diff = heroTouchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) handleNextSlide();
+      else handlePrevSlide();
+    }
+    heroTouchStartX.current = null;
   };
 
   // Curated services structured for the 3D coverflow carousel
@@ -248,7 +275,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       {/* ========================================================================= */}
       {/* 1. HERO SECTION WITH IMAGE SLIDER */}
       {/* ========================================================================= */}
-      <section className="relative bg-[#071326] text-white pt-20 pb-12 sm:pt-24 sm:pb-14 lg:pt-28 lg:pb-16 overflow-hidden group">
+      <section 
+        className="relative bg-[#071326] text-white pt-20 pb-12 sm:pt-24 sm:pb-14 lg:pt-28 lg:pb-16 overflow-hidden group"
+        onMouseEnter={() => setIsHeroHovered(true)}
+        onMouseLeave={() => setIsHeroHovered(false)}
+        onTouchStart={handleHeroTouchStart}
+        onTouchEnd={handleHeroTouchEnd}
+      >
         
         {/* Background Images Slider with Layered Crossfade */}
         {heroSlides.map((slide, idx) => (
@@ -339,7 +372,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             {heroSlides.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => setCurrentSlide(idx)}
+                onClick={() => goToSlide(idx)}
                 aria-label={`Ir a diapositiva ${idx + 1}`}
                 className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                   currentSlide === idx 
