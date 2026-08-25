@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { BRAND_INFO, FAQS } from '../data/content';
 import { sanitizeInput, isValidEmail } from '../utils/security';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { LinkedInIcon } from './LinkedInIcon';
+import { InstagramIcon } from './InstagramIcon';
+import { TikTokIcon } from './TikTokIcon';
 import { 
   Mail, 
   MapPin, 
@@ -64,10 +67,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenDiagnostic
 
   const getCustomWhatsAppUrl = () => {
     const areaLabels: Record<string, string> = {
-      lopdp: 'Protección de Datos / LOPDP',
-      tech: 'Contratos Tecnológicos / SaaS / Cloud',
-      telecom: 'Telecomunicaciones / ARCOTEL',
-      dpd: 'Delegado de Protección de Datos (DPD) Externo',
+      lopdp: 'Protección de Datos y Privacidad',
+      tech: 'Tecnología y Negocios Digitales',
+      telecom: 'Telecomunicaciones y Regulación',
       other: 'Otra consulta especializada',
     };
 
@@ -173,6 +175,49 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                 <MapPin className="w-4 h-4 text-[#0A66FF] shrink-0" />
                 <span>Quito, Ecuador • Cobertura Nacional e Internacional</span>
               </div>
+
+              {/* Social Channels */}
+              <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                <span className="text-xs text-slate-400 font-medium">Síguenos:</span>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={BRAND_INFO.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-slate-800/80 hover:bg-[#0A66FF] hover:text-white text-slate-300 transition-all border border-slate-700/60"
+                    aria-label="LinkedIn oficial"
+                  >
+                    <LinkedInIcon className="w-3.5 h-3.5" />
+                  </a>
+                  <a
+                    href={BRAND_INFO.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-slate-800/80 hover:bg-[#0A66FF] hover:text-white text-slate-300 transition-all border border-slate-700/60"
+                    aria-label="Instagram oficial"
+                  >
+                    <InstagramIcon className="w-3.5 h-3.5" />
+                  </a>
+                  <a
+                    href={BRAND_INFO.tiktokUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-slate-800/80 hover:bg-black hover:text-white text-slate-300 transition-all border border-slate-700/60"
+                    aria-label="TikTok oficial"
+                  >
+                    <TikTokIcon className="w-3.5 h-3.5" />
+                  </a>
+                  <a
+                    href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent('Hola SmartLegalEC, me gustaría solicitar una consulta jurídica.')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-slate-800/80 hover:bg-[#25D366] hover:text-white text-slate-300 transition-all border border-slate-700/60"
+                    aria-label="WhatsApp oficial"
+                  >
+                    <WhatsAppIcon className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -258,10 +303,9 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                       onChange={(e) => setFormData({ ...formData, serviceArea: e.target.value })}
                       className="w-full px-3.5 sm:px-4 py-2.5 bg-slate-950/80 hover:bg-slate-950 border border-slate-700/90 hover:border-slate-600 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/20 transition-all shadow-xs cursor-pointer"
                     >
-                      <option value="lopdp" className="bg-slate-900 text-white">Protección de Datos / Adecuación LOPDP</option>
-                      <option value="dpd" className="bg-slate-900 text-white">Delegado de Protección de Datos (DPD Externo)</option>
-                      <option value="tech" className="bg-slate-900 text-white">Contratos de Software / SaaS / Cloud / IA</option>
-                      <option value="telecom" className="bg-slate-900 text-white">Telecomunicaciones / ARCOTEL / Satélites</option>
+                      <option value="lopdp" className="bg-slate-900 text-white">Protección de Datos y Privacidad</option>
+                      <option value="tech" className="bg-slate-900 text-white">Tecnología y Negocios Digitales</option>
+                      <option value="telecom" className="bg-slate-900 text-white">Telecomunicaciones y Regulación</option>
                       <option value="other" className="bg-slate-900 text-white">Diagnóstico integral / Otra consulta</option>
                     </select>
                   </div>

@@ -16,6 +16,7 @@ export const BRAND_INFO = {
   whatsappUrl: 'https://wa.me/593998668139',
   linkedinUrl: 'https://www.linkedin.com/company/99569327',
   instagramUrl: 'https://www.instagram.com/smartlegal_ec?igshid=YTQwZjQ0NmI0OA%3D%3D',
+  tiktokUrl: 'https://www.tiktok.com/@smartlegal_ec',
 };
 
 export const HERO_PILLARS: Pillar[] = [

@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PageRoute } from '../types';
 import { BRAND_INFO, CLIENTS } from '../data/content';
 import { motion, AnimatePresence } from 'motion/react';
+import { ClientTrustLogos } from '../components/ClientTrustLogos';
+import { LinkedInIcon } from '../components/LinkedInIcon';
+import { InstagramIcon } from '../components/InstagramIcon';
+import { TikTokIcon } from '../components/TikTokIcon';
 import { 
   ArrowUpRight, 
   Star, 
@@ -18,7 +22,8 @@ import {
   Building2,
   Sparkles,
   ExternalLink,
-  ArrowRight
+  ArrowRight,
+  Quote
 } from 'lucide-react';
 
 interface HomePageProps {
@@ -28,6 +33,12 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHeroHovered, setIsHeroHovered] = useState(false);
+  const heroTouchStartX = useRef<number | null>(null);
+
+  const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
+  const [isServicesHovered, setIsServicesHovered] = useState(false);
+  const serviceTouchStartX = useRef<number | null>(null);
 
   const heroSlides = [
     {
@@ -37,10 +48,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       titleLine2: 'Soluciones Legales',
       titleHighlight: 'Estratégicas',
       description: 'Asesoría jurídica de alta especialización en Protección de Datos Personales (LOPDP), Contratos de Software, Inteligencia Artificial y Telecomunicaciones en Ecuador.',
-      imageJpg: '/hero-warm-legal.jpg',
-      imageWebp: '/hero-warm-legal.webp',
-      imageAvif: '/hero-warm-legal.avif',
-      alt: 'Firma Jurídica Especializada en Tecnología - SmartLegalEC',
+      imageJpg: '/hero-panoramic-legaltech.jpg',
+      imageWebp: '/hero-panoramic-legaltech.webp',
+      imageAvif: '/hero-panoramic-legaltech.avif',
+      alt: 'Infraestructura de Centros de Datos, Ciberseguridad y Protección de Datos - SmartLegalEC',
     },
     {
       id: 'slide-2',
@@ -52,29 +63,35 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       imageJpg: '/hero-slider-2.jpg',
       imageWebp: '/hero-slider-2.webp',
       imageAvif: '/hero-slider-2.avif',
-      alt: 'Asesoría Legal Corporativa en Privacidad - SmartLegalEC',
+      alt: 'Laboratorio de Desarrollo de Software, Cloud Computing e IA - SmartLegalEC',
     },
     {
       id: 'slide-3',
-      badge: 'Contratos Tech • Telecomunicaciones ARCOTEL • IA',
+      badge: 'Contratos Tech • Telecomunicaciones & Regulación • IA',
       titleLine1: 'Innovación Legal para',
       titleLine2: 'Modelos de Negocio',
       titleHighlight: 'Digitales',
-      description: 'Estructuración de contratos SaaS y Cloud, títulos habilitantes TIC ante ARCOTEL y asesoría en gobernanza e integración responsable de Inteligencia Artificial.',
+      description: 'Estructuración de contratos SaaS y Cloud, títulos habilitantes y asesoría en gobernanza e integración responsable de Inteligencia Artificial.',
       imageJpg: '/hero-slider-3.jpg',
       imageWebp: '/hero-slider-3.webp',
       imageAvif: '/hero-slider-3.avif',
-      alt: 'Regulación de Telecomunicaciones e Inteligencia Artificial - SmartLegalEC',
+      alt: 'Estación Terrena de Telecomunicaciones, Satélites y Conectividad Global - SmartLegalEC',
     },
   ];
 
-  // Auto-advance hero slides every 6 seconds
+  // Smart Auto-advance Hero Slider:
+  // 1. Resets countdown completely upon manual interaction (currentSlide change).
+  // 2. Pauses rotation when user is hovering or reading (isHeroHovered).
+  // 3. Pauses on tab visibility change to avoid rapid catch-up skips.
   useEffect(() => {
+    if (isHeroHovered) return;
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 6000);
+    }, 7500); // 7.5s comfortable reading time
+
     return () => clearInterval(timer);
-  }, [heroSlides.length]);
+  }, [currentSlide, isHeroHovered, heroSlides.length]);
 
   const handlePrevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
@@ -84,49 +101,97 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   };
 
-  // Curated services structured identically to the carousel in the mockup
+  const goToSlide = (idx: number) => {
+    setCurrentSlide(idx);
+  };
+
+  const handleHeroTouchStart = (e: React.TouchEvent) => {
+    heroTouchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleHeroTouchEnd = (e: React.TouchEvent) => {
+    if (heroTouchStartX.current === null) return;
+    const diff = heroTouchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) handleNextSlide();
+      else handlePrevSlide();
+    }
+    heroTouchStartX.current = null;
+  };
+
+  // Curated services structured for the 3D coverflow carousel
   const servicesCatalog = [
     {
       id: 'lopdp',
       num: '01',
-      tag: 'LOPDP & PRIVACIDAD',
-      title: 'Protección de Datos Personales',
-      desc: 'Adecuación jurídica integral bajo normativa LOPDP ecuatoriana, levantamiento de RAT, políticas de privacidad y defensa sancionatoria ante la SPDP.',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80',
-      badge: 'CUMPLIMIENTO SPDP',
-      deliverables: ['Registro RAT & Políticas', 'Contratos de Encargo Cloud', 'Defensa Sancionatoria SPDP'],
+      tag: 'PROTECCIÓN DE DATOS Y PRIVACIDAD',
+      title: 'Protección de Datos y Privacidad',
+      desc: 'Protección de datos más allá del cumplimiento. Soluciones jurídicas adaptadas a la operación diaria y cumplimiento normativo integral.',
+      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+      badge: 'PROTECCIÓN DE DATOS',
+      icon: ShieldCheck,
+      iconColor: 'text-[#0A66FF]',
+      deliverables: ['Implementación y adecuación LOPDP', 'Delegado de protección de datos personales', 'Auditorías y evaluaciones de riesgos'],
     },
     {
       id: 'tech',
       num: '02',
-      tag: 'TECH LAW & IA',
-      title: 'Contratos Tecnológicos & SaaS',
-      desc: 'Estructuración y blindaje de acuerdos SaaS, licencias de software, cloud computing, SLAs transfronterizos y gobernanza legal para modelos de IA.',
-      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80',
-      badge: 'CONTRATOS & CLOUD',
-      deliverables: ['Acuerdos SaaS & SLAs', 'IP de Código & Licencias', 'Gobernanza Legal de IA'],
+      tag: 'TECNOLOGÍA Y NEGOCIOS DIGITALES',
+      title: 'Tecnología y Negocios Digitales',
+      desc: 'Contratos y asesoría jurídica para negocios que dependen de la tecnología, SaaS, cloud computing e inteligencia artificial.',
+      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
+      badge: 'CONTRATOS & TECH',
+      icon: Cpu,
+      iconColor: 'text-[#38BDF8]',
+      deliverables: ['Contratos de software, SaaS y SLAs', 'Cloud computing e infraestructura TI', 'Inteligencia artificial y negocios digitales'],
     },
     {
       id: 'telecom',
       num: '03',
-      tag: 'REGULATORIO & TELCO',
-      title: 'Telecomunicaciones & ARCOTEL',
-      desc: 'Gestión técnica y jurídica de títulos habilitantes ante ARCOTEL, registros PVA, asignación de espectro y cumplimiento de obligaciones regulatorias.',
-      image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
-      badge: 'HABILITANTES ARCOTEL',
-      deliverables: ['Títulos Habilitantes', 'Servicios TIC & PVA', 'Defensa Regulatoria'],
+      tag: 'TELECOMUNICACIONES Y REGULACIÓN',
+      title: 'Telecomunicaciones y Regulación',
+      desc: 'Asesoría jurídica para un sector altamente regulado y en constante evolución, conectividad y servicios tecnológicos regulados.',
+      image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
+      badge: 'TELECOMUNICACIONES',
+      icon: Radio,
+      iconColor: 'text-[#D4AF37]',
+      deliverables: ['Títulos habilitantes y licencias', 'Servicios de telecomunicaciones y espectro', 'Cumplimiento regulatorio y trámites'],
     },
-    {
-      id: 'dpd',
-      num: '04',
-      tag: 'GOBERNANZA CORPORATIVA',
-      title: 'Delegado de Protección de Datos',
-      desc: 'Designación de DPD externo certificado para supervisar el cumplimiento continuo, auditar procesos de datos y servir como enlace con la autoridad.',
-      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
-      badge: 'OFICIAL DPD EXTERNO',
-      deliverables: ['Supervisión Continua', 'Auditoría de Brechas', 'Canal Oficial con la SPDP'],
-    }
   ];
+
+  useEffect(() => {
+    if (isServicesHovered) return;
+    const timer = setInterval(() => {
+      setCurrentServiceIndex((prev) => (prev + 1) % servicesCatalog.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isServicesHovered, servicesCatalog.length]);
+
+  const handlePrevService = () => {
+    setCurrentServiceIndex((prev) => (prev === 0 ? servicesCatalog.length - 1 : prev - 1));
+  };
+
+  const handleNextService = () => {
+    setCurrentServiceIndex((prev) => (prev + 1) % servicesCatalog.length);
+  };
+
+  const goToService = (index: number) => {
+    setCurrentServiceIndex(index);
+  };
+
+  const handleServiceTouchStart = (e: React.TouchEvent) => {
+    serviceTouchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleServiceTouchEnd = (e: React.TouchEvent) => {
+    if (serviceTouchStartX.current === null) return;
+    const diff = serviceTouchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) handleNextService();
+      else handlePrevService();
+    }
+    serviceTouchStartX.current = null;
+  };
 
   // Case Studies & Strategic Legal Works dataset
   const legalWorks = [
@@ -144,6 +209,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       outcome: '100% de cumplimiento ante la SPDP sin observaciones ni multas regulatorias.',
       tags: ['LOPDP Ecuador', 'PCI-DSS', 'Encargo Cloud', 'Evaluación EIPD'],
       image: '/case-fintech.jpg',
+      imageWebp: '/case-fintech.webp',
+      imageAvif: '/case-fintech.avif',
       routeId: 'lopdp' as const,
     },
     {
@@ -160,22 +227,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       outcome: 'Blindaje de propiedad intelectual de código y contratos listos para rondas de inversión.',
       tags: ['SaaS B2B', 'SLA 99.9%', 'IP Protection', 'Modelos IA'],
       image: '/case-saas.jpg',
+      imageWebp: '/case-saas.webp',
+      imageAvif: '/case-saas.avif',
       routeId: 'tech' as const,
     },
     {
       id: 'case-telco',
       sector: 'ISP & TELECOMUNICACIONES',
-      title: 'Regularización de Concesión y Régimen de Cumplimiento ARCOTEL',
-      category: 'REGULATORIO TIC',
+      title: 'Regularización de Concesión y Régimen de Cumplimiento Regulatorio',
+      category: 'TELECOMUNICACIONES',
       categoryKey: 'telecom',
       date: 'MAR 2026',
       icon: Radio,
       iconColor: 'text-[#D4AF37]',
       iconBg: 'bg-amber-50 border-amber-100',
-      description: 'Tramitación y defensa técnica-jurídica para renovación de títulos habilitantes, adecuación al régimen de tarifas y homologación de servicios de valor agregado ante ARCOTEL.',
+      description: 'Tramitación y defensa técnica-jurídica para renovación de títulos habilitantes, adecuación al régimen de tarifas y homologación de servicios de valor agregado.',
       outcome: 'Resolución favorable y título habilitante otorgado por la autoridad reguladora.',
-      tags: ['ARCOTEL', 'Títulos Habilitantes', 'Servicios PVA', 'Espectro'],
+      tags: ['Telecomunicaciones', 'Títulos Habilitantes', 'Servicios Regulados', 'Espectro'],
       image: '/case-telco.jpg',
+      imageWebp: '/case-telco.webp',
+      imageAvif: '/case-telco.avif',
       routeId: 'telecom' as const,
     },
     {
@@ -192,6 +263,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       outcome: 'Gobernanza continua y blindaje sobre más de 250,000 registros médicos sensibles.',
       tags: ['Oficial DPD', 'Datos de Salud', 'Derechos ARCO', 'Auditoría SPDP'],
       image: '/case-health.jpg',
+      imageWebp: '/case-health.webp',
+      imageAvif: '/case-health.avif',
       routeId: 'lopdp' as const,
     },
   ];
@@ -202,7 +275,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       {/* ========================================================================= */}
       {/* 1. HERO SECTION WITH IMAGE SLIDER */}
       {/* ========================================================================= */}
-      <section className="relative bg-[#071326] text-white pt-20 pb-12 sm:pt-24 sm:pb-14 lg:pt-28 lg:pb-16 overflow-hidden">
+      <section 
+        className="relative bg-[#071326] text-white pt-20 pb-12 sm:pt-24 sm:pb-14 lg:pt-28 lg:pb-16 overflow-hidden group"
+        onMouseEnter={() => setIsHeroHovered(true)}
+        onMouseLeave={() => setIsHeroHovered(false)}
+        onTouchStart={handleHeroTouchStart}
+        onTouchEnd={handleHeroTouchEnd}
+      >
         
         {/* Background Images Slider with Layered Crossfade */}
         {heroSlides.map((slide, idx) => (
@@ -239,20 +318,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="max-w-3xl space-y-6">
-            
-            {/* Institutional Trust Badge */}
-            <motion.div
-              key={`badge-${currentSlide}`}
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E6F0FF]/15 border border-[#0A66FF]/40 text-white backdrop-blur-md mb-2 shadow-sm"
-            >
-              <div className="w-2 h-2 rounded-full bg-[#0A66FF] animate-pulse" />
-              <span className="text-[11px] sm:text-xs font-semibold tracking-wide text-white">
-                {heroSlides[currentSlide].badge}
-              </span>
-            </motion.div>
 
             {/* Main Display Headline */}
             <motion.h1 
@@ -277,94 +342,99 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
               {heroSlides[currentSlide].description}
             </motion.p>
 
-            {/* Action Buttons & Slider Controls */}
-            <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => onNavigate('contact')}
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-lg shadow-[#D4AF37]/20 transition-colors cursor-pointer"
-                >
-                  <span>Iniciar Asesoría</span>
-                  <div className="w-4 h-4 rounded-full bg-slate-950/15 flex items-center justify-center">
-                    <ArrowUpRight className="w-3 h-3 text-slate-950" />
-                  </div>
-                </motion.button>
-
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={onOpenDiagnostic}
-                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-colors cursor-pointer"
-                >
-                  <span>Evaluación LOPDP</span>
-                </motion.button>
-              </div>
-
-              {/* Slider Dots and Arrows */}
-              <div className="flex items-center gap-3 pt-2 sm:pt-0">
-                <button
-                  onClick={handlePrevSlide}
-                  aria-label="Diapositiva anterior"
-                  className="w-8 h-8 rounded-full bg-slate-900/80 hover:bg-[#0A66FF] text-slate-300 hover:text-white flex items-center justify-center border border-slate-700/80 transition-colors cursor-pointer"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-
-                <div className="flex items-center gap-1.5">
-                  {heroSlides.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentSlide(idx)}
-                      aria-label={`Ir a diapositiva ${idx + 1}`}
-                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                        currentSlide === idx 
-                          ? 'w-6 bg-[#D4AF37]' 
-                          : 'w-2 bg-slate-600 hover:bg-slate-400'
-                      }`}
-                    />
-                  ))}
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => onNavigate('contact')}
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-lg shadow-[#D4AF37]/20 transition-colors cursor-pointer"
+              >
+                <span>Iniciar Asesoría</span>
+                <div className="w-4 h-4 rounded-full bg-slate-950/15 flex items-center justify-center">
+                  <ArrowUpRight className="w-3 h-3 text-slate-950" />
                 </div>
+              </motion.button>
 
-                <button
-                  onClick={handleNextSlide}
-                  aria-label="Siguiente diapositiva"
-                  className="w-8 h-8 rounded-full bg-slate-900/80 hover:bg-[#0A66FF] text-slate-300 hover:text-white flex items-center justify-center border border-slate-700/80 transition-colors cursor-pointer"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={onOpenDiagnostic}
+                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-colors cursor-pointer"
+              >
+                <span>Evaluación LOPDP</span>
+              </motion.button>
             </div>
           </div>
+
+          {/* Bottom Pagination Dots */}
+          <div className="flex items-center justify-center gap-2 pt-10 sm:pt-14">
+            {heroSlides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => goToSlide(idx)}
+                aria-label={`Ir a diapositiva ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  currentSlide === idx 
+                    ? 'w-8 bg-[#D4AF37] shadow-sm shadow-[#D4AF37]/50' 
+                    : 'w-2.5 bg-slate-600/80 hover:bg-slate-400'
+                }`}
+              />
+            ))}
+          </div>
         </div>
+
+        {/* Lateral Slide Navigation Arrows (Invisible by default, reveal on slider hover) */}
+        <button
+          onClick={handlePrevSlide}
+          aria-label="Diapositiva anterior"
+          className="absolute left-2 sm:left-4 lg:left-8 top-1/2 -translate-y-1/2 -translate-x-3 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto z-20 w-9 h-9 sm:w-11 sm:h-11 lg:w-14 lg:h-14 rounded-full bg-slate-950/70 hover:bg-[#0A66FF] text-slate-200 hover:text-white flex items-center justify-center border border-slate-700/80 hover:border-[#0A66FF] backdrop-blur-md transition-all duration-300 hover:scale-110 shadow-2xl cursor-pointer"
+        >
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-7 lg:h-7" />
+        </button>
+
+        <button
+          onClick={handleNextSlide}
+          aria-label="Siguiente diapositiva"
+          className="absolute right-2 sm:right-4 lg:right-8 top-1/2 -translate-y-1/2 translate-x-3 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto z-20 w-9 h-9 sm:w-11 sm:h-11 lg:w-14 lg:h-14 rounded-full bg-slate-950/70 hover:bg-[#0A66FF] text-slate-200 hover:text-white flex items-center justify-center border border-slate-700/80 hover:border-[#0A66FF] backdrop-blur-md transition-all duration-300 hover:scale-110 shadow-2xl cursor-pointer"
+        >
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-7 lg:h-7" />
+        </button>
       </section>
+
+      {/* ========================================================================= */}
+      {/* 1.5 CLIENT TRUST SOCIAL PROOF - Logos de Empresas que Confían */}
+      {/* ========================================================================= */}
+      <ClientTrustLogos />
 
       {/* ========================================================================= */}
       {/* 2. SERVICES SECTION - Flat 2.0 Direct Canvas Layout (Zero Box-in-Box) */}
       {/* ========================================================================= */}
+      {/* ========================================================================= */}
+      {/* 2. SERVICES SECTION - Flat 2.0 Direct Canvas Layout (Zero Box-in-Box) */}
+      {/* ========================================================================= */}
       <section 
-        className="w-full bg-[#071326] text-white py-12 sm:py-16 border-b border-slate-800/90 relative overflow-hidden"
+        className="w-full bg-[#071326] text-white pt-8 pb-7 sm:pt-10 sm:pb-8 border-b border-slate-800/90 relative overflow-hidden"
       >
         {/* Difuminado superior / Top Soft Fade & Ambient Blur */}
-        <div className="absolute top-0 inset-x-0 h-24 sm:h-32 bg-gradient-to-b from-[#071326] via-[#071326]/80 to-transparent pointer-events-none z-10" />
+        <div className="absolute top-0 inset-x-0 h-20 sm:h-28 bg-gradient-to-b from-[#071326] via-[#071326]/80 to-transparent pointer-events-none z-10" />
         <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#0A66FF]/40 to-transparent pointer-events-none z-20" />
-        <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-3/4 sm:w-1/2 h-28 bg-[#0A66FF]/15 blur-3xl pointer-events-none" />
+        <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-3/4 sm:w-1/2 h-24 bg-[#0A66FF]/15 blur-3xl pointer-events-none" />
 
         {/* Subtle Ambient Glow */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0A66FF]/5 rounded-full blur-3xl pointer-events-none" />
 
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
           {/* Header Strip with Linear Divider */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-6 border-b border-slate-800/80 gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 pb-4 border-b border-slate-800/80 gap-3">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/15 text-[#93C5FD] mb-2 border border-[#0A66FF]/30 font-heading">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/15 text-[#93C5FD] mb-1.5 border border-[#0A66FF]/30 font-heading">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
                 <span>NUESTROS SERVICIOS</span>
               </div>
@@ -387,75 +457,157 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
           </div>
 
-          {/* Flat 2.0 Canvas Grid: Linear Separators, Zero Box-in-Box */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-800/80">
-            {servicesCatalog.map((service, idx) => (
-              <motion.article
-                key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                onClick={() => onNavigate('area-detail', { areaId: (service.id === 'dpd' ? 'lopdp' : service.id) as any })}
-                className="py-6 md:py-0 md:px-5 lg:px-6 first:md:pl-0 last:md:pr-0 flex flex-col justify-between cursor-pointer group transition-colors"
-              >
-                <div>
-                  {/* Flat 2.0 Numeric Anchor and Tag */}
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="font-mono text-xs font-bold text-[#D4AF37]">
-                      {service.num}
-                    </span>
-                    <span className="text-[10px] font-bold text-[#93C5FD] uppercase tracking-wider font-heading">
-                      {service.tag}
-                    </span>
-                  </div>
+          {/* 3D Coverflow Card Slider (Luxury High-End Aesthetic) */}
+          <div 
+            className="relative w-full h-[395px] sm:h-[415px] md:h-[430px] lg:h-[440px] overflow-hidden flex items-center justify-center group select-none"
+            style={{ perspective: '1100px' }}
+            onMouseEnter={() => setIsServicesHovered(true)}
+            onMouseLeave={() => setIsServicesHovered(false)}
+            onTouchStart={handleServiceTouchStart}
+            onTouchEnd={handleServiceTouchEnd}
+          >
+            {servicesCatalog.map((service, idx, arr) => {
+              const len = arr.length;
+              let position = 'hidden';
+              let transform = 'translate3d(0px, 0px, -80px) scale(0.6)';
+              let zIndex = 0;
+              let opacity = 0;
 
-                  {/* Visual Media Window without bulky nested box borders */}
-                  <div className="w-full aspect-[16/10] rounded-xl overflow-hidden mb-3.5 bg-slate-950 relative border border-white/5">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-85 group-hover:opacity-100"
-                      loading="lazy"
+              if (idx === currentServiceIndex) {
+                position = 'center';
+                transform = 'translate3d(0px, 0px, 0px) scale(1)';
+                zIndex = 20;
+                opacity = 1;
+              } else if (idx === (currentServiceIndex - 1 + len) % len) {
+                position = 'left';
+                transform = 'translate3d(-58%, 0px, -30px) scale(0.88)';
+                zIndex = 10;
+                opacity = 0.45;
+              } else if (idx === (currentServiceIndex + 1) % len) {
+                position = 'right';
+                transform = 'translate3d(58%, 0px, -30px) scale(0.88)';
+                zIndex = 10;
+                opacity = 0.45;
+              } else {
+                transform = 'translate3d(0px, 0px, -80px) scale(0.5)';
+                opacity = 0;
+              }
+
+              return (
+                <div
+                  key={service.id}
+                  className="absolute w-[90vw] max-w-[320px] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[420px] h-[94%] transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer group flex flex-col select-none will-change-transform"
+                  style={{ transform, zIndex, opacity }}
+                  onClick={() => {
+                    if (position === 'left') handlePrevService();
+                    else if (position === 'right') handleNextService();
+                    else onNavigate('area-detail', { areaId: (service.id === 'dpd' ? 'lopdp' : service.id) as any });
+                  }}
+                >
+                  <div
+                    className={`relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-b from-[#0C203E] to-[#071326] border transition-[border-color,box-shadow,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col justify-between shadow-2xl ${
+                      position === 'center'
+                        ? 'border-[#D4AF37] shadow-[0_0_35px_rgba(212,175,55,0.22)] ring-1 ring-[#D4AF37]/50'
+                        : 'border-slate-700/60 shadow-[0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-slate-500'
+                    }`}
+                  >
+                    {/* Dark overlay for inactive side cards */}
+                    <div
+                      className={`absolute inset-0 pointer-events-none transition-opacity duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] z-20 rounded-2xl sm:rounded-3xl ${
+                        position === 'center' ? 'opacity-0' : 'opacity-65 bg-[#071326]'
+                      }`}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#071326]/90 via-[#071326]/20 to-transparent pointer-events-none" />
-                    
-                    {/* Badge Overlay */}
-                    <span className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded text-[9px] font-extrabold uppercase tracking-wider bg-black/60 backdrop-blur-md text-white border border-white/10 font-heading">
-                      {service.badge}
-                    </span>
-                  </div>
 
-                  {/* Title */}
-                  <h3 className="font-heading font-extrabold text-base sm:text-lg text-white mb-2 leading-snug group-hover:text-[#60A5FA] transition-colors">
-                    {service.title}
-                  </h3>
+                    {/* Top Image Showcase */}
+                    <div className="relative w-full h-32 sm:h-36 md:h-38 overflow-hidden bg-slate-950 shrink-0">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-108 opacity-85 group-hover:opacity-100"
+                        loading="lazy"
+                      />
+                      {/* Gradient fade */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0C203E] via-[#0C203E]/35 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent pointer-events-none" />
+                    </div>
 
-                  {/* Description */}
-                  <p className="text-xs text-slate-300 leading-relaxed mb-4 text-justify font-normal">
-                    {service.desc}
-                  </p>
-
-                  {/* Flat 2.0 Key Capabilities List */}
-                  <div className="space-y-1.5 mb-6">
-                    {service.deliverables.map((item, dIdx) => (
-                      <div key={dIdx} className="flex items-center gap-2 text-[11px] text-slate-400">
-                        <div className="w-1 h-1 rounded-full bg-[#0A66FF] shrink-0" />
-                        <span className="truncate">{item}</span>
+                    {/* Bottom Card Content */}
+                    <div className="p-3.5 sm:p-4.5 flex-1 flex flex-col justify-between space-y-2 relative z-10">
+                      <div>
+                        <h3 className="font-heading font-extrabold text-base sm:text-lg text-white mb-1 leading-snug group-hover:text-[#D4AF37] transition-colors">
+                          {service.title}
+                        </h3>
+                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal line-clamp-2 text-justify sm:text-left">
+                          {service.desc}
+                        </p>
                       </div>
-                    ))}
-                  </div>
-                </div>
 
-                {/* Bottom Action Trigger */}
-                <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-[#60A5FA] transition-colors">
-                  <span>Explorar Servicio</span>
-                  <div className="w-6 h-6 rounded-full bg-slate-800/80 group-hover:bg-[#0A66FF] flex items-center justify-center text-white transition-all">
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      {/* Deliverables Bullet Points */}
+                      <div className="space-y-1 pt-1.5 border-t border-slate-700/60">
+                        {service.deliverables.map((item, dIdx) => (
+                          <div key={dIdx} className="flex items-center gap-2 text-[11px] sm:text-xs text-slate-300">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] shrink-0 shadow-[0_0_5px_#0A66FF]" />
+                            <span className="truncate">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Bottom Row: CTA Trigger */}
+                      <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-[#D4AF37] transition-colors">
+                        <span className="flex items-center gap-1.5 tracking-wide">
+                          <span>Explorar Servicio</span>
+                          <span className="text-[#D4AF37]">→</span>
+                        </span>
+                        <div className="w-6.5 h-6.5 sm:w-7 sm:h-7 rounded-full bg-slate-900 border border-slate-700 group-hover:bg-[#D4AF37] group-hover:text-slate-950 group-hover:border-[#D4AF37] flex items-center justify-center text-white transition-all shadow-sm">
+                          <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </motion.article>
-            ))}
+              );
+            })}
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrevService();
+              }}
+              aria-label="Servicio anterior"
+              className="absolute left-2 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/80 hover:bg-[#0A66FF] text-white backdrop-blur-md border border-white/15 flex items-center justify-center cursor-pointer transition-all shadow-[0_0_20px_rgba(0,0,0,0.6)] hover:scale-110 group/btn"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover/btn:-translate-x-0.5 transition-transform" />
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNextService();
+              }}
+              aria-label="Siguiente servicio"
+              className="absolute right-2 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/80 hover:bg-[#0A66FF] text-white backdrop-blur-md border border-white/15 flex items-center justify-center cursor-pointer transition-all shadow-[0_0_20px_rgba(0,0,0,0.6)] hover:scale-110 group/btn"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover/btn:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
+
+          {/* Bottom Dots Indicator (Compact padding) */}
+          <div className="flex items-center justify-center pt-3 sm:pt-4">
+            <div className="flex gap-2.5 bg-slate-950/85 backdrop-blur-md px-4 py-1.5 sm:py-2 rounded-full border border-white/15 shadow-xl">
+              {servicesCatalog.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToService(index)}
+                  aria-label={`Ir al servicio ${index + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    index === currentServiceIndex
+                      ? 'w-7 bg-[#D4AF37] shadow-[0_0_10px_rgba(212,175,55,0.8)]'
+                      : 'w-2.5 bg-white/40 hover:bg-white/70'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </motion.div>
       </section>
@@ -464,23 +616,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       {/* 3. ABOUT SECTION with Founder Portrait & Credentials (After Services) */}
       {/* ========================================================================= */}
       <section 
-        className="w-full bg-[#F0F4FA] text-slate-900 py-12 sm:py-16 lg:py-20 relative overflow-hidden"
+        className="w-full bg-[#F0F4FA] text-slate-900 pt-8 sm:pt-10 lg:pt-12 pb-0 relative overflow-hidden"
       >
         {/* Subtle decorative glow */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0A66FF]/5 rounded-full blur-3xl pointer-events-none" />
         
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
             
-            {/* LEFT: Client / Founder Avatar */}
-            <div className="lg:col-span-5 relative flex flex-col items-center lg:items-start justify-center">
-              <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-full mx-auto flex items-end justify-center">
+            {/* LEFT: Founder Cutout Portrait (Resting directly on the bottom horizontal bar) */}
+            <div className="lg:col-span-5 relative flex justify-center lg:justify-start items-end w-full">
+              <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] flex items-end justify-center">
                 <picture className="w-full h-auto block">
                   <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
                   <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
@@ -489,48 +635,30 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                     alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
                     width="896"
                     height="1200"
-                    className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[480px] object-contain object-bottom drop-shadow-xl transition-opacity duration-300"
+                    className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[450px] object-contain object-bottom drop-shadow-xl block -mb-[1px]"
                     loading="lazy"
                     decoding="async"
                   />
                 </picture>
               </div>
-
-              {/* Founder Caption */}
-              <div className="mt-2.5 text-center lg:text-left w-full space-y-1 px-2">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 text-[10px] font-bold uppercase tracking-wider font-heading">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
-                  <span>DIRECTOR & FUNDADOR</span>
-                </div>
-
-                <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900 leading-tight">
-                  Abg. Luis Fernando Guerra Padilla
-                </h3>
-
-                <p className="text-xs text-slate-500 italic leading-relaxed">
-                  "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
-                </p>
-              </div>
             </div>
 
             {/* RIGHT: Section Editorial & Firm Story */}
-            <div className="lg:col-span-7 space-y-4">
+            <div className="lg:col-span-7 space-y-4 pb-8 sm:pb-12">
               <div>
                 <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 mb-2 font-heading">
-                  SOBRE NOSOTROS
+                  LIDERAZGO Y EXPERIENCIA
                 </div>
                 <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
-                  Construido con Integridad, <br />
-                  Impulsado por la <span className="text-[#0B1D3A]">Justicia</span>
+                  Luis Fernando Guerra
                 </h2>
+                <p className="text-sm sm:text-base font-semibold text-[#0A66FF] font-heading mt-1">
+                  Managing Partner
+                </p>
               </div>
 
-              <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
-                Firma jurídica especializada en blindar empresas y proyectos tecnológicos frente a marcos regulatorios complejos en Ecuador.
-              </p>
-
-              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                Más de una década de práctica especializada asesorando a organizaciones en protección de datos (<strong className="text-slate-700 font-semibold">LOPDP</strong>), contratos de software (<strong className="text-slate-700 font-semibold">SaaS & Cloud</strong>), títulos habilitantes ante <strong className="text-slate-700 font-semibold">ARCOTEL</strong> e integración ética de Inteligencia Artificial con rigor técnico y visión comercial.
+              <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed">
+                Abogado especializado en protección de datos personales, derecho de la tecnología y telecomunicaciones, con amplia experiencia asesorando a empresas nacionales e internacionales en entornos regulados y proyectos de transformación digital.
               </p>
 
               {/* 3 Credential Badges */}
@@ -542,7 +670,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 </div>
                 <div className="px-2 sm:px-4 flex flex-col justify-start">
                   <Scale className="w-4 h-4 text-[#D4AF37] mb-1 shrink-0" />
-                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">ARCOTEL & Telco</div>
+                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Telecom & Regulación</div>
                   <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Títulos habilitantes</div>
                 </div>
                 <div className="pl-2 sm:pl-4 flex flex-col justify-start">
@@ -552,23 +680,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="flex flex-wrap items-center gap-3 pt-1">
+              {/* Primary Action Buttons */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-2">
                 <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => onNavigate('about')}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xs transition-colors cursor-pointer active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xs transition-colors cursor-pointer active:scale-95 text-center"
                 >
-                  <span>Conocer Más Sobre la Firma</span>
+                  <span>Conocer más sobre mí</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-slate-950" />
                 </motion.button>
 
                 <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => onNavigate('contact')}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 transition-colors cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 transition-colors cursor-pointer text-center"
                 >
                   <span>Contactar al Abogado</span>
                   <ArrowRight className="w-3.5 h-3.5 text-slate-700" />
@@ -576,7 +704,95 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* FULL-WIDTH LUXURY HORIZONTAL FOUNDER STRIP */}
+        <div className="w-full bg-gradient-to-r from-[#061224] via-[#091E3D] to-[#061224] border-y border-slate-800 text-white py-5 sm:py-6 relative z-20 shadow-2xl overflow-hidden">
+          {/* Subtle Ambient Lighting & Glowing Accent Accents */}
+          <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#0A66FF]/60 via-[#D4AF37]/50 to-transparent pointer-events-none z-10" />
+          <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-slate-800/80 to-transparent pointer-events-none z-10" />
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-28 bg-[#0A66FF]/10 blur-3xl pointer-events-none" />
+          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-28 bg-[#D4AF37]/8 blur-3xl pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
+            
+            {/* Left: Founder Name, Dual-Tone Badge & Stylized Quote */}
+            <div className="space-y-2 text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start gap-2.5 flex-wrap">
+                <h3 className="font-heading font-extrabold text-lg sm:text-xl lg:text-2xl text-white tracking-tight leading-tight">
+                  Abg. Luis Fernando Guerra Padilla
+                </h3>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#0A66FF]/20 via-[#0A66FF]/10 to-transparent border border-[#0A66FF]/40 text-[10px] font-extrabold uppercase tracking-widest text-[#93C5FD] font-heading shadow-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse shadow-[0_0_8px_#0A66FF]" />
+                  <span>DIRECTOR & FUNDADOR</span>
+                  <span className="w-1 h-1 rounded-full bg-[#D4AF37]" />
+                  <span className="text-[#D4AF37] font-semibold">SMARTLEGALEC</span>
+                </span>
+              </div>
+
+              <div className="flex items-start justify-center lg:justify-start gap-2 max-w-2xl">
+                <Quote className="w-4 h-4 text-[#D4AF37] shrink-0 rotate-180 mt-0.5 opacity-90" />
+                <p className="text-xs sm:text-sm text-slate-300 italic font-normal leading-relaxed">
+                  "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Direct Channels & Interactive Social Media Pills */}
+            <div className="flex flex-col items-center lg:items-end gap-2 shrink-0">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 font-heading">
+                Canales & Redes Oficiales
+              </span>
+              
+              <div className="flex items-center justify-center lg:justify-end gap-2.5 sm:gap-3 flex-wrap">
+                {/* LinkedIn */}
+                <motion.a
+                  href={BRAND_INFO.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.07, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 450, damping: 12, mass: 0.75 }}
+                  className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-[#0A66C2] text-slate-200 hover:text-white border border-slate-700/80 hover:border-[#0A66C2] text-xs font-semibold transition-all duration-200 shadow-md hover:shadow-[0_0_20px_rgba(10,102,194,0.4)] group"
+                  aria-label="Perfil oficial de LinkedIn"
+                >
+                  <LinkedInIcon className="w-4 h-4 text-[#0A66C2] group-hover:text-white transition-colors shrink-0" />
+                  <span>LinkedIn</span>
+                </motion.a>
+
+                {/* Instagram */}
+                <motion.a
+                  href={BRAND_INFO.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.07, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 450, damping: 12, mass: 0.75 }}
+                  className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-gradient-to-tr hover:from-[#FD1D1D] hover:via-[#E1306C] hover:to-[#833AB4] text-slate-200 hover:text-white border border-slate-700/80 hover:border-transparent text-xs font-semibold transition-all duration-200 shadow-md hover:shadow-[0_0_20px_rgba(225,48,108,0.4)] group"
+                  aria-label="Perfil oficial de Instagram"
+                >
+                  <InstagramIcon className="w-4 h-4 text-[#E4405F] group-hover:text-white transition-colors shrink-0" />
+                  <span>Instagram</span>
+                </motion.a>
+
+                {/* TikTok */}
+                <motion.a
+                  href={BRAND_INFO.tiktokUrl || "https://www.tiktok.com/@smartlegal_ec"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.07, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 450, damping: 12, mass: 0.75 }}
+                  className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-black text-slate-200 hover:text-white border border-slate-700/80 hover:border-slate-500 text-xs font-semibold transition-all duration-200 shadow-md hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] group"
+                  aria-label="Perfil oficial de TikTok"
+                >
+                  <TikTokIcon className="w-4 h-4 text-white group-hover:text-white transition-colors shrink-0" />
+                  <span>TikTok</span>
+                </motion.a>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ========================================================================= */}
@@ -633,12 +849,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 {/* Mobile View */}
                 <div className="flex flex-col gap-3 lg:hidden">
                   <div className="w-full aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/60 shadow-2xs">
-                    <img 
-                      src={work.image} 
-                      alt={work.title} 
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+                    <picture className="w-full h-full block">
+                      <source srcSet={work.imageAvif} type="image/avif" />
+                      <source srcSet={work.imageWebp} type="image/webp" />
+                      <img 
+                        src={work.image} 
+                        alt={work.title} 
+                        width="1200"
+                        height="800"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
                   </div>
                   <h3 className="font-heading font-extrabold text-base text-slate-900 leading-snug">
                     {work.title}
@@ -705,12 +928,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   {/* Right Column: Case Image & Arrow */}
                   <div className="lg:col-span-3 flex items-center justify-end gap-4 w-full">
                     <div className="flex-1 aspect-[3/2] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-2xs relative group-hover:border-[#0A66FF]/60 transition-all">
-                      <img 
-                        src={work.image} 
-                        alt={work.title} 
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-104"
-                        loading="lazy"
-                      />
+                      <picture className="w-full h-full block">
+                        <source srcSet={work.imageAvif} type="image/avif" />
+                        <source srcSet={work.imageWebp} type="image/webp" />
+                        <img 
+                          src={work.image} 
+                          alt={work.title} 
+                          width="1200"
+                          height="800"
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-104"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
 

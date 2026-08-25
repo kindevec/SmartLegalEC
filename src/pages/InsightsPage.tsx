@@ -46,7 +46,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
     'all',
     'LOPDP & Privacidad',
     'Contratos Tech & SaaS',
-    'Telecomunicaciones & ARCOTEL',
+    'Telecomunicaciones y Regulación',
     'Inteligencia Artificial'
   ];
 
