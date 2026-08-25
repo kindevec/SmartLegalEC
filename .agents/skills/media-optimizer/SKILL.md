@@ -3,129 +3,196 @@ name: media-optimizer
 description: >-
   Convierte y optimiza recursos multimedia (imagenes PNG, JPG, GIF, SVG a WebP y AVIF,
   y video/audio a formatos ligeros) aplicando perfiles de compresion, generacion de variantes
-  responsivas y marcado frontend optimizado. Usar cuando el usuario solicite convertir imagenes
-  a webp/avif, optimizar assets web, reducir peso de archivos multimedia, generar variantes
-  @1x/@2x o crear scripts de automatizacion con Pillow, Sharp o ffmpeg.
+  responsivas, refactorizacion automatica de codigo (reemplazo de extensiones en imports/src)
+  y eliminacion de archivos fuente no optimizados. Usar cuando el usuario solicite convertir
+  imagenes a webp/avif, optimizar assets web, reducir peso de archivos multimedia o automatizar
+  el refactor multimedia en todo el repositorio.
 ---
 
-# Media Optimizer
+# Media Optimizer & Automated Code Refactor
 
-Optimiza y convierte recursos multimedia a formatos modernos de alto rendimiento (WebP, AVIF, WebM, SVG optimizado) para aplicaciones web y móviles, garantizando la máxima reducción de peso sin pérdida perceptible de calidad visual.
-
----
-
-## When to Use
-* Cuando el usuario solicite convertir imágenes (PNG, JPG, JPEG, GIF) a formatos modernos como WebP o AVIF.
-* Al preparar assets para landing pages, tiendas en línea o aplicaciones móviles buscando mejorar métricas de rendimiento (LCP, CLS, peso total de página).
-* Al generar variantes responsivas de imágenes (p. ej. resoluciones para móvil, tablet, desktop o densidad `@1x` y `@2x`).
-* Al requerir scripts en Python (`Pillow`), Node.js (`Sharp`) o comandos CLI (`cwebp`, `ffmpeg`) para procesar directorios completos de medios.
-* Al optimizar vectores SVG eliminando metadatos innecesarios o reducir peso de videos/audios para la web.
+Esta skill automatiza la detección, conversión, refactorización de código fuente y limpieza de archivos multimedia obsoletos en proyectos web (React, Vite, Next.js, Vue, Astro, etc.).
 
 ---
 
-## Steps
-
-### 1. Evaluar el recurso y determinar el formato objetivo
-* **Fotografías y gráficos complejos con degradados:** Convertir a WebP o AVIF con compresión con pérdida (calidad 80 - 85%).
-* **Gráficos con transparencia, capturas o diagramas técnicos:** Convertir a WebP sin pérdida (lossless) o WebP con pérdida manteniendo canal alfa.
-* **Logotipos, iconos e ilustraciones vectoriales:** Optimizar el SVG eliminando comentarios, namespaces obsoletos y metadatos (estilo SVGO).
-* **Animaciones cortas o GIFs:** Convertir a WebP animado o video MP4/WebM ligero (codec VP9/AV1) con bucle.
-* **Videos de fondo o banners:** Convertir a WebM (VP9) y MP4 (H.264/AAC) con bitrate controlado (CRF 28-32).
+## Capacidades Principales
+1. **Detección Automática de Medios:** Escanea directorios de assets (`public/`, `src/assets/`, etc.) buscando archivos sin optimizar (`.png`, `.jpg`, `.jpeg`, `.bmp`).
+2. **Conversión de Alto Rendimiento:** Convierte a WebP/AVIF usando compresión balanceada (calidad 80-85%) con control de concurrencia para evitar saturación de CPU/RAM.
+3. **Refactorización de Código en Cascada:** Busca y reemplaza automáticamente todas las llamadas e importaciones en archivos de código (`.tsx`, `.ts`, `.jsx`, `.js`, `.html`, `.css`, `.json`).
+4. **Limpieza y Ahorro de Ancho de Banda:** Elimina de forma segura los archivos pesados no optimizados para evitar que se suban al bundle de producción o consuman ancho de banda.
+5. **Auditoría y Reporte:** Imprime un reporte detallado con la cantidad de archivos procesados, referencias de código modificadas y porcentaje total de megabytes/kilobytes ahorrados.
 
 ---
 
-### 2. Seleccionar el perfil de compresión adecuado
-* **Perfil Web Estándar (Recomendado):** Calidad 80 - 85. Ideal para balance entre peso ligero y fidelidad visual imperceptible al ojo humano.
-* **Perfil Agresivo (Ultra-ligero / Mobile-First):** Calidad 70 - 75 con redimensión a la resolución máxima de renderizado.
-* **Perfil Alta Fidelidad (Fotografía / Arte / Ecommerce):** Calidad 90 con preservación de detalles finos y perfiles de color sRGB.
-* **Perfil Lossless:** Compresión sin pérdida de datos para imágenes que requieren exactitud pixel por pixel.
+## Riesgos Técnicos & Prevención (Gotchas)
+
+### 1. Control de Concurrencia (Evitar Heap Out of Memory)
+* Al procesar cientos de imágenes, nunca usar `Promise.all(allImages.map(...))` sin límite.
+* **Solución:** Utilizar procesamiento por lotes (*batch chunking*) con un límite de concurrencia de 4 a 8 tareas simultáneas según los núcleos de CPU disponibles.
+
+### 2. Preservación de Originales vs. Limpieza de Build
+* **Riesgo:** Si se eliminan los archivos fuente de alta resolución, se pierde la versión máster para futuras ediciones gráficas en Figma o Photoshop.
+* **Buena Práctica:** Mantener una copia en un directorio `.raw-assets/` o confirmar que el repositorio Git tiene un commit de respaldo antes de la eliminación física.
+
+### 3. Excepciones para Open Graph (`og:image`) y Favicons
+* Algunos bots y rastreadores de redes sociales antiguos (Facebook/WhatsApp/Twitter) prefieren miniaturas en formato `.png` o `.jpg`.
+* **Regla:** Excluir de la eliminación las imágenes referenciadas en metaetiquetas `og:image` críticas o favicons `.ico` / `.png`.
 
 ---
 
-### 3. Procesamiento y conversión
+## Script Automatizado de Detección, Conversión y Refactorización
 
-#### Opción A: Script de automatización en Python (`Pillow`)
-```python
-import os
-from PIL import Image
+Puedes ejecutar este script en Node.js para realizar todo el ciclo automáticamente:
 
-def optimize_image(input_path, output_dir=None, quality=82, make_webp=True, make_avif=False, max_width=None):
-    img = Image.open(input_path)
-    base_name = os.path.splitext(os.path.basename(input_path))[0]
-    out_dir = output_dir or os.path.dirname(input_path)
-    os.makedirs(out_dir, exist_ok=True)
-    
-    # Redimensionar si supera el ancho maximo manteniendo proporcion
-    if max_width and img.width > max_width:
-        ratio = max_width / float(img.width)
-        new_height = int(float(img.height) * ratio)
-        img = img.resize((max_width, new_height), Image.Resampling.LANCZOS)
-    
-    # Convertir modo de color si es necesario (RGBA a RGB si se guarda sin transparencia)
-    if img.mode in ('RGBA', 'LA') and not make_webp:
-        background = Image.new('RGB', img.size, (255, 255, 255))
-        background.paste(img, mask=img.split()[-1])
-        img = background
-    elif img.mode not in ('RGB', 'RGBA'):
-        img = img.convert('RGB')
-        
-    outputs = []
-    if make_webp:
-        webp_path = os.path.join(out_dir, f"{base_name}.webp")
-        img.save(webp_path, "WEBP", quality=quality, optimize=True)
-        outputs.append(webp_path)
-        
-    return outputs
-```
-
-#### Opción B: Script de Node.js (`Sharp`) para entornos JS/TS
 ```javascript
-const sharp = require('sharp');
+/**
+ * scripts/optimize-and-refactor-media.js
+ * Requiere: npm install --save-dev sharp glob
+ */
+const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 
-async function processImage(filePath, outputDir) {
-  const fileName = path.parse(filePath).name;
-  
-  // Generar WebP optimizado
-  await sharp(filePath)
-    .webp({ quality: 82, effort: 6 })
-    .toFile(path.join(outputDir, `${fileName}.webp`));
-    
-  // Generar variante responsiva 2x y 1x
-  await sharp(filePath)
-    .resize({ width: 800 })
-    .webp({ quality: 80 })
-    .toFile(path.join(outputDir, `${fileName}-800w.webp`));
+// 1. Configuración de Directorios y Opciones
+const CONFIG = {
+  assetDirs: ['public', 'src/assets'],
+  codeDirs: ['src', 'index.html'],
+  extensionsToConvert: ['.png', '.jpg', '.jpeg'],
+  targetFormat: 'webp', // 'webp' o 'avif'
+  quality: 82,
+  concurrencyLimit: 5,
+  excludePatterns: ['favicon', 'og-image', '06_isotipo'], // Proteger logos/OG si se desea
+  deleteOriginals: true, // Eliminar el JPG/PNG tras convertir con éxito
+};
+
+// Utilidad para buscar archivos recursivamente
+function getFilesRecursively(dir, filterExts) {
+  let results = [];
+  if (!fs.existsSync(dir)) return results;
+  const list = fs.readdirSync(dir);
+  for (const file of list) {
+    const fullPath = path.join(dir, file);
+    const stat = fs.statSync(fullPath);
+    if (stat && stat.isDirectory()) {
+      results = results.concat(getFilesRecursively(fullPath, filterExts));
+    } else {
+      const ext = path.extname(file).toLowerCase();
+      if (!filterExts || filterExts.includes(ext)) {
+        results.push(fullPath);
+      }
+    }
+  }
+  return results;
 }
-```
 
-#### Opción C: Comandos CLI (`ffmpeg` / `cwebp`)
-* **Conversión rápida a WebP:**
-  ```bash
-  cwebp -q 82 input.png -o output.webp
-  ```
-* **Video MP4 a WebM optimizado:**
-  ```bash
-  ffmpeg -i input.mp4 -c:v libvpx-vp9 -crf 30 -b:v 0 -c:a libopus output.webm
-  ```
+// 2. Función de Conversión con Control de Concurrencia
+async function convertImages() {
+  const images = [];
+  for (const dir of CONFIG.assetDirs) {
+    images.push(...getFilesRecursively(dir, CONFIG.extensionsToConvert));
+  }
+
+  const filteredImages = images.filter(img => 
+    !CONFIG.excludePatterns.some(pat => path.basename(img).includes(pat))
+  );
+
+  console.log(`🔍 Encontradas ${filteredImages.length} imágenes para optimizar.`);
+  const conversionMap = new Map(); // Mapa de { oldFilename: newFilename }
+  let totalBytesSaved = 0;
+
+  for (let i = 0; i < filteredImages.length; i += CONFIG.concurrencyLimit) {
+    const batch = filteredImages.slice(i, i + CONFIG.concurrencyLimit);
+    await Promise.all(batch.map(async (imgPath) => {
+      const dir = path.dirname(imgPath);
+      const ext = path.extname(imgPath);
+      const base = path.basename(imgPath, ext);
+      const outPath = path.join(dir, `${base}.${CONFIG.targetFormat}`);
+
+      const origSize = fs.statSync(imgPath).size;
+
+      // Conversión con Sharp
+      await sharp(imgPath)
+        .webp({ quality: CONFIG.quality, effort: 6 })
+        .toFile(outPath);
+
+      const newSize = fs.statSync(outPath).size;
+      const saved = origSize - newSize;
+      totalBytesSaved += Math.max(0, saved);
+
+      conversionMap.set(path.basename(imgPath), `${base}.${CONFIG.targetFormat}`);
+
+      if (CONFIG.deleteOriginals && fs.existsSync(outPath) && newSize > 0) {
+        fs.unlinkSync(imgPath);
+      }
+    }));
+  }
+
+  return { conversionMap, totalBytesSaved };
+}
+
+// 3. Reemplazo de Referencias en Código
+function refactorCodeReferences(conversionMap) {
+  if (conversionMap.size === 0) return 0;
+
+  const codeFiles = [];
+  const codeExts = ['.tsx', '.ts', '.jsx', '.js', '.html', '.css', '.json'];
+
+  for (const dirOrFile of CONFIG.codeDirs) {
+    if (fs.existsSync(dirOrFile)) {
+      const stat = fs.statSync(dirOrFile);
+      if (stat.isDirectory()) {
+        codeFiles.push(...getFilesRecursively(dirOrFile, codeExts));
+      } else if (codeExts.includes(path.extname(dirOrFile).toLowerCase())) {
+        codeFiles.push(dirOrFile);
+      }
+    }
+  }
+
+  let totalReplacements = 0;
+
+  for (const file of codeFiles) {
+    let content = fs.readFileSync(file, 'utf8');
+    let modified = false;
+
+    for (const [oldName, newName] of conversionMap.entries()) {
+      if (content.includes(oldName)) {
+        // Reemplazar globalmente respetando la cadena exacta
+        const regex = new RegExp(oldName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        content = content.replace(regex, newName);
+        modified = true;
+        totalReplacements++;
+      }
+    }
+
+    if (modified) {
+      fs.writeFileSync(file, content, 'utf8');
+      console.log(`✏️ Referencias actualizadas en: ${path.relative(process.cwd(), file)}`);
+    }
+  }
+
+  return totalReplacements;
+}
+
+// 4. Ejecución Principal
+async function main() {
+  console.log('🚀 Iniciando proceso de optimización multimedia y refactorización...');
+  const { conversionMap, totalBytesSaved } = await convertImages();
+  const replacedCount = refactorCodeReferences(conversionMap);
+
+  console.log('\n📊 RESUMEN DE OPTIMIZACIÓN:');
+  console.log(`✅ Archivos convertidos a WebP: ${conversionMap.size}`);
+  console.log(`📝 Referencias en código actualizadas: ${replacedCount}`);
+  console.log(`💾 Ahorro total de espacio: ${(totalBytesSaved / 1024 / 1024).toFixed(2)} MB\n`);
+}
+
+main().catch(console.error);
+```
 
 ---
 
-### 4. Generar marcado HTML responsivo
-Integrar los recursos optimizados utilizando la etiqueta `<picture>` para compatibilidad con navegadores modernos y fallback automático:
+## Flujo de Trabajo Recomendado
 
-```html
-<picture>
-  <source type="image/avif" srcset="/assets/hero.avif">
-  <source type="image/webp" srcset="/assets/hero-800w.webp 800w, /assets/hero-1600w.webp 1600w" sizes="(max-width: 768px) 100vw, 800px">
-  <img src="/assets/hero.jpg" alt="Descripcion del recurso" width="800" height="600" loading="lazy" decoding="async">
-</picture>
-```
-
----
-
-## Gotchas & Buenas Prácticas
-* **Atributos de dimensión obligatorios:** Incluir siempre atributos `width` y `height` o una relación de aspecto CSS (`aspect-ratio`) en la etiqueta `<img>` para evitar desplazamientos de diseño acumulados (CLS).
-* **Carga diferida:** Utilizar `loading="lazy"` para imágenes debajo del pliegue (*below the fold*), pero evitarlo en la imagen principal de cabecera (LCP) donde se debe usar `fetchpriority="high"` y `loading="eager"`.
-* **Transparencias:** Al convertir PNGs con canal alfa a WebP, asegurar que se mantenga el formato RGBA sin aplanar fondos accidentales a color negro o blanco a menos que se desee explícitamente.
-* **Sobredimensionamiento:** No servir imágenes de 3000px si el contenedor máximo en pantalla es de 1200px. Redimensionar antes o durante la compresión para ahorrar ancho de banda.
+1. **Paso 1:** Ejecutar `git status` y asegurarse de que el árbol de trabajo esté limpio o respaldado.
+2. **Paso 2:** Ejecutar la automatización de la skill para convertir medios y actualizar archivos `.tsx`, `.html`, `.css`.
+3. **Paso 3:** Ejecutar `npm run build` para garantizar que no existan rutas rotas ni errores de tipado en TypeScript.
+4. **Paso 4:** Confirmar con `git commit` y desplegar el nuevo bundle ultra-optimizado.
