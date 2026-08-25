@@ -48,7 +48,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       titleLine2: 'Soluciones Legales',
       titleHighlight: 'Estratégicas',
       description: 'Asesoría jurídica de alta especialización en Protección de Datos Personales (LOPDP), Contratos de Software, Inteligencia Artificial y Telecomunicaciones en Ecuador.',
-      imageJpg: '/hero-panoramic-legaltech.jpg',
+      imageJpg: '/hero-panoramic-legaltech.webp',
       imageWebp: '/hero-panoramic-legaltech.webp',
       imageAvif: '/hero-panoramic-legaltech.avif',
       alt: 'Infraestructura de Centros de Datos, Ciberseguridad y Protección de Datos - SmartLegalEC',
@@ -60,7 +60,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       titleLine2: 'Cumplimiento Normativo',
       titleHighlight: 'Empresarial',
       description: 'Adecuación integral a la LOPDP, designación de DPD externo y gestión de riesgos regulatorios frente a la Autoridad de Protección de Datos.',
-      imageJpg: '/hero-slider-2.jpg',
+      imageJpg: '/hero-slider-2.webp',
       imageWebp: '/hero-slider-2.webp',
       imageAvif: '/hero-slider-2.avif',
       alt: 'Laboratorio de Desarrollo de Software, Cloud Computing e IA - SmartLegalEC',
@@ -72,7 +72,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       titleLine2: 'Modelos de Negocio',
       titleHighlight: 'Digitales',
       description: 'Estructuración de contratos SaaS y Cloud, títulos habilitantes y asesoría en gobernanza e integración responsable de Inteligencia Artificial.',
-      imageJpg: '/hero-slider-3.jpg',
+      imageJpg: '/hero-slider-3.webp',
       imageWebp: '/hero-slider-3.webp',
       imageAvif: '/hero-slider-3.avif',
       alt: 'Estación Terrena de Telecomunicaciones, Satélites y Conectividad Global - SmartLegalEC',
@@ -208,7 +208,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       description: 'Adecuación integral del flujo de datos transaccionales, mapeo de transferencias internacionales y Registro de Actividades de Tratamiento (RAT) para procesador regional de pagos.',
       outcome: '100% de cumplimiento ante la SPDP sin observaciones ni multas regulatorias.',
       tags: ['LOPDP Ecuador', 'PCI-DSS', 'Encargo Cloud', 'Evaluación EIPD'],
-      image: '/case-fintech.jpg',
+      image: '/case-fintech.webp',
       imageWebp: '/case-fintech.webp',
       imageAvif: '/case-fintech.avif',
       routeId: 'lopdp' as const,
@@ -226,7 +226,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       description: 'Redacción de Acuerdos de Nivel de Servicio (SLA 99.9%), cesión y custodia de código fuente, limitación de responsabilidad transfronteriza y políticas de uso ético de IA.',
       outcome: 'Blindaje de propiedad intelectual de código y contratos listos para rondas de inversión.',
       tags: ['SaaS B2B', 'SLA 99.9%', 'IP Protection', 'Modelos IA'],
-      image: '/case-saas.jpg',
+      image: '/case-saas.webp',
       imageWebp: '/case-saas.webp',
       imageAvif: '/case-saas.avif',
       routeId: 'tech' as const,
@@ -244,7 +244,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       description: 'Tramitación y defensa técnica-jurídica para renovación de títulos habilitantes, adecuación al régimen de tarifas y homologación de servicios de valor agregado.',
       outcome: 'Resolución favorable y título habilitante otorgado por la autoridad reguladora.',
       tags: ['Telecomunicaciones', 'Títulos Habilitantes', 'Servicios Regulados', 'Espectro'],
-      image: '/case-telco.jpg',
+      image: '/case-telco.webp',
       imageWebp: '/case-telco.webp',
       imageAvif: '/case-telco.avif',
       routeId: 'telecom' as const,
@@ -262,7 +262,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       description: 'Designación de Delegado de Protección de Datos (DPD) certificado para salvaguardar historiales clínicos digitales, consentimiento informado y atención de derechos ARCO.',
       outcome: 'Gobernanza continua y blindaje sobre más de 250,000 registros médicos sensibles.',
       tags: ['Oficial DPD', 'Datos de Salud', 'Derechos ARCO', 'Auditoría SPDP'],
-      image: '/case-health.jpg',
+      image: '/case-health.webp',
       imageWebp: '/case-health.webp',
       imageAvif: '/case-health.avif',
       routeId: 'lopdp' as const,
@@ -631,7 +631,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
                   <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
                   <img
-                    src="/luis-guerra-portrait.png"
+                    src="/luis-guerra-portrait.webp"
                     alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
                     width="896"
                     height="1200"

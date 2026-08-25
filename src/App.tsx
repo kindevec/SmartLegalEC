@@ -86,7 +86,7 @@ export default function App() {
   useEffect(() => {
     const updateFavicon = (e: MediaQueryListEvent | MediaQueryList) => {
       const isDark = e.matches;
-      const iconPath = isDark ? '/favicon-dark.png' : '/favicon-light.png';
+      const iconPath = isDark ? '/favicon-dark.webp' : '/favicon-light.webp';
       const favicon = document.getElementById('dynamic-favicon') as HTMLLinkElement | null;
       const appleIcon = document.getElementById('dynamic-apple-icon') as HTMLLinkElement | null;
       if (favicon) favicon.href = iconPath;

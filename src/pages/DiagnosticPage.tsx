@@ -132,7 +132,7 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
             <source srcSet="/header-servicios.avif" type="image/avif" />
             <source srcSet="/header-servicios.webp" type="image/webp" />
             <img
-              src="/header-servicios.jpg"
+              src="/header-servicios.webp"
               alt="Test LOPDP - SmartLegalEC"
               width="1920"
               height="1080"

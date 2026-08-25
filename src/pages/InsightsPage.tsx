@@ -93,7 +93,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             <source srcSet="/header-insights.avif" type="image/avif" />
             <source srcSet="/header-insights.webp" type="image/webp" />
             <img
-              src="/header-insights.jpg"
+              src="/header-insights.webp"
               alt="Criterio Jurídico - SmartLegalEC"
               width="1920"
               height="1080"

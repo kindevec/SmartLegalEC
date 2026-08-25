@@ -108,7 +108,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
             <source srcSet="/header-contacto.avif" type="image/avif" />
             <source srcSet="/header-contacto.webp" type="image/webp" />
             <img
-              src="/header-contacto.jpg"
+              src="/header-contacto.webp"
               alt="Contacto y Consulta Jurídica - SmartLegalEC"
               width="1920"
               height="1080"

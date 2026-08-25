@@ -148,7 +148,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
                   <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
                   <img
-                    src="/luis-guerra-portrait.png"
+                    src="/luis-guerra-portrait.webp"
                     alt="Abg. Luis Fernando Guerra Padilla"
                     width="896"
                     height="1200"
@@ -453,7 +453,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <source srcSet="/header-about.avif" type="image/avif" />
             <source srcSet="/header-about.webp" type="image/webp" />
             <img
-              src="/header-about.jpg"
+              src="/header-about.webp"
               alt="Sobre Luis Fernando Guerra Padilla - SmartLegalEC"
               width="1920"
               height="1080"

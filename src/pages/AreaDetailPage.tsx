@@ -62,7 +62,7 @@ export const AreaDetailPage: React.FC<AreaDetailPageProps> = ({ areaId, onNaviga
             <source srcSet="/header-servicios.avif" type="image/avif" />
             <source srcSet="/header-servicios.webp" type="image/webp" />
             <img
-              src="/header-servicios.jpg"
+              src="/header-servicios.webp"
               alt="Detalle de Área Legal - SmartLegalEC"
               width="1920"
               height="1080"

@@ -63,7 +63,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
             <source srcSet="/header-servicios.avif" type="image/avif" />
             <source srcSet="/header-servicios.webp" type="image/webp" />
             <img
-              src="/header-servicios.jpg"
+              src="/header-servicios.webp"
               alt="Áreas de Práctica Jurídica - SmartLegalEC"
               width="1920"
               height="1080"
