@@ -16,6 +16,7 @@ export const BRAND_INFO = {
   whatsappUrl: 'https://wa.me/593998668139',
   linkedinUrl: 'https://www.linkedin.com/company/99569327',
   instagramUrl: 'https://www.instagram.com/smartlegal_ec?igshid=YTQwZjQ0NmI0OA%3D%3D',
+  tiktokUrl: 'https://www.tiktok.com/@smartlegal_ec',
 };
 
 export const HERO_PILLARS: Pillar[] = [
@@ -75,7 +76,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
     regulations: [
       'Ley Orgánica de Protección de Datos Personales (LOPDP - R.O. 459)',
       'Reglamento General a la Ley Orgánica de Protección de Datos Personales',
-      'Resoluciones y Guías de la Superintendencia de Protección de Datos Personales',
+      'Resoluciones y Guías de la Autoridad de Protección de Datos Personales',
       'Estándares internacionales de privacidad (RGPD / ISO 27701)',
     ],
     targetAudience: [
@@ -93,14 +94,14 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         title: 'Implementación y adecuación a la LOPDP',
         shortDesc: 'Evaluación de brechas y desarrollo de medidas jurídicas y organizativas necesarias.',
         fullDesc:
-          'Evaluamos el nivel de cumplimiento de la organización, identificamos brechas y desarrollamos las medidas jurídicas y organizativas necesarias para adecuar sus procesos de captación, almacenamiento, uso y supresión de datos.',
+          'Evaluamos el nivel de cumplimiento de la organización, identificamos brechas y desarrollamos las medidas jurídicas y organizativas necesarias para adecuar sus procesos.',
       },
       {
         id: 'lopdp-2',
         category: 'lopdp',
         tag: 'DPO / DPD As a Service',
-        title: 'Delegado de Protección de Datos (DPD) externo',
-        shortDesc: 'Supervisión independiente, asesoramiento continuo y enlace con la autoridad.',
+        title: 'Delegado de Protección de Datos externo',
+        shortDesc: 'Supervisión independiente, asesoramiento continuo y acompañamiento.',
         fullDesc:
           'Prestamos el servicio de DPD externo para organizaciones que requieren o deciden contar con esta figura, brindando asesoramiento, supervisión y acompañamiento independiente en materia de protección de datos.',
       },
@@ -109,63 +110,63 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         category: 'lopdp',
         tag: 'Diagnóstico & Auditoría',
         title: 'Auditorías y evaluaciones de cumplimiento',
-        shortDesc: 'Revisión exhaustiva de flujos documentales y prácticas operativas.',
+        shortDesc: 'Revisión de procesos, documentos y prácticas operativas.',
         fullDesc:
-          'Revisamos procesos, documentos y prácticas para identificar incumplimientos, riesgos potenciales y oportunidades de mejora sustancial frente a posibles fiscalizaciones.',
+          'Revisamos procesos, documentos y prácticas para identificar incumplimientos, riesgos y oportunidades de mejora.',
       },
       {
         id: 'lopdp-4',
         category: 'lopdp',
         tag: 'EIPD & Riesgos',
-        title: 'Gestión de riesgos y evaluaciones de impacto (EIPD)',
-        shortDesc: 'Identificación de riesgos y desarrollo formal de Evaluaciones de Impacto.',
+        title: 'Gestión de riesgos y evaluaciones de impacto',
+        shortDesc: 'Identificación de riesgos y desarrollo de evaluaciones de impacto.',
         fullDesc:
-          'Identificamos y evaluamos los riesgos derivados del tratamiento de datos personales y desarrollamos evaluaciones de impacto (EIPD) cuando la naturaleza o volumen del tratamiento lo requiere según la ley.',
+          'Identificamos y evaluamos los riesgos derivados del tratamiento de datos personales y desarrollamos evaluaciones de impacto cuando la naturaleza del tratamiento lo requiere.',
       },
       {
         id: 'lopdp-5',
         category: 'lopdp',
         tag: 'Contratos & Terceros',
         title: 'Contratos y relaciones con terceros',
-        shortDesc: 'Contratos de encargo, cláusulas de transferencia y corresponsabilidad.',
+        shortDesc: 'Contratos de encargo, transferencias y corresponsabilidad.',
         fullDesc:
-          'Elaboramos y revisamos contratos de encargo de tratamiento, transferencias internacionales, corresponsabilidad y demás relaciones jurídicas que involucren intercambio de datos personales con proveedores o filiales.',
+          'Elaboramos y revisamos contratos de encargo, transferencia, corresponsabilidad y otras relaciones jurídicas que involucren tratamiento o intercambio de datos personales.',
       },
       {
         id: 'lopdp-6',
         category: 'lopdp',
         tag: 'Privacy by Design',
         title: 'Privacidad en proyectos y nuevas tecnologías',
-        shortDesc: 'Privacidad desde el diseño en plataformas, IA, biometría y videovigilancia.',
+        shortDesc: 'Protección de datos desde el diseño en apps, IA, biometría y videovigilancia.',
         fullDesc:
-          'Asesoramos en la incorporación de protección de datos desde el diseño (Privacy by Design) en aplicaciones móviles, plataformas SaaS, modelos de inteligencia artificial, biometría y sistemas de videovigilancia.',
+          'Asesoramos en la incorporación de protección de datos desde el diseño en aplicaciones, plataformas, inteligencia artificial, biometría, videovigilancia y otros proyectos tecnológicos.',
       },
       {
         id: 'lopdp-7',
         category: 'lopdp',
         tag: 'Incident Response',
-        title: 'Gestión de incidentes y vulneraciones de seguridad',
-        shortDesc: 'Evaluación jurídica inmediata y notificación reglamentaria ante brechas.',
+        title: 'Gestión de incidentes y vulneraciones',
+        shortDesc: 'Evaluación jurídica inmediata y determinación de acciones y notificaciones.',
         fullDesc:
-          'Acompañamos la evaluación jurídica de incidentes de seguridad, contención de contingencias legales y la determinación de las acciones y notificaciones formales que correspondan ante la Autoridad de Protección de Datos.',
+          'Acompañamos la evaluación jurídica de incidentes de seguridad y la determinación de las acciones y notificaciones que correspondan.',
       },
       {
         id: 'lopdp-8',
         category: 'lopdp',
         tag: 'Gobierno de Datos',
         title: 'Políticas, procedimientos y documentación',
-        shortDesc: 'Instrumentos jurídicos e inventarios de bases de datos operacionales.',
+        shortDesc: 'Instrumentos jurídicos y organizativos para integrar la protección a los procesos.',
         fullDesc:
-          'Desarrollamos instrumentos jurídicos y organizativos (políticas de privacidad, protocolos de ejercicio de derechos ARCO+, registros de actividades de tratamiento) que integran la protección de datos a los procesos cotidianos.',
+          'Desarrollamos instrumentos jurídicos y organizativos que permitan integrar la protección de datos a los procesos de la organización.',
       },
       {
         id: 'lopdp-9',
         category: 'lopdp',
         tag: 'Cultura Corporativa',
-        title: 'Capacitación in-company especializada',
-        shortDesc: 'Formación para comités directivos, áreas tecnológicas, comerciales y RRHH.',
+        title: 'Capacitación',
+        shortDesc: 'Capacitaciones generales o especializadas para directivos y equipos operativos.',
         fullDesc:
-          'Diseñamos capacitaciones generales o especializadas para equipos directivos, jurídicos, comerciales, tecnológicos y de talento humano que intervienen en el tratamiento diario de información.',
+          'Diseñamos capacitaciones generales o especializadas para equipos directivos, jurídicos, comerciales, tecnológicos, talento humano y demás áreas que intervienen en el tratamiento de información.',
       },
     ],
   },
@@ -614,7 +615,7 @@ export const ABOUT_QUADRANTS: AboutQuadrant[] = [
     ],
   },
   {
-    title: 'Experiencia y Especialización',
+    title: 'Experiencia y especialización',
     iconName: 'Briefcase',
     items: [
       'Trayectoria profesional consolidada en protección de datos, tecnología, telecomunicaciones y asesoría empresarial.',
@@ -641,6 +642,35 @@ export const ABOUT_QUADRANTS: AboutQuadrant[] = [
     ],
   },
 ];
+
+export const FOUNDER_EXPERIENCE_AREAS = [
+  {
+    title: 'Protección de Datos y Privacidad',
+    description:
+      'Implementación de programas de cumplimiento, Delegado de Protección de Datos externo, auditorías, gestión de riesgos, evaluaciones de impacto, contratos, políticas y procedimientos, gestión de incidentes y asesoramiento especializado.',
+  },
+  {
+    title: 'Tecnología',
+    description:
+      'Contratos tecnológicos, software y SaaS, licenciamiento, servicios digitales, outsourcing, cloud computing, propiedad intelectual y acompañamiento jurídico en proyectos de transformación digital.',
+  },
+  {
+    title: 'Telecomunicaciones',
+    description:
+      'Regulación sectorial, títulos habilitantes, servicios de telecomunicaciones, asuntos relacionados con espectro y servicios satelitales, contratos y procedimientos administrativos.',
+  },
+  {
+    title: 'Asesoría corporativa',
+    description:
+      'Acompañamiento jurídico a empresas nacionales e internacionales, negociación contractual y soporte especializado a equipos legales, directivos y de negocio.',
+  },
+];
+
+export const PHILOSOPHY = {
+  premise: 'Una solución jurídica debe ser técnicamente correcta, pero también debe funcionar para el negocio.',
+  explanation:
+    'Por eso procuro comprender el contexto de cada proyecto, identificar sus riesgos y traducir obligaciones jurídicas complejas en decisiones y soluciones que puedan aplicarse en la práctica.',
+};
 
 export const CORPORATE_VALUES: CorporateValue[] = [
   {
@@ -726,4 +756,3 @@ export const FAQS = [
     a: 'Puedes escribirnos directamente a nuestro WhatsApp oficial o completar el formulario de contacto para revisar tu situación actual y definir las acciones necesarias.',
   },
 ];
-

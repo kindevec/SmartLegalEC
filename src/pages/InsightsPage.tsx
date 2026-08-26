@@ -46,7 +46,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
     'all',
     'LOPDP & Privacidad',
     'Contratos Tech & SaaS',
-    'Telecomunicaciones & ARCOTEL',
+    'Telecomunicaciones y Regulación',
     'Inteligencia Artificial'
   ];
 
@@ -93,8 +93,8 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             <source srcSet="/header-insights.avif" type="image/avif" />
             <source srcSet="/header-insights.webp" type="image/webp" />
             <img
-              src="/header-insights.jpg"
-              alt="Insights Jurídicos - SmartLegalEC"
+              src="/header-insights.webp"
+              alt="Criterio Jurídico - SmartLegalEC"
               width="1920"
               height="1080"
               className="w-full h-full object-cover object-center lg:object-right"
@@ -117,11 +117,11 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             className="max-w-2xl lg:max-w-3xl"
           >
             <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-3.5 leading-[1.14]">
-              Legal Insights & <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Criterio Jurídico</span>
+              Publicaciones & <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Criterio Jurídico</span>
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
-              Análisis exhaustivo sobre la aplicación de la <strong className="text-white font-semibold">LOPDP</strong>, contratos de software, <strong className="text-white font-semibold">ciberseguridad</strong> e implicaciones legales de la <strong className="text-white font-semibold">Inteligencia Artificial</strong> en Ecuador.
+              Análisis exhaustivo sobre la estructuración de <strong className="text-white font-semibold">ecosistemas tecnológicos</strong>, el rol estratégico del <strong className="text-white font-semibold">abogado in-house</strong>, adecuación a la <strong className="text-white font-semibold">LOPDP</strong> y la función del <strong className="text-white font-semibold">Delegado de Protección de Datos (DPD)</strong> en Ecuador.
             </p>
           </motion.div>
         </div>

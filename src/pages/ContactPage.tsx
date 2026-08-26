@@ -4,6 +4,9 @@ import { PageRoute } from '../types';
 import { BRAND_INFO, FAQS, PRACTICE_AREAS } from '../data/content';
 import { sanitizeInput, isValidEmail, isValidPhone } from '../utils/security';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
+import { LinkedInIcon } from '../components/LinkedInIcon';
+import { InstagramIcon } from '../components/InstagramIcon';
+import { TikTokIcon } from '../components/TikTokIcon';
 import { 
   Mail, 
   Phone, 
@@ -105,7 +108,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
             <source srcSet="/header-contacto.avif" type="image/avif" />
             <source srcSet="/header-contacto.webp" type="image/webp" />
             <img
-              src="/header-contacto.jpg"
+              src="/header-contacto.webp"
               alt="Contacto y Consulta Jurídica - SmartLegalEC"
               width="1920"
               height="1080"
@@ -254,10 +257,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                       onChange={(e) => setFormData({ ...formData, area: e.target.value })}
                       className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-slate-50/70 hover:bg-slate-50 border border-slate-200/90 hover:border-slate-300 rounded-xl text-slate-800 text-sm focus:outline-none focus:border-[#0A66FF] focus:ring-2 focus:ring-[#0A66FF]/15 transition-all shadow-xs cursor-pointer"
                     >
-                      <option value="lopdp">Protección de Datos / LOPDP Ecuador</option>
-                      <option value="tech">Contratos Tecnológicos / SaaS / Cloud</option>
-                      <option value="telecom">Telecomunicaciones / Regulación ARCOTEL</option>
-                      <option value="dpd">Delegado DPD Externo / Compliance IA</option>
+                      <option value="lopdp">Protección de Datos y Privacidad</option>
+                      <option value="tech">Tecnología y Negocios Digitales</option>
+                      <option value="telecom">Telecomunicaciones y Regulación</option>
                       <option value="general">Otra asesoría jurídica especializada</option>
                     </select>
                   </div>
@@ -435,30 +437,83 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                 </div>
               </div>
 
-              {/* Redes */}
-              <div className="py-3.5 flex items-center justify-between gap-3">
-                <span className="text-xs font-semibold text-slate-600">
-                  Redes Profesionales:
+              {/* Redes y Canales Digitales */}
+              <div className="py-3.5 space-y-2.5">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-heading">
+                  Redes Profesionales & Canales
                 </span>
-                <div className="flex items-center gap-2">
-                  <a
+                <div className="grid grid-cols-3 gap-2 w-full">
+                  {/* LinkedIn */}
+                  <motion.a
                     href={BRAND_INFO.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -3,
+                      rotate: [0, -3, 3, -1, 0]
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 450, 
+                      damping: 12, 
+                      mass: 0.75 
+                    }}
+                    className="flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 px-2 rounded-xl bg-slate-100/90 hover:bg-[#0A66C2] text-slate-800 hover:text-white border border-slate-200/90 hover:border-[#0A66C2] text-xs font-semibold transition-colors duration-200 shadow-2xs group text-center"
+                    aria-label="Perfil oficial de LinkedIn"
                   >
-                    <ExternalLink className="w-3 h-3" />
-                    <span>LinkedIn</span>
-                  </a>
-                  <a
+                    <LinkedInIcon className="w-4 h-4 text-[#0A66C2] group-hover:text-white transition-colors shrink-0" />
+                    <span className="truncate">LinkedIn</span>
+                  </motion.a>
+
+                  {/* Instagram */}
+                  <motion.a
                     href={BRAND_INFO.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -3,
+                      rotate: [0, -3, 3, -1, 0]
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 450, 
+                      damping: 12, 
+                      mass: 0.75 
+                    }}
+                    className="flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 px-2 rounded-xl bg-slate-100/90 hover:bg-gradient-to-tr hover:from-[#FD1D1D] hover:via-[#E1306C] hover:to-[#833AB4] text-slate-800 hover:text-white border border-slate-200/90 hover:border-transparent text-xs font-semibold transition-colors duration-200 shadow-2xs group text-center"
+                    aria-label="Perfil oficial de Instagram"
                   >
-                    <ExternalLink className="w-3 h-3" />
-                    <span>Instagram</span>
-                  </a>
+                    <InstagramIcon className="w-4 h-4 text-[#E4405F] group-hover:text-white transition-colors shrink-0" />
+                    <span className="truncate">Instagram</span>
+                  </motion.a>
+
+                  {/* TikTok */}
+                  <motion.a
+                    href={BRAND_INFO.tiktokUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -3,
+                      rotate: [0, -3, 3, -1, 0]
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 450, 
+                      damping: 12, 
+                      mass: 0.75 
+                    }}
+                    className="flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 px-2 rounded-xl bg-slate-100/90 hover:bg-black text-slate-800 hover:text-white border border-slate-200/90 hover:border-black text-xs font-semibold transition-colors duration-200 shadow-2xs group text-center"
+                    aria-label="Perfil oficial de TikTok"
+                  >
+                    <TikTokIcon className="w-4 h-4 text-slate-900 group-hover:text-white transition-colors shrink-0" />
+                    <span className="truncate">TikTok</span>
+                  </motion.a>
                 </div>
               </div>
             </div>

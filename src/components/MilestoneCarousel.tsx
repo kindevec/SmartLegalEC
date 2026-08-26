@@ -58,10 +58,10 @@ export const MILESTONES: MilestoneItem[] = [
     id: 'cloud-telco',
     year: '2017 — 2020',
     badge: 'Infraestructura & Telecom',
-    title: 'Contratación SaaS & Regulación ARCOTEL',
+    title: 'Contratación SaaS & Regulación en Telecomunicaciones',
     description: 'Especialización y consultoría jurídica para operadores de telecomunicaciones, proveedores de valor agregado (PVA) y empresas de software transfronterizo, incluyendo estructuración de SLAs y títulos habilitantes.',
     highlights: [
-      'Títulos Habilitantes & Espectro ARCOTEL',
+      'Títulos Habilitantes & Espectro',
       'Licenciamiento SaaS & Cloud SLAs',
       'Contratos Internacionales de Conectividad'
     ],

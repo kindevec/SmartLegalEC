@@ -63,7 +63,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
             <source srcSet="/header-servicios.avif" type="image/avif" />
             <source srcSet="/header-servicios.webp" type="image/webp" />
             <img
-              src="/header-servicios.jpg"
+              src="/header-servicios.webp"
               alt="Áreas de Práctica Jurídica - SmartLegalEC"
               width="1920"
               height="1080"
@@ -91,7 +91,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
-              Blindaje normativo integral en <strong className="text-white font-semibold">Privacidad (LOPDP)</strong>, <strong className="text-white font-semibold">Contratación Tecnológica & SaaS</strong> y regulación ante <strong className="text-white font-semibold">ARCOTEL</strong> en Ecuador.
+              Blindaje normativo integral en <strong className="text-white font-semibold">Protección de Datos y Privacidad</strong>, <strong className="text-white font-semibold">Tecnología y Negocios Digitales</strong> y <strong className="text-white font-semibold">Telecomunicaciones y Regulación</strong> en Ecuador.
             </p>
           </motion.div>
         </div>
@@ -125,7 +125,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Protección de Datos
+              Protección de Datos y Privacidad
             </button>
             <button
               onClick={() => setSelectedFilter('tech')}
@@ -135,7 +135,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Tecnología & SaaS
+              Tecnología y Negocios Digitales
             </button>
             <button
               onClick={() => setSelectedFilter('telecom')}
@@ -145,7 +145,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
-              Telecomunicaciones
+              Telecomunicaciones y Regulación
             </button>
           </div>
 
@@ -241,25 +241,26 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({ onNavigate
               ))}
             </div>
 
-            {/* Services Infinite Auto-Slider for this area - Full Bleed Edge-to-Edge on Mobile */}
+            {/* Services Interactive Carousel for this area - Full Bleed Edge-to-Edge on Mobile */}
             <div className="pt-6">
-              <div className="flex items-center justify-between mb-4 px-1">
+              <div className="flex items-center justify-between mb-2 px-1">
                 <div className="flex items-center gap-2.5">
                   <h3 className="text-sm sm:text-base font-bold text-slate-900 font-heading">
                     Catálogo de Servicios Específicos ({area.services.length})
                   </h3>
-                  <span className="text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0A66FF] border border-blue-100/80">
-                    Carrusel Continuo
-                  </span>
                 </div>
-                <span className="text-xs text-slate-400 font-medium hidden sm:inline-flex items-center gap-1">
-                  <span>Pausa al posar el cursor</span>
-                </span>
               </div>
 
               {/* Edge-to-edge breakout container on mobile */}
-              <div className="-mx-4 sm:-mx-6 lg:mx-0 overflow-hidden">
-                <ImageAutoSlider speed={35} pauseOnHover={true} className="py-2">
+              <div className="-mx-4 sm:-mx-6 lg:mx-0">
+                <ImageAutoSlider 
+                  autoAdvanceSeconds={4.5}
+                  resumeDelayMs={10000}
+                  pauseOnHover={true}
+                  showControls={true}
+                  showDots={true}
+                  className="py-1"
+                >
                   {area.services.map((serv, sIdx) => {
                     // Thematic service imagery mapping
                     const serviceImages: Record<string, string[]> = {

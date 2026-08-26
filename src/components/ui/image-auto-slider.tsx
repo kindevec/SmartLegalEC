@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface ImageAutoSliderProps {
   /** Optional custom list of image URLs */
   images?: string[];
-  /** Optional custom speed in seconds (default: 35) */
+  /** Optional custom auto-advance interval in seconds (default: 4.5) */
+  autoAdvanceSeconds?: number;
+  /** Speed prop for backward compatibility */
   speed?: number;
   /** Optional direction: 'left' | 'right' (default: 'left') */
   direction?: 'left' | 'right';
   /** Optional pause on hover (default: true) */
   pauseOnHover?: boolean;
+  /** Milliseconds to wait before resuming auto-play after user manipulation (default: 10000 = 10s) */
+  resumeDelayMs?: number;
+  /** Show arrow navigation controls (default: true) */
+  showControls?: boolean;
+  /** Show pagination indicator dots (default: true) */
+  showDots?: boolean;
   /** Optional custom className for the container */
   className?: string;
   /** Optional custom items to render instead of simple images */
@@ -26,141 +35,326 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     "https://plus.unsplash.com/premium_photo-1675705721263-0bbeec261c49?q=80&w=1940&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1524799526615-766a9833dec0?q=80&w=1935&auto=format&fit=crop"
   ],
-  speed = 35,
+  autoAdvanceSeconds = 4.5,
   direction = 'left',
   pauseOnHover = true,
+  resumeDelayMs = 10000,
+  showControls = true,
+  showDots = true,
   className = '',
   children
 }) => {
-  // If children are provided, we duplicate them for seamless loop
-  if (children) {
-    return (
-      <div className={`relative w-full overflow-hidden ${className}`}>
-        <style>{`
-          @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          @keyframes scroll-right {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-          }
-          .slider-track-left {
-            animation: scroll-left ${speed}s linear infinite;
-          }
-          .slider-track-right {
-            animation: scroll-right ${speed}s linear infinite;
-          }
-          .pause-on-hover:hover {
-            animation-play-state: paused;
-          }
-          .slider-mask {
-            mask: linear-gradient(
-              90deg,
-              transparent 0%,
-              rgba(0,0,0,1) 1.5%,
-              rgba(0,0,0,1) 98.5%,
-              transparent 100%
-            );
-            -webkit-mask: linear-gradient(
-              90deg,
-              transparent 0%,
-              rgba(0,0,0,1) 1.5%,
-              rgba(0,0,0,1) 98.5%,
-              transparent 100%
-            );
-          }
-        `}</style>
-        <div className="slider-mask w-full py-4">
-          <div
-            className={`flex gap-4 sm:gap-6 w-max ${
-              direction === 'left' ? 'slider-track-left' : 'slider-track-right'
-            } ${pauseOnHover ? 'pause-on-hover' : ''}`}
-          >
-            {/* Primary Track */}
-            <div className="flex gap-4 sm:gap-6 shrink-0">{children}</div>
-            {/* Duplicated Track for Seamless 100% Loop */}
-            <div className="flex gap-4 sm:gap-6 shrink-0" aria-hidden="true">
-              {children}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isManipulated, setIsManipulated] = useState(false);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
-  const duplicatedImages = [...images, ...images];
+  // Mouse Drag state
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const dragStartScrollLeft = useRef(0);
+  const hasDraggedDistance = useRef(false);
+
+  // 10-Second Resume Timer Reference
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Normalize items
+  const items = children
+    ? React.Children.toArray(children)
+    : images.map((img, idx) => (
+        <div
+          key={idx}
+          className="shrink-0 w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-md bg-slate-100"
+        >
+          <img
+            src={img}
+            alt={`Gallery item ${idx + 1}`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      ));
+
+  const totalItems = items.length;
+
+  // Calculates current scroll progress and active slide index
+  const updateScrollState = useCallback(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const { scrollLeft } = container;
+    const firstChild = container.firstElementChild as HTMLElement | null;
+    const cardWidth = firstChild ? firstChild.clientWidth + 16 : 260;
+    const index = Math.min(
+      Math.max(0, Math.round(scrollLeft / cardWidth)),
+      totalItems - 1
+    );
+    setActiveSlideIndex(index);
+  }, [totalItems]);
+
+  // Handles any user interaction (drag, click arrows, touch, dots)
+  // Pauses auto-play and sets a 10-second timer to resume
+  const handleUserManipulation = useCallback(() => {
+    setIsManipulated(true);
+
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsManipulated(false);
+    }, resumeDelayMs);
+  }, [resumeDelayMs]);
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Update scroll boundaries on mount and resize
+  useEffect(() => {
+    updateScrollState();
+    window.addEventListener('resize', updateScrollState);
+    return () => window.removeEventListener('resize', updateScrollState);
+  }, [updateScrollState]);
+
+  // Smooth slide to specific index
+  const scrollToSlide = useCallback(
+    (index: number) => {
+      handleUserManipulation();
+      const container = scrollContainerRef.current;
+      if (!container) return;
+
+      const firstChild = container.firstElementChild as HTMLElement | null;
+      const cardWidth = firstChild ? firstChild.clientWidth + 16 : 260;
+      const targetScroll = index * cardWidth;
+
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+      setActiveSlideIndex(index);
+    },
+    [handleUserManipulation]
+  );
+
+  // Manual Previous Navigation
+  const scrollPrev = useCallback(() => {
+    handleUserManipulation();
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const firstChild = container.firstElementChild as HTMLElement | null;
+    const scrollAmount = firstChild ? firstChild.clientWidth + 16 : 260;
+
+    if (container.scrollLeft <= 10) {
+      // Loop to end if at beginning
+      container.scrollTo({
+        left: container.scrollWidth - container.clientWidth,
+        behavior: 'smooth'
+      });
+    } else {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
+  }, [handleUserManipulation]);
+
+  // Manual Next Navigation
+  const scrollNext = useCallback(() => {
+    handleUserManipulation();
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const firstChild = container.firstElementChild as HTMLElement | null;
+    const scrollAmount = firstChild ? firstChild.clientWidth + 16 : 260;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+
+    if (container.scrollLeft >= maxScroll - 15) {
+      // Loop back to start
+      container.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }, [handleUserManipulation]);
+
+  // Auto-play Interval: active only when NOT hovered and NOT manipulated by user
+  useEffect(() => {
+    const isPaused = (pauseOnHover && isHovered) || isManipulated || isDragging;
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
+
+      const firstChild = container.firstElementChild as HTMLElement | null;
+      const scrollAmount = firstChild ? firstChild.clientWidth + 16 : 260;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+
+      if (direction === 'right') {
+        if (container.scrollLeft <= 10) {
+          container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+      } else {
+        if (container.scrollLeft >= maxScroll - 15) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      }
+    }, autoAdvanceSeconds * 1000);
+
+    return () => clearInterval(interval);
+  }, [
+    isHovered,
+    isManipulated,
+    isDragging,
+    pauseOnHover,
+    autoAdvanceSeconds,
+    direction
+  ]);
+
+  // Mouse Drag Handlers for Desktop Manipulation
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    handleUserManipulation();
+    setIsDragging(true);
+    hasDraggedDistance.current = false;
+    dragStartX.current = e.pageX - container.offsetLeft;
+    dragStartScrollLeft.current = container.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    const walk = x - dragStartX.current;
+
+    if (Math.abs(walk) > 6) {
+      hasDraggedDistance.current = true;
+    }
+
+    container.scrollLeft = dragStartScrollLeft.current - walk;
+    updateScrollState();
+  };
+
+  const handleMouseUp = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      handleUserManipulation();
+    }
+  };
+
+  // Prevent accidental clicks on child links if user was dragging/swiping
+  const handleClickCapture = (e: React.MouseEvent) => {
+    if (hasDraggedDistance.current) {
+      e.stopPropagation();
+      e.preventDefault();
+      hasDraggedDistance.current = false;
+    }
+  };
+
+  // Touch Handlers for Mobile Manipulation
+  const handleTouchStart = () => {
+    handleUserManipulation();
+  };
+
+  const handleTouchEnd = () => {
+    handleUserManipulation();
+    updateScrollState();
+  };
 
   return (
-    <div className={`relative w-full overflow-hidden ${className}`}>
-      <style>{`
-        @keyframes scroll-left-img {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+    <div
+      className={`relative w-full group/slider select-none ${className}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        if (isDragging) {
+          setIsDragging(false);
+          handleUserManipulation();
         }
-        @keyframes scroll-right-img {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-        .infinite-scroll-img-left {
-          animation: scroll-left-img ${speed}s linear infinite;
-        }
-        .infinite-scroll-img-right {
-          animation: scroll-right-img ${speed}s linear infinite;
-        }
-        .pause-on-hover:hover {
-          animation-play-state: paused;
-        }
-        .scroll-container-img {
-          mask: linear-gradient(
-            90deg,
-            transparent 0%,
-            black 5%,
-            black 95%,
-            transparent 100%
-          );
-          -webkit-mask: linear-gradient(
-            90deg,
-            transparent 0%,
-            black 5%,
-            black 95%,
-            transparent 100%
-          );
-        }
-        .image-item {
-          transition: transform 0.3s ease, filter 0.3s ease;
-        }
-        .image-item:hover {
-          transform: scale(1.04);
-          filter: brightness(1.08);
-        }
-      `}</style>
-
-      <div className="relative z-10 w-full flex items-center justify-center py-4">
-        <div className="scroll-container-img w-full">
-          <div
-            className={`flex gap-6 w-max ${
-              direction === 'left'
-                ? 'infinite-scroll-img-left'
-                : 'infinite-scroll-img-right'
-            } ${pauseOnHover ? 'pause-on-hover' : ''}`}
-          >
-            {duplicatedImages.map((image, index) => (
-              <div
-                key={index}
-                className="image-item shrink-0 w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-md bg-slate-100"
-              >
-                <img
-                  src={image}
-                  alt={`Gallery item ${(index % images.length) + 1}`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            ))}
+      }}
+    >
+      {/* Top Slider Navigation Controls */}
+      {showControls && totalItems > 1 && (
+        <div className="flex items-center justify-end px-2 sm:px-1 mb-2">
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={scrollPrev}
+              aria-label="Servicio anterior"
+              className="p-1.5 sm:p-2 rounded-full bg-white hover:bg-slate-100 active:bg-slate-200 text-slate-700 hover:text-[#0A66FF] border border-slate-200 shadow-xs transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0A66FF]/40"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={scrollNext}
+              aria-label="Siguiente servicio"
+              className="p-1.5 sm:p-2 rounded-full bg-white hover:bg-slate-100 active:bg-slate-200 text-slate-700 hover:text-[#0A66FF] border border-slate-200 shadow-xs transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0A66FF]/40"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
+      )}
+
+      {/* Main Interactive Scrollable Container */}
+      <div className="relative w-full">
+        <div
+          ref={scrollContainerRef}
+          onScroll={updateScrollState}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onClickCapture={handleClickCapture}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className={`flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth px-4 sm:px-6 lg:px-0 py-2 ${
+            isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'
+          }`}
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          {items.map((item, idx) => (
+            <div key={idx} className="shrink-0">
+              {item}
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* Bottom Interactive Dot Pagination */}
+      {showDots && totalItems > 1 && (
+        <div className="flex items-center justify-center gap-1.5 mt-3.5 pb-1">
+          {items.map((_, idx) => {
+            const isActive = idx === activeSlideIndex;
+            return (
+              <button
+                key={idx}
+                onClick={() => scrollToSlide(idx)}
+                aria-label={`Ir al elemento ${idx + 1}`}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  isActive
+                    ? 'w-6 h-2 bg-[#0A66FF] shadow-xs'
+                    : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

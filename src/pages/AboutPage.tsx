@@ -5,6 +5,7 @@ import { BRAND_INFO, METRICS, FOUNDER_PROFILE, TRUSTED_CLIENTS, ABOUT_QUADRANTS,
 import { Timeline, TimelineEntry } from '../components/ui/timeline';
 import { MilestoneCarousel } from '../components/MilestoneCarousel';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
+import { LinkedInIcon } from '../components/LinkedInIcon';
 import { 
   GraduationCap, 
   Briefcase, 
@@ -85,14 +86,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all shadow-xs text-center"
                 >
-                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                  <LinkedInIcon className="w-4 h-4 shrink-0" />
                   <span>Perfil en LinkedIn</span>
                 </a>
                 <button
                   onClick={() => onNavigate('contact')}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-all cursor-pointer shadow-xs text-center"
                 >
-                  <span>Agendar Consulta</span>
+                  <span>Conversemos</span>
                   <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                 </button>
               </div>
@@ -141,6 +142,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   ))}
                 </div>
               </div>
+              <p className="mt-3 text-xs sm:text-sm font-medium text-slate-600 leading-relaxed text-center italic">
+                "Una solución jurídica debe ser técnicamente correcta, pero también debe funcionar para el negocio."
+              </p>
             </div>
           </div>
         </div>
@@ -148,7 +152,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 02. PILARES DE EXCELENCIA (Cuatro Cuadrantes Visuales)
+    // 02. FORMA DE TRABAJAR & EXPERIENCIA PROFESIONAL
     // ==========================================
     {
       title: "Pilares de Excelencia",
@@ -157,10 +161,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       content: (
         <div className="space-y-4 w-full">
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Cuatro dimensiones clave que garantizan soluciones jurídicas de estándar internacional:
+            Cuatro dimensiones clave que integran formación universitaria, trayectoria especializada, liderazgo gremial y difusión jurídica:
           </p>
 
-          {/* 4 Rich Visual Bento Cards (Full-bleed on mobile) */}
+          {/* 4 Visual Bento Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
             {/* Cuadrante 1: Formación Académica */}
             <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full">
@@ -318,10 +322,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       content: (
         <div className="space-y-4 w-full">
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Evolución interactiva de nuestra práctica al compás de las mayores transformaciones tecnológicas y legales del país:
+            Evolución de nuestra práctica profesional en telecomunicaciones, tecnología y protección de datos en Ecuador:
           </p>
 
-          {/* DYNAMIC INTERACTIVE CAROUSEL (100% Full-bleed on Mobile) */}
           <MilestoneCarousel />
         </div>
       ),
@@ -434,13 +437,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       badge: "06. MÉTRICAS CLAVE",
       subtitle: "Resultados Tangibles en Ecuador",
       content: (
-        <div className="space-y-4 w-full">
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Resultados consolidados en el sector corporativo y regulatorio ecuatoriano:
-          </p>
-
-          {/* Canvas-Anchored Metric Strip with Linear Divider (No Box-in-Box) */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 border-y border-slate-200 py-6 sm:py-8 w-full">
+        <div className="space-y-6 w-full">
+          {/* Metrics Strip */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 border-y border-slate-200 py-6 sm:py-8 w-full bg-white rounded-2xl">
             {METRICS.map((metric, idx) => (
               <div 
                 key={idx} 
@@ -470,18 +469,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       badge: "07. CONVERSACIONES ESTRATÉGICAS",
       subtitle: "Hablemos de tu Organización",
       content: (
-        <div className="relative rounded-none sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border-y sm:border border-slate-800 overflow-hidden space-y-5 w-full">
+        <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border border-slate-800 overflow-hidden space-y-5 w-full">
           <div className="absolute top-0 right-0 w-72 h-72 bg-[#0A66FF]/15 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 space-y-2">
             <span className="text-[11px] font-bold text-[#D4AF37] uppercase tracking-wider block font-heading">
-              Asesoría Legal Estratégica
+              Asesoría Legal Especializada
             </span>
             <h4 className="text-xl sm:text-2xl font-extrabold text-white font-heading tracking-tight max-w-xl">
-              Inicia una conversación confidencial con nuestro equipo
+              ¿Tu empresa enfrenta un desafío jurídico?
             </h4>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed font-normal text-justify">
-              Agenda una reunión informativa o remítenos los antecedentes de tu caso para coordinar una propuesta técnica a medida liderada por el Abg. Luis Fernando Guerra Padilla.
+              Si tu empresa enfrenta un desafío jurídico relacionado con protección de datos, tecnología o telecomunicaciones, estaré encantado de conocer el proyecto y analizar cómo podemos ayudarte.
             </p>
           </div>
 
@@ -490,11 +489,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               onClick={() => onNavigate('contact')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all cursor-pointer shadow-md text-center"
             >
-              <span>Contactar a la Firma</span>
+              <span>Contactar</span>
               <ArrowRight className="w-4 h-4 shrink-0" />
             </button>
             <a
-              href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent('Hola SmartLegalEC, me gustaría agendar una reunión con el Abg. Luis Fernando Guerra.')}`}
+              href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent('Hola Luis Fernando Guerra, me gustaría agendar una consulta sobre un requerimiento jurídico.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md text-center"
@@ -509,9 +508,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="w-full bg-[#F8FAFC] min-h-screen pb-24">
+    <div className="w-full bg-[#F8FAFC] min-h-screen pb-4 sm:pb-8">
       {/* 1. HEADER SECTION with Seamless Full-Bleed Background */}
-      <section className="relative bg-[#071326] text-white min-h-[420px] sm:min-h-[480px] lg:min-h-[540px] h-auto pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12 lg:pb-16 flex flex-col justify-center border-b border-slate-800 overflow-hidden">
+      <section className="relative bg-[#071326] text-white min-h-[340px] sm:min-h-[400px] lg:min-h-[440px] h-auto pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8 lg:pb-10 flex flex-col justify-center border-b border-slate-800 overflow-hidden">
         
         {/* Full-Bleed Thematic Background Image */}
         <motion.div 
@@ -524,8 +523,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <source srcSet="/header-about.avif" type="image/avif" />
             <source srcSet="/header-about.webp" type="image/webp" />
             <img
-              src="/header-about.jpg"
-              alt="Sobre SmartLegalEC - Despacho Jurídico Boutique"
+              src="/header-about.webp"
+              alt="Sobre Luis Fernando Guerra Padilla - SmartLegalEC"
               width="1920"
               height="1080"
               className="w-full h-full object-cover object-center lg:object-right"
@@ -548,18 +547,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             className="max-w-2xl lg:max-w-3xl"
           >
             <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-3.5 leading-[1.14]">
-              Sobre <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">SmartLegalEC</span> & <span className="text-[#D4AF37]">Liderazgo</span>
+              Sobre <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Mí</span> & <span className="text-[#D4AF37]">SmartLegalEC</span>
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
-              Firma jurídica boutique liderada por el <strong className="text-white font-semibold">Abg. Luis Fernando Guerra Padilla</strong>, especializada en asesoría de vanguardia en <strong className="text-white font-semibold">Tecnología</strong> y <strong className="text-white font-semibold">Economía de Datos</strong> en Ecuador.
+              Abogado especializado en <strong className="text-white font-semibold">Protección de Datos</strong>, <strong className="text-white font-semibold">Tecnología</strong> y <strong className="text-white font-semibold">Telecomunicaciones</strong> en Ecuador.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* 2. CONTINUOUS TIMELINE CANVAS: Presenting the complete story of Sobre Nosotros */}
-      <main className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 mt-6 sm:mt-16 w-full">
+      {/* 2. CONTINUOUS TIMELINE CANVAS: Presenting the complete story of Sobre Mí */}
+      <main className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 mt-4 sm:mt-8 w-full">
         <Timeline 
           data={aboutTimelineData}
           showHeader={false}

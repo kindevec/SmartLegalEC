@@ -42,7 +42,7 @@ export const AreaDetailPage: React.FC<AreaDetailPageProps> = ({ areaId, onNaviga
   const relatedArticles = LEGAL_ARTICLES.filter((art) => {
     if (areaId === 'lopdp') return art.category === 'LOPDP & Privacidad';
     if (areaId === 'tech') return art.category === 'Contratos Tech & SaaS' || art.category === 'Inteligencia Artificial';
-    if (areaId === 'telecom') return art.category === 'Telecomunicaciones & ARCOTEL';
+    if (areaId === 'telecom') return art.category === 'Telecomunicaciones y Regulación';
     return true;
   });
 
@@ -62,7 +62,7 @@ export const AreaDetailPage: React.FC<AreaDetailPageProps> = ({ areaId, onNaviga
             <source srcSet="/header-servicios.avif" type="image/avif" />
             <source srcSet="/header-servicios.webp" type="image/webp" />
             <img
-              src="/header-servicios.jpg"
+              src="/header-servicios.webp"
               alt="Detalle de Área Legal - SmartLegalEC"
               width="1920"
               height="1080"

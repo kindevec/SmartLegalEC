@@ -132,7 +132,7 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
             <source srcSet="/header-servicios.avif" type="image/avif" />
             <source srcSet="/header-servicios.webp" type="image/webp" />
             <img
-              src="/header-servicios.jpg"
+              src="/header-servicios.webp"
               alt="Test LOPDP - SmartLegalEC"
               width="1920"
               height="1080"
@@ -345,6 +345,9 @@ export const DiagnosticPage: React.FC<DiagnosticPageProps> = ({ onNavigate }) =>
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center text-xs text-slate-600 leading-relaxed text-justify">
         <p>
           Este diagnóstico interactivo tiene fines puramente informativos y de orientación general. No constituye dictamen pericial ni asesoría jurídica vinculante. Para una auditoría legal pormenorizada de su organización, coordine una sesión formal con SmartLegalEC.
+        </p>
+        <p className="mt-2 text-slate-500 italic">
+          🔒 Toda la información analizada y los reportes generados se encuentran bajo estricta reserva, amparados por el secreto profesional del abogado y las garantías de confidencialidad de la LOPDP en Ecuador.
         </p>
       </section>
     </div>

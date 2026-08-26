@@ -46,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenD
     { label: 'Inicio', route: 'home' },
     { label: 'Servicios', route: 'areas' },
     { label: 'Sobre Mí', route: 'about' },
-    { label: 'Insights', route: 'insights' },
+    { label: 'Criterio Jurídico', route: 'insights' },
     { label: 'Contacto', route: 'contact' },
   ];
 

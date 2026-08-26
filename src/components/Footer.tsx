@@ -1,6 +1,7 @@
 import React from 'react';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { TikTokIcon } from './TikTokIcon';
 import { BRAND_INFO, PRACTICE_AREAS } from '../data/content';
 import { PageRoute } from '../types';
 import { AnimatedContainer } from './ui/footer-section';
@@ -59,6 +60,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
                 </a>
 
                 <a
+                  href={BRAND_INFO.tiktokUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-black hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
+                  aria-label="TikTok oficial de SmartLegalEC"
+                >
+                  <TikTokIcon className="w-3 h-3" />
+                </a>
+
+                <a
                   href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(
                     'Hola SmartLegalEC, me gustaría solicitar una consulta jurídica.'
                   )}`}
@@ -96,6 +107,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
                 aria-label="Instagram oficial de SmartLegalEC"
               >
                 <Instagram className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href={BRAND_INFO.tiktokUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-black hover:text-white text-slate-300 flex items-center justify-center transition-all duration-200 border border-slate-700/60"
+                aria-label="TikTok oficial de SmartLegalEC"
+              >
+                <TikTokIcon className="w-3.5 h-3.5" />
               </a>
 
               <a
@@ -181,7 +202,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
                   onClick={() => { onNavigate('insights'); scrollToTop(); }}
                   className="text-slate-300 hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Legal Insights
+                  Criterio Jurídico
                 </button>
               </li>
               <li>
@@ -235,7 +256,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
             © {new Date().getFullYear()} {BRAND_INFO.name}
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
-            <span className="hidden sm:inline">Quito, Ecuador •</span>
+            <span className="hidden sm:inline">
+              Quito, Ecuador • Creado por{' '}
+              <a 
+                href="https://kindevx.web.app" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-[#0A66FF] hover:text-blue-400 transition-colors font-bold underline"
+              >
+                Kindev
+              </a>{' '}
+              •
+            </span>
             <button
               onClick={scrollToTop}
               className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors cursor-pointer font-semibold"

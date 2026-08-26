@@ -83,11 +83,11 @@ export const Timeline = ({
         </div>
       )}
 
-      <div ref={ref} className="relative w-full max-w-[1540px] mx-auto pb-16 sm:pb-24 px-0 sm:px-4 md:px-8">
+      <div ref={ref} className="relative w-full max-w-[1540px] mx-auto pb-4 sm:pb-8 px-0 sm:px-4 md:px-8">
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row justify-start pt-6 sm:pt-10 md:pt-12 gap-0 md:gap-8 lg:gap-12 w-full"
+            className="flex flex-col md:flex-row justify-start pt-5 sm:pt-7 md:pt-9 first:pt-0 gap-0 md:gap-8 lg:gap-12 w-full"
           >
             {/* Phase / Chapter Indicator (Left Column - Static on mobile, Sticky on desktop) */}
             <div className="w-full md:w-[280px] lg:w-[340px] shrink-0 static md:sticky md:top-28 lg:top-32 self-start z-20 px-4 sm:px-0 mb-3 md:mb-0">
