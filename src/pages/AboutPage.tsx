@@ -103,11 +103,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
               <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200 shadow-md group min-h-[280px] sm:min-h-[320px] h-72 sm:h-80 w-full">
                 <picture className="absolute inset-0 w-full h-full block">
-                  <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
-                  <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
+                  <source srcSet="/cliente.avif" type="image/avif" />
+                  <source srcSet="/cliente.webp" type="image/webp" />
                   <img
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
+                    src="/cliente.webp"
                     alt={FOUNDER_PROFILE.name}
+                    width="1430"
+                    height="1100"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                     decoding="async"
