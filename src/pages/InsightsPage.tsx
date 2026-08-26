@@ -166,76 +166,84 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
         </div>
       </motion.section>
 
-      {/* 3. ARTICLES LIST */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* 3. ARTICLES LIST (Editorial Line-Separated Layout - Zero Container Bloat) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12">
+        <div className="divide-y divide-slate-200 border-y border-slate-200">
           {filteredArticles.map((article, idx) => (
             <motion.article
               key={article.id}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: (idx % 2) * 0.1 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="bg-white border border-slate-200 rounded-3xl p-7 sm:p-8 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between"
+              transition={{ duration: 0.45, delay: idx * 0.05 }}
+              className="py-8 sm:py-10 transition-colors hover:bg-slate-50/70 -mx-4 px-4 sm:-mx-6 sm:px-6 rounded-2xl group"
             >
-              <div>
-                <div className="flex items-center justify-between gap-2 text-xs text-slate-600 mb-4">
-                  <span className="font-bold px-3 py-1 rounded-full bg-blue-50 text-[#0A66FF] border border-blue-100 font-heading">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
+                {/* Left: Category & Metadata */}
+                <div className="lg:col-span-4 space-y-2.5">
+                  <span className="inline-block font-bold text-[11px] px-2.5 py-0.5 rounded-md bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 font-heading uppercase tracking-wider">
                     {article.category}
                   </span>
-                  <div className="flex items-center gap-3">
+
+                  <div className="flex items-center gap-3 text-xs text-slate-500 font-medium">
                     <span className="flex items-center gap-1">
-                      <Calendar className="w-3.5 h-3.5" />
+                      <Calendar className="w-3.5 h-3.5 text-slate-400" />
                       {article.date}
                     </span>
+                    <span>•</span>
                     <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5" />
+                      <Clock className="w-3.5 h-3.5 text-slate-400" />
                       {article.readTime}
                     </span>
                   </div>
+
+                  <div className="flex items-center gap-2 text-xs text-slate-600 font-medium pt-1">
+                    <User className="w-3.5 h-3.5 text-slate-400" />
+                    <span>{article.author}</span>
+                  </div>
                 </div>
 
-                <h2 
-                  onClick={() => setActiveArticle(article)}
-                  className="text-lg sm:text-xl font-bold text-slate-900 mb-3 hover:text-[#0A66FF] transition-colors cursor-pointer font-heading leading-snug"
-                >
-                  {article.title}
-                </h2>
+                {/* Right: Title, Summary, Key Points & CTA */}
+                <div className="lg:col-span-8 space-y-3">
+                  <h2 
+                    onClick={() => setActiveArticle(article)}
+                    className="text-lg sm:text-xl lg:text-2xl font-extrabold text-slate-900 group-hover:text-[#0A66FF] transition-colors cursor-pointer font-heading leading-snug"
+                  >
+                    {article.title}
+                  </h2>
 
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 text-justify">
-                  {article.summary}
-                </p>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
+                    {article.summary}
+                  </p>
 
-                {/* Key Takeaways preview */}
-                <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 mb-6">
-                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-2 font-heading">
-                    Puntos clave analizados:
-                  </span>
-                  <ul className="space-y-1.5 text-xs text-slate-700">
-                    {article.keyPoints.slice(0, 2).map((kp, kIdx) => (
-                      <li key={kIdx} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#0A66FF] shrink-0 mt-0.5" />
-                        <span className="line-clamp-1">{kp}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Key Takeaways - Clean list without nested box */}
+                  {article.keyPoints && article.keyPoints.length > 0 && (
+                    <div className="pt-2">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1.5 font-heading">
+                        Puntos clave analizados:
+                      </span>
+                      <ul className="space-y-1 text-xs text-slate-700">
+                        {article.keyPoints.slice(0, 2).map((kp, kIdx) => (
+                          <li key={kIdx} className="flex items-start gap-2">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#0A66FF] shrink-0 mt-0.5" />
+                            <span>{kp}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Read More Trigger */}
+                  <div className="pt-2 flex items-center justify-between">
+                    <button
+                      onClick={() => setActiveArticle(article)}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0A66FF] hover:text-[#0852cc] transition-all cursor-pointer group/btn"
+                    >
+                      <span>Leer artículo completo</span>
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs text-slate-600 flex items-center gap-1.5 font-medium">
-                  <User className="w-3.5 h-3.5 text-slate-400" />
-                  {article.author}
-                </span>
-
-                <button
-                  onClick={() => setActiveArticle(article)}
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0A66FF] hover:text-[#0852cc] cursor-pointer"
-                >
-                  <span>Leer artículo completo</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
               </div>
             </motion.article>
           ))}
