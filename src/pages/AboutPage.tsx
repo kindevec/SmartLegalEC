@@ -293,11 +293,37 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                     <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 font-heading">
                       {client.badge}
                     </span>
-                    <Building2 className="w-4 h-4 text-slate-400 group-hover:text-[#0A66FF] transition-colors" />
+                    {client.url ? (
+                      <a
+                        href={client.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-slate-100 hover:bg-[#0A66FF] text-slate-500 hover:text-white transition-all cursor-pointer shadow-2xs group/btn"
+                        title={`Visitar sitio web oficial de ${client.name}`}
+                        aria-label={`Visitar sitio web oficial de ${client.name}`}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
+                      </a>
+                    ) : (
+                      <div className="w-6 h-6 rounded-md bg-slate-50 flex items-center justify-center text-slate-300">
+                        <Building2 className="w-3.5 h-3.5" />
+                      </div>
+                    )}
                   </div>
-                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 font-heading leading-tight group-hover:text-[#0A66FF] transition-colors">
-                    {client.name}
-                  </h4>
+                  {client.url ? (
+                    <a
+                      href={client.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-xs sm:text-sm font-bold text-slate-900 font-heading leading-tight hover:text-[#0A66FF] transition-colors"
+                    >
+                      {client.name}
+                    </a>
+                  ) : (
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-900 font-heading leading-tight group-hover:text-[#0A66FF] transition-colors">
+                      {client.name}
+                    </h4>
+                  )}
                   <p className="text-[11px] font-semibold text-[#0A66FF] mt-0.5">
                     {client.category}
                   </p>

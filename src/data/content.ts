@@ -416,6 +416,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Consumo Masivo Multinacional',
     description: 'Multinacional de consumo masivo con presencia en 8 países de Centro y Sur América.',
     badge: 'Multinacional',
+    url: 'https://www.quala.com.ec/',
   },
   {
     id: 'metroeje',
@@ -423,6 +424,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Infraestructura & Transporte',
     description: 'Empresa especializada en proyectos viales y transporte en Ecuador.',
     badge: 'Infraestructura',
+    url: 'https://www.metroeje.com/',
   },
   {
     id: 'global-support',
@@ -430,6 +432,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Servicios Corporativos & TI',
     description: 'Compañía de soporte operativo y soluciones tecnológicas empresariales.',
     badge: 'Servicios TI',
+    url: 'https://globalsupport.com.ec/',
   },
   {
     id: 'factec',
@@ -444,6 +447,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Salud & Especialidades Médicas',
     description: 'Institución médica de referencia en salud visual en Quito.',
     badge: 'Salud',
+    url: 'https://oftalmologiaquito.com/',
   },
   {
     id: 'zhm',
@@ -451,6 +455,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Seguros Corporativos',
     description: 'Agencia Asesora Productora de Seguros especializada en pólizas corporativas.',
     badge: 'Seguros',
+    url: 'https://www.zhmseguros.com/',
   },
   {
     id: 'scrumz',
@@ -458,6 +463,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Desarrollo Inmobiliario',
     description: 'Firma de gestión y desarrollo inmobiliario corporativo y residencial.',
     badge: 'Inmobiliario',
+    url: 'https://www.facebook.com/Scrumz.ec/',
   },
   {
     id: 'ponte-selva',
@@ -465,6 +471,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Manufactura & Textil',
     description: 'Empresa textil y manufacturera tradicional en Ecuador.',
     badge: 'Industria',
+    url: 'https://www.ponteselva.com.ec/',
   },
   {
     id: 'medicgo',
@@ -472,6 +479,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Salud Digital & Asistencia Médica',
     description: 'Plataforma y servicios de atención médica y telemedicina.',
     badge: 'HealthTech',
+    url: 'https://medicgo.com.ec/',
   },
   {
     id: 'fias',
@@ -479,6 +487,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Fondos Ambientales & Sostenibilidad',
     description: 'Fondo de inversión fiduciario ambiental para conservación y desarrollo sostenible.',
     badge: 'Sostenibilidad',
+    url: 'https://fias.org.ec/',
   },
   {
     id: 'equipos-cotopaxi',
@@ -493,6 +502,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     category: 'Educación Integral',
     description: 'Institución educativa en Tumbaco con formación integral para niños y jóvenes.',
     badge: 'Educación',
+    url: 'https://www.ueprimavera.edu.ec/',
   },
 ];
 

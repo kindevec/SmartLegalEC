@@ -992,15 +992,41 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#0A66FF]/40 hover:shadow-xs transition-all flex flex-col justify-between space-y-2 group"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-1">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
                     <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 font-heading">
                       {client.badge}
                     </span>
-                    <Building2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0A66FF] transition-colors" />
+                    {client.url ? (
+                      <a
+                        href={client.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-slate-100 hover:bg-[#0A66FF] text-slate-500 hover:text-white transition-all cursor-pointer shadow-2xs group/btn"
+                        title={`Visitar sitio web oficial de ${client.name}`}
+                        aria-label={`Visitar sitio web oficial de ${client.name}`}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
+                      </a>
+                    ) : (
+                      <div className="w-6 h-6 rounded-md bg-slate-50 flex items-center justify-center text-slate-300">
+                        <Building2 className="w-3.5 h-3.5" />
+                      </div>
+                    )}
                   </div>
-                  <h3 className="font-heading font-extrabold text-xs sm:text-sm text-slate-900 leading-tight group-hover:text-[#0A66FF] transition-colors">
-                    {client.name}
-                  </h3>
+                  {client.url ? (
+                    <a
+                      href={client.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block font-heading font-extrabold text-xs sm:text-sm text-slate-900 leading-tight hover:text-[#0A66FF] transition-colors"
+                    >
+                      {client.name}
+                    </a>
+                  ) : (
+                    <h3 className="font-heading font-extrabold text-xs sm:text-sm text-slate-900 leading-tight group-hover:text-[#0A66FF] transition-colors">
+                      {client.name}
+                    </h3>
+                  )}
                   <p className="text-[10px] sm:text-[11px] font-semibold text-[#0A66FF] mt-0.5">
                     {client.category}
                   </p>
