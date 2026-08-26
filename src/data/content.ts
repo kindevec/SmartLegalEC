@@ -377,11 +377,8 @@ export const FOUNDER_PROFILE = {
   name: 'Luis Fernando Guerra Padilla',
   title: 'Abogado especializado en Protección de Datos, Tecnología y Telecomunicaciones',
   bio: [
-    'Soy abogado ecuatoriano con experiencia en asesoría jurídica a empresas nacionales e internacionales, particularmente en asuntos relacionados con protección de datos personales, tecnología, telecomunicaciones y entornos empresariales regulados.',
-    'Mi práctica profesional se ha desarrollado en la intersección entre derecho, tecnología y negocio. Esto me ha permitido participar tanto en proyectos de cumplimiento normativo como en negociaciones contractuales, implementación de soluciones tecnológicas y asuntos regulatorios que requieren comprender no solo la norma, sino también la operación y los objetivos de cada organización.',
-    'En protección de datos personales he acompañado procesos integrales de adecuación a la LOPDP, evaluaciones de riesgo e impacto, desarrollo de políticas y procedimientos, revisión de relaciones con proveedores, gestión de incidentes y asesoramiento continuo a organizaciones. Asimismo, desempeño funciones como Delegado de Protección de Datos externo, brindando acompañamiento independiente en el cumplimiento de la normativa.',
-    'En el ámbito tecnológico, mi experiencia comprende la elaboración, revisión y negociación de contratos de software, licenciamiento, servicios tecnológicos, outsourcing, cloud y otras relaciones vinculadas con proyectos de transformación digital.',
-    'En telecomunicaciones, he participado en asuntos regulatorios, contractuales y administrativos relacionados con la operación del sector y con proyectos que requieren interacción con las autoridades ecuatorianas.',
+    'Abogado especializado en la intersección entre derecho, tecnología y regulación, con amplia trayectoria asesorando a empresas nacionales y multinacionales en protección de datos personales (LOPDP), contratos de software, SaaS y entornos empresariales regulados.',
+    'Su práctica combina una sólida visión regulatoria con un enfoque operativo y comercial, participando en programas integrales de adecuación normativa, estructuración contractual tecnológica y funciones como Delegado de Protección de Datos (DPD) externo.',
   ],
   workingPhilosophy: {
     title: 'Mi forma de trabajar',
