@@ -72,3 +72,12 @@ export interface DiagnosticQuestion {
   }[];
 }
 
+export interface ClientItem {
+  id: string;
+  name: string;
+  category: string;
+  description?: string;
+  badge?: string;
+  url?: string;
+}
+

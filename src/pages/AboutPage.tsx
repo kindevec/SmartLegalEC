@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PageRoute } from '../types';
-import { BRAND_INFO, METRICS } from '../data/content';
+import { BRAND_INFO, METRICS, FOUNDER_PROFILE, TRUSTED_CLIENTS, ABOUT_QUADRANTS, CORPORATE_VALUES } from '../data/content';
 import { Timeline, TimelineEntry } from '../components/ui/timeline';
 import { MilestoneCarousel } from '../components/MilestoneCarousel';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
@@ -22,7 +22,11 @@ import {
   Cpu,
   Scale,
   Quote,
-  CheckCircle2
+  CheckCircle2,
+  ShieldCheck,
+  Code2,
+  Radio,
+  Building2
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -30,7 +34,7 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
-  // Structured Timeline Data with High-Impact Visual Cards and Minimal Text
+  // Structured Timeline Data with High-Impact Visual Cards and Clean Layout
   const aboutTimelineData: TimelineEntry[] = [
     // ==========================================
     // 01. LIDERAZGO & DIRECCIÓN (El Fundador)
@@ -38,42 +42,39 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     {
       title: "Liderazgo & Dirección",
       badge: "01. DIRECTOR & FUNDADOR",
-      subtitle: BRAND_INFO.founder,
+      subtitle: FOUNDER_PROFILE.name,
       content: (
-        <div className="space-y-5 w-full">
+        <div className="space-y-6 w-full">
           {/* Visual 2-Column Founder Showcase */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch w-full">
-            {/* Left: Punchy Executive Summary */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch w-full">
+            {/* Left: Comprehensive Founder Bio & Philosophy */}
             <div className="lg:col-span-7 flex flex-col justify-between space-y-4 px-4 sm:px-0">
               <div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading tracking-tight">
-                  {BRAND_INFO.founder}
+                  {FOUNDER_PROFILE.name}
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#0A66FF] mt-1 mb-3">
-                  {BRAND_INFO.founderTitle}
+                <p className="text-xs sm:text-sm font-semibold text-[#0A66FF] mt-1 mb-4">
+                  {FOUNDER_PROFILE.title}
                 </p>
-                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal text-justify">
-                  Más de una década de práctica especializada en la intersección entre el <strong className="text-slate-900 font-semibold">Derecho, la Inteligencia Artificial</strong>, la Protección de Datos y el sector de las <strong className="text-slate-900 font-semibold">Telecomunicaciones</strong> en Ecuador.
-                </p>
+                <div className="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
+                  {FOUNDER_PROFILE.bio.map((paragraph, pIdx) => (
+                    <p key={pIdx}>{paragraph}</p>
+                  ))}
+                </div>
               </div>
 
-              {/* 3 Key Highlights Strip (3 Columns on mobile & desktop - No Box-in-Box) */}
-              <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1.5 w-full">
-                <div className="pr-2 sm:pr-4 flex flex-col justify-start">
-                  <Shield className="w-4 h-4 text-[#0A66FF] mb-1 shrink-0" />
-                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Oficial DPD</div>
-                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Certificado SPDP</div>
+              {/* Mi forma de trabajar / Work Philosophy Quote Block */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-[#0B1D3A] to-[#071326] text-white space-y-2 border border-slate-800 shadow-md my-2">
+                <div className="flex items-center gap-2 text-[#D4AF37]">
+                  <Quote className="w-4 h-4 shrink-0" />
+                  <span className="text-xs font-bold uppercase tracking-wider font-heading">{FOUNDER_PROFILE.workingPhilosophy.title}</span>
                 </div>
-                <div className="px-2 sm:px-4 flex flex-col justify-start">
-                  <Scale className="w-4 h-4 text-[#D4AF37] mb-1 shrink-0" />
-                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">ARCOTEL & Telco</div>
-                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Títulos habilitantes</div>
-                </div>
-                <div className="pl-2 sm:pl-4 flex flex-col justify-start">
-                  <Cpu className="w-4 h-4 text-purple-600 mb-1 shrink-0" />
-                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">SaaS & IA Law</div>
-                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Contratos software</div>
-                </div>
+                <p className="text-xs sm:text-sm font-semibold text-slate-100 italic leading-relaxed">
+                  "{FOUNDER_PROFILE.workingPhilosophy.premise}"
+                </p>
+                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed text-justify">
+                  {FOUNDER_PROFILE.workingPhilosophy.detail}
+                </p>
               </div>
 
               {/* Action Buttons */}
@@ -97,19 +98,48 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Right: High-Impact Visual Photo Card (Full-Bleed on Mobile) */}
-            <div className="lg:col-span-5 relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200 shadow-md group min-h-[280px] sm:min-h-[320px] h-72 sm:h-80 lg:h-auto w-full">
-              <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
-                alt="Abg. Luis Fernando Guerra Padilla"
-                className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                loading="eager"
-                decoding="async"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5 sm:p-6 z-10 pointer-events-none">
-                <p className="text-xs sm:text-sm font-medium text-slate-200 leading-relaxed text-justify">
-                  "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
-                </p>
+            {/* Right: High-Impact Visual Photo Card & 4 Experience Pillars */}
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+              <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200 shadow-md group min-h-[280px] sm:min-h-[320px] h-72 sm:h-80 w-full">
+                <picture className="absolute inset-0 w-full h-full block">
+                  <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
+                  <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
+                  <img
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
+                    alt={FOUNDER_PROFILE.name}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </picture>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5 sm:p-6 z-10 pointer-events-none">
+                  <p className="text-xs sm:text-sm font-medium text-slate-200 leading-relaxed text-justify">
+                    "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
+                  </p>
+                </div>
+              </div>
+
+              {/* 4 Professional Experience Pillars */}
+              <div className="space-y-2 px-4 sm:px-0">
+                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-heading">
+                  Experiencia Profesional
+                </h4>
+                <div className="space-y-2">
+                  {FOUNDER_PROFILE.professionalExperience.map((exp, expIdx) => (
+                    <div key={expIdx} className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-2.5">
+                      <div className="w-6 h-6 rounded-lg bg-[#0A66FF]/10 border border-[#0A66FF]/20 flex items-center justify-center shrink-0 mt-0.5">
+                        {exp.icon === 'ShieldCheck' && <ShieldCheck className="w-3.5 h-3.5 text-[#0A66FF]" />}
+                        {exp.icon === 'Code2' && <Code2 className="w-3.5 h-3.5 text-[#0A66FF]" />}
+                        {exp.icon === 'Radio' && <Radio className="w-3.5 h-3.5 text-[#0A66FF]" />}
+                        {exp.icon === 'Scale' && <Scale className="w-3.5 h-3.5 text-[#0A66FF]" />}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold text-slate-900">{exp.area}</div>
+                        <div className="text-[11px] text-slate-600 leading-relaxed text-justify">{exp.description}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -123,7 +153,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     {
       title: "Pilares de Excelencia",
       badge: "02. CUATRO CUADRANTES",
-      subtitle: "Formación, Práctica, Gremio & Doctrina",
+      subtitle: "Formación, Práctica, Gremio & Publicaciones",
       content: (
         <div className="space-y-4 w-full">
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
@@ -133,10 +163,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           {/* 4 Rich Visual Bento Cards (Full-bleed on mobile) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
             {/* Cuadrante 1: Formación Académica */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
+            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full">
               <img
                 src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=700&q=80"
-                alt="Formación Académica"
+                alt={ABOUT_QUADRANTS[0].title}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
                 loading="lazy"
               />
@@ -146,19 +176,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <div className="w-7 h-7 rounded-lg bg-[#0A66FF]/20 border border-[#0A66FF]/50 flex items-center justify-center backdrop-blur-md">
                     <GraduationCap className="w-4 h-4 text-blue-300" />
                   </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Formación de Alto Nivel</h4>
+                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">{ABOUT_QUADRANTS[0].title}</h4>
                 </div>
-                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
-                  Estudios de posgrado en Derecho y Nuevas Tecnologías, con actualización continua en estándares RGPD y LOPDP.
-                </p>
+                <ul className="space-y-1 text-[11px] text-slate-300">
+                  {ABOUT_QUADRANTS[0].items.map((item, idx) => (
+                    <li key={idx} className="leading-relaxed text-justify">• {item}</li>
+                  ))}
+                </ul>
               </div>
             </div>
 
             {/* Cuadrante 2: Experiencia y Especialización */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
+            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full">
               <img
                 src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=700&q=80"
-                alt="Experiencia y Especialización"
+                alt={ABOUT_QUADRANTS[1].title}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
                 loading="lazy"
               />
@@ -168,19 +200,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <div className="w-7 h-7 rounded-lg bg-[#D4AF37]/20 border border-[#D4AF37]/50 flex items-center justify-center backdrop-blur-md">
                     <Briefcase className="w-4 h-4 text-[#D4AF37]" />
                   </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Práctica & Adecuación LOPDP</h4>
+                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">{ABOUT_QUADRANTS[1].title}</h4>
                 </div>
-                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
-                  Adecuaciones LOPDP masivas, designación de DPD externo, contratos SaaS Cloud y trámites regulatorios ARCOTEL.
-                </p>
+                <ul className="space-y-1 text-[11px] text-slate-300">
+                  {ABOUT_QUADRANTS[1].items.map((item, idx) => (
+                    <li key={idx} className="leading-relaxed text-justify">• {item}</li>
+                  ))}
+                </ul>
               </div>
             </div>
 
-            {/* Cuadrante 3: Actividad Profesional y Gremial */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
+            {/* Cuadrante 3: Actividad Profesional */}
+            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full">
               <img
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80"
-                alt="Actividad Profesional y Gremial"
+                alt={ABOUT_QUADRANTS[2].title}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
                 loading="lazy"
               />
@@ -190,19 +224,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <div className="w-7 h-7 rounded-lg bg-purple-500/20 border border-purple-400/50 flex items-center justify-center backdrop-blur-md">
                     <Users className="w-4 h-4 text-purple-300" />
                   </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Liderazgo Gremial & Foros</h4>
+                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">{ABOUT_QUADRANTS[2].title}</h4>
                 </div>
-                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
-                  Participación activa en comités jurídicos, panelista en foros sobre Inteligencia Artificial y vínculo con startups.
-                </p>
+                <ul className="space-y-1 text-[11px] text-slate-300">
+                  {ABOUT_QUADRANTS[2].items.map((item, idx) => (
+                    <li key={idx} className="leading-relaxed text-justify">• {item}</li>
+                  ))}
+                </ul>
               </div>
             </div>
 
-            {/* Cuadrante 4: Publicaciones y Análisis Jurídico */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[200px] sm:min-h-[220px] flex flex-col justify-end p-5 w-full">
+            {/* Cuadrante 4: Publicaciones y Medios */}
+            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full">
               <img
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80"
-                alt="Publicaciones y Análisis Jurídico"
+                alt={ABOUT_QUADRANTS[3].title}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
                 loading="lazy"
               />
@@ -212,11 +248,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <div className="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center backdrop-blur-md">
                     <FileText className="w-4 h-4 text-emerald-300" />
                   </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">Doctrina & Análisis Normativo</h4>
+                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">{ABOUT_QUADRANTS[3].title}</h4>
                 </div>
-                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 text-justify">
-                  Autor de artículos sobre privacidad, análisis de impacto regulatorio y vocería en medios especializados.
-                </p>
+                <ul className="space-y-1 text-[11px] text-slate-300">
+                  {ABOUT_QUADRANTS[3].items.map((item, idx) => (
+                    <li key={idx} className="leading-relaxed text-justify">• {item}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -225,11 +263,57 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 03. TRAYECTORIA & HITOS (Dynamic Interactive Carousel)
+    // 03. ORGANIZACIONES & CLIENTES
+    // ==========================================
+    {
+      title: "Organizaciones & Clientes",
+      badge: "03. CLIENTES DESTACADOS",
+      subtitle: "Empresas que Confían en Nosotros",
+      content: (
+        <div className="space-y-5 w-full">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+            Acompañamos a empresas nacionales, grupos regionales y multinacionales de consumo masivo, salud, seguros, educación e industria en sus desafíos jurídicos más críticos:
+          </p>
+
+          {/* 12 Trusted Clients Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 w-full">
+            {TRUSTED_CLIENTS.map((client) => (
+              <div 
+                key={client.id}
+                className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#0A66FF]/40 hover:shadow-xs transition-all flex flex-col justify-between space-y-2 group"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 font-heading">
+                      {client.badge}
+                    </span>
+                    <Building2 className="w-4 h-4 text-slate-400 group-hover:text-[#0A66FF] transition-colors" />
+                  </div>
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 font-heading leading-tight group-hover:text-[#0A66FF] transition-colors">
+                    {client.name}
+                  </h4>
+                  <p className="text-[11px] font-semibold text-[#0A66FF] mt-0.5">
+                    {client.category}
+                  </p>
+                </div>
+                {client.description && (
+                  <p className="text-[11px] text-slate-500 leading-relaxed text-justify pt-1 border-t border-slate-100">
+                    {client.description}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+
+    // ==========================================
+    // 04. TRAYECTORIA & HITOS (Dynamic Interactive Carousel)
     // ==========================================
     {
       title: "Trayectoria & Hitos",
-      badge: "03. EVOLUCIÓN HISTÓRICA",
+      badge: "04. EVOLUCIÓN HISTÓRICA",
       subtitle: "2014 — 2026",
       content: (
         <div className="space-y-4 w-full">
@@ -244,11 +328,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 04. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
+    // 05. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
     // ==========================================
     {
       title: "Filosofía Corporativa",
-      badge: "04. VALORES RECTORES",
+      badge: "05. VALORES RECTORES",
       subtitle: "Principios de Nuestra Práctica",
       content: (
         <div className="space-y-4 w-full">
@@ -263,10 +347,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
                 <div>
                   <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
-                    Excelencia
+                    {CORPORATE_VALUES[0].title}
                   </h4>
                   <p className="text-[10px] sm:text-xs text-[#D4AF37] font-semibold mt-0.5">
-                    Rigor de vanguardia
+                    {CORPORATE_VALUES[0].tagline}
                   </p>
                 </div>
                 <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center shrink-0">
@@ -274,7 +358,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
               <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
-                Soluciones jurídicas precisas adaptadas a la operativa real de cada cliente.
+                {CORPORATE_VALUES[0].description}
               </p>
             </div>
 
@@ -283,10 +367,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
                 <div>
                   <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
-                    Integridad
+                    {CORPORATE_VALUES[1].title}
                   </h4>
                   <p className="text-[10px] sm:text-xs text-[#0A66FF] font-semibold mt-0.5">
-                    Ética & secreto
+                    {CORPORATE_VALUES[1].tagline}
                   </p>
                 </div>
                 <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-blue-50 border border-blue-200/80 flex items-center justify-center shrink-0">
@@ -294,7 +378,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
               <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
-                Confidencialidad absoluta y máxima transparencia profesional en cada encargo.
+                {CORPORATE_VALUES[1].description}
               </p>
             </div>
 
@@ -303,10 +387,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
                 <div>
                   <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
-                    Innovación
+                    {CORPORATE_VALUES[2].title}
                   </h4>
                   <p className="text-[10px] sm:text-xs text-purple-600 font-semibold mt-0.5">
-                    Visión predictiva
+                    {CORPORATE_VALUES[2].tagline}
                   </p>
                 </div>
                 <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-purple-50 border border-purple-200/80 flex items-center justify-center shrink-0">
@@ -314,7 +398,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
               <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
-                Anticipación constante de contingencias normativas ante nuevas tecnologías.
+                {CORPORATE_VALUES[2].description}
               </p>
             </div>
 
@@ -323,10 +407,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <div className="flex items-start justify-between gap-2 mb-1.5 sm:mb-2">
                 <div>
                   <h4 className="text-xs sm:text-base font-bold text-slate-900 font-heading leading-tight">
-                    Compromiso
+                    {CORPORATE_VALUES[3].title}
                   </h4>
                   <p className="text-[10px] sm:text-xs text-emerald-600 font-semibold mt-0.5">
-                    Socio estratégico
+                    {CORPORATE_VALUES[3].tagline}
                   </p>
                 </div>
                 <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center shrink-0">
@@ -334,7 +418,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
               <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
-                Acompañamiento cercano y directo en el logro de tus objetivos de negocio.
+                {CORPORATE_VALUES[3].description}
               </p>
             </div>
           </div>
@@ -343,11 +427,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 05. IMPACTO & RESULTADOS (Canvas Linear Divider)
+    // 06. IMPACTO & RESULTADOS (Canvas Linear Divider)
     // ==========================================
     {
       title: "Impacto & Resultados",
-      badge: "05. MÉTRICAS CLAVE",
+      badge: "06. MÉTRICAS CLAVE",
       subtitle: "Resultados Tangibles en Ecuador",
       content: (
         <div className="space-y-4 w-full">
@@ -379,11 +463,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 06. ALIANZA & CONTACTO DIRECTO
+    // 07. ALIANZA & CONTACTO DIRECTO
     // ==========================================
     {
       title: "Alianza & Contacto",
-      badge: "06. CONVERSACIONES ESTRATÉGICAS",
+      badge: "07. CONVERSACIONES ESTRATÉGICAS",
       subtitle: "Hablemos de tu Organización",
       content: (
         <div className="relative rounded-none sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border-y sm:border border-slate-800 overflow-hidden space-y-5 w-full">

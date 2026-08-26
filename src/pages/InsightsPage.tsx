@@ -346,7 +346,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             {/* Article Body Content */}
             <div className="space-y-4 text-xs sm:text-sm sm:leading-relaxed text-slate-700 font-normal border-t border-slate-100 pt-6">
               {activeArticle.content.map((paragraph, idx) => (
-                <p key={idx}>{paragraph}</p>
+                <p key={idx} className="whitespace-pre-line text-justify leading-relaxed">{paragraph}</p>
               ))}
             </div>
 

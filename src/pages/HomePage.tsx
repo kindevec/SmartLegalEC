@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageRoute } from '../types';
-import { BRAND_INFO } from '../data/content';
+import { BRAND_INFO, TRUSTED_CLIENTS } from '../data/content';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowUpRight, 
@@ -12,7 +12,9 @@ import {
   Scale,
   Cpu,
   ExternalLink,
-  ArrowRight
+  ArrowRight,
+  Building2,
+  CheckCircle2
 } from 'lucide-react';
 
 interface HomePageProps {
@@ -616,7 +618,63 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       </motion.section>
 
       {/* ========================================================================= */}
-      {/* 5. CALL TO ACTION & COMPLIANCE BANNER with Motion */}
+      {/* 5. CLIENTS / ORGANIZACIONES QUE CONFÍAN EN NOSOTROS */}
+      {/* ========================================================================= */}
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+        className="py-14 sm:py-16 bg-slate-50/70 border-y border-slate-200/80"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
+            <div>
+              <div className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white text-slate-700 mb-3 border border-slate-200 shadow-2xs font-heading">
+                PORTAFOLIO CORPORATIVO
+              </div>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">
+                Empresas que Confían en Nuestra Práctica
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-500 max-w-md text-justify sm:text-left">
+              Acompañamos a multinacionales, corporaciones y organizaciones líderes en Ecuador en protección de datos, contratos tecnológicos y regulación.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
+            {TRUSTED_CLIENTS.map((client) => (
+              <div 
+                key={client.id}
+                className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#0A66FF]/40 hover:shadow-xs transition-all flex flex-col justify-between space-y-2 group"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 font-heading">
+                      {client.badge}
+                    </span>
+                    <Building2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0A66FF] transition-colors" />
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-bold text-slate-900 font-heading leading-tight group-hover:text-[#0A66FF] transition-colors">
+                    {client.name}
+                  </h3>
+                  <p className="text-[10px] sm:text-[11px] font-semibold text-[#0A66FF] mt-0.5">
+                    {client.category}
+                  </p>
+                </div>
+                {client.description && (
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 leading-relaxed text-justify pt-1 border-t border-slate-100">
+                    {client.description}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ========================================================================= */}
+      {/* 6. CALL TO ACTION & COMPLIANCE BANNER with Motion */}
       {/* ========================================================================= */}
       <motion.section 
         initial={{ opacity: 0, scale: 0.96 }}
