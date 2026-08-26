@@ -294,13 +294,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                   />
                 </div>
 
-                {/* Action Buttons */}
-                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full">
+                {/* Action Buttons - Centered relative to the form width */}
+                <div className="pt-4 flex justify-center items-center w-full">
                   <a
                     href={getWhatsAppDirectLink()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 sm:py-3.5 px-6 sm:px-7 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md text-center"
+                    className="w-full sm:w-auto min-w-[260px] inline-flex items-center justify-center gap-2.5 py-3 sm:py-3.5 px-8 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md hover:shadow-lg text-center active:scale-98"
                   >
                     <WhatsAppIcon className="w-4 h-4 shrink-0" />
                     <span>WhatsApp Inmediato</span>
