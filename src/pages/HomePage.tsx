@@ -628,13 +628,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             <div className="lg:col-span-5 relative flex justify-center lg:justify-start items-end w-full">
               <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] flex items-end justify-center">
                 <picture className="w-full h-auto block">
-                  <source srcSet="/luis-guerra-portrait.avif" type="image/avif" />
-                  <source srcSet="/luis-guerra-portrait.webp" type="image/webp" />
+                  <source srcSet="/cliente.avif" type="image/avif" />
+                  <source srcSet="/cliente.webp" type="image/webp" />
                   <img
-                    src="/luis-guerra-portrait.webp"
+                    src="/cliente.webp"
                     alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
-                    width="1366"
-                    height="1151"
+                    width="1430"
+                    height="1100"
                     className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[450px] object-contain object-bottom drop-shadow-xl block -mb-[1px]"
                     loading="lazy"
                     decoding="async"
