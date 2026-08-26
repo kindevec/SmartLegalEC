@@ -5,7 +5,7 @@ export interface LegalArticle {
   slug: string;
   title: string;
   summary: string;
-  category: 'LOPDP & Privacidad' | 'Contratos Tech & SaaS' | 'Telecomunicaciones y Regulación' | 'Inteligencia Artificial';
+  category: 'LOPDP & Privacidad' | 'Contratos Tech & SaaS' | 'Telecomunicaciones y Regulación' | 'Telecomunicaciones & ARCOTEL' | 'Inteligencia Artificial';
   date: string;
   readTime: string;
   author: string;
