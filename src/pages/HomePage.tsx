@@ -633,8 +633,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   <img
                     src="/cliente_sinfondo.webp"
                     alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
-                    width="1366"
-                    height="1151"
+                    width="896"
+                    height="1200"
                     className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[450px] object-contain object-bottom drop-shadow-xl block -mb-[1px]"
                     loading="lazy"
                     decoding="async"

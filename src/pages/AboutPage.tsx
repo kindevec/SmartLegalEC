@@ -108,8 +108,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <img
                     src="/cliente.webp"
                     alt={FOUNDER_PROFILE.name}
-                    width="1430"
-                    height="1100"
+                    width="896"
+                    height="1200"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                     decoding="async"
