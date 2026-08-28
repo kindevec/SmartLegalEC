@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PageRoute } from '../types';
-import { BRAND_INFO, TRUSTED_CLIENTS } from '../data/content';
+import { BRAND_INFO } from '../data/content';
 import { motion, AnimatePresence } from 'motion/react';
 import { ClientTrustLogos } from '../components/ClientTrustLogos';
 import { LinkedInIcon } from '../components/LinkedInIcon';
@@ -21,7 +21,6 @@ import {
   Radio,
   Building2,
   Sparkles,
-  ExternalLink,
   ArrowRight,
   Quote
 } from 'lucide-react';
@@ -373,10 +372,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       {/* 2. SERVICES SECTION - Flat 2.0 Direct Canvas Layout (Zero Box-in-Box) */}
       {/* ========================================================================= */}
       {/* ========================================================================= */}
-      {/* 2. SERVICES SECTION - Flat 2.0 Direct Canvas Layout (Zero Box-in-Box) */}
+      {/* ========================================================================= */}
+      {/* 2. SERVICES SECTION - 3 Core Products Presentation Grid */}
       {/* ========================================================================= */}
       <section 
-        className="w-full bg-[#071326] text-white pt-8 pb-7 sm:pt-10 sm:pb-8 border-b border-slate-800/90 relative overflow-hidden"
+        className="w-full bg-[#071326] text-white pt-8 pb-10 sm:pt-10 sm:pb-12 border-b border-slate-800/90 relative overflow-hidden"
       >
         {/* Difuminado superior / Top Soft Fade & Ambient Blur */}
         <div className="absolute top-0 inset-x-0 h-20 sm:h-28 bg-gradient-to-b from-[#071326] via-[#071326]/80 to-transparent pointer-events-none z-10" />
@@ -394,7 +394,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
           {/* Header Strip with Linear Divider */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 pb-4 border-b border-slate-800/80 gap-3">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-800/80 gap-3">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/15 text-[#93C5FD] mb-1.5 border border-[#0A66FF]/30 font-heading">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
@@ -419,84 +419,77 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
           </div>
 
-          {/* Direct 3-Card Grid (All 3 Cards Fully Visible & Interactive) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 pt-2">
-            {servicesCatalog.map((service, idx) => {
-              const Icon = service.icon;
-              return (
-                <motion.div
-                  key={service.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: idx * 0.08 }}
-                  whileHover={{ y: -5 }}
-                  onClick={() => onNavigate('area-detail', { areaId: (service.id === 'dpd' ? 'lopdp' : service.id) as any })}
-                  className="rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-b from-[#0C203E] to-[#071326] border border-slate-700/70 hover:border-[#D4AF37] hover:shadow-[0_0_30px_rgba(212,175,55,0.22)] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer group select-none"
-                >
-                  {/* Top Image Showcase */}
-                  <div className="relative w-full h-36 sm:h-40 overflow-hidden bg-slate-950 shrink-0">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108 opacity-85 group-hover:opacity-100"
-                      loading="lazy"
-                    />
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0C203E] via-[#0C203E]/40 to-transparent pointer-events-none" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent pointer-events-none" />
+          {/* 3 Core Services Presentation Grid (All 3 visible simultaneously) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+            {servicesCatalog.map((service, idx) => (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: idx * 0.1 }}
+                onClick={() => onNavigate('area-detail', { areaId: (service.id === 'dpd' ? 'lopdp' : service.id) as any })}
+                className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-b from-[#0C203E] to-[#071326] border border-slate-700/70 hover:border-[#D4AF37] hover:shadow-[0_0_30px_rgba(212,175,55,0.2)] transition-all duration-300 flex flex-col justify-between cursor-pointer shadow-xl"
+              >
+                {/* Top Image Banner */}
+                <div className="relative w-full h-40 sm:h-44 md:h-48 overflow-hidden bg-slate-950 shrink-0">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-85 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0C203E] via-[#0C203E]/40 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent pointer-events-none" />
 
-                    {/* Badge top-left */}
-                    <div className="absolute top-3 left-3 z-10">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-950/80 text-[#93C5FD] border border-white/15 backdrop-blur-md font-heading">
-                        <Icon className={`w-3.5 h-3.5 ${service.iconColor}`} />
-                        <span>{service.badge}</span>
-                      </span>
-                    </div>
+                  {/* Badge & Number */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-950/80 backdrop-blur-md text-white border border-white/15">
+                      <service.icon className={`w-3.5 h-3.5 ${service.iconColor}`} />
+                      <span>{service.badge}</span>
+                    </span>
+                  </div>
+                  <div className="absolute top-3 right-3 z-10">
+                    <span className="font-heading font-extrabold text-xs text-white/50 bg-slate-950/60 px-2 py-0.5 rounded-md border border-white/10">
+                      {service.num}
+                    </span>
+                  </div>
+                </div>
 
-                    {/* Number top-right */}
-                    <div className="absolute top-3 right-3 z-10">
-                      <span className="font-mono text-xs font-bold text-[#D4AF37] bg-slate-950/80 px-2 py-0.5 rounded-full border border-[#D4AF37]/30 backdrop-blur-md">
-                        {service.num}
-                      </span>
-                    </div>
+                {/* Card Body */}
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4 relative z-10">
+                  <div>
+                    <h3 className="font-heading font-extrabold text-base sm:text-lg text-white mb-1.5 leading-snug group-hover:text-[#D4AF37] transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal text-justify sm:text-left">
+                      {service.desc}
+                    </p>
                   </div>
 
-                  {/* Card Content */}
-                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 relative z-10">
-                    <div>
-                      <h3 className="font-heading font-extrabold text-base sm:text-lg text-white mb-1.5 leading-snug group-hover:text-[#D4AF37] transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal line-clamp-3 text-justify sm:text-left">
-                        {service.desc}
-                      </p>
-                    </div>
-
-                    {/* Deliverables Bullet Points */}
-                    <div className="space-y-1.5 pt-2 border-t border-slate-700/60">
-                      {service.deliverables.map((item, dIdx) => (
-                        <div key={dIdx} className="flex items-center gap-2 text-[11px] sm:text-xs text-slate-300">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] shrink-0 shadow-[0_0_5px_#0A66FF]" />
-                          <span className="truncate">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Bottom Row: CTA Trigger */}
-                    <div className="pt-2.5 border-t border-slate-700/60 flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-[#D4AF37] transition-colors">
-                      <span className="flex items-center gap-1.5 tracking-wide">
-                        <span>Explorar Servicio</span>
-                        <span className="text-[#D4AF37] transition-transform group-hover:translate-x-1">→</span>
-                      </span>
-                      <div className="w-6.5 h-6.5 sm:w-7 sm:h-7 rounded-full bg-slate-900 border border-slate-700 group-hover:bg-[#D4AF37] group-hover:text-slate-950 group-hover:border-[#D4AF37] flex items-center justify-center text-white transition-all shadow-sm">
-                        <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  {/* Deliverables Bullet Points */}
+                  <div className="space-y-1.5 pt-2 sm:pt-3 border-t border-slate-700/60">
+                    {service.deliverables.map((item, dIdx) => (
+                      <div key={dIdx} className="flex items-center gap-2 text-[11px] sm:text-xs text-slate-300">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] shrink-0 shadow-[0_0_5px_#0A66FF]" />
+                        <span className="truncate">{item}</span>
                       </div>
+                    ))}
+                  </div>
+
+                  {/* Bottom CTA Row */}
+                  <div className="pt-2.5 sm:pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-[#D4AF37] transition-colors">
+                    <span className="flex items-center gap-1.5 tracking-wide">
+                      <span>Explorar Servicio</span>
+                      <span className="text-[#D4AF37] group-hover:translate-x-1 transition-transform">→</span>
+                    </span>
+                    <div className="w-7 h-7 rounded-full bg-slate-900 border border-slate-700 group-hover:bg-[#D4AF37] group-hover:text-slate-950 group-hover:border-[#D4AF37] flex items-center justify-center text-white transition-all shadow-sm">
+                      <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>
-                </motion.div>
-              );
-            })}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </section>
@@ -809,94 +802,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       </section>
 
       {/* ========================================================================= */}
-      {/* 5. CLIENTES Y ORGANIZACIONES QUE CONFÍAN EN NOSOTROS */}
-      {/* ========================================================================= */}
-      <section 
-        className="w-full bg-[#F8FAFC] text-slate-900 py-12 sm:py-16 relative overflow-hidden border-t border-slate-200/80"
-      >
-        <motion.div 
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.55 }}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        >
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-slate-200 gap-3 mb-8">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 mb-2 font-heading">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF]" />
-                <span>EXPERIENCIA DE CONFIANZA</span>
-              </div>
-              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
-                Empresas que Confían en Nosotros
-              </h2>
-            </div>
-            <p className="text-xs text-slate-500 max-w-sm text-justify sm:text-right font-normal">
-              Asesoría jurídica especializada a empresas nacionales y grupos con presencia regional en diversos sectores de la economía.
-            </p>
-          </div>
-
-          {/* 12 Trusted Clients Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-4">
-            {TRUSTED_CLIENTS.map((client) => (
-              <div
-                key={client.id}
-                className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#0A66FF]/40 hover:shadow-xs transition-all flex flex-col justify-between space-y-2 group"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 font-heading">
-                      {client.badge}
-                    </span>
-                    {client.url ? (
-                      <a
-                        href={client.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-slate-100 hover:bg-[#0A66FF] text-slate-500 hover:text-white transition-all cursor-pointer shadow-2xs group/btn"
-                        title={`Visitar sitio web oficial de ${client.name}`}
-                        aria-label={`Visitar sitio web oficial de ${client.name}`}
-                      >
-                        <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
-                      </a>
-                    ) : (
-                      <div className="w-6 h-6 rounded-md bg-slate-50 flex items-center justify-center text-slate-300">
-                        <Building2 className="w-3.5 h-3.5" />
-                      </div>
-                    )}
-                  </div>
-                  {client.url ? (
-                    <a
-                      href={client.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block font-heading font-extrabold text-xs sm:text-sm text-slate-900 leading-tight hover:text-[#0A66FF] transition-colors"
-                    >
-                      {client.name}
-                    </a>
-                  ) : (
-                    <h3 className="font-heading font-extrabold text-xs sm:text-sm text-slate-900 leading-tight group-hover:text-[#0A66FF] transition-colors">
-                      {client.name}
-                    </h3>
-                  )}
-                  <p className="text-[10px] sm:text-[11px] font-semibold text-[#0A66FF] mt-0.5">
-                    {client.category}
-                  </p>
-                </div>
-                {client.description && (
-                  <p className="text-[10px] sm:text-[11px] text-slate-500 leading-relaxed text-justify pt-1 border-t border-slate-100">
-                    {client.description}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 6. CALL TO ACTION & COMPLIANCE BANNER with Motion */}
+      {/* 5. CALL TO ACTION & COMPLIANCE BANNER with Motion */}
       {/* ========================================================================= */}
       <section 
         className="w-full bg-[#F0F4FA] py-12 sm:py-16 relative overflow-hidden"

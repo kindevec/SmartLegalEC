@@ -20,6 +20,7 @@ export interface ServiceItem {
   fullDesc: string;
   category: 'lopdp' | 'tech' | 'telecom';
   tag: string;
+  image?: string;
 }
 
 export interface PracticeArea {

@@ -9,3 +9,5 @@ coverage/
 .firebase/
 documentos/
 contrato/
+credenciales/
+*.credentials

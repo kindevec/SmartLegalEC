@@ -95,6 +95,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Evaluación de brechas y desarrollo de medidas jurídicas y organizativas necesarias.',
         fullDesc:
           'Evaluamos el nivel de cumplimiento de la organización, identificamos brechas y desarrollamos las medidas jurídicas y organizativas necesarias para adecuar sus procesos.',
+        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-2',
@@ -104,6 +105,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Supervisión independiente, asesoramiento continuo y acompañamiento.',
         fullDesc:
           'Prestamos el servicio de DPD externo para organizaciones que requieren o deciden contar con esta figura, brindando asesoramiento, supervisión y acompañamiento independiente en materia de protección de datos.',
+        image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-3',
@@ -113,6 +115,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Revisión de procesos, documentos y prácticas operativas.',
         fullDesc:
           'Revisamos procesos, documentos y prácticas para identificar incumplimientos, riesgos y oportunidades de mejora.',
+        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-4',
@@ -122,6 +125,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Identificación de riesgos y desarrollo de evaluaciones de impacto.',
         fullDesc:
           'Identificamos y evaluamos los riesgos derivados del tratamiento de datos personales y desarrollamos evaluaciones de impacto cuando la naturaleza del tratamiento lo requiere.',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-5',
@@ -131,6 +135,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Contratos de encargo, transferencias y corresponsabilidad.',
         fullDesc:
           'Elaboramos y revisamos contratos de encargo, transferencia, corresponsabilidad y otras relaciones jurídicas que involucren tratamiento o intercambio de datos personales.',
+        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-6',
@@ -140,6 +145,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Protección de datos desde el diseño en apps, IA, biometría y videovigilancia.',
         fullDesc:
           'Asesoramos en la incorporación de protección de datos desde el diseño en aplicaciones, plataformas, inteligencia artificial, biometría, videovigilancia y otros proyectos tecnológicos.',
+        image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-7',
@@ -149,6 +155,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Evaluación jurídica inmediata y determinación de acciones y notificaciones.',
         fullDesc:
           'Acompañamos la evaluación jurídica de incidentes de seguridad y la determinación de las acciones y notificaciones que correspondan.',
+        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-8',
@@ -158,6 +165,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Instrumentos jurídicos y organizativos para integrar la protección a los procesos.',
         fullDesc:
           'Desarrollamos instrumentos jurídicos y organizativos que permitan integrar la protección de datos a los procesos de la organización.',
+        image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-9',
@@ -167,6 +175,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Capacitaciones generales o especializadas para directivos y equipos operativos.',
         fullDesc:
           'Diseñamos capacitaciones generales o especializadas para equipos directivos, jurídicos, comerciales, tecnológicos, talento humano y demás áreas que intervienen en el tratamiento de información.',
+        image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80',
       },
     ],
   },
@@ -204,6 +213,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Licenciamiento, suscripción, implementación, soporte y mantenimiento.',
         fullDesc:
           'Elaboramos, revisamos y negociamos contratos de licenciamiento, suscripción, implementación, soporte, mantenimiento y prestación de servicios tecnológicos.',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'tech-2',
@@ -213,6 +223,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Alcance, entregables, niveles de servicio, propiedad intelectual y garantías.',
         fullDesc:
           'Definimos jurídicamente aspectos relacionados con alcance, entregables, niveles de servicio, propiedad intelectual, aceptación, responsabilidades, garantías y terminación.',
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'tech-3',
@@ -222,6 +233,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Contratación de infraestructura Cloud, seguridad y continuidad de servicio.',
         fullDesc:
           'Asesoramos en la contratación de infraestructura, plataformas y servicios en la nube, incluyendo responsabilidades, seguridad, disponibilidad, tratamiento de información y continuidad del servicio.',
+        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'tech-4',
@@ -231,6 +243,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Riesgos contractuales, confidencialidad, propiedad intelectual y datos.',
         fullDesc:
           'Analizamos y estructuramos relaciones con proveedores tecnológicos, considerando riesgos contractuales, confidencialidad, seguridad, propiedad intelectual y protección de datos.',
+        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'tech-5',
@@ -240,6 +253,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Términos y condiciones, contratación electrónica y privacidad en plataformas.',
         fullDesc:
           'Asesoramos en términos y condiciones, contratación electrónica, relaciones con consumidores, privacidad y demás aspectos jurídicos de plataformas y servicios digitales.',
+        image: 'https://images.unsplash.com/photo-1556742049-0a67e5577ff0?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'tech-6',
@@ -249,6 +263,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Riesgos jurídicos en soluciones de IA y tecnologías emergentes.',
         fullDesc:
           'Analizamos los riesgos jurídicos asociados con la implementación y utilización de soluciones basadas en inteligencia artificial y otras tecnologías emergentes.',
+        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'tech-7',
@@ -258,6 +273,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Licencias, titularidad de desarrollos, derechos sobre software y contenidos.',
         fullDesc:
           'Asesoramos en licencias, titularidad de desarrollos, derechos sobre software, contenidos y otros activos vinculados con proyectos tecnológicos.',
+        image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'tech-8',
@@ -267,6 +283,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Acuerdos jurídicamente sólidos y comercialmente viables.',
         fullDesc:
           'Acompañamos negociaciones entre clientes y proveedores para identificar riesgos y construir acuerdos jurídicamente sólidos y comercialmente viables.',
+        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
       },
     ],
   },
@@ -305,6 +322,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Solicitud, modificación, renovación y gestión de títulos ante ARCOTEL.',
         fullDesc:
           'Asesoramos en la identificación, solicitud, modificación, renovación y gestión de títulos habilitantes necesarios para la prestación de servicios de telecomunicaciones.',
+        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-2',
@@ -314,6 +332,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Requisitos jurídicos y regulatorios para modelos de negocio de telecomunicaciones.',
         fullDesc:
           'Analizamos los requisitos jurídicos y regulatorios aplicables a proyectos y modelos de negocio que involucren servicios de telecomunicaciones.',
+        image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-3',
@@ -323,6 +342,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Asesoría en uso, asignación y regulación de frecuencias del espectro.',
         fullDesc:
           'Brindamos asesoría jurídica en asuntos relacionados con el uso, asignación y regulación del espectro.',
+        image: 'https://images.unsplash.com/photo-1508873696983-2df57046475a?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-4',
@@ -332,6 +352,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Segmento espacial, Internet satelital y comunicaciones móviles por satélite.',
         fullDesc:
           'Acompañamos proyectos relacionados con segmento espacial, servicios satelitales, acceso a Internet y comunicaciones móviles por satélite.',
+        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-5',
@@ -341,6 +362,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Obligaciones derivadas de títulos habilitantes y disposiciones sectoriales.',
         fullDesc:
           'Asesoramos en el cumplimiento de obligaciones derivadas de títulos habilitantes, regulación sectorial y disposiciones emitidas por las autoridades competentes.',
+        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-6',
@@ -350,6 +372,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Acompañamiento en trámites, requerimientos y procedimientos sancionadores.',
         fullDesc:
           'Brindamos acompañamiento jurídico en trámites, requerimientos y procedimientos administrativos relacionados con la operación de servicios regulados.',
+        image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-7',
@@ -359,6 +382,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Contratos de infraestructura, conectividad, proveedores y proyectos.',
         fullDesc:
           'Elaboramos y revisamos contratos vinculados con infraestructura, conectividad, servicios, proveedores y proyectos del sector.',
+        image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-8',
@@ -368,6 +392,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Gestiones y acompañamiento jurídico ante ARCOTEL y demás autoridades.',
         fullDesc:
           'Acompañamos jurídicamente las gestiones que deban realizarse ante ARCOTEL y otras autoridades o instituciones relacionadas con el proyecto.',
+        image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
       },
     ],
   },
