@@ -74,7 +74,7 @@ export const MILESTONES: MilestoneItem[] = [
     year: '2014 — 2016',
     badge: 'Fundación Boutique',
     title: 'Nacimiento de la Práctica Boutique',
-    description: 'Inicio de la práctica legal especializada fundada por el Abg. Luis Fernando Guerra Padilla, siendo pioneros en brindar asesoramiento jurídico con entendimiento técnico profundo del software y las telecomunicaciones en Ecuador.',
+    description: 'Inicio de la práctica legal especializada fundada por Luis Fernando Guerra Padilla, siendo pioneros en brindar asesoramiento jurídico con entendimiento técnico profundo del software y las telecomunicaciones en Ecuador.',
     highlights: [
       'Pioneros en Derecho Digital Andino',
       'Estructuración de Negocios de Software',

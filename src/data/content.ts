@@ -56,7 +56,7 @@ export const METRICS: Metric[] = [
   {
     value: '100%',
     label: 'Compromiso e independencia',
-    detail: 'Atención personalizada, rigurosa y directa liderada por el Abg. Luis Fernando Guerra.',
+    detail: 'Atención personalizada, rigurosa y directa liderada por Luis Fernando Guerra.',
   },
 ];
 
@@ -539,7 +539,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     category: 'Contratos Tech & SaaS',
     date: '20 de Febrero, 2026',
     readTime: '6 min de lectura',
-    author: 'Abg. Luis Fernando Guerra Padilla',
+    author: 'Luis Fernando Guerra Padilla',
     summary: 'En los negocios tecnológicos, un contrato rara vez funciona de manera aislada. Claves para modelar las distintas relaciones entre fabricantes, distribuidores, partners, canales, clientes y usuarios finales manteniendo coherencia jurídica y comercial.',
     keyPoints: [
       'Condiciones comerciales y reglas aplicables a cada canal de distribución.',
@@ -565,7 +565,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     category: 'Contratos Tech & SaaS',
     date: '12 de Febrero, 2026',
     readTime: '7 min de lectura',
-    author: 'Abg. Luis Fernando Guerra Padilla',
+    author: 'Luis Fernando Guerra Padilla',
     summary: 'La función jurídica dentro de una empresa va mucho más allá de responder consultas o gestionar contingencias. La asesoría legal puede aportar al negocio desde tres dimensiones: prevención, contención y generación de oportunidades.',
     keyPoints: [
       'Prevención: Anticiparse a los riesgos participando oportunamente en nuevos productos, decisiones comerciales y proyectos tecnológicos.',
@@ -589,7 +589,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     category: 'LOPDP & Privacidad',
     date: '25 de Enero, 2026',
     readTime: '6 min de lectura',
-    author: 'Abg. Luis Fernando Guerra Padilla',
+    author: 'Luis Fernando Guerra Padilla',
     summary: 'Implementar un marco de protección de datos personales no consiste en replicar políticas, formatos o plantillas de una organización a otra. La metodología real exige entender la organización antes de diseñar su cumplimiento.',
     keyPoints: [
       'Diversidad sectorial: Salud, educación, telecomunicaciones, Fintech, retail, construcción y consumo masivo manejan riesgos totalmente distintos.',
@@ -616,7 +616,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     category: 'LOPDP & Privacidad',
     date: '10 de Enero, 2026',
     readTime: '7 min de lectura',
-    author: 'Abg. Luis Fernando Guerra Padilla',
+    author: 'Luis Fernando Guerra Padilla',
     summary: 'El verdadero valor del Delegado de Protección de Datos aparece cuando conoce suficientemente la organización para convertirse en un punto de conexión entre la normativa y la operación, manteniendo una independencia fundamental.',
     keyPoints: [
       'El DPD como punto de conexión: Integrar la normativa a la operación en sectores como educación, salud, retail, construcción y tecnología.',

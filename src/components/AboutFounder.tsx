@@ -29,7 +29,7 @@ export const AboutFounder: React.FC = () => {
   };
 
   const whatsappDirectUrl = `${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(
-    'Hola Abg. Luis Fernando Guerra, me gustaría agendar una reunión para presentarle un requerimiento legal de mi empresa.'
+    'Hola Luis Fernando Guerra, me gustaría agendar una reunión para presentarle un requerimiento legal de mi empresa.'
   )}`;
 
   return (

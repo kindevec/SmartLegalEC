@@ -520,7 +520,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   <source srcSet="/cliente_sinfondo.webp" type="image/webp" />
                   <img
                     src="/cliente_sinfondo.webp"
-                    alt="Abg. Luis Fernando Guerra Padilla - SmartLegalEC"
+                    alt="Luis Fernando Guerra Padilla - SmartLegalEC"
                     width="896"
                     height="1200"
                     className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[450px] object-contain object-bottom drop-shadow-xl block -mb-[1px]"
@@ -608,7 +608,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             <div className="space-y-2 text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start gap-2.5 flex-wrap">
                 <h3 className="font-heading font-extrabold text-lg sm:text-xl lg:text-2xl text-white tracking-tight leading-tight">
-                  Abg. Luis Fernando Guerra Padilla
+                  Luis Fernando Guerra Padilla
                 </h3>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#0A66FF]/20 via-[#0A66FF]/10 to-transparent border border-[#0A66FF]/40 text-[10px] font-extrabold uppercase tracking-widest text-[#93C5FD] font-heading shadow-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse shadow-[0_0_8px_#0A66FF]" />

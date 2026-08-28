@@ -358,7 +358,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   ¿Requieres asesoría sobre este tema en tu empresa?
                 </h4>
                 <p className="text-[11px] text-slate-600">
-                  El Abg. Luis Fernando Guerra Padilla puede evaluar la aplicación directa a tu caso.
+                  Luis Fernando Guerra Padilla puede evaluar la aplicación directa a tu caso.
                 </p>
               </div>
 

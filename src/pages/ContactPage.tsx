@@ -136,7 +136,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
-              Agenda una <strong className="text-white font-semibold">consulta jurídica confidencial</strong> directamente con el <strong className="text-white font-semibold">Abg. Luis Fernando Guerra Padilla</strong> para estructurar una estrategia a la medida de tu empresa.
+              Agenda una <strong className="text-white font-semibold">consulta jurídica confidencial</strong> directamente con <strong className="text-white font-semibold">Luis Fernando Guerra Padilla</strong> para estructurar una estrategia a la medida de tu empresa.
             </p>
           </motion.div>
         </div>
@@ -324,7 +324,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                   ¡Requerimiento Enviado con Éxito!
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed text-justify">
-                  Hemos recibido tu solicitud. El Abg. Luis Fernando Guerra Padilla revisará los antecedentes y se pondrá en contacto contigo en menos de 24 horas.
+                  Hemos recibido tu solicitud. Luis Fernando Guerra Padilla revisará los antecedentes y se pondrá en contacto contigo en menos de 24 horas.
                 </p>
                 <div className="pt-3 flex flex-row justify-center gap-3">
                   <a

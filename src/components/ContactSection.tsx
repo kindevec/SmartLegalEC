@@ -73,7 +73,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenDiagnostic
       other: 'Otra consulta especializada',
     };
 
-    const text = `Hola Abg. Luis Fernando Guerra (SmartLegalEC),
+    const text = `Hola Luis Fernando Guerra (SmartLegalEC),
 Mi nombre es: ${formData.name || 'Cliente'}
 Empresa: ${formData.company || 'No especificada'}
 Correo: ${formData.email || 'No especificado'}
@@ -84,45 +84,46 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
   };
 
   return (
-    <section id="contacto" className="bg-[#0B1D3A] text-white py-20 lg:py-28 border-b border-slate-800 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-800 text-[#93C5FD] border border-slate-700 mb-3">
-            Atención Inmediata
-          </div>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4">
-            Conversemos sobre tu empresa
-          </h2>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-            Coordinamos consultas presenciales en Quito, Ecuador o virtuales a nivel nacional e internacional.
-          </p>
-        </div>
+    <section id="contacto" className="relative py-16 sm:py-20 lg:py-24 bg-[#071326] text-white overflow-hidden border-t border-slate-800">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-radial-[at_top_right] from-blue-900/20 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-radial-[at_bottom_left] from-indigo-900/10 via-transparent to-transparent pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start mb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Direct Consultation Channels & Quick Action Cards */}
+          {/* Columna Izquierda: Información de contacto y WhatsApp directo */}
           <div className="lg:col-span-5 space-y-6">
-            
-            {/* Quick WhatsApp Action Card */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-slate-900 to-[#0F284E] border border-slate-700/80 shadow-lg">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#60A5FA] border border-[#0A66FF]/20 mb-3 font-heading">
+                Contacto Directo
+              </div>
+              <h3 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
+                Conversemos sobre las necesidades de tu empresa
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed text-justify">
+                Estamos disponibles para evaluar tus proyectos, estructurar contratos o acompañar el cumplimiento normativo de tu organización.
+              </p>
+            </div>
+
+            {/* Tarjeta WhatsApp Directo */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-[#0B1D3A] to-[#071326] border border-blue-900/40 shadow-xl relative overflow-hidden">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2.5 rounded-xl bg-[#25D366] text-white">
+                <div className="w-10 h-10 rounded-xl bg-[#25D366]/20 border border-[#25D366]/40 flex items-center justify-center text-[#25D366]">
                   <WhatsAppIcon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg text-white">
-                    Canal Directo por WhatsApp
-                  </h3>
+                  <h4 className="font-heading font-bold text-base sm:text-lg text-white">
+                    Canal Directo de WhatsApp
+                  </h4>
                   <p className="text-xs text-slate-400">
-                    Respuesta rápida y coordinación ejecutiva
+                    Respuesta rápida y confidencial
                   </p>
                 </div>
               </div>
 
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
-                Escríbenos directamente para agendar una sesión inicial o presentar un requerimiento específico con el Abg. Luis Fernando Guerra Padilla.
+                Escríbenos directamente para agendar una sesión inicial o presentar un requerimiento específico con Luis Fernando Guerra Padilla.
               </p>
 
               <a
@@ -357,7 +358,7 @@ Mensaje: ${formData.message || 'Deseo coordinar una reunión de asesoría juríd
                   ¡Mensaje preparado con éxito!
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-                  Gracias {formData.name}. Tu solicitud para <strong className="text-white">{formData.company}</strong> está lista. Para agilizar la respuesta directa con el Abg. Luis Fernando Guerra, puedes enviarla instantáneamente por WhatsApp:
+                  Gracias {formData.name}. Tu solicitud para <strong className="text-white">{formData.company}</strong> está lista. Para agilizar la respuesta directa con Luis Fernando Guerra, puedes enviarla instantáneamente por WhatsApp:
                 </p>
                 <div className="pt-2">
                   <a

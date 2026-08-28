@@ -69,7 +69,7 @@ export const ComplianceDiagnostic: React.FC<ComplianceDiagnosticProps> = ({ isOp
   };
 
   const getWhatsAppDiagnosticUrl = () => {
-    const message = `Hola Abg. Luis Fernando Guerra (SmartLegalEC), completé el Test LOPDP/Tech con resultado: ${result.level} (Score: ${totalScore}/16). Me gustaría agendar un diagnóstico preliminar para mi empresa.`;
+    const message = `Hola Luis Fernando Guerra (SmartLegalEC), completé el Test LOPDP/Tech con resultado: ${result.level} (Score: ${totalScore}/16). Me gustaría agendar un diagnóstico preliminar para mi empresa.`;
     return `${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(message)}`;
   };
 
@@ -192,7 +192,7 @@ export const ComplianceDiagnostic: React.FC<ComplianceDiagnosticProps> = ({ isOp
                 className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-colors shadow-sm"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" />
-                <span>Enviar resultado a Abg. Luis Guerra</span>
+                <span>Enviar resultado a Luis Guerra</span>
               </a>
 
               <button
