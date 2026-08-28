@@ -215,21 +215,26 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
     },
     {
       id: 'primavera',
-      name: 'Unidad Educativa Primavera',
+      name: 'Unidad Educativa Particular Primavera',
       render: () => (
-        <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-md bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-300">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3 h-3">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-              <path d="M6 12v5c3 3 9 3 12 0v-5" />
-            </svg>
-          </div>
+        <div className="flex items-center justify-center gap-2">
+          <picture>
+            <source srcSet="/logos/uep-primavera-logo.webp" type="image/webp" />
+            <img
+              src="/logos/uep-primavera-logo.png"
+              alt="Unidad Educativa Particular Primavera"
+              width="992"
+              height="993"
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-105 brightness-110"
+              loading="lazy"
+            />
+          </picture>
           <div className="flex flex-col">
             <span className="font-heading font-extrabold text-xs sm:text-sm md:text-base leading-none text-slate-200 group-hover:text-white transition-colors whitespace-nowrap">
-              U.E. PRIMAVERA
+              UEP PRIMAVERA
             </span>
             <span className="text-[7px] sm:text-[7.5px] font-semibold tracking-wider text-slate-400 group-hover:text-purple-300 transition-colors uppercase">
-              EDUCACIÓN INTEGRAL
+              EDUCACIÓN PARTICULAR
             </span>
           </div>
         </div>
