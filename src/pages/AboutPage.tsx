@@ -1,33 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PageRoute } from '../types';
-import { BRAND_INFO, METRICS, FOUNDER_PROFILE, TRUSTED_CLIENTS, ABOUT_QUADRANTS, CORPORATE_VALUES } from '../data/content';
+import { BRAND_INFO, METRICS, FOUNDER_PROFILE, CORPORATE_VALUES } from '../data/content';
 import { Timeline, TimelineEntry } from '../components/ui/timeline';
 import { MilestoneCarousel } from '../components/MilestoneCarousel';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { LinkedInIcon } from '../components/LinkedInIcon';
 import { 
-  GraduationCap, 
-  Briefcase, 
-  Users, 
-  FileText, 
   Award, 
   Shield, 
   Zap, 
   HeartHandshake, 
   ArrowRight, 
-  ExternalLink,
-  Sparkles,
-  Server,
-  Database,
-  Cpu,
-  Scale,
   Quote,
-  CheckCircle2,
   ShieldCheck,
   Code2,
   Radio,
-  Building2
+  Scale
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -49,7 +38,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           {/* Visual 2-Column Founder Showcase */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch w-full">
             {/* Left: Comprehensive Founder Bio & Philosophy */}
-            <div className="lg:col-span-7 flex flex-col justify-between space-y-4 px-4 sm:px-0">
+            <div className="lg:col-span-7 flex flex-col justify-start space-y-4 px-4 sm:px-0">
               <div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading tracking-tight">
                   {FOUNDER_PROFILE.name}
@@ -65,7 +54,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               </div>
 
               {/* Mi forma de trabajar / Work Philosophy Quote Block */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-[#0B1D3A] to-[#071326] text-white space-y-2 border border-slate-800 shadow-md my-2">
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-[#0B1D3A] to-[#071326] text-white space-y-2 border border-slate-800 shadow-md">
                 <div className="flex items-center gap-2 text-[#D4AF37]">
                   <Quote className="w-4 h-4 shrink-0" />
                   <span className="text-xs font-bold uppercase tracking-wider font-heading">{FOUNDER_PROFILE.workingPhilosophy.title}</span>
@@ -100,7 +89,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             </div>
 
             {/* Right: High-Impact Visual Photo Card & 4 Experience Pillars */}
-            <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-5 flex flex-col justify-start space-y-4">
               <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200 shadow-md group min-h-[280px] sm:min-h-[320px] h-72 sm:h-80 w-full">
                 <picture className="absolute inset-0 w-full h-full block">
                   <source srcSet="/cliente.avif" type="image/avif" />
@@ -144,9 +133,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   ))}
                 </div>
               </div>
-              <p className="mt-3 text-xs sm:text-sm font-medium text-slate-600 leading-relaxed text-center italic">
-                "Una solución jurídica debe ser técnicamente correcta, pero también debe funcionar para el negocio."
-              </p>
             </div>
           </div>
         </div>
@@ -154,198 +140,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 02. FORMA DE TRABAJAR & EXPERIENCIA PROFESIONAL
-    // ==========================================
-    {
-      title: "Pilares de Excelencia",
-      badge: "02. CUATRO CUADRANTES",
-      subtitle: "Formación, Práctica, Gremio & Publicaciones",
-      content: (
-        <div className="space-y-4 w-full">
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Cuatro dimensiones clave que integran formación universitaria, trayectoria especializada, liderazgo gremial y difusión jurídica:
-          </p>
-
-          {/* 4 Visual Bento Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
-            {/* Cuadrante 1: Formación Académica */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full">
-              <img
-                src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=700&q=80"
-                alt={ABOUT_QUADRANTS[0].title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
-              <div className="relative z-10 space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-[#0A66FF]/20 border border-[#0A66FF]/50 flex items-center justify-center backdrop-blur-md">
-                    <GraduationCap className="w-4 h-4 text-blue-300" />
-                  </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">{ABOUT_QUADRANTS[0].title}</h4>
-                </div>
-                <ul className="space-y-1 text-[11px] text-slate-300">
-                  {ABOUT_QUADRANTS[0].items.map((item, idx) => (
-                    <li key={idx} className="leading-relaxed text-justify">• {item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Cuadrante 2: Experiencia y Especialización */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full">
-              <img
-                src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=700&q=80"
-                alt={ABOUT_QUADRANTS[1].title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
-              <div className="relative z-10 space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-[#D4AF37]/20 border border-[#D4AF37]/50 flex items-center justify-center backdrop-blur-md">
-                    <Briefcase className="w-4 h-4 text-[#D4AF37]" />
-                  </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">{ABOUT_QUADRANTS[1].title}</h4>
-                </div>
-                <ul className="space-y-1 text-[11px] text-slate-300">
-                  {ABOUT_QUADRANTS[1].items.map((item, idx) => (
-                    <li key={idx} className="leading-relaxed text-justify">• {item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Cuadrante 3: Actividad Profesional */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full">
-              <img
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80"
-                alt={ABOUT_QUADRANTS[2].title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
-              <div className="relative z-10 space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-purple-500/20 border border-purple-400/50 flex items-center justify-center backdrop-blur-md">
-                    <Users className="w-4 h-4 text-purple-300" />
-                  </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">{ABOUT_QUADRANTS[2].title}</h4>
-                </div>
-                <ul className="space-y-1 text-[11px] text-slate-300">
-                  {ABOUT_QUADRANTS[2].items.map((item, idx) => (
-                    <li key={idx} className="leading-relaxed text-justify">• {item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Cuadrante 4: Publicaciones y Medios */}
-            <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200/90 shadow-sm group min-h-[220px] flex flex-col justify-end p-5 w-full">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80"
-                alt={ABOUT_QUADRANTS[3].title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/20" />
-              <div className="relative z-10 space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center backdrop-blur-md">
-                    <FileText className="w-4 h-4 text-emerald-300" />
-                  </div>
-                  <h4 className="text-sm sm:text-base font-bold text-white font-heading">{ABOUT_QUADRANTS[3].title}</h4>
-                </div>
-                <ul className="space-y-1 text-[11px] text-slate-300">
-                  {ABOUT_QUADRANTS[3].items.map((item, idx) => (
-                    <li key={idx} className="leading-relaxed text-justify">• {item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-
-    // ==========================================
-    // 03. ORGANIZACIONES & CLIENTES
-    // ==========================================
-    {
-      title: "Organizaciones & Clientes",
-      badge: "03. CLIENTES DESTACADOS",
-      subtitle: "Empresas que Confían en Nosotros",
-      content: (
-        <div className="space-y-5 w-full">
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Acompañamos a empresas nacionales, grupos regionales y multinacionales de consumo masivo, salud, seguros, educación e industria en sus desafíos jurídicos más críticos:
-          </p>
-
-          {/* 12 Trusted Clients Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 w-full">
-            {TRUSTED_CLIENTS.map((client) => (
-              <div 
-                key={client.id}
-                className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#0A66FF]/40 hover:shadow-xs transition-all flex flex-col justify-between space-y-2 group"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 font-heading">
-                      {client.badge}
-                    </span>
-                    {client.url ? (
-                      <a
-                        href={client.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-slate-100 hover:bg-[#0A66FF] text-slate-500 hover:text-white transition-all cursor-pointer shadow-2xs group/btn"
-                        title={`Visitar sitio web oficial de ${client.name}`}
-                        aria-label={`Visitar sitio web oficial de ${client.name}`}
-                      >
-                        <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
-                      </a>
-                    ) : (
-                      <div className="w-6 h-6 rounded-md bg-slate-50 flex items-center justify-center text-slate-300">
-                        <Building2 className="w-3.5 h-3.5" />
-                      </div>
-                    )}
-                  </div>
-                  {client.url ? (
-                    <a
-                      href={client.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-xs sm:text-sm font-bold text-slate-900 font-heading leading-tight hover:text-[#0A66FF] transition-colors"
-                    >
-                      {client.name}
-                    </a>
-                  ) : (
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-900 font-heading leading-tight group-hover:text-[#0A66FF] transition-colors">
-                      {client.name}
-                    </h4>
-                  )}
-                  <p className="text-[11px] font-semibold text-[#0A66FF] mt-0.5">
-                    {client.category}
-                  </p>
-                </div>
-                {client.description && (
-                  <p className="text-[11px] text-slate-500 leading-relaxed text-justify pt-1 border-t border-slate-100">
-                    {client.description}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ),
-    },
-
-    // ==========================================
-    // 04. TRAYECTORIA & HITOS (Dynamic Interactive Carousel)
+    // 02. TRAYECTORIA & HITOS (Dynamic Interactive Carousel)
     // ==========================================
     {
       title: "Trayectoria & Hitos",
-      badge: "04. EVOLUCIÓN HISTÓRICA",
+      badge: "02. EVOLUCIÓN HISTÓRICA",
       subtitle: "2014 — 2026",
       content: (
         <div className="space-y-4 w-full">
@@ -359,11 +158,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 05. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
+    // 03. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
     // ==========================================
     {
       title: "Filosofía Corporativa",
-      badge: "05. VALORES RECTORES",
+      badge: "03. VALORES RECTORES",
       subtitle: "Principios de Nuestra Práctica",
       content: (
         <div className="space-y-4 w-full">
@@ -458,16 +257,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 06. IMPACTO & RESULTADOS (Canvas Linear Divider)
+    // 04. IMPACTO & RESULTADOS (Canvas Linear Divider)
     // ==========================================
     {
       title: "Impacto & Resultados",
-      badge: "06. MÉTRICAS CLAVE",
+      badge: "04. MÉTRICAS CLAVE",
       subtitle: "Resultados Tangibles en Ecuador",
       content: (
         <div className="space-y-6 w-full">
-          {/* Metrics Strip */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 border-y border-slate-200 py-6 sm:py-8 w-full bg-white rounded-2xl">
+          {/* Metrics Strip without outer box */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 border-y border-slate-200 py-6 sm:py-8 w-full">
             {METRICS.map((metric, idx) => (
               <div 
                 key={idx} 
@@ -490,11 +289,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 07. ALIANZA & CONTACTO DIRECTO
+    // 05. ALIANZA & CONTACTO DIRECTO
     // ==========================================
     {
       title: "Alianza & Contacto",
-      badge: "07. CONVERSACIONES ESTRATÉGICAS",
+      badge: "05. CONVERSACIONES ESTRATÉGICAS",
       subtitle: "Hablemos de tu Organización",
       content: (
         <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border border-slate-800 overflow-hidden space-y-5 w-full">

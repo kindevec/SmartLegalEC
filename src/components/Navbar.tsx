@@ -1,18 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { BRAND_INFO } from '../data/content';
 import { PageRoute } from '../types';
-import { Sparkles, ArrowUpRight } from 'lucide-react';
+import { 
+  Sparkles, 
+  ArrowUpRight, 
+  ChevronDown, 
+  ShieldCheck, 
+  Code2, 
+  Radio, 
+  Layers 
+} from 'lucide-react';
 
 interface NavbarProps {
   currentPage: PageRoute;
-  onNavigate: (route: PageRoute) => void;
+  onNavigate: (route: PageRoute, params?: { areaId?: 'lopdp' | 'tech' | 'telecom'; articleSlug?: string; areaFilter?: 'all' | 'lopdp' | 'tech' | 'telecom' }) => void;
   onOpenDiagnostic: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenDiagnostic }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     let ticking = false;
@@ -38,8 +48,28 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenD
   }, []);
 
   const handleNavClick = (route: PageRoute) => {
+    setServicesDropdownOpen(false);
     onNavigate(route);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleServiceSelect = (filter: 'all' | 'lopdp' | 'tech' | 'telecom') => {
+    setServicesDropdownOpen(false);
+    onNavigate('areas', { areaFilter: filter });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleMouseEnterServices = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setServicesDropdownOpen(true);
+  };
+
+  const handleMouseLeaveServices = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setServicesDropdownOpen(false);
+    }, 180);
   };
 
   const navLinks: { label: string; route: PageRoute }[] = [
@@ -50,10 +80,50 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenD
     { label: 'Contacto', route: 'contact' },
   ];
 
+  const serviceCategories: {
+    id: 'all' | 'lopdp' | 'tech' | 'telecom';
+    label: string;
+    description: string;
+    icon: React.ComponentType<{ className?: string }>;
+    colorClass: string;
+    bgClass: string;
+  }[] = [
+    {
+      id: 'all',
+      label: 'Todas las áreas (3)',
+      description: 'Catálogo integral de servicios especializados',
+      icon: Layers,
+      colorClass: 'text-[#D4AF37]',
+      bgClass: 'bg-[#D4AF37]/15 border-[#D4AF37]/30',
+    },
+    {
+      id: 'lopdp',
+      label: 'Protección de Datos y Privacidad',
+      description: 'Adecuación LOPDP, función de DPD externo y auditorías',
+      icon: ShieldCheck,
+      colorClass: 'text-[#0A66FF]',
+      bgClass: 'bg-[#0A66FF]/15 border-[#0A66FF]/30',
+    },
+    {
+      id: 'tech',
+      label: 'Tecnología y Negocios Digitales',
+      description: 'Contratos SaaS, desarrollo software, IA y cloud computing',
+      icon: Code2,
+      colorClass: 'text-purple-400',
+      bgClass: 'bg-purple-500/15 border-purple-500/30',
+    },
+    {
+      id: 'telecom',
+      label: 'Telecomunicaciones y Regulación',
+      description: 'Títulos habilitantes, gestión ARCOTEL y servicios TIC',
+      icon: Radio,
+      colorClass: 'text-[#38BDF8]',
+      bgClass: 'bg-sky-500/15 border-sky-500/30',
+    },
+  ];
+
   // Cálculo de materialización descendente (de arriba hacia abajo)
-  // Stop sólido que desciende progresivamente de 0% a 100%
   const solidStop = Math.max(0, scrollProgress * 115 - 15);
-  // Stop de desvanecimiento suave que se proyecta hacia abajo
   const fadeStop = Math.min(100, scrollProgress * 130 + 15);
 
   const bgAlpha = Math.min(0.98, 0.15 + scrollProgress * 0.83);
@@ -96,7 +166,71 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenD
         {/* Center Navigation Bar */}
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => {
-            const isActive = currentPage === link.route || (link.route === 'areas' && currentPage === 'area-detail');
+            const isServices = link.route === 'areas';
+            const isActive = currentPage === link.route || (isServices && currentPage === 'area-detail');
+
+            if (isServices) {
+              return (
+                <div
+                  key={link.label}
+                  className="relative group py-1"
+                  onMouseEnter={handleMouseEnterServices}
+                  onMouseLeave={handleMouseLeaveServices}
+                >
+                  <button
+                    onClick={() => handleNavClick('areas')}
+                    className={`text-xs font-semibold tracking-wide transition-all cursor-pointer relative py-1 inline-flex items-center gap-1 ${
+                      isActive
+                        ? 'text-[#D4AF37]'
+                        : 'text-slate-300 hover:text-white'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180 text-[#D4AF37]' : 'text-slate-400 group-hover:text-white'}`} />
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D4AF37] rounded-full" />
+                    )}
+                  </button>
+
+                  {/* Dropdown Menu for Servicios */}
+                  {servicesDropdownOpen && (
+                    <div 
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 sm:w-96 p-2 rounded-2xl bg-[#071326]/95 backdrop-blur-xl border border-slate-700/80 shadow-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-200 space-y-1"
+                    >
+                      <div className="px-3 py-1.5 border-b border-slate-800">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-heading">
+                          Áreas de Especialización
+                        </span>
+                      </div>
+
+                      {serviceCategories.map((item) => {
+                        const IconComponent = item.icon;
+                        return (
+                          <button
+                            key={item.id}
+                            onClick={() => handleServiceSelect(item.id)}
+                            className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800/80 transition-all flex items-start gap-3 group/item cursor-pointer"
+                          >
+                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 border ${item.bgClass}`}>
+                              <IconComponent className={`w-4 h-4 ${item.colorClass}`} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-bold text-slate-100 group-hover/item:text-[#D4AF37] transition-colors leading-tight">
+                                {item.label}
+                              </div>
+                              <div className="text-[11px] text-slate-400 leading-snug mt-0.5">
+                                {item.description}
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             return (
               <button
                 key={link.label}

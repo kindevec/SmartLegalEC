@@ -834,117 +834,81 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
           </div>
 
-          {/* Minimalist Editorial List (Zero nested boxes) */}
-          <div className="divide-y divide-slate-200">
+          {/* Full-Space Visual Grid of Cases (No encapsulated thumbnails) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-4">
             {legalWorks.map((work, idx) => (
               <motion.article
                 key={work.id}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.06 }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
                 onClick={() => onNavigate('area-detail', { areaId: work.routeId })}
-                className="py-6 sm:py-8 -mx-3 px-3 sm:-mx-6 sm:px-6 rounded-2xl transition-all duration-200 cursor-pointer group hover:bg-[#F0F4FA]/50"
+                className="relative rounded-2xl overflow-hidden min-h-[380px] sm:min-h-[420px] p-5 sm:p-7 flex flex-col justify-between group border border-slate-200/80 shadow-md hover:shadow-xl hover:border-[#0A66FF]/60 transition-all duration-300 cursor-pointer"
               >
-                {/* Mobile View */}
-                <div className="flex flex-col gap-3 lg:hidden">
-                  <div className="w-full aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/60 shadow-2xs">
-                    <picture className="w-full h-full block">
-                      <source srcSet={work.imageAvif} type="image/avif" />
-                      <source srcSet={work.imageWebp} type="image/webp" />
-                      <img 
-                        src={work.image} 
-                        alt={work.title} 
-                        width="1200"
-                        height="800"
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </picture>
-                  </div>
-                  <h3 className="font-heading font-extrabold text-base text-slate-900 leading-snug">
-                    {work.title}
-                  </h3>
-                  <div className="pt-1">
-                    <span className="w-full inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold bg-[#0A66FF] text-white shadow-xs transition-transform active:scale-98">
-                      <span>Consultar área</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
+                {/* Full-Bleed Background Image (Occupies 100% of the case space) */}
+                <picture className="absolute inset-0 w-full h-full block">
+                  <source srcSet={work.imageAvif} type="image/avif" />
+                  <source srcSet={work.imageWebp} type="image/webp" />
+                  <img 
+                    src={work.image} 
+                    alt={work.title} 
+                    width="1200"
+                    height="800"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-106"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+
+                {/* Dark Gradient Overlay for Maximum Readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 via-45% to-slate-950/30 group-hover:via-slate-950/80 transition-colors" />
+
+                {/* Top Bar: Sector Badge, Number & Date */}
+                <div className="relative z-10 flex items-center justify-between gap-2">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#071326]/90 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-xs font-heading">
+                    0{idx + 1} • {work.sector}
+                  </span>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider font-mono px-2 py-0.5 rounded-md bg-slate-900/60 backdrop-blur-xs border border-white/10">
+                    {work.date}
+                  </span>
                 </div>
 
-                {/* Desktop View */}
-                <div className="hidden lg:grid lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
-                  {/* Left Column: Metadata and Case Info */}
-                  <div className="lg:col-span-9 grid grid-cols-12 gap-6 items-start">
-                    <div className="col-span-3 space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs font-bold text-[#D4AF37]">
-                          0{idx + 1}
-                        </span>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">
-                          {work.date}
-                        </span>
-                      </div>
-                      <span className="text-xs font-bold text-[#0A66FF] uppercase tracking-wider block font-heading">
-                        {work.sector}
-                      </span>
-                      <span className="text-[11px] text-slate-500 font-medium block">
-                        {work.category}
-                      </span>
-                    </div>
+                {/* Bottom Content: Category, Title, Description, Impact & Tags */}
+                <div className="relative z-10 space-y-2.5 pt-10">
+                  <span className="text-[11px] font-bold text-[#60A5FA] uppercase tracking-wider block font-heading">
+                    {work.category}
+                  </span>
 
-                    <div className="col-span-9 space-y-2">
-                      <h3 className="font-heading font-extrabold text-base sm:text-lg lg:text-xl text-slate-900 group-hover:text-[#0A66FF] transition-colors leading-snug">
-                        {work.title}
-                      </h3>
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg lg:text-xl text-white group-hover:text-[#93C5FD] transition-colors leading-snug">
+                    {work.title}
+                  </h3>
 
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify sm:text-left font-normal">
-                        {work.description}
-                      </p>
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed text-justify font-normal line-clamp-3">
+                    {work.description}
+                  </p>
 
-                      <div className="pt-1 flex items-start gap-2 text-xs">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
-                        <p className="font-semibold text-slate-800 leading-snug">
-                          <strong className="text-slate-900 font-bold">Impacto:</strong> {work.outcome}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-[11px] text-slate-400">
-                        <span className="font-semibold text-slate-500">Materia:</span>
-                        {work.tags.map((tag, tIdx) => (
-                          <span
-                            key={tIdx}
-                            className="text-slate-600 after:content-['•'] last:after:content-none after:ml-2 after:text-slate-300"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="pt-1 flex items-start gap-2 text-xs">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1.5" />
+                    <p className="font-medium text-slate-200 leading-snug text-xs">
+                      <strong className="text-white font-bold">Impacto:</strong> {work.outcome}
+                    </p>
                   </div>
 
-                  {/* Right Column: Case Image & Arrow */}
-                  <div className="lg:col-span-3 flex items-center justify-end gap-4 w-full">
-                    <div className="flex-1 aspect-[3/2] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-2xs relative group-hover:border-[#0A66FF]/60 transition-all">
-                      <picture className="w-full h-full block">
-                        <source srcSet={work.imageAvif} type="image/avif" />
-                        <source srcSet={work.imageWebp} type="image/webp" />
-                        <img 
-                          src={work.image} 
-                          alt={work.title} 
-                          width="1200"
-                          height="800"
-                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-104"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </picture>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="pt-2 flex flex-wrap items-center justify-between gap-3 border-t border-white/10">
+                    <div className="flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] text-slate-300">
+                      {work.tags.map((tag, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-2 py-0.5 rounded-md bg-white/10 text-slate-200 backdrop-blur-xs"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
 
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-slate-200 group-hover:border-[#0A66FF] group-hover:bg-[#0A66FF] text-slate-400 group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs group-hover:scale-105 shrink-0">
+                    <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#D4AF37] group-hover:text-white transition-colors">
+                      <span>Consultar</span>
                       <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>

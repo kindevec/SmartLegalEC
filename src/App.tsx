@@ -39,6 +39,7 @@ const ContactPage = lazyWithRetry(() => import('./pages/ContactPage').then(m => 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageRoute>('home');
   const [selectedAreaId, setSelectedAreaId] = useState<'lopdp' | 'tech' | 'telecom'>('lopdp');
+  const [selectedAreaFilter, setSelectedAreaFilter] = useState<'all' | 'lopdp' | 'tech' | 'telecom'>('all');
   const [selectedArticleSlug, setSelectedArticleSlug] = useState<string | undefined>(undefined);
   const [diagnosticModalOpen, setDiagnosticModalOpen] = useState(false);
 
@@ -104,9 +105,17 @@ export default function App() {
 
   const navigateTo = (
     route: PageRoute,
-    params?: { areaId?: 'lopdp' | 'tech' | 'telecom'; articleSlug?: string }
+    params?: { 
+      areaId?: 'lopdp' | 'tech' | 'telecom'; 
+      articleSlug?: string;
+      areaFilter?: 'all' | 'lopdp' | 'tech' | 'telecom';
+    }
   ) => {
     let targetPath = '/';
+
+    if (params?.areaFilter) {
+      setSelectedAreaFilter(params.areaFilter);
+    }
 
     if (params?.areaId) {
       setSelectedAreaId(params.areaId);
@@ -174,6 +183,8 @@ export default function App() {
             <PracticeAreasPage
               onNavigate={navigateTo}
               onOpenDiagnostic={() => setDiagnosticModalOpen(true)}
+              initialFilter={selectedAreaFilter}
+              onFilterChange={setSelectedAreaFilter}
             />
           )}
 
