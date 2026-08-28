@@ -4,6 +4,7 @@ import { PageRoute } from '../types';
 import { BRAND_INFO, METRICS, FOUNDER_PROFILE, CORPORATE_VALUES } from '../data/content';
 import { Timeline, TimelineEntry } from '../components/ui/timeline';
 import { MilestoneCarousel } from '../components/MilestoneCarousel';
+import { ExperienceCardRotator } from '../components/ExperienceCardRotator';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { LinkedInIcon } from '../components/LinkedInIcon';
 import { 
@@ -12,11 +13,7 @@ import {
   Zap, 
   HeartHandshake, 
   ArrowRight, 
-  Quote,
-  ShieldCheck,
-  Code2,
-  Radio,
-  Scale
+  Quote
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -111,28 +108,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
-              {/* 4 Professional Experience Pillars */}
-              <div className="space-y-2 px-4 sm:px-0">
-                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-heading">
-                  Experiencia Profesional
-                </h4>
-                <div className="space-y-2">
-                  {FOUNDER_PROFILE.professionalExperience.map((exp, expIdx) => (
-                    <div key={expIdx} className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-2.5">
-                      <div className="w-6 h-6 rounded-lg bg-[#0A66FF]/10 border border-[#0A66FF]/20 flex items-center justify-center shrink-0 mt-0.5">
-                        {exp.icon === 'ShieldCheck' && <ShieldCheck className="w-3.5 h-3.5 text-[#0A66FF]" />}
-                        {exp.icon === 'Code2' && <Code2 className="w-3.5 h-3.5 text-[#0A66FF]" />}
-                        {exp.icon === 'Radio' && <Radio className="w-3.5 h-3.5 text-[#0A66FF]" />}
-                        {exp.icon === 'Scale' && <Scale className="w-3.5 h-3.5 text-[#0A66FF]" />}
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-xs font-bold text-slate-900">{exp.area}</div>
-                        <div className="text-[11px] text-slate-600 leading-relaxed text-justify">{exp.description}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              {/* Rotating Professional Experience Cards */}
+              <ExperienceCardRotator items={FOUNDER_PROFILE.professionalExperience} />
             </div>
           </div>
         </div>
