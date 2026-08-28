@@ -95,7 +95,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Evaluación de brechas y desarrollo de medidas jurídicas y organizativas necesarias.',
         fullDesc:
           'Evaluamos el nivel de cumplimiento de la organización, identificamos brechas y desarrollamos las medidas jurídicas y organizativas necesarias para adecuar sus procesos.',
-        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-2',
@@ -115,7 +115,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Revisión de procesos, documentos y prácticas operativas.',
         fullDesc:
           'Revisamos procesos, documentos y prácticas para identificar incumplimientos, riesgos y oportunidades de mejora.',
-        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-4',
@@ -165,7 +165,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Instrumentos jurídicos y organizativos para integrar la protección a los procesos.',
         fullDesc:
           'Desarrollamos instrumentos jurídicos y organizativos que permitan integrar la protección de datos a los procesos de la organización.',
-        image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-9',
@@ -322,7 +322,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Solicitud, modificación, renovación y gestión de títulos ante ARCOTEL.',
         fullDesc:
           'Asesoramos en la identificación, solicitud, modificación, renovación y gestión de títulos habilitantes necesarios para la prestación de servicios de telecomunicaciones.',
-        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-2',
@@ -382,7 +382,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Contratos de infraestructura, conectividad, proveedores y proyectos.',
         fullDesc:
           'Elaboramos y revisamos contratos vinculados con infraestructura, conectividad, servicios, proveedores y proyectos del sector.',
-        image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-8',
@@ -392,7 +392,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Gestiones y acompañamiento jurídico ante ARCOTEL y demás autoridades.',
         fullDesc:
           'Acompañamos jurídicamente las gestiones que deban realizarse ante ARCOTEL y otras autoridades o instituciones relacionadas con el proyecto.',
-        image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
       },
     ],
   },
