@@ -100,7 +100,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'lopdp-2',
         category: 'lopdp',
-        tag: 'DPO / DPD As a Service',
+        tag: 'DPO / DPD Agente Externo',
         title: 'Delegado de Protección de Datos externo',
         shortDesc: 'Supervisión independiente, asesoramiento continuo y acompañamiento.',
         fullDesc:
