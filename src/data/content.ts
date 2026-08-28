@@ -95,7 +95,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Evaluación de brechas y desarrollo de medidas jurídicas y organizativas necesarias.',
         fullDesc:
           'Evaluamos el nivel de cumplimiento de la organización, identificamos brechas y desarrollamos las medidas jurídicas y organizativas necesarias para adecuar sus procesos.',
-        image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-2',
@@ -165,7 +165,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Instrumentos jurídicos y organizativos para integrar la protección a los procesos.',
         fullDesc:
           'Desarrollamos instrumentos jurídicos y organizativos que permitan integrar la protección de datos a los procesos de la organización.',
-        image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-9',
@@ -253,7 +253,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Términos y condiciones, contratación electrónica y privacidad en plataformas.',
         fullDesc:
           'Asesoramos en términos y condiciones, contratación electrónica, relaciones con consumidores, privacidad y demás aspectos jurídicos de plataformas y servicios digitales.',
-        image: 'https://images.unsplash.com/photo-1556742049-0a67e5577ff0?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'tech-6',
@@ -283,7 +283,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Acuerdos jurídicamente sólidos y comercialmente viables.',
         fullDesc:
           'Acompañamos negociaciones entre clientes y proveedores para identificar riesgos y construir acuerdos jurídicamente sólidos y comercialmente viables.',
-        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80',
       },
     ],
   },
