@@ -35,21 +35,19 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
       id: 'metroeje',
       name: 'Metroeje Cía. Ltda.',
       render: () => (
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-[#0A66FF]/20 border border-[#0A66FF]/40 flex items-center justify-center text-[#93C5FD] group-hover:bg-[#0A66FF] group-hover:text-white transition-colors">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-3.5 h-3.5">
-              <path d="M4 19L12 5L20 19" />
-              <path d="M7 14h10" />
-            </svg>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-heading font-black text-sm sm:text-base md:text-lg tracking-wider leading-none text-slate-200 group-hover:text-white transition-colors">
-              METROEJE
-            </span>
-            <span className="text-[7px] sm:text-[8px] font-bold tracking-[0.25em] text-slate-400 group-hover:text-[#93C5FD] transition-colors mt-0.5 uppercase">
-              INFRAESTRUCTURA
-            </span>
-          </div>
+        <div className="flex items-center justify-center">
+          <picture>
+            <source srcSet="/logos/metroeje-logo.webp" type="image/webp" />
+            <img
+              src="/logos/metroeje-logo.png"
+              alt="Metroeje Cía. Ltda."
+              width="1920"
+              height="325"
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-105"
+              style={{ filter: isDark ? 'brightness(0) invert(1)' : 'none' }}
+              loading="lazy"
+            />
+          </picture>
         </div>
       )
     },
@@ -57,13 +55,19 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
       id: 'global-support',
       name: 'Global Support S.A.',
       render: () => (
-        <div className="flex flex-col items-center justify-center">
-          <span className="font-heading font-extrabold text-sm sm:text-base md:text-lg tracking-wider leading-none text-slate-200 group-hover:text-white transition-colors">
-            GLOBAL
-          </span>
-          <span className="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.3em] text-slate-400 group-hover:text-[#93C5FD] transition-colors mt-0.5 uppercase">
-            SUPPORT
-          </span>
+        <div className="flex items-center justify-center">
+          <picture>
+            <source srcSet="/logos/globalsupport-logo.webp" type="image/webp" />
+            <img
+              src="/logos/globalsupport-logo.png"
+              alt="Global Support S.A."
+              width="863"
+              height="234"
+              className="h-6 sm:h-7 md:h-8 w-auto object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-105"
+              style={{ filter: isDark ? 'brightness(1.1)' : 'brightness(0)' }}
+              loading="lazy"
+            />
+          </picture>
         </div>
       )
     },
@@ -83,19 +87,19 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
       id: 'salazar',
       name: 'Centro Oftalmológico Dr. Raúl Salazar',
       render: () => (
-        <div className="flex items-center gap-2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform">
-            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-          <div className="flex flex-col">
-            <span className="font-heading font-bold text-xs sm:text-sm md:text-base leading-none text-slate-200 group-hover:text-white transition-colors whitespace-nowrap">
-              DR. RAÚL SALAZAR
-            </span>
-            <span className="text-[7px] sm:text-[8px] font-semibold tracking-wider text-slate-400 group-hover:text-emerald-300 transition-colors uppercase">
-              CENTRO OFTALMOLÓGICO
-            </span>
-          </div>
+        <div className="flex items-center justify-center">
+          <picture>
+            <source srcSet="/logos/salazar-logo.webp" type="image/webp" />
+            <img
+              src="/logos/salazar-logo.png"
+              alt="Centro Oftalmológico Dr. Raúl Salazar"
+              width="1172"
+              height="328"
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-105"
+              style={{ filter: isDark ? 'brightness(0) invert(1)' : 'none' }}
+              loading="lazy"
+            />
+          </picture>
         </div>
       )
     },
@@ -138,13 +142,19 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
       id: 'ponte-selva',
       name: 'Industria Piolera Ponte Selva',
       render: () => (
-        <div className="flex flex-col items-center justify-center">
-          <span className="font-heading font-extrabold text-xs sm:text-sm md:text-base tracking-wider leading-none text-slate-200 group-hover:text-white transition-colors whitespace-nowrap">
-            PONTE SELVA
-          </span>
-          <span className="text-[7px] sm:text-[7.5px] font-bold tracking-[0.2em] text-slate-400 group-hover:text-[#93C5FD] transition-colors mt-0.5 uppercase">
-            INDUSTRIA PIOLERA
-          </span>
+        <div className="flex items-center justify-center">
+          <picture>
+            <source srcSet="/logos/ponte-selva-logo.webp" type="image/webp" />
+            <img
+              src="/logos/ponte-selva-logo.png"
+              alt="Industria Piolera Ponte Selva"
+              width="519"
+              height="207"
+              className="h-6 sm:h-7 md:h-8 w-auto object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-105"
+              style={{ filter: isDark ? 'brightness(0) invert(1)' : 'none' }}
+              loading="lazy"
+            />
+          </picture>
         </div>
       )
     },
@@ -152,13 +162,18 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
       id: 'medicgo',
       name: 'MedicGo S.A.S.',
       render: () => (
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-md border-2 border-slate-400 group-hover:border-[#38BDF8] flex items-center justify-center text-slate-300 group-hover:text-[#38BDF8] transition-colors">
-            <span className="text-xs sm:text-sm font-black leading-none">+</span>
-          </div>
-          <span className="font-heading font-extrabold text-sm sm:text-base md:text-lg tracking-wider text-slate-200 group-hover:text-white transition-colors">
-            MEDICGO
-          </span>
+        <div className="flex items-center justify-center">
+          <picture>
+            <source srcSet="/logos/medicgo-logo.webp" type="image/webp" />
+            <img
+              src="/logos/medicgo-logo.png"
+              alt="MedicGo S.A.S."
+              width="208"
+              height="55"
+              className="h-6 sm:h-7 md:h-8 w-auto object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-105 brightness-110"
+              loading="lazy"
+            />
+          </picture>
         </div>
       )
     },
