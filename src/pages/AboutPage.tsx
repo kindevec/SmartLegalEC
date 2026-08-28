@@ -87,9 +87,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Right: High-Impact Visual Photo Card & 4 Experience Pillars */}
+            {/* Right: High-Impact Visual Photo Card */}
             <div className="lg:col-span-5 flex flex-col justify-start space-y-4">
-              <div className="relative rounded-none sm:rounded-2xl overflow-hidden border-y sm:border border-slate-200 shadow-md group min-h-[280px] sm:min-h-[320px] h-72 sm:h-80 w-full">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md group min-h-[300px] sm:min-h-[360px] lg:min-h-[420px] h-full w-full">
                 <picture className="absolute inset-0 w-full h-full block">
                   <source srcSet="/cliente.avif" type="image/avif" />
                   <source srcSet="/cliente.webp" type="image/webp" />
@@ -109,52 +109,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   </p>
                 </div>
               </div>
-
-              {/* All 4 Professional Experience Pillars Fully Visible */}
-              <div className="space-y-3 px-4 sm:px-0">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#0A66FF]" />
-                  <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-heading">
-                    Experiencia Profesional
-                  </h4>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {FOUNDER_PROFILE.professionalExperience.map((exp, idx) => {
-                    const iconMap: Record<string, React.ReactNode> = {
-                      ShieldCheck: <ShieldCheck className="w-4 h-4 text-[#0A66FF]" />,
-                      Code2: <Code2 className="w-4 h-4 text-[#38BDF8]" />,
-                      Radio: <Radio className="w-4 h-4 text-[#818CF8]" />,
-                      Scale: <Scale className="w-4 h-4 text-[#D4AF37]" />,
-                    };
-                    const bgMap = [
-                      'bg-[#0A66FF]/10 border-[#0A66FF]/20',
-                      'bg-[#38BDF8]/10 border-[#38BDF8]/20',
-                      'bg-[#818CF8]/10 border-[#818CF8]/20',
-                      'bg-[#D4AF37]/10 border-[#D4AF37]/25',
-                    ];
-
-                    return (
-                      <div
-                        key={idx}
-                        className="p-3 sm:p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-blue-300 hover:shadow-xs transition-all flex flex-col justify-start space-y-1.5"
-                      >
-                        <div className="flex items-center gap-2">
-                          <div className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 ${bgMap[idx % bgMap.length]}`}>
-                            {iconMap[exp.icon] || <ShieldCheck className="w-4 h-4 text-[#0A66FF]" />}
-                          </div>
-                          <h5 className="text-xs font-bold text-slate-900 leading-tight">
-                            {exp.area}
-                          </h5>
-                        </div>
-                        <p className="text-[11px] text-slate-600 leading-relaxed text-justify font-normal">
-                          {exp.description}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -162,11 +116,63 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 02. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
+    // 02. EXPERIENCIA & PRÁCTICA (Nueva sección entre Fundador y Valores)
+    // ==========================================
+    {
+      title: "Experiencia Profesional",
+      badge: "02. EXPERIENCIA & TRAYECTORIA",
+      subtitle: "Sectores Clave de Asesoría Jurídica",
+      content: (
+        <div className="space-y-4 w-full">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+            Práctica jurídica especializada con enfoque transversal en sectores altamente regulados y proyectos tecnológicos:
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 w-full">
+            {FOUNDER_PROFILE.professionalExperience.map((exp, idx) => {
+              const iconMap: Record<string, React.ReactNode> = {
+                ShieldCheck: <ShieldCheck className="w-5 h-5 text-[#0A66FF]" />,
+                Code2: <Code2 className="w-5 h-5 text-[#38BDF8]" />,
+                Radio: <Radio className="w-5 h-5 text-[#818CF8]" />,
+                Scale: <Scale className="w-5 h-5 text-[#D4AF37]" />,
+              };
+              const bgMap = [
+                'bg-[#0A66FF]/10 border-[#0A66FF]/20',
+                'bg-[#38BDF8]/10 border-[#38BDF8]/20',
+                'bg-[#818CF8]/10 border-[#818CF8]/20',
+                'bg-[#D4AF37]/10 border-[#D4AF37]/25',
+              ];
+
+              return (
+                <div
+                  key={idx}
+                  className="p-4 sm:p-4.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-blue-300 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
+                >
+                  <div className="space-y-2.5">
+                    <div className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${bgMap[idx % bgMap.length]}`}>
+                      {iconMap[exp.icon] || <ShieldCheck className="w-5 h-5 text-[#0A66FF]" />}
+                    </div>
+                    <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-tight font-heading">
+                      {exp.area}
+                    </h4>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed text-justify font-normal">
+                    {exp.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ),
+    },
+
+    // ==========================================
+    // 03. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
     // ==========================================
     {
       title: "Filosofía Corporativa",
-      badge: "02. VALORES RECTORES",
+      badge: "03. VALORES RECTORES",
       subtitle: "Principios de Nuestra Práctica",
       content: (
         <div className="space-y-4 w-full">
@@ -261,11 +267,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 03. IMPACTO & RESULTADOS (Canvas Linear Divider)
+    // 04. IMPACTO & RESULTADOS (Canvas Linear Divider)
     // ==========================================
     {
       title: "Impacto & Resultados",
-      badge: "03. MÉTRICAS CLAVE",
+      badge: "04. MÉTRICAS CLAVE",
       subtitle: "Resultados Tangibles en Ecuador",
       content: (
         <div className="space-y-6 w-full">
@@ -293,11 +299,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 04. ALIANZA & CONTACTO DIRECTO
+    // 05. ALIANZA & CONTACTO DIRECTO
     // ==========================================
     {
       title: "Alianza & Contacto",
-      badge: "04. CONVERSACIONES ESTRATÉGICAS",
+      badge: "05. CONVERSACIONES ESTRATÉGICAS",
       subtitle: "Hablemos de tu Organización",
       content: (
         <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border border-slate-800 overflow-hidden space-y-5 w-full">
