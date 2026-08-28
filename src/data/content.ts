@@ -135,7 +135,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Contratos de encargo, transferencias y corresponsabilidad.',
         fullDesc:
           'Elaboramos y revisamos contratos de encargo, transferencia, corresponsabilidad y otras relaciones jurídicas que involucren tratamiento o intercambio de datos personales.',
-        image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'lopdp-6',
