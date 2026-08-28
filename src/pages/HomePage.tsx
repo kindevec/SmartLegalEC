@@ -375,7 +375,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       {/* 2. SERVICES SECTION - Flat 2.0 Direct Canvas Layout (Zero Box-in-Box) */}
       {/* ========================================================================= */}
       <section 
-        className="w-full bg-[#071326] text-white pt-8 pb-7 sm:pt-10 sm:pb-8 border-b border-slate-800/90 relative overflow-hidden"
+        className="w-full bg-[#071326] text-white pt-8 pb-12 sm:pt-10 sm:pb-16 relative overflow-hidden"
       >
         {/* Difuminado superior / Top Soft Fade & Ambient Blur */}
         <div className="absolute top-0 inset-x-0 h-20 sm:h-28 bg-gradient-to-b from-[#071326] via-[#071326]/80 to-transparent pointer-events-none z-10" />
@@ -384,6 +384,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
 
         {/* Subtle Ambient Glow */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0A66FF]/5 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Vanish Inferior Suave / Bottom Gradient Vanish Transition from #071326 to #F0F4FA */}
+        <div className="absolute bottom-0 inset-x-0 h-28 sm:h-36 bg-gradient-to-b from-transparent via-[#071326]/60 to-[#F0F4FA] pointer-events-none z-20" />
 
         <motion.div 
           initial={{ opacity: 0, y: 25 }}
@@ -586,7 +589,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   onClick={() => onNavigate('contact')}
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 transition-colors cursor-pointer text-center"
                 >
-                  <span>Contactar al Abogado</span>
+                  <span>Contactar Directo</span>
                   <ArrowRight className="w-3.5 h-3.5 text-slate-700" />
                 </motion.button>
               </div>
@@ -594,8 +597,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           </div>
         </div>
 
+        {/* TOP VANISH TRANSITION: Smooth fade into the dark Founder Strip */}
+        <div className="w-full h-16 sm:h-20 bg-gradient-to-b from-transparent via-[#061224]/70 to-[#061224] pointer-events-none relative z-10 -mb-[1px]" />
+
         {/* FULL-WIDTH LUXURY HORIZONTAL FOUNDER STRIP */}
-        <div className="w-full bg-gradient-to-r from-[#061224] via-[#091E3D] to-[#061224] border-y border-slate-800 text-white py-5 sm:py-6 relative z-20 shadow-2xl overflow-hidden">
+        <div className="w-full bg-gradient-to-r from-[#061224] via-[#091E3D] to-[#061224] border-y border-slate-800/80 text-white py-5 sm:py-6 relative z-20 shadow-2xl overflow-hidden">
           {/* Subtle Ambient Lighting & Glowing Accent Accents */}
           <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#0A66FF]/60 via-[#D4AF37]/50 to-transparent pointer-events-none z-10" />
           <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-slate-800/80 to-transparent pointer-events-none z-10" />
@@ -681,13 +687,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
           </div>
         </div>
+
+        {/* BOTTOM VANISH TRANSITION: Smooth fade out from the dark Founder Strip to #FFFFFF */}
+        <div className="w-full h-16 sm:h-20 bg-gradient-to-b from-[#061224] via-[#FFFFFF]/60 to-[#FFFFFF] pointer-events-none relative z-10 -mt-[1px]" />
       </section>
 
       {/* ========================================================================= */}
       {/* 4. RECENT LEGAL WORKS / CASE STUDIES - Minimalist Editorial Showcase */}
       {/* ========================================================================= */}
       <section 
-        className="w-full bg-[#FFFFFF] text-slate-900 py-12 sm:py-16 lg:py-20 relative overflow-hidden border-t border-slate-100"
+        className="w-full bg-[#FFFFFF] text-slate-900 pt-6 sm:pt-10 pb-12 sm:pb-16 lg:pb-20 relative overflow-hidden"
       >
         <motion.div 
           initial={{ opacity: 0, y: 25 }}
