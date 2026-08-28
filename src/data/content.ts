@@ -561,7 +561,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
   {
     id: 'art-2',
     slug: 'abogado-in-house-prevenir-contener-generar-oportunidades',
-    title: 'El abogado in-house: prevenir, contener y generar oportunidades',
+    title: 'Abogado in-house: prevenir, contener y generar oportunidades',
     category: 'Contratos Tech & SaaS',
     date: '12 de Febrero, 2026',
     readTime: '7 min de lectura',
