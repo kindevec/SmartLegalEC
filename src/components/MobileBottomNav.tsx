@@ -98,7 +98,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       },
     },
     {
-      name: 'Criterio',
+      name: 'Casos',
       icon: BookOpen,
       route: 'insights',
       onClick: () => {
@@ -131,7 +131,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       case 'about':
         return 'Sobre Mí';
       case 'insights':
-        return 'Criterio';
+        return 'Casos';
       case 'contact':
         return 'Contacto';
       default:

@@ -92,7 +92,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             <source srcSet="/header-insights.webp" type="image/webp" />
             <img
               src="/header-insights.webp"
-              alt="Criterio Jurídico - SmartLegalEC"
+              alt="Casos de Éxito - SmartLegalEC"
               width="1920"
               height="1080"
               className="w-full h-full object-cover object-center lg:object-right"
@@ -115,7 +115,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             className="max-w-2xl lg:max-w-3xl"
           >
             <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-3.5 leading-[1.14]">
-              Publicaciones & <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Criterio Jurídico</span>
+              Publicaciones & <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Casos de Éxito</span>
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
