@@ -121,20 +121,18 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
       id: 'scrumz',
       name: 'Scrumz Gestión Inmobiliaria',
       render: () => (
-        <div className="flex items-center gap-1.5">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 text-[#D4AF37]">
-            <rect x="4" y="2" width="16" height="20" rx="2" />
-            <path d="M9 22v-4h6v4" />
-            <path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01" />
-          </svg>
-          <div className="flex flex-col">
-            <span className="font-heading font-extrabold text-sm sm:text-base md:text-lg tracking-wider leading-none text-slate-200 group-hover:text-white transition-colors">
-              SCRUMZ
-            </span>
-            <span className="text-[7px] sm:text-[7.5px] font-semibold tracking-widest text-slate-400 group-hover:text-[#D4AF37] transition-colors uppercase">
-              INMOBILIARIA
-            </span>
-          </div>
+        <div className="flex items-center justify-center">
+          <picture>
+            <source srcSet="/logos/scrumz-logo.webp" type="image/webp" />
+            <img
+              src="/logos/scrumz-logo.png"
+              alt="Scrumz Gestión Inmobiliaria"
+              width="400"
+              height="400"
+              className="h-8 sm:h-9 md:h-10 w-auto rounded-lg object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-105 shadow-xs"
+              loading="lazy"
+            />
+          </picture>
         </div>
       )
     },
