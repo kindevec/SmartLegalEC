@@ -181,21 +181,18 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
       id: 'fias',
       name: 'Fondo de Inversión Ambiental Sostenible (FIAS)',
       render: () => (
-        <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-3 h-3">
-              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-            </svg>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-heading font-black text-sm sm:text-base md:text-lg tracking-widest leading-none text-slate-200 group-hover:text-white transition-colors">
-              FIAS
-            </span>
-            <span className="text-[6.5px] sm:text-[7.5px] font-semibold tracking-wider text-slate-400 group-hover:text-emerald-300 transition-colors uppercase">
-              FONDO AMBIENTAL
-            </span>
-          </div>
+        <div className="flex items-center justify-center">
+          <picture>
+            <source srcSet="/logos/fias-logo.webp" type="image/webp" />
+            <img
+              src="/logos/fias-logo.png"
+              alt="Fondo de Inversión Ambiental Sostenible (FIAS)"
+              width="271"
+              height="75"
+              className="h-6 sm:h-7 md:h-8 w-auto object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-105 brightness-110"
+              loading="lazy"
+            />
+          </picture>
         </div>
       )
     },
