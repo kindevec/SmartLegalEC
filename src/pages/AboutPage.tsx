@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { PageRoute } from '../types';
 import { BRAND_INFO, METRICS, FOUNDER_PROFILE, CORPORATE_VALUES } from '../data/content';
 import { Timeline, TimelineEntry } from '../components/ui/timeline';
-import { ExperienceCardRotator } from '../components/ExperienceCardRotator';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { LinkedInIcon } from '../components/LinkedInIcon';
 import { 
@@ -12,7 +11,11 @@ import {
   Zap, 
   HeartHandshake, 
   ArrowRight, 
-  Quote
+  Quote,
+  ShieldCheck,
+  Code2,
+  Radio,
+  Scale
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -107,8 +110,51 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
-              {/* Rotating Professional Experience Cards */}
-              <ExperienceCardRotator items={FOUNDER_PROFILE.professionalExperience} />
+              {/* All 4 Professional Experience Pillars Fully Visible */}
+              <div className="space-y-3 px-4 sm:px-0">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#0A66FF]" />
+                  <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-heading">
+                    Experiencia Profesional
+                  </h4>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {FOUNDER_PROFILE.professionalExperience.map((exp, idx) => {
+                    const iconMap: Record<string, React.ReactNode> = {
+                      ShieldCheck: <ShieldCheck className="w-4 h-4 text-[#0A66FF]" />,
+                      Code2: <Code2 className="w-4 h-4 text-[#38BDF8]" />,
+                      Radio: <Radio className="w-4 h-4 text-[#818CF8]" />,
+                      Scale: <Scale className="w-4 h-4 text-[#D4AF37]" />,
+                    };
+                    const bgMap = [
+                      'bg-[#0A66FF]/10 border-[#0A66FF]/20',
+                      'bg-[#38BDF8]/10 border-[#38BDF8]/20',
+                      'bg-[#818CF8]/10 border-[#818CF8]/20',
+                      'bg-[#D4AF37]/10 border-[#D4AF37]/25',
+                    ];
+
+                    return (
+                      <div
+                        key={idx}
+                        className="p-3 sm:p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-blue-300 hover:shadow-xs transition-all flex flex-col justify-start space-y-1.5"
+                      >
+                        <div className="flex items-center gap-2">
+                          <div className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 ${bgMap[idx % bgMap.length]}`}>
+                            {iconMap[exp.icon] || <ShieldCheck className="w-4 h-4 text-[#0A66FF]" />}
+                          </div>
+                          <h5 className="text-xs font-bold text-slate-900 leading-tight">
+                            {exp.area}
+                          </h5>
+                        </div>
+                        <p className="text-[11px] text-slate-600 leading-relaxed text-justify font-normal">
+                          {exp.description}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
