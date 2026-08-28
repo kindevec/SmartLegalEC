@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PageRoute } from '../types';
-import { BRAND_INFO } from '../data/content';
+import { BRAND_INFO, TRUSTED_CLIENTS } from '../data/content';
 import { motion, AnimatePresence } from 'motion/react';
 import { ClientTrustLogos } from '../components/ClientTrustLogos';
 import { LinkedInIcon } from '../components/LinkedInIcon';
@@ -21,6 +21,7 @@ import {
   Radio,
   Building2,
   Sparkles,
+  ExternalLink,
   ArrowRight,
   Quote
 } from 'lucide-react';
@@ -919,7 +920,94 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       </section>
 
       {/* ========================================================================= */}
-      {/* 5. CALL TO ACTION & COMPLIANCE BANNER with Motion */}
+      {/* 5. CLIENTES Y ORGANIZACIONES QUE CONFÍAN EN NOSOTROS */}
+      {/* ========================================================================= */}
+      <section 
+        className="w-full bg-[#F8FAFC] text-slate-900 py-12 sm:py-16 relative overflow-hidden border-t border-slate-200/80"
+      >
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55 }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        >
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-slate-200 gap-3 mb-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 mb-2 font-heading">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF]" />
+                <span>EXPERIENCIA DE CONFIANZA</span>
+              </div>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
+                Empresas que Confían en Nosotros
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 max-w-sm text-justify sm:text-right font-normal">
+              Asesoría jurídica especializada a empresas nacionales y grupos con presencia regional en diversos sectores de la economía.
+            </p>
+          </div>
+
+          {/* 12 Trusted Clients Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-4">
+            {TRUSTED_CLIENTS.map((client) => (
+              <div
+                key={client.id}
+                className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#0A66FF]/40 hover:shadow-xs transition-all flex flex-col justify-between space-y-2 group"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 font-heading">
+                      {client.badge}
+                    </span>
+                    {client.url ? (
+                      <a
+                        href={client.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-slate-100 hover:bg-[#0A66FF] text-slate-500 hover:text-white transition-all cursor-pointer shadow-2xs group/btn"
+                        title={`Visitar sitio web oficial de ${client.name}`}
+                        aria-label={`Visitar sitio web oficial de ${client.name}`}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
+                      </a>
+                    ) : (
+                      <div className="w-6 h-6 rounded-md bg-slate-50 flex items-center justify-center text-slate-300">
+                        <Building2 className="w-3.5 h-3.5" />
+                      </div>
+                    )}
+                  </div>
+                  {client.url ? (
+                    <a
+                      href={client.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block font-heading font-extrabold text-xs sm:text-sm text-slate-900 leading-tight hover:text-[#0A66FF] transition-colors"
+                    >
+                      {client.name}
+                    </a>
+                  ) : (
+                    <h3 className="font-heading font-extrabold text-xs sm:text-sm text-slate-900 leading-tight group-hover:text-[#0A66FF] transition-colors">
+                      {client.name}
+                    </h3>
+                  )}
+                  <p className="text-[10px] sm:text-[11px] font-semibold text-[#0A66FF] mt-0.5">
+                    {client.category}
+                  </p>
+                </div>
+                {client.description && (
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 leading-relaxed text-justify pt-1 border-t border-slate-100">
+                    {client.description}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 6. CALL TO ACTION & COMPLIANCE BANNER with Motion */}
       {/* ========================================================================= */}
       <section 
         className="w-full bg-[#F0F4FA] py-12 sm:py-16 relative overflow-hidden"
