@@ -243,7 +243,7 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
           display: flex;
           align-items: center;
           width: max-content;
-          animation: clientMarqueeMotion 38s linear infinite;
+          animation: clientMarqueeMotion 80s linear infinite;
           will-change: transform;
         }
         .client-marquee-container:hover .client-marquee-track {
