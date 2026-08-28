@@ -13,8 +13,7 @@ import {
   Search, 
   FileText,
   ChevronDown,
-  Layers,
-  Filter
+  Layers
 } from 'lucide-react';
 
 interface PracticeAreasPageProps {
@@ -31,7 +30,6 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'lopdp' | 'tech' | 'telecom'>(initialFilter);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
 
   useEffect(() => {
     if (initialFilter && initialFilter !== selectedFilter) {
@@ -143,100 +141,11 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
         {/* ========================================================================= */}
         {/* MOBILE VIEW: Collapsible Services Menu with Arrow Toggle */}
         {/* ========================================================================= */}
-        <div className="block md:hidden bg-white rounded-2xl p-4 shadow-md border border-slate-200 space-y-3">
-          {/* Mobile Header Bar with Chevron Toggle */}
-          <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-100">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-lg bg-[#0A66FF]/10 text-[#0A66FF] flex items-center justify-center">
-                <Filter className="w-3.5 h-3.5" />
-              </div>
-              <span className="text-xs font-bold text-slate-800 font-heading">
-                Menú de Servicios:
-              </span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#0A66FF]/10 text-[#0A66FF]">
-                {getFilterName(selectedFilter)}
-              </span>
-            </div>
-
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
-              aria-label={isMobileMenuOpen ? 'Ocultar menú de servicios' : 'Mostrar menú de servicios'}
-            >
-              <span>{isMobileMenuOpen ? 'Ocultar' : 'Mostrar'}</span>
-              <ChevronDown 
-                className={`w-4 h-4 text-slate-600 transition-transform duration-300 ${
-                  isMobileMenuOpen ? 'rotate-180' : 'rotate-0'
-                }`} 
-              />
-            </button>
-          </div>
-
-          {/* Collapsible Tabs Area */}
-          <AnimatePresence initial={false}>
-            {isMobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.25 }}
-                className="space-y-3 overflow-hidden pt-1"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  <button
-                    onClick={() => handleFilterSelect('all')}
-                    className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all text-left flex items-center justify-between cursor-pointer ${
-                      selectedFilter === 'all'
-                        ? 'bg-[#0B1D3A] text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                    }`}
-                  >
-                    <span>Todas las áreas (3)</span>
-                    {selectedFilter === 'all' && <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />}
-                  </button>
-
-                  <button
-                    onClick={() => handleFilterSelect('lopdp')}
-                    className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all text-left flex items-center justify-between cursor-pointer ${
-                      selectedFilter === 'lopdp'
-                        ? 'bg-[#0A66FF] text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                    }`}
-                  >
-                    <span>Protección de Datos y Privacidad</span>
-                    {selectedFilter === 'lopdp' && <span className="w-2 h-2 rounded-full bg-white" />}
-                  </button>
-
-                  <button
-                    onClick={() => handleFilterSelect('tech')}
-                    className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all text-left flex items-center justify-between cursor-pointer ${
-                      selectedFilter === 'tech'
-                        ? 'bg-[#0A66FF] text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                    }`}
-                  >
-                    <span>Tecnología y Negocios Digitales</span>
-                    {selectedFilter === 'tech' && <span className="w-2 h-2 rounded-full bg-white" />}
-                  </button>
-
-                  <button
-                    onClick={() => handleFilterSelect('telecom')}
-                    className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all text-left flex items-center justify-between cursor-pointer ${
-                      selectedFilter === 'telecom'
-                        ? 'bg-[#0A66FF] text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                    }`}
-                  >
-                    <span>Telecomunicaciones y Regulación</span>
-                    {selectedFilter === 'telecom' && <span className="w-2 h-2 rounded-full bg-white" />}
-                  </button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
+        {/* MOBILE VIEW: Compact Search & Horizontal Quick Category Scroll */}
+        {/* ========================================================================= */}
+        <div className="block md:hidden bg-white rounded-2xl p-3 sm:p-4 shadow-md border border-slate-200 space-y-2.5">
           {/* Search Input on Mobile */}
-          <div className="relative w-full pt-1">
+          <div className="relative w-full">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
@@ -245,6 +154,50 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
               placeholder="Buscar servicio o materia..."
               className="w-full pl-10 pr-4 py-2 text-xs rounded-full border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A66FF] focus:border-transparent bg-slate-50"
             />
+          </div>
+
+          {/* Quick Category Horizontal Scroll */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 pt-0.5 -mx-1 px-1">
+            <button
+              onClick={() => handleFilterSelect('all')}
+              className={`px-3 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                selectedFilter === 'all'
+                  ? 'bg-[#0B1D3A] text-white shadow-2xs'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              Todas ({PRACTICE_AREAS.length})
+            </button>
+            <button
+              onClick={() => handleFilterSelect('lopdp')}
+              className={`px-3 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                selectedFilter === 'lopdp'
+                  ? 'bg-[#0A66FF] text-white shadow-2xs'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              Protección de Datos
+            </button>
+            <button
+              onClick={() => handleFilterSelect('tech')}
+              className={`px-3 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                selectedFilter === 'tech'
+                  ? 'bg-[#0A66FF] text-white shadow-2xs'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              Tecnología & Digital
+            </button>
+            <button
+              onClick={() => handleFilterSelect('telecom')}
+              className={`px-3 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                selectedFilter === 'telecom'
+                  ? 'bg-[#0A66FF] text-white shadow-2xs'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              Telecomunicaciones
+            </button>
           </div>
         </div>
 
