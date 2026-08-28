@@ -16,15 +16,18 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
       id: 'quala',
       name: 'Quala Ecuador S.A.',
       render: () => (
-        <div className="flex items-center gap-2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 sm:w-6 sm:h-6 text-[#38BDF8] group-hover:rotate-12 transition-transform">
-            <circle cx="12" cy="12" r="9" className="stroke-slate-400 group-hover:stroke-[#38BDF8] transition-colors" />
-            <path d="M12 7c-2.5 0-4 2-4 5s2 5 4 5 4-2 4-5-1.5-5-4-5z" />
-            <path d="M8 15c1.5 2 4 2 5.5 1" />
-          </svg>
-          <span className="font-heading font-extrabold text-base sm:text-lg md:text-xl text-slate-200 group-hover:text-white transition-colors">
-            Quala
-          </span>
+        <div className="flex items-center justify-center">
+          <picture>
+            <source srcSet="/logos/quala-logo.webp" type="image/webp" />
+            <img
+              src="https://www.quala.com.ec/wp-content/uploads/sites/10/2022/04/QualaLogo.png"
+              alt="Quala Ecuador S.A."
+              width="225"
+              height="67"
+              className="h-6 sm:h-7 md:h-8 w-auto object-contain brightness-110 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+              loading="lazy"
+            />
+          </picture>
         </div>
       )
     },
