@@ -36,10 +36,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
   const [isHeroHovered, setIsHeroHovered] = useState(false);
   const heroTouchStartX = useRef<number | null>(null);
 
-  const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
-  const [isServicesHovered, setIsServicesHovered] = useState(false);
-  const serviceTouchStartX = useRef<number | null>(null);
-
   const heroSlides = [
     {
       id: 'slide-1',
@@ -158,40 +154,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       deliverables: ['Títulos habilitantes y licencias', 'Servicios de telecomunicaciones y espectro', 'Cumplimiento regulatorio y trámites'],
     },
   ];
-
-  useEffect(() => {
-    if (isServicesHovered) return;
-    const timer = setInterval(() => {
-      setCurrentServiceIndex((prev) => (prev + 1) % servicesCatalog.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [isServicesHovered, servicesCatalog.length]);
-
-  const handlePrevService = () => {
-    setCurrentServiceIndex((prev) => (prev === 0 ? servicesCatalog.length - 1 : prev - 1));
-  };
-
-  const handleNextService = () => {
-    setCurrentServiceIndex((prev) => (prev + 1) % servicesCatalog.length);
-  };
-
-  const goToService = (index: number) => {
-    setCurrentServiceIndex(index);
-  };
-
-  const handleServiceTouchStart = (e: React.TouchEvent) => {
-    serviceTouchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleServiceTouchEnd = (e: React.TouchEvent) => {
-    if (serviceTouchStartX.current === null) return;
-    const diff = serviceTouchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) handleNextService();
-      else handlePrevService();
-    }
-    serviceTouchStartX.current = null;
-  };
 
   // Case Studies & Strategic Legal Works dataset
   const legalWorks = [
@@ -457,157 +419,84 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
           </div>
 
-          {/* 3D Coverflow Card Slider (Luxury High-End Aesthetic) */}
-          <div 
-            className="relative w-full h-[395px] sm:h-[415px] md:h-[430px] lg:h-[440px] overflow-hidden flex items-center justify-center group select-none"
-            style={{ perspective: '1100px' }}
-            onMouseEnter={() => setIsServicesHovered(true)}
-            onMouseLeave={() => setIsServicesHovered(false)}
-            onTouchStart={handleServiceTouchStart}
-            onTouchEnd={handleServiceTouchEnd}
-          >
-            {servicesCatalog.map((service, idx, arr) => {
-              const len = arr.length;
-              let position = 'hidden';
-              let transform = 'translate3d(0px, 0px, -80px) scale(0.6)';
-              let zIndex = 0;
-              let opacity = 0;
-
-              if (idx === currentServiceIndex) {
-                position = 'center';
-                transform = 'translate3d(0px, 0px, 0px) scale(1)';
-                zIndex = 20;
-                opacity = 1;
-              } else if (idx === (currentServiceIndex - 1 + len) % len) {
-                position = 'left';
-                transform = 'translate3d(-58%, 0px, -30px) scale(0.88)';
-                zIndex = 10;
-                opacity = 0.45;
-              } else if (idx === (currentServiceIndex + 1) % len) {
-                position = 'right';
-                transform = 'translate3d(58%, 0px, -30px) scale(0.88)';
-                zIndex = 10;
-                opacity = 0.45;
-              } else {
-                transform = 'translate3d(0px, 0px, -80px) scale(0.5)';
-                opacity = 0;
-              }
-
+          {/* Direct 3-Card Grid (All 3 Cards Fully Visible & Interactive) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 pt-2">
+            {servicesCatalog.map((service, idx) => {
+              const Icon = service.icon;
               return (
-                <div
+                <motion.div
                   key={service.id}
-                  className="absolute w-[90vw] max-w-[320px] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[420px] h-[94%] transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer group flex flex-col select-none will-change-transform"
-                  style={{ transform, zIndex, opacity }}
-                  onClick={() => {
-                    if (position === 'left') handlePrevService();
-                    else if (position === 'right') handleNextService();
-                    else onNavigate('area-detail', { areaId: (service.id === 'dpd' ? 'lopdp' : service.id) as any });
-                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: idx * 0.08 }}
+                  whileHover={{ y: -5 }}
+                  onClick={() => onNavigate('area-detail', { areaId: (service.id === 'dpd' ? 'lopdp' : service.id) as any })}
+                  className="rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-b from-[#0C203E] to-[#071326] border border-slate-700/70 hover:border-[#D4AF37] hover:shadow-[0_0_30px_rgba(212,175,55,0.22)] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer group select-none"
                 >
-                  <div
-                    className={`relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-b from-[#0C203E] to-[#071326] border transition-[border-color,box-shadow,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col justify-between shadow-2xl ${
-                      position === 'center'
-                        ? 'border-[#D4AF37] shadow-[0_0_35px_rgba(212,175,55,0.22)] ring-1 ring-[#D4AF37]/50'
-                        : 'border-slate-700/60 shadow-[0_10px_30px_rgba(0,0,0,0.6)] group-hover:border-slate-500'
-                    }`}
-                  >
-                    {/* Dark overlay for inactive side cards */}
-                    <div
-                      className={`absolute inset-0 pointer-events-none transition-opacity duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] z-20 rounded-2xl sm:rounded-3xl ${
-                        position === 'center' ? 'opacity-0' : 'opacity-65 bg-[#071326]'
-                      }`}
+                  {/* Top Image Showcase */}
+                  <div className="relative w-full h-36 sm:h-40 overflow-hidden bg-slate-950 shrink-0">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108 opacity-85 group-hover:opacity-100"
+                      loading="lazy"
                     />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0C203E] via-[#0C203E]/40 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent pointer-events-none" />
 
-                    {/* Top Image Showcase */}
-                    <div className="relative w-full h-32 sm:h-36 md:h-38 overflow-hidden bg-slate-950 shrink-0">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-108 opacity-85 group-hover:opacity-100"
-                        loading="lazy"
-                      />
-                      {/* Gradient fade */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0C203E] via-[#0C203E]/35 to-transparent pointer-events-none" />
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent pointer-events-none" />
+                    {/* Badge top-left */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-950/80 text-[#93C5FD] border border-white/15 backdrop-blur-md font-heading">
+                        <Icon className={`w-3.5 h-3.5 ${service.iconColor}`} />
+                        <span>{service.badge}</span>
+                      </span>
                     </div>
 
-                    {/* Bottom Card Content */}
-                    <div className="p-3.5 sm:p-4.5 flex-1 flex flex-col justify-between space-y-2 relative z-10">
-                      <div>
-                        <h3 className="font-heading font-extrabold text-base sm:text-lg text-white mb-1 leading-snug group-hover:text-[#D4AF37] transition-colors">
-                          {service.title}
-                        </h3>
-                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal line-clamp-2 text-justify sm:text-left">
-                          {service.desc}
-                        </p>
-                      </div>
+                    {/* Number top-right */}
+                    <div className="absolute top-3 right-3 z-10">
+                      <span className="font-mono text-xs font-bold text-[#D4AF37] bg-slate-950/80 px-2 py-0.5 rounded-full border border-[#D4AF37]/30 backdrop-blur-md">
+                        {service.num}
+                      </span>
+                    </div>
+                  </div>
 
-                      {/* Deliverables Bullet Points */}
-                      <div className="space-y-1 pt-1.5 border-t border-slate-700/60">
-                        {service.deliverables.map((item, dIdx) => (
-                          <div key={dIdx} className="flex items-center gap-2 text-[11px] sm:text-xs text-slate-300">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] shrink-0 shadow-[0_0_5px_#0A66FF]" />
-                            <span className="truncate">{item}</span>
-                          </div>
-                        ))}
-                      </div>
+                  {/* Card Content */}
+                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3 relative z-10">
+                    <div>
+                      <h3 className="font-heading font-extrabold text-base sm:text-lg text-white mb-1.5 leading-snug group-hover:text-[#D4AF37] transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal line-clamp-3 text-justify sm:text-left">
+                        {service.desc}
+                      </p>
+                    </div>
 
-                      {/* Bottom Row: CTA Trigger */}
-                      <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-[#D4AF37] transition-colors">
-                        <span className="flex items-center gap-1.5 tracking-wide">
-                          <span>Explorar Servicio</span>
-                          <span className="text-[#D4AF37]">→</span>
-                        </span>
-                        <div className="w-6.5 h-6.5 sm:w-7 sm:h-7 rounded-full bg-slate-900 border border-slate-700 group-hover:bg-[#D4AF37] group-hover:text-slate-950 group-hover:border-[#D4AF37] flex items-center justify-center text-white transition-all shadow-sm">
-                          <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    {/* Deliverables Bullet Points */}
+                    <div className="space-y-1.5 pt-2 border-t border-slate-700/60">
+                      {service.deliverables.map((item, dIdx) => (
+                        <div key={dIdx} className="flex items-center gap-2 text-[11px] sm:text-xs text-slate-300">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] shrink-0 shadow-[0_0_5px_#0A66FF]" />
+                          <span className="truncate">{item}</span>
                         </div>
+                      ))}
+                    </div>
+
+                    {/* Bottom Row: CTA Trigger */}
+                    <div className="pt-2.5 border-t border-slate-700/60 flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-[#D4AF37] transition-colors">
+                      <span className="flex items-center gap-1.5 tracking-wide">
+                        <span>Explorar Servicio</span>
+                        <span className="text-[#D4AF37] transition-transform group-hover:translate-x-1">→</span>
+                      </span>
+                      <div className="w-6.5 h-6.5 sm:w-7 sm:h-7 rounded-full bg-slate-900 border border-slate-700 group-hover:bg-[#D4AF37] group-hover:text-slate-950 group-hover:border-[#D4AF37] flex items-center justify-center text-white transition-all shadow-sm">
+                        <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handlePrevService();
-              }}
-              aria-label="Servicio anterior"
-              className="absolute left-2 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/80 hover:bg-[#0A66FF] text-white backdrop-blur-md border border-white/15 flex items-center justify-center cursor-pointer transition-all shadow-[0_0_20px_rgba(0,0,0,0.6)] hover:scale-110 group/btn"
-            >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover/btn:-translate-x-0.5 transition-transform" />
-            </button>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleNextService();
-              }}
-              aria-label="Siguiente servicio"
-              className="absolute right-2 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/80 hover:bg-[#0A66FF] text-white backdrop-blur-md border border-white/15 flex items-center justify-center cursor-pointer transition-all shadow-[0_0_20px_rgba(0,0,0,0.6)] hover:scale-110 group/btn"
-            >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover/btn:translate-x-0.5 transition-transform" />
-            </button>
-          </div>
-
-          {/* Bottom Dots Indicator (Compact padding) */}
-          <div className="flex items-center justify-center pt-3 sm:pt-4">
-            <div className="flex gap-2.5 bg-slate-950/85 backdrop-blur-md px-4 py-1.5 sm:py-2 rounded-full border border-white/15 shadow-xl">
-              {servicesCatalog.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToService(index)}
-                  aria-label={`Ir al servicio ${index + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    index === currentServiceIndex
-                      ? 'w-7 bg-[#D4AF37] shadow-[0_0_10px_rgba(212,175,55,0.8)]'
-                      : 'w-2.5 bg-white/40 hover:bg-white/70'
-                  }`}
-                />
-              ))}
-            </div>
           </div>
         </motion.div>
       </section>
