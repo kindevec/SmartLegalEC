@@ -194,11 +194,6 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                       {article.readTime}
                     </span>
                   </div>
-
-                  <div className="flex items-center gap-2 text-xs text-slate-600 font-medium pt-1">
-                    <User className="w-3.5 h-3.5 text-slate-400" />
-                    <span>{article.author}</span>
-                  </div>
                 </div>
 
                 {/* Right: Title, Summary, Key Points & CTA */}

@@ -5,8 +5,8 @@ export const BRAND_INFO = {
   slogan: 'Tecnología • Protección de Datos • Telecomunicaciones',
   domain: 'smartlegalec.com',
   location: 'Quito, Ecuador',
-  founder: 'Abg. Luis Fernando Guerra Padilla',
-  founderTitle: 'Abogado especializado en Protección de Datos, Tecnología y Telecomunicaciones',
+  founder: 'Luis Fernando Guerra Padilla',
+  founderTitle: 'Especializado en Protección de Datos, Tecnología y Telecomunicaciones',
   founderEmail: 'info@smartlegalec.com',
   email: 'info@smartlegalec.com',
   founderPhone: '+593 99 866 8139',
@@ -400,7 +400,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
 
 export const FOUNDER_PROFILE = {
   name: 'Luis Fernando Guerra Padilla',
-  title: 'Abogado especializado en Protección de Datos, Tecnología y Telecomunicaciones',
+  title: 'Especializado en Protección de Datos, Tecnología y Telecomunicaciones',
   bio: [
     'Abogado especializado en la intersección entre derecho, tecnología y regulación, con amplia trayectoria asesorando a empresas nacionales y multinacionales en protección de datos personales (LOPDP), contratos de software, SaaS y entornos empresariales regulados.',
     'Su práctica combina una sólida visión regulatoria con un enfoque operativo y comercial, participando en programas integrales de adecuación normativa, estructuración contractual tecnológica y funciones como Delegado de Protección de Datos (DPD) externo.',

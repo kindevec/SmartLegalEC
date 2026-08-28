@@ -51,7 +51,7 @@ export const AboutFounder: React.FC = () => {
             Luis Fernando Guerra Padilla
           </h2>
           <p className="text-base sm:text-lg text-[#93C5FD] font-medium">
-            Managing Partner • Abogado especializado en Protección de Datos, Tecnología y Telecomunicaciones
+            Managing Partner • Especializado en Protección de Datos, Tecnología y Telecomunicaciones
           </p>
         </div>
 
