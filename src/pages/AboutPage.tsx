@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { PageRoute } from '../types';
 import { BRAND_INFO, METRICS, FOUNDER_PROFILE, CORPORATE_VALUES } from '../data/content';
 import { Timeline, TimelineEntry } from '../components/ui/timeline';
-import { MilestoneCarousel } from '../components/MilestoneCarousel';
 import { ExperienceCardRotator } from '../components/ExperienceCardRotator';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 import { LinkedInIcon } from '../components/LinkedInIcon';
@@ -117,29 +116,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 02. TRAYECTORIA & HITOS (Dynamic Interactive Carousel)
-    // ==========================================
-    {
-      title: "Trayectoria & Hitos",
-      badge: "02. EVOLUCIÓN HISTÓRICA",
-      subtitle: "2014 — 2026",
-      content: (
-        <div className="space-y-4 w-full">
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
-            Evolución de nuestra práctica profesional en telecomunicaciones, tecnología y protección de datos en Ecuador:
-          </p>
-
-          <MilestoneCarousel />
-        </div>
-      ),
-    },
-
-    // ==========================================
-    // 03. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
+    // 02. FILOSOFÍA CORPORATIVA (Canvas Linear Divider)
     // ==========================================
     {
       title: "Filosofía Corporativa",
-      badge: "03. VALORES RECTORES",
+      badge: "02. VALORES RECTORES",
       subtitle: "Principios de Nuestra Práctica",
       content: (
         <div className="space-y-4 w-full">
@@ -234,11 +215,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 04. IMPACTO & RESULTADOS (Canvas Linear Divider)
+    // 03. IMPACTO & RESULTADOS (Canvas Linear Divider)
     // ==========================================
     {
       title: "Impacto & Resultados",
-      badge: "04. MÉTRICAS CLAVE",
+      badge: "03. MÉTRICAS CLAVE",
       subtitle: "Resultados Tangibles en Ecuador",
       content: (
         <div className="space-y-6 w-full">
@@ -266,11 +247,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     },
 
     // ==========================================
-    // 05. ALIANZA & CONTACTO DIRECTO
+    // 04. ALIANZA & CONTACTO DIRECTO
     // ==========================================
     {
       title: "Alianza & Contacto",
-      badge: "05. CONVERSACIONES ESTRATÉGICAS",
+      badge: "04. CONVERSACIONES ESTRATÉGICAS",
       subtitle: "Hablemos de tu Organización",
       content: (
         <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border border-slate-800 overflow-hidden space-y-5 w-full">
