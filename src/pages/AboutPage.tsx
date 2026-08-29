@@ -32,6 +32,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       title: "Liderazgo & Dirección",
       badge: "01. DIRECTOR & FUNDADOR",
       subtitle: FOUNDER_PROFILE.name,
+      headerWidget: (
+        <div className="p-4 sm:p-4.5 rounded-2xl bg-gradient-to-br from-slate-900 via-[#0B1D3A] to-[#071326] text-white space-y-2 border border-slate-800 shadow-md">
+          <div className="flex items-center gap-2 text-[#D4AF37]">
+            <Quote className="w-4 h-4 shrink-0" />
+            <span className="text-[11px] font-bold uppercase tracking-wider font-heading">{FOUNDER_PROFILE.workingPhilosophy.title}</span>
+          </div>
+          <p className="text-xs font-semibold text-slate-100 italic leading-relaxed">
+            "{FOUNDER_PROFILE.workingPhilosophy.premise}"
+          </p>
+          <p className="text-[11px] text-slate-300 leading-relaxed text-justify">
+            {FOUNDER_PROFILE.workingPhilosophy.detail}
+          </p>
+        </div>
+      ),
       content: (
         <div className="space-y-6 w-full">
           {/* Visual 2-Column Founder Showcase */}
@@ -383,43 +397,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         </motion.div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-7"
-            >
-              <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-3.5 leading-[1.14]">
-                Sobre <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Mí</span> & <span className="text-[#D4AF37]">SmartLegalEC</span>
-              </h1>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl lg:max-w-3xl"
+          >
+            <h1 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white mb-3.5 leading-[1.14]">
+              Sobre <span className="bg-gradient-to-r from-[#0A66FF] via-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">Mí</span> & <span className="text-[#D4AF37]">SmartLegalEC</span>
+            </h1>
 
-              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
-                Abogado especializado en <strong className="text-white font-semibold">Protección de Datos</strong>, <strong className="text-white font-semibold">Tecnología</strong> y <strong className="text-white font-semibold">Telecomunicaciones</strong> en Ecuador.
-              </p>
-            </motion.div>
-
-            {/* Right: Mi forma de trabajar / Work Philosophy Quote Block */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="lg:col-span-5"
-            >
-              <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 backdrop-blur-md text-white space-y-2 border border-slate-700/60 shadow-xl">
-                <div className="flex items-center gap-2 text-[#D4AF37]">
-                  <Quote className="w-4 h-4 shrink-0" />
-                  <span className="text-xs font-bold uppercase tracking-wider font-heading">{FOUNDER_PROFILE.workingPhilosophy.title}</span>
-                </div>
-                <p className="text-xs sm:text-sm font-semibold text-slate-100 italic leading-relaxed">
-                  "{FOUNDER_PROFILE.workingPhilosophy.premise}"
-                </p>
-                <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed text-justify">
-                  {FOUNDER_PROFILE.workingPhilosophy.detail}
-                </p>
-              </div>
-            </motion.div>
-          </div>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
+              Abogado especializado en <strong className="text-white font-semibold">Protección de Datos</strong>, <strong className="text-white font-semibold">Tecnología</strong> y <strong className="text-white font-semibold">Telecomunicaciones</strong> en Ecuador.
+            </p>
+          </motion.div>
         </div>
       </section>
 
