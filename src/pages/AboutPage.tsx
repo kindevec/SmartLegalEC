@@ -47,7 +47,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 </p>
                 <div className="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
                   {FOUNDER_PROFILE.bio.map((paragraph, pIdx) => (
-                    <p key={pIdx}>{paragraph}</p>
+                    <p 
+                      key={pIdx}
+                      dangerouslySetInnerHTML={{ __html: paragraph }}
+                    />
                   ))}
                 </div>
               </div>
