@@ -402,8 +402,11 @@ export const FOUNDER_PROFILE = {
   name: 'Luis Fernando Guerra Padilla',
   title: 'Especializado en Protección de Datos, Tecnología y Telecomunicaciones',
   bio: [
-    'Abogado especializado en la intersección entre derecho, tecnología y regulación, con amplia trayectoria asesorando a empresas nacionales y multinacionales en protección de datos personales (LOPDP), contratos de software, SaaS y entornos empresariales regulados.',
-    'Su práctica combina una sólida visión regulatoria con un enfoque operativo y comercial, participando en programas integrales de adecuación normativa, estructuración contractual tecnológica y funciones como Delegado de Protección de Datos (DPD) externo.',
+    'Soy Luis Fernando Guerra Padilla, abogado ecuatoriano con más de 15 años de experiencia profesional, especializado en protección de datos personales, tecnología, telecomunicaciones y asesoría jurídica empresarial.',
+    'Mi carrera se ha desarrollado principalmente en sectores en los que el derecho debe convivir permanentemente con la tecnología, la regulación y las necesidades del negocio.',
+    'Durante cerca de diez años formé parte del equipo jurídico - regulatorio del principal operador de telecomunicaciones del Ecuador. Esta experiencia me permitió trabajar desde dentro de una organización de gran escala, asesorando a distintas áreas de negocio en regulación de telecomunicaciones, protección de datos, derecho digital, contratos y nuevos productos, así como en procedimientos administrativos ante autoridades regulatorias.',
+    'Posteriormente, me incorporé a una firma jurídica con amplia trayectoria en el sector tecnológico, donde asesoré a empresas nacionales e internacionales y consolidé mi especialización en privacidad, protección de datos y tecnología, sobre la base de la experiencia corporativa y regulatoria adquirida durante cerca de nueve años como abogado in-house.',
+    'Actualmente asesoro a organizaciones de distintos sectores y actúo como Delegado de Protección de Datos externo, acompañando a empresas no solo en el cumplimiento de la Ley Orgánica de Protección de Datos Personales, sino también en la toma de decisiones relacionadas con riesgos, proveedores, contratos, nuevas tecnologías, incidentes y proyectos que involucran tratamiento de información personal.',
   ],
   workingPhilosophy: {
     title: 'Mi forma de trabajar',
