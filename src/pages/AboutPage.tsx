@@ -128,7 +128,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             Práctica jurídica especializada con enfoque transversal en sectores altamente regulados y proyectos tecnológicos:
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
             {FOUNDER_PROFILE.professionalExperience.map((exp, idx) => {
               const iconMap: Record<string, React.ReactNode> = {
                 ShieldCheck: <ShieldCheck className="w-5 h-5 text-[#0A66FF]" />,
@@ -137,26 +137,38 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 Scale: <Scale className="w-5 h-5 text-[#D4AF37]" />,
               };
               const bgMap = [
-                'bg-[#0A66FF]/10 border-[#0A66FF]/20',
-                'bg-[#38BDF8]/10 border-[#38BDF8]/20',
-                'bg-[#818CF8]/10 border-[#818CF8]/20',
-                'bg-[#D4AF37]/10 border-[#D4AF37]/25',
+                'bg-[#0A66FF]/10 border-[#0A66FF]/20 text-[#0A66FF]',
+                'bg-[#38BDF8]/10 border-[#38BDF8]/20 text-[#0284C7]',
+                'bg-[#818CF8]/10 border-[#818CF8]/20 text-[#6366F1]',
+                'bg-[#D4AF37]/10 border-[#D4AF37]/25 text-[#B45309]',
+              ];
+              const tagMap = [
+                'Cumplimiento & LOPDP',
+                'Software & Negocios Digitales',
+                'Regulación & ARCOTEL',
+                'Contratos & Estrategia',
               ];
 
               return (
                 <div
                   key={idx}
-                  className="p-4 sm:p-4.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-blue-300 hover:shadow-md transition-all flex flex-col justify-between space-y-3"
+                  className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-blue-300/80 hover:shadow-md transition-all flex flex-col justify-between space-y-3.5 group"
                 >
-                  <div className="space-y-2.5">
-                    <div className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 ${bgMap[idx % bgMap.length]}`}>
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${bgMap[idx % bgMap.length]} group-hover:scale-105 transition-transform`}>
                       {iconMap[exp.icon] || <ShieldCheck className="w-5 h-5 text-[#0A66FF]" />}
                     </div>
-                    <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-tight font-heading">
-                      {exp.area}
-                    </h4>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-mono block">
+                        {tagMap[idx]}
+                      </span>
+                      <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-tight font-heading group-hover:text-[#0A66FF] transition-colors">
+                        {exp.area}
+                      </h4>
+                    </div>
                   </div>
-                  <p className="text-xs text-slate-600 leading-relaxed text-justify font-normal">
+                  
+                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed text-justify font-normal flex-1">
                     {exp.description}
                   </p>
                 </div>
