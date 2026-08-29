@@ -83,14 +83,14 @@ export const Timeline = ({
         </div>
       )}
 
-      <div ref={ref} className="relative w-full max-w-[1540px] mx-auto pb-4 sm:pb-8 px-0 sm:px-4 md:px-8">
+      <div ref={ref} className="relative w-full max-w-[1540px] mx-auto pb-4 sm:pb-8 px-0 sm:px-2 md:px-0">
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row justify-start pt-5 sm:pt-7 md:pt-9 first:pt-0 gap-0 md:gap-8 lg:gap-12 w-full"
+            className="flex flex-col md:flex-row justify-start pt-5 sm:pt-7 md:pt-9 first:pt-0 gap-0 md:gap-5 lg:gap-7 w-full"
           >
             {/* Phase / Chapter Indicator (Left Column - Static on mobile, Sticky on desktop) */}
-            <div className="w-full md:w-[280px] lg:w-[340px] shrink-0 static md:sticky md:top-28 lg:top-32 self-start z-20 px-4 sm:px-0 mb-3 md:mb-0">
+            <div className="w-full md:w-[250px] lg:w-[290px] shrink-0 static md:sticky md:top-28 lg:top-32 self-start z-20 px-4 sm:px-0 mb-3 md:mb-0">
               {/* Mobile Header: Inline Node + Title (Flows naturally without sticking) */}
               <div className="md:hidden flex items-center gap-2.5">
                 <div className="h-7 w-7 rounded-full bg-[#071326] flex items-center justify-center shadow-md border-2 border-white ring-2 ring-blue-100/80 shrink-0">
@@ -105,6 +105,11 @@ export const Timeline = ({
                   <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 font-heading tracking-tight leading-tight">
                     {item.title}
                   </h3>
+                  {item.subtitle && (
+                    <span className="text-[11px] font-semibold text-slate-500 block mt-0.5">
+                      {item.subtitle}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -115,7 +120,7 @@ export const Timeline = ({
                   <div className="h-3.5 w-3.5 rounded-full bg-[#0A66FF] border border-[#93C5FD] animate-pulse" />
                 </div>
 
-                <div className="pl-14 lg:pl-16">
+                <div className="pl-12 lg:pl-13">
                   {item.badge && (
                     <span className="text-[11px] font-bold text-[#0A66FF] uppercase tracking-wider block mb-1 font-heading">
                       {item.badge}
@@ -153,7 +158,7 @@ export const Timeline = ({
           style={{
             height: height + "px",
           }}
-          className="hidden md:block absolute left-[36px] md:left-[52px] top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)]"
+          className="hidden md:block absolute left-[19px] top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)]"
         >
           <motion.div
             style={{
