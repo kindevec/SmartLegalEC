@@ -9,7 +9,6 @@ export interface TimelineEntry {
   title: string;
   subtitle?: string;
   badge?: string;
-  headerWidget?: React.ReactNode;
   content: React.ReactNode;
 }
 
@@ -91,13 +90,7 @@ export const Timeline = ({
             className="flex flex-col md:flex-row justify-start pt-5 sm:pt-7 md:pt-9 first:pt-0 gap-0 md:gap-8 lg:gap-12 w-full"
           >
             {/* Phase / Chapter Indicator (Left Column - Static on mobile, Sticky on desktop) */}
-            <div className="w-full md:w-[280px] lg:w-[340px] shrink-0 static md:sticky md:top-28 lg:top-32 self-start z-20 px-4 sm:px-0 mb-3 md:mb-0 space-y-4">
-              {item.headerWidget && (
-                <div className="w-full pb-1">
-                  {item.headerWidget}
-                </div>
-              )}
-
+            <div className="w-full md:w-[280px] lg:w-[340px] shrink-0 static md:sticky md:top-28 lg:top-32 self-start z-20 px-4 sm:px-0 mb-3 md:mb-0">
               {/* Mobile Header: Inline Node + Title (Flows naturally without sticking) */}
               <div className="md:hidden flex items-center gap-2.5">
                 <div className="h-7 w-7 rounded-full bg-[#071326] flex items-center justify-center shadow-md border-2 border-white ring-2 ring-blue-100/80 shrink-0">
@@ -112,11 +105,6 @@ export const Timeline = ({
                   <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 font-heading tracking-tight leading-tight">
                     {item.title}
                   </h3>
-                  {item.subtitle && (
-                    <span className="text-[11px] font-semibold text-slate-500 block mt-0.5">
-                      {item.subtitle}
-                    </span>
-                  )}
                 </div>
               </div>
 
