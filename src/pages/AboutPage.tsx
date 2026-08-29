@@ -128,13 +128,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             Práctica jurídica especializada con enfoque transversal en sectores altamente regulados y proyectos tecnológicos:
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          {/* Canvas-Anchored Linear Grid with Border Dividers (Zero Box-in-Box) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 border-y border-slate-200 w-full">
             {FOUNDER_PROFILE.professionalExperience.map((exp, idx) => {
               const iconMap: Record<string, React.ReactNode> = {
-                ShieldCheck: <ShieldCheck className="w-5 h-5 text-[#0A66FF]" />,
-                Code2: <Code2 className="w-5 h-5 text-[#38BDF8]" />,
-                Radio: <Radio className="w-5 h-5 text-[#818CF8]" />,
-                Scale: <Scale className="w-5 h-5 text-[#D4AF37]" />,
+                ShieldCheck: <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A66FF]" />,
+                Code2: <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#38BDF8]" />,
+                Radio: <Radio className="w-4 h-4 sm:w-5 sm:h-5 text-[#818CF8]" />,
+                Scale: <Scale className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />,
               };
               const bgMap = [
                 'bg-[#0A66FF]/10 border-[#0A66FF]/20 text-[#0A66FF]',
@@ -149,26 +150,33 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 'Contratos & Estrategia',
               ];
 
+              const borderClass = [
+                'border-b md:border-r border-slate-200',
+                'border-b border-slate-200',
+                'border-b md:border-b-0 md:border-r border-slate-200',
+                '',
+              ][idx];
+
               return (
                 <div
                   key={idx}
-                  className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-blue-300/80 hover:shadow-md transition-all flex flex-col justify-between space-y-3.5 group"
+                  className={`py-4 sm:py-5 px-3 sm:px-5 flex flex-col justify-start space-y-2.5 ${borderClass}`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${bgMap[idx % bgMap.length]} group-hover:scale-105 transition-transform`}>
-                      {iconMap[exp.icon] || <ShieldCheck className="w-5 h-5 text-[#0A66FF]" />}
-                    </div>
+                  <div className="flex items-start justify-between gap-3">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-mono block">
                         {tagMap[idx]}
                       </span>
-                      <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-tight font-heading group-hover:text-[#0A66FF] transition-colors">
+                      <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-tight font-heading mt-0.5">
                         {exp.area}
                       </h4>
                     </div>
+                    <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${bgMap[idx % bgMap.length]}`}>
+                      {iconMap[exp.icon] || <ShieldCheck className="w-4 h-4 text-[#0A66FF]" />}
+                    </div>
                   </div>
                   
-                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed text-justify font-normal flex-1">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify font-normal">
                     {exp.description}
                   </p>
                 </div>
