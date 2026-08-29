@@ -51,26 +51,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   ))}
                 </div>
               </div>
-
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full">
-                <a
-                  href={BRAND_INFO.linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all shadow-xs text-center"
-                >
-                  <LinkedInIcon className="w-4 h-4 shrink-0" />
-                  <span>Perfil en LinkedIn</span>
-                </a>
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition-all cursor-pointer shadow-xs text-center"
-                >
-                  <span>Conversemos</span>
-                  <ArrowRight className="w-3.5 h-3.5 shrink-0" />
-                </button>
-              </div>
             </div>
 
             {/* Right: High-Impact Visual Photo Card */}
@@ -399,12 +379,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               </p>
             </motion.div>
 
-            {/* Right: Mi forma de trabajar / Work Philosophy Quote Block */}
+            {/* Right: Mi forma de trabajar / Work Philosophy Quote Block & Action Buttons */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="lg:col-span-5"
+              className="lg:col-span-5 space-y-3"
             >
               <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 backdrop-blur-md text-white space-y-2 border border-slate-700/60 shadow-xl">
                 <div className="flex items-center gap-2 text-[#D4AF37]">
@@ -417,6 +397,26 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed text-justify">
                   {FOUNDER_PROFILE.workingPhilosophy.detail}
                 </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full">
+                <a
+                  href={BRAND_INFO.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[#0A66FF] hover:bg-[#0852cc] text-white transition-all shadow-xs text-center"
+                >
+                  <LinkedInIcon className="w-4 h-4 shrink-0" />
+                  <span>Perfil en LinkedIn</span>
+                </a>
+                <button
+                  onClick={() => onNavigate('contact')}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-white transition-all cursor-pointer shadow-xs text-center"
+                >
+                  <span>Conversemos</span>
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                </button>
               </div>
             </motion.div>
           </div>
