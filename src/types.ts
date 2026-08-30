@@ -9,6 +9,7 @@ export interface LegalArticle {
   date: string;
   readTime: string;
   author: string;
+  image?: string;
   keyPoints: string[];
   content: string[];
 }

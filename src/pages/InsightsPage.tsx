@@ -177,13 +177,33 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               className="py-8 sm:py-10 transition-colors hover:bg-slate-50/70 -mx-4 px-4 sm:-mx-6 sm:px-6 rounded-2xl group"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
-                {/* Left: Category & Metadata */}
-                <div className="lg:col-span-4 space-y-2.5">
-                  <span className="inline-block font-bold text-[11px] px-2.5 py-0.5 rounded-md bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 font-heading uppercase tracking-wider">
-                    {article.category}
-                  </span>
+                {/* Left: Thematic Image & Metadata */}
+                <div className="lg:col-span-4 space-y-3">
+                  {article.image && (
+                    <div 
+                      onClick={() => setActiveArticle(article)}
+                      className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden shadow-xs border border-slate-200 group-hover:shadow-md cursor-pointer transition-all duration-300 bg-slate-100"
+                    >
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/15 to-transparent pointer-events-none" />
+                      <span className="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-[#071326]/90 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-xs shadow-xs">
+                        {article.category}
+                      </span>
+                    </div>
+                  )}
 
-                  <div className="flex items-center gap-3 text-xs text-slate-500 font-medium">
+                  {!article.image && (
+                    <span className="inline-block font-bold text-[11px] px-2.5 py-0.5 rounded-md bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 font-heading uppercase tracking-wider">
+                      {article.category}
+                    </span>
+                  )}
+
+                  <div className="flex items-center gap-3 text-xs text-slate-500 font-medium pt-0.5">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3.5 h-3.5 text-slate-400" />
                       {article.date}
@@ -271,18 +291,34 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             {/* Close Button */}
             <button
               onClick={() => setActiveArticle(null)}
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer z-10"
               aria-label="Cerrar artículo"
             >
               <X className="w-5 h-5" />
             </button>
 
-            {/* Modal Header */}
+            {/* Modal Header & Thematic Image */}
             <div className="pr-10 mb-6">
+              {activeArticle.image && (
+                <div className="w-full h-44 sm:h-60 rounded-2xl overflow-hidden mb-5 border border-slate-200 shadow-xs relative">
+                  <img
+                    src={activeArticle.image}
+                    alt={activeArticle.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute bottom-3 left-3 px-3 py-1 rounded-md text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#071326]/90 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-xs shadow-xs">
+                    {activeArticle.category}
+                  </span>
+                </div>
+              )}
+
               <div className="flex items-center gap-3 text-xs text-slate-600 mb-3">
-                <span className="font-bold px-3 py-1 rounded-full bg-blue-50 text-[#0A66FF] border border-blue-100">
-                  {activeArticle.category}
-                </span>
+                {!activeArticle.image && (
+                  <span className="font-bold px-3 py-1 rounded-full bg-blue-50 text-[#0A66FF] border border-blue-100">
+                    {activeArticle.category}
+                  </span>
+                )}
                 <span>{activeArticle.date}</span>
                 <span>•</span>
                 <span>{activeArticle.readTime}</span>

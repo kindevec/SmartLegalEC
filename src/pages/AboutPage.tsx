@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PageRoute } from '../types';
 import { BRAND_INFO, METRICS, FOUNDER_PROFILE, CORPORATE_VALUES } from '../data/content';
 import { Timeline, TimelineEntry } from '../components/ui/timeline';
@@ -15,7 +15,8 @@ import {
   ShieldCheck,
   Code2,
   Radio,
-  Scale
+  Scale,
+  ChevronDown
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -23,6 +24,8 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
+  const [isBioExpanded, setIsBioExpanded] = useState(false);
+
   // Structured Timeline Data with High-Impact Visual Cards and Clean Layout
   const aboutTimelineData: TimelineEntry[] = [
     // ==========================================
@@ -46,9 +49,38 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   {FOUNDER_PROFILE.title}
                 </p>
                 <div className="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
-                  {FOUNDER_PROFILE.bio.map((paragraph, pIdx) => (
+                  {FOUNDER_PROFILE.bio.slice(0, 3).map((paragraph, pIdx) => (
                     <p key={pIdx}>{paragraph}</p>
                   ))}
+
+                  <AnimatePresence>
+                    {isBioExpanded && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.35, ease: 'easeInOut' }}
+                        className="space-y-3 overflow-hidden"
+                      >
+                        {FOUNDER_PROFILE.bio.slice(3).map((paragraph, pIdx) => (
+                          <p key={pIdx + 3}>{paragraph}</p>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <button
+                    onClick={() => setIsBioExpanded((prev) => !prev)}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A66FF] hover:text-[#0852cc] pt-1 transition-colors cursor-pointer group select-none"
+                    aria-expanded={isBioExpanded}
+                  >
+                    <span>{isBioExpanded ? 'Mostrar menos' : 'Leer biografía completa'}</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                        isBioExpanded ? 'rotate-180 text-[#0A66FF]' : 'group-hover:translate-y-0.5 text-[#0A66FF]'
+                      }`}
+                    />
+                  </button>
                 </div>
               </div>
             </div>
@@ -94,21 +126,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             Práctica jurídica especializada con enfoque transversal en sectores altamente regulados y proyectos tecnológicos:
           </p>
 
-          {/* Canvas-Anchored Linear Grid with Border Dividers (Zero Box-in-Box) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 border-y border-slate-200 w-full">
+          {/* 4 Luminous Floating Cards (Institutional Gold Theme, 2x2 Grid on desktop) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-5 w-full">
             {FOUNDER_PROFILE.professionalExperience.map((exp, idx) => {
               const iconMap: Record<string, React.ReactNode> = {
-                ShieldCheck: <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A66FF]" />,
-                Code2: <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#38BDF8]" />,
-                Radio: <Radio className="w-4 h-4 sm:w-5 sm:h-5 text-[#818CF8]" />,
-                Scale: <Scale className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />,
+                ShieldCheck: <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />,
+                Code2: <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />,
+                Radio: <Radio className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />,
+                Scale: <Scale className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />,
               };
-              const bgMap = [
-                'bg-[#0A66FF]/10 border-[#0A66FF]/20 text-[#0A66FF]',
-                'bg-[#38BDF8]/10 border-[#38BDF8]/20 text-[#0284C7]',
-                'bg-[#818CF8]/10 border-[#818CF8]/20 text-[#6366F1]',
-                'bg-[#D4AF37]/10 border-[#D4AF37]/25 text-[#B45309]',
-              ];
+
               const tagMap = [
                 'Cumplimiento & LOPDP',
                 'Software & Negocios Digitales',
@@ -116,35 +143,47 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 'Contratos & Estrategia',
               ];
 
-              const borderClass = [
-                'border-b md:border-r border-slate-200',
-                'border-b border-slate-200',
-                'border-b md:border-b-0 md:border-r border-slate-200',
-                '',
-              ][idx];
-
               return (
                 <div
                   key={idx}
-                  className={`py-4 sm:py-5 px-3 sm:px-5 flex flex-col justify-start space-y-2.5 ${borderClass}`}
+                  className="relative rounded-none md:rounded-3xl bg-[#091224] border-0 md:border md:border-slate-800/80 p-5 sm:p-6 sm:py-7 shadow-[0_10px_30px_-8px_rgba(212,175,55,0.18)] overflow-hidden flex flex-col justify-between gap-4 transition-all duration-300 md:hover:scale-[1.015] md:hover:border-[#D4AF37]/50 hover:shadow-2xl md:border-b-2 md:border-b-[#D4AF37]/70 group select-none"
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-mono block">
-                        {tagMap[idx]}
-                      </span>
-                      <h4 className="text-sm sm:text-base font-bold text-slate-900 leading-tight font-heading mt-0.5">
-                        {exp.area}
-                      </h4>
-                    </div>
-                    <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${bgMap[idx % bgMap.length]}`}>
-                      {iconMap[exp.icon] || <ShieldCheck className="w-4 h-4 text-[#0A66FF]" />}
-                    </div>
+                  {/* Radiant Corner Aura Glow in Institutional Gold */}
+                  <div className="absolute -top-10 -right-10 w-52 h-52 rounded-full blur-2xl pointer-events-none transition-opacity duration-300 group-hover:opacity-100 opacity-80 bg-gradient-to-bl from-[#D4AF37]/35 via-[#D4AF37]/15 to-transparent" />
+
+                  {/* Ambient Sparkle Stars in Gold Glow Zone */}
+                  <div className="absolute top-2.5 right-3 w-28 h-20 pointer-events-none opacity-80 select-none">
+                    <span className="absolute top-1 right-3 text-white text-[10px] animate-pulse">✦</span>
+                    <span className="absolute top-6 right-9 text-[#D4AF37] text-[13px] font-bold drop-shadow-[0_0_8px_rgba(212,175,55,0.9)]">✦</span>
+                    <span className="absolute top-11 right-2 text-white/70 text-[8px]">✦</span>
+                    <span className="absolute top-3 right-16 text-[#D4AF37]/70 text-[7px]">✦</span>
                   </div>
-                  
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify font-normal">
-                    {exp.description}
-                  </p>
+
+                  {/* Top Bar: Squircle Icon Badge & Category Tag */}
+                  <div className="relative z-10 flex items-center justify-between gap-3">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/10 flex items-center justify-center shrink-0 backdrop-blur-md shadow-md">
+                      {iconMap[exp.icon] || <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />}
+                    </div>
+
+                    <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider font-mono px-3 py-1 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/15 text-[#D4AF37] backdrop-blur-xs shadow-xs">
+                      {tagMap[idx]}
+                    </span>
+                  </div>
+
+                  {/* Middle & Content: Area Title & Description */}
+                  <div className="relative z-10 space-y-2 pt-1">
+                    <h4 className="text-base sm:text-lg font-extrabold text-white leading-snug font-heading tracking-tight group-hover:text-white transition-colors">
+                      {exp.area}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal text-justify sm:text-left">
+                      {exp.description}
+                    </p>
+                  </div>
+
+                  {/* Mobile Diffused Divider Line between stacked cards */}
+                  {idx < FOUNDER_PROFILE.professionalExperience.length - 1 && (
+                    <div className="md:hidden absolute bottom-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 via-50% to-transparent pointer-events-none" />
+                  )}
                 </div>
               );
             })}
@@ -292,7 +331,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       badge: "05. CONVERSACIONES ESTRATÉGICAS",
       subtitle: "Hablemos de tu Organización",
       content: (
-        <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border border-slate-800 overflow-hidden space-y-5 w-full">
+        <div className="relative rounded-none sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border-t border-x sm:border border-slate-800 overflow-hidden space-y-5 w-full">
           <div className="absolute top-0 right-0 w-72 h-72 bg-[#0A66FF]/15 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 space-y-2">
@@ -331,7 +370,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="w-full bg-[#F8FAFC] min-h-screen pb-4 sm:pb-8">
+    <div className="w-full bg-[#F8FAFC] min-h-screen pb-0 sm:pb-8">
       {/* 1. HEADER SECTION with Seamless Full-Bleed Background */}
       <section className="relative bg-[#071326] text-white min-h-[340px] sm:min-h-[400px] lg:min-h-[440px] h-auto pt-16 sm:pt-20 lg:pt-24 pb-6 sm:pb-8 lg:pb-10 flex flex-col justify-center border-b border-slate-800 overflow-hidden">
         

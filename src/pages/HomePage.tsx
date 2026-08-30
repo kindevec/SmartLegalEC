@@ -329,7 +329,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           </div>
 
           {/* Bottom Pagination Dots */}
-          <div className="flex items-center justify-center gap-2 pt-10 sm:pt-14">
+          <div className="flex items-center justify-start gap-2 pt-10 sm:pt-14">
             {heroSlides.map((_, idx) => (
               <button
                 key={idx}
@@ -452,13 +452,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                         <span>{service.badge}</span>
                       </span>
                     </div>
-
-                    {/* Number top-right */}
-                    <div className="absolute top-3 right-3 z-10">
-                      <span className="font-mono text-xs font-bold text-[#D4AF37] bg-slate-950/80 px-2 py-0.5 rounded-full border border-[#D4AF37]/30 backdrop-blur-md">
-                        {service.num}
-                      </span>
-                    </div>
                   </div>
 
                   {/* Card Content */}
@@ -512,10 +505,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
             
-            {/* LEFT: Founder Cutout Portrait (Resting directly on the bottom horizontal bar) */}
+            {/* LEFT: Founder Cutout Portrait with Modern Studio Orbital Disc */}
             <div className="lg:col-span-5 relative flex justify-center lg:justify-start items-end w-full">
-              <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[390px] flex items-end justify-center">
-                <picture className="w-full h-auto block">
+              <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[390px] flex items-end justify-center">
+                
+                {/* 1. Ambient Dynamic Glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-72 h-64 sm:h-72 bg-gradient-to-tr from-[#0A66FF]/25 via-[#D4AF37]/15 to-transparent blur-3xl rounded-full pointer-events-none -z-0" />
+
+                {/* 2. Outer Decorative Accent Orbit Ring */}
+                <div className="absolute top-8 sm:top-10 left-1/2 -translate-x-1/2 w-60 sm:w-72 lg:w-80 h-60 sm:h-72 lg:h-80 rounded-full border border-[#D4AF37]/35 pointer-events-none -z-0" />
+                <div className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 w-68 sm:w-80 lg:w-88 h-68 sm:h-80 lg:h-88 rounded-full border border-blue-500/20 border-dashed pointer-events-none -z-0" />
+
+                {/* 3. Solid Executive Studio Disc (Centered spotlight behind portrait) */}
+                <div className="absolute top-12 sm:top-14 left-1/2 -translate-x-1/2 w-56 sm:w-66 lg:w-72 h-56 sm:h-66 lg:h-72 rounded-full bg-gradient-to-tr from-[#061224] via-[#0B1E3F] to-[#133261] border-2 border-[#D4AF37]/40 shadow-2xl pointer-events-none -z-0 overflow-hidden">
+                  {/* Internal ambient diagonal sheen */}
+                  <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-white/10 to-transparent rotate-45 pointer-events-none" />
+                  <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-[#061224] to-transparent pointer-events-none" />
+                </div>
+
+                {/* 4. Cutout Portrait with 3D Depth Overlapping the Disc */}
+                <picture className="w-full h-auto block relative z-10">
                   <source srcSet="/cliente_sinfondo.avif" type="image/avif" />
                   <source srcSet="/cliente_sinfondo.webp" type="image/webp" />
                   <img
@@ -523,7 +532,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                     alt="Luis Fernando Guerra Padilla - SmartLegalEC"
                     width="896"
                     height="1200"
-                    className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[450px] object-contain object-bottom drop-shadow-xl block -mb-[1px]"
+                    className="w-full max-h-[340px] sm:max-h-[400px] lg:max-h-[450px] object-contain object-bottom drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] block -mb-[1px]"
                     loading="lazy"
                     decoding="async"
                   />

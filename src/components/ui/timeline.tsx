@@ -83,7 +83,7 @@ export const Timeline = ({
         </div>
       )}
 
-      <div ref={ref} className="relative w-full max-w-[1540px] mx-auto pb-4 sm:pb-8 px-0 sm:px-2 md:px-0">
+      <div ref={ref} className="relative w-full max-w-[1540px] mx-auto pb-0 sm:pb-8 px-0 sm:px-2 md:px-0">
         {data.map((item, index) => (
           <div
             key={index}

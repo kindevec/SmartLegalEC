@@ -342,7 +342,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Asesoría en uso, asignación y regulación de frecuencias del espectro.',
         fullDesc:
           'Brindamos asesoría jurídica en asuntos relacionados con el uso, asignación y regulación del espectro.',
-        image: 'https://images.unsplash.com/photo-1508873696983-2df57046475a?auto=format&fit=crop&w=600&q=80',
+        image: 'https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&w=600&q=80',
       },
       {
         id: 'telecom-4',
@@ -543,6 +543,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     date: '20 de Febrero, 2026',
     readTime: '6 min de lectura',
     author: 'Luis Fernando Guerra Padilla',
+    image: '/articles/ecosistema-tecnologico.jpg',
     summary: 'En los negocios tecnológicos, un contrato rara vez funciona de manera aislada. Claves para modelar las distintas relaciones entre fabricantes, distribuidores, partners, canales, clientes y usuarios finales manteniendo coherencia jurídica y comercial.',
     keyPoints: [
       'Condiciones comerciales y reglas aplicables a cada canal de distribución.',
@@ -569,6 +570,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     date: '12 de Febrero, 2026',
     readTime: '7 min de lectura',
     author: 'Luis Fernando Guerra Padilla',
+    image: '/articles/abogado-in-house.jpg',
     summary: 'La función jurídica dentro de una empresa va mucho más allá de responder consultas o gestionar contingencias. La asesoría legal puede aportar al negocio desde tres dimensiones: prevención, contención y generación de oportunidades.',
     keyPoints: [
       'Prevención: Anticiparse a los riesgos participando oportunamente en nuevos productos, decisiones comerciales y proyectos tecnológicos.',
@@ -593,6 +595,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     date: '25 de Enero, 2026',
     readTime: '6 min de lectura',
     author: 'Luis Fernando Guerra Padilla',
+    image: '/articles/proteccion-datos-implementacion.jpg',
     summary: 'Implementar un marco de protección de datos personales no consiste en replicar políticas, formatos o plantillas de una organización a otra. La metodología real exige entender la organización antes de diseñar su cumplimiento.',
     keyPoints: [
       'Diversidad sectorial: Salud, educación, telecomunicaciones, Fintech, retail, construcción y consumo masivo manejan riesgos totalmente distintos.',
@@ -620,6 +623,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     date: '10 de Enero, 2026',
     readTime: '7 min de lectura',
     author: 'Luis Fernando Guerra Padilla',
+    image: '/articles/delegado-proteccion-datos.jpg',
     summary: 'El verdadero valor del Delegado de Protección de Datos aparece cuando conoce suficientemente la organización para convertirse en un punto de conexión entre la normativa y la operación, manteniendo una independencia fundamental.',
     keyPoints: [
       'El DPD como punto de conexión: Integrar la normativa a la operación en sectores como educación, salud, retail, construcción y tecnología.',

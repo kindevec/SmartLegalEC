@@ -77,20 +77,26 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
 
   const totalItems = items.length;
 
-  // Calculates current scroll progress and active slide index
+  // Calculates current scroll progress and active slide index based on actual element offsets
   const updateScrollState = useCallback(() => {
     const container = scrollContainerRef.current;
-    if (!container) return;
+    if (!container || container.children.length === 0) return;
 
     const { scrollLeft } = container;
-    const firstChild = container.firstElementChild as HTMLElement | null;
-    const cardWidth = firstChild ? firstChild.clientWidth + 16 : 260;
-    const index = Math.min(
-      Math.max(0, Math.round(scrollLeft / cardWidth)),
-      totalItems - 1
-    );
-    setActiveSlideIndex(index);
-  }, [totalItems]);
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    for (let i = 0; i < container.children.length; i++) {
+      const child = container.children[i] as HTMLElement;
+      const childLeft = child.offsetLeft - container.offsetLeft;
+      const distance = Math.abs(childLeft - scrollLeft);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = i;
+      }
+    }
+    setActiveSlideIndex(closestIndex);
+  }, []);
 
   // Handles any user interaction (drag, click arrows, touch, dots)
   // Pauses auto-play and sets a 10-second timer to resume
@@ -129,14 +135,21 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
       const container = scrollContainerRef.current;
       if (!container) return;
 
-      const firstChild = container.firstElementChild as HTMLElement | null;
-      const cardWidth = firstChild ? firstChild.clientWidth + 16 : 260;
-      const targetScroll = index * cardWidth;
-
-      container.scrollTo({
-        left: targetScroll,
-        behavior: 'smooth'
-      });
+      const targetChild = container.children[index] as HTMLElement | null;
+      if (targetChild) {
+        const targetScroll = targetChild.offsetLeft - container.offsetLeft;
+        container.scrollTo({
+          left: Math.max(0, targetScroll),
+          behavior: 'smooth'
+        });
+      } else {
+        const firstChild = container.firstElementChild as HTMLElement | null;
+        const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
+        container.scrollTo({
+          left: index * cardWidth,
+          behavior: 'smooth'
+        });
+      }
       setActiveSlideIndex(index);
     },
     [handleUserManipulation]
@@ -149,7 +162,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     if (!container) return;
 
     const firstChild = container.firstElementChild as HTMLElement | null;
-    const scrollAmount = firstChild ? firstChild.clientWidth + 16 : 260;
+    const scrollAmount = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
 
     if (container.scrollLeft <= 10) {
       // Loop to end if at beginning
@@ -169,7 +182,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     if (!container) return;
 
     const firstChild = container.firstElementChild as HTMLElement | null;
-    const scrollAmount = firstChild ? firstChild.clientWidth + 16 : 260;
+    const scrollAmount = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
     const maxScroll = container.scrollWidth - container.clientWidth;
 
     if (container.scrollLeft >= maxScroll - 15) {
@@ -337,20 +350,29 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
 
       {/* Bottom Interactive Dot Pagination */}
       {showDots && totalItems > 1 && (
-        <div className="flex items-center justify-center gap-1.5 mt-3.5 pb-1">
+        <div className="flex items-center justify-center gap-1 mt-3.5 pb-1">
           {items.map((_, idx) => {
             const isActive = idx === activeSlideIndex;
             return (
               <button
                 key={idx}
-                onClick={() => scrollToSlide(idx)}
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  scrollToSlide(idx);
+                }}
                 aria-label={`Ir al elemento ${idx + 1}`}
-                className={`transition-all duration-300 rounded-full cursor-pointer ${
-                  isActive
-                    ? 'w-6 h-2 bg-[#0A66FF] shadow-xs'
-                    : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
-                }`}
-              />
+                className="p-2 -m-0.5 inline-flex items-center justify-center cursor-pointer group/dot focus:outline-none"
+              >
+                <span
+                  className={`transition-all duration-300 rounded-full block ${
+                    isActive
+                      ? 'w-6 h-2 bg-[#0A66FF] shadow-xs'
+                      : 'w-2 h-2 bg-slate-300 group-hover/dot:bg-slate-400'
+                  }`}
+                />
+              </button>
             );
           })}
         </div>
