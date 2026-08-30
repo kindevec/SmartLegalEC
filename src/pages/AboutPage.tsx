@@ -463,12 +463,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 2. CONTINUOUS TIMELINE CANVAS: Presenting the complete story of Sobre Mí */}
-      <main className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 mt-4 sm:mt-8 w-full">
+      <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 mt-4 sm:mt-8 w-full">
         <Timeline 
           data={aboutTimelineData}
           showHeader={false}
         />
-      </main>
+      </div>
     </div>
   );
 };

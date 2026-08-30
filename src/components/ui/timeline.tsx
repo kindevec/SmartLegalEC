@@ -33,22 +33,27 @@ export const Timeline = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
 
+  // Dynamically update height whenever content inside timeline expands, collapses or resizes
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref, data]);
+    if (!ref.current) return;
 
-  // Recalculate height on resize or dynamic content changes
-  useEffect(() => {
-    const handleResize = () => {
+    const updateHeight = () => {
       if (ref.current) {
         setHeight(ref.current.getBoundingClientRect().height);
       }
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    updateHeight();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateHeight();
+    });
+
+    resizeObserver.observe(ref.current);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -156,9 +161,10 @@ export const Timeline = ({
         {/* Illuminated Vertical Beam Line (Desktop Only - perfectly centered on Node Orbs) */}
         <div
           style={{
-            height: height + "px",
+            height: height ? `${height}px` : "100%",
+            maxHeight: "100%",
           }}
-          className="hidden md:block absolute left-[19px] top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)]"
+          className="hidden md:block absolute left-[19px] top-0 bottom-0 overflow-hidden w-[2px] pointer-events-none bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_95%,transparent_100%)]"
         >
           <motion.div
             style={{
