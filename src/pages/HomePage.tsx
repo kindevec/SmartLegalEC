@@ -807,55 +807,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
         </motion.div>
       </section>
 
-      {/* ========================================================================= */}
-      {/* 5. CALL TO ACTION & COMPLIANCE BANNER with Motion */}
-      {/* ========================================================================= */}
-      <section 
-        className="w-full bg-[#F0F4FA] py-12 sm:py-16 relative overflow-hidden"
-      >
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7 }}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        >
-          <div className="bg-gradient-to-r from-[#071326] via-[#0B1D3A] to-[#132742] text-white rounded-2xl sm:rounded-[32px] p-6 sm:p-10 lg:p-14 border border-slate-800 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-10">
-            <div className="max-w-2xl space-y-3 sm:space-y-4 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30 font-heading">
-                EVALUACIÓN DE RIESGO LOPDP
-              </div>
-              <h3 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-white leading-tight">
-                ¿Tu empresa cumple con la normativa vigente en Ecuador?
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify">
-                Realice una pre-evaluación analítica del estado de cumplimiento LOPDP de su organización para identificar posibles brechas de seguridad y exposición regulatoria.
-              </p>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={onOpenDiagnostic}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 rounded-full text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xl transition-colors cursor-pointer"
-              >
-                <span>Iniciar Evaluación LOPDP</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => onNavigate('contact')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-6 sm:py-4 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/15 text-white border border-white/20 transition-colors cursor-pointer"
-              >
-                <span>Contactar a un Abogado</span>
-              </motion.button>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
     </div>
   );
 };
+

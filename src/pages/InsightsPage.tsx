@@ -261,38 +261,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
         )}
       </section>
 
-      {/* 4. COMPLIANCE CALLOUT */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16"
-      >
-        <div className="bg-[#0B1D3A] text-white rounded-3xl p-8 sm:p-10 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-slate-300 mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#60A5FA]" />
-              <span>Herramienta de Evaluación</span>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-heading">
-              ¿Deseas verificar si tu empresa cumple con la LOPDP?
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-300 text-justify max-w-xl">
-              Prueba nuestro test de autodiagnóstico interactivo con reporte inmediato de riesgos y plan de acción.
-            </p>
-          </div>
-          <button
-            onClick={onOpenDiagnostic}
-            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 transition-all cursor-pointer shadow-md"
-          >
-            <span>Ejecutar Test LOPDP</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-      </motion.section>
-
-      {/* 5. ARTICLE DETAIL READER MODAL */}
+      {/* 4. ARTICLE DETAIL READER MODAL */}
       {activeArticle && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
           <div 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, Scale, User, BookOpen, Mail, ShieldCheck, Code2, Radio, Layers, X, ChevronRight } from 'lucide-react';
+import { Home, Scale, User, BookOpen, Mail, ShieldCheck, Code2, Radio, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageRoute } from '../types';
 import { NavBar, TubelightNavItem } from './ui/tubelight-navbar';
@@ -20,21 +20,13 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   const serviceCategories: {
-    id: 'all' | 'lopdp' | 'tech' | 'telecom';
+    id: 'lopdp' | 'tech' | 'telecom';
     label: string;
     description: string;
     icon: React.ComponentType<{ className?: string }>;
     colorClass: string;
     bgClass: string;
   }[] = [
-    {
-      id: 'all',
-      label: 'Todas las áreas (3)',
-      description: 'Catálogo integral de servicios especializados',
-      icon: Layers,
-      colorClass: 'text-[#D4AF37]',
-      bgClass: 'bg-[#D4AF37]/15 border-[#D4AF37]/30',
-    },
     {
       id: 'lopdp',
       label: 'Protección de Datos y Privacidad',
@@ -83,8 +75,9 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       icon: Scale,
       route: 'areas',
       onClick: () => {
-        // Toggle the services popup on mobile
-        setIsServicesOpen((prev) => !prev);
+        setIsServicesOpen(false);
+        onNavigate('areas');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       },
     },
     {

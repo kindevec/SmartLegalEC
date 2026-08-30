@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 import { Logo } from './Logo';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { BRAND_INFO } from '../data/content';
@@ -9,8 +10,7 @@ import {
   ChevronDown, 
   ShieldCheck, 
   Code2, 
-  Radio, 
-  Layers 
+  Radio 
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -81,21 +81,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenD
   ];
 
   const serviceCategories: {
-    id: 'all' | 'lopdp' | 'tech' | 'telecom';
+    id: 'lopdp' | 'tech' | 'telecom';
     label: string;
     description: string;
     icon: React.ComponentType<{ className?: string }>;
     colorClass: string;
     bgClass: string;
   }[] = [
-    {
-      id: 'all',
-      label: 'Todas las áreas (3)',
-      description: 'Catálogo integral de servicios especializados',
-      icon: Layers,
-      colorClass: 'text-[#D4AF37]',
-      bgClass: 'bg-[#D4AF37]/15 border-[#D4AF37]/30',
-    },
     {
       id: 'lopdp',
       label: 'Protección de Datos y Privacidad',
@@ -188,7 +180,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenD
                     <span>{link.label}</span>
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180 text-[#D4AF37]' : 'text-slate-400 group-hover:text-white'}`} />
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D4AF37] rounded-full" />
+                      <motion.span
+                        layoutId="navbar-active-indicator"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D4AF37] rounded-full"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
                     )}
                   </button>
 
@@ -243,7 +239,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenD
               >
                 <span>{link.label}</span>
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D4AF37] rounded-full" />
+                  <motion.span
+                    layoutId="navbar-active-indicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D4AF37] rounded-full"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
                 )}
               </button>
             );
