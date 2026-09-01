@@ -10,6 +10,7 @@ export interface TimelineEntry {
   subtitle?: string;
   badge?: string;
   content: React.ReactNode;
+  hideOnMobile?: boolean;
 }
 
 interface TimelineProps {
@@ -54,7 +55,7 @@ export const Timeline = ({
     return () => {
       resizeObserver.disconnect();
     };
-  }, []);
+  }, [data]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -92,7 +93,7 @@ export const Timeline = ({
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row justify-start pt-5 sm:pt-7 md:pt-9 first:pt-0 gap-0 md:gap-5 lg:gap-7 w-full"
+            className={`${item.hideOnMobile ? 'hidden md:flex' : 'flex'} flex-col md:flex-row justify-start pt-5 sm:pt-7 md:pt-9 first:pt-0 gap-0 md:gap-5 lg:gap-7 w-full`}
           >
             {/* Phase / Chapter Indicator (Left Column - Static on mobile, Sticky on desktop) */}
             <div className="w-full md:w-[250px] lg:w-[290px] shrink-0 static md:sticky md:top-28 lg:top-32 self-start z-20 px-4 sm:px-0 mb-3 md:mb-0">

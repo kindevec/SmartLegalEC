@@ -336,6 +336,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       title: "Alianza & Contacto",
       badge: "05. CONVERSACIONES ESTRATÉGICAS",
       subtitle: "Hablemos de tu Organización",
+      hideOnMobile: true,
       content: (
         <div className="relative rounded-none sm:rounded-3xl bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white p-6 sm:p-8 shadow-xl border-t border-x sm:border border-slate-800 overflow-hidden space-y-5 w-full">
           <div className="absolute top-0 right-0 w-72 h-72 bg-[#0A66FF]/15 rounded-full blur-3xl pointer-events-none" />
