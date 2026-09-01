@@ -184,12 +184,16 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                       onClick={() => setActiveArticle(article)}
                       className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden shadow-xs border border-slate-200 group-hover:shadow-md cursor-pointer transition-all duration-300 bg-slate-100"
                     >
-                      <img
-                        src={article.image}
-                        alt={article.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
+                      <picture className="w-full h-full">
+                        <source srcSet={article.image.replace(/\.(jpg|png|jpeg)$/, '.avif')} type="image/avif" />
+                        <source srcSet={article.image.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
+                        <img
+                          src={article.image}
+                          alt={article.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      </picture>
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/15 to-transparent pointer-events-none" />
                       <span className="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-[#071326]/90 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-xs shadow-xs">
                         {article.category}
@@ -301,11 +305,15 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             <div className="pr-10 mb-6">
               {activeArticle.image && (
                 <div className="w-full h-44 sm:h-60 rounded-2xl overflow-hidden mb-5 border border-slate-200 shadow-xs relative">
-                  <img
-                    src={activeArticle.image}
-                    alt={activeArticle.title}
-                    className="w-full h-full object-cover"
-                  />
+                  <picture className="w-full h-full">
+                    <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.avif')} type="image/avif" />
+                    <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
+                    <img
+                      src={activeArticle.image}
+                      alt={activeArticle.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
                   <span className="absolute bottom-3 left-3 px-3 py-1 rounded-md text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#071326]/90 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-xs shadow-xs">
                     {activeArticle.category}
