@@ -48,11 +48,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 <p className="text-xs sm:text-sm font-semibold text-[#0A66FF] mt-1 mb-4">
                   {FOUNDER_PROFILE.title}
                 </p>
-                <div className="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
-                  {FOUNDER_PROFILE.bio.slice(0, 3).map((paragraph, pIdx) => (
-                    <p key={pIdx}>{paragraph}</p>
-                  ))}
+                <div className="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed text-justify-clean">
+                  {/* Paragraph 0: Always visible on both mobile and desktop */}
+                  <p>{FOUNDER_PROFILE.bio[0]}</p>
 
+                  {/* Paragraphs 1 & 2: Visible on desktop by default, hidden on mobile until expanded */}
+                  <div className={`space-y-3 ${isBioExpanded ? 'block' : 'hidden sm:block'}`}>
+                    <p>{FOUNDER_PROFILE.bio[1]}</p>
+                    <p>{FOUNDER_PROFILE.bio[2]}</p>
+                  </div>
+
+                  {/* Paragraphs 3+: Collapsible on all screens */}
                   <AnimatePresence>
                     {isBioExpanded && (
                       <motion.div
