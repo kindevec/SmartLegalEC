@@ -20,7 +20,8 @@ import {
   Code2,
   Building2,
   ChevronRight,
-  Check
+  Check,
+  X
 } from 'lucide-react';
 
 interface InsightsPageProps {
@@ -490,7 +491,53 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
         transition={{ duration: 0.5, delay: 0.15 }}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8 relative z-20"
       >
-        <div className="bg-white rounded-2xl p-3.5 sm:p-4 shadow-md border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+        {/* ========================================================================= */}
+        {/* MOBILE VIEW: Direct Canvas Search & Category Scroll Pills (No Box-in-Box) */}
+        {/* ========================================================================= */}
+        <div className="block md:hidden space-y-3 pb-3 border-b border-slate-200/80">
+          {/* Search Input on Mobile Canvas */}
+          <div className="relative w-full">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Buscar por caso, título o tema..."
+              className="w-full pl-9.5 pr-8 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A66FF]/20 focus:border-[#0A66FF] bg-white shadow-xs transition-all font-normal placeholder:text-slate-400 text-slate-900"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Limpiar búsqueda"
+              >
+                <X className="w-3 h-3" />
+              </button>
+            )}
+          </div>
+
+          {/* Quick Category Horizontal Scroll directly on canvas with full bleed edge-to-edge */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 snap-x">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`inline-flex items-center px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
+                  selectedCategory === cat
+                    ? 'bg-[#0B1D3A] text-white shadow-sm border border-[#0B1D3A]'
+                    : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs'
+                }`}
+              >
+                {cat === 'all' ? 'Todos los temas' : cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* DESKTOP VIEW: Full Horizontal Filter Bar with Tabs & Search (Untouched) */}
+        {/* ========================================================================= */}
+        <div className="hidden md:flex bg-white rounded-2xl p-3.5 sm:p-4 shadow-md border border-slate-200 flex-row items-center justify-between gap-4">
           <div className="flex overflow-x-auto no-scrollbar pb-1 sm:pb-0 flex-nowrap sm:flex-wrap items-center gap-2 w-full md:w-auto">
             {categories.map((cat) => (
               <button
