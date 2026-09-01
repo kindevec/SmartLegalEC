@@ -140,12 +140,10 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8 relative z-20"
       >
         {/* ========================================================================= */}
-        {/* MOBILE VIEW: Collapsible Services Menu with Arrow Toggle */}
+        {/* MOBILE VIEW: Direct Canvas Search & Category Scroll Pills (No Box-in-Box) */}
         {/* ========================================================================= */}
-        {/* MOBILE VIEW: Premium Responsive Search & Category Scroll Pills */}
-        {/* ========================================================================= */}
-        <div className="block md:hidden bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-3.5 shadow-md border border-slate-200/90 space-y-2.5">
-          {/* Search Input on Mobile with Clear Action */}
+        <div className="block md:hidden space-y-3 pb-3 border-b border-slate-200/80">
+          {/* Search Input on Mobile Canvas */}
           <div className="relative w-full">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
@@ -153,12 +151,12 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Buscar por servicio, materia o palabra clave..."
-              className="w-full pl-9.5 pr-8 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A66FF]/30 focus:border-[#0A66FF] bg-slate-50/90 transition-all font-normal placeholder:text-slate-400"
+              className="w-full pl-9.5 pr-8 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A66FF]/20 focus:border-[#0A66FF] bg-white shadow-xs transition-all font-normal placeholder:text-slate-400 text-slate-900"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Limpiar búsqueda"
               >
                 <X className="w-3 h-3" />
@@ -166,15 +164,15 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
             )}
           </div>
 
-          {/* Quick Category Horizontal Scroll with Category Icons & Badge Counters */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 pt-0.5 -mx-1 px-1 snap-x">
+          {/* Quick Category Horizontal Scroll directly on canvas with full bleed edge-to-edge */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 snap-x">
             {/* Todas */}
             <button
               onClick={() => handleFilterSelect('all')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
                 selectedFilter === 'all'
                   ? 'bg-[#0B1D3A] text-white shadow-sm border border-[#0B1D3A]'
-                  : 'bg-slate-100/90 text-slate-700 hover:bg-slate-200 border border-transparent'
+                  : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs'
               }`}
             >
               <Scale className={`w-3.5 h-3.5 ${selectedFilter === 'all' ? 'text-[#D4AF37]' : 'text-slate-500'}`} />
@@ -184,10 +182,10 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
             {/* LOPDP */}
             <button
               onClick={() => handleFilterSelect('lopdp')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
                 selectedFilter === 'lopdp'
                   ? 'bg-[#0A66FF] text-white shadow-sm shadow-[#0A66FF]/25 border border-[#0A66FF]'
-                  : 'bg-slate-100/90 text-slate-700 hover:bg-slate-200 border border-transparent'
+                  : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs'
               }`}
             >
               <ShieldCheck className={`w-3.5 h-3.5 ${selectedFilter === 'lopdp' ? 'text-white' : 'text-[#0A66FF]'}`} />
@@ -197,10 +195,10 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
             {/* Tech */}
             <button
               onClick={() => handleFilterSelect('tech')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
                 selectedFilter === 'tech'
                   ? 'bg-purple-600 text-white shadow-sm shadow-purple-600/25 border border-purple-600'
-                  : 'bg-slate-100/90 text-slate-700 hover:bg-slate-200 border border-transparent'
+                  : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs'
               }`}
             >
               <Code2 className={`w-3.5 h-3.5 ${selectedFilter === 'tech' ? 'text-white' : 'text-purple-600'}`} />
@@ -210,10 +208,10 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
             {/* Telecom */}
             <button
               onClick={() => handleFilterSelect('telecom')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
                 selectedFilter === 'telecom'
                   ? 'bg-[#0284C7] text-white shadow-sm shadow-sky-600/25 border border-[#0284C7]'
-                  : 'bg-slate-100/90 text-slate-700 hover:bg-slate-200 border border-transparent'
+                  : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs'
               }`}
             >
               <Radio className={`w-3.5 h-3.5 ${selectedFilter === 'telecom' ? 'text-white' : 'text-[#0284C7]'}`} />
