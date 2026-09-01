@@ -131,51 +131,68 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            {/* Category Badge & Metadata */}
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-4">
-              <span className="px-3 py-1 rounded-md text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#0A66FF]/25 text-[#60A5FA] border border-[#0A66FF]/40 shadow-xs font-heading">
-                {activeArticle.category}
-              </span>
-              <span className="text-xs text-slate-300 flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                {activeArticle.date}
-              </span>
-              <span className="text-slate-500">•</span>
-              <span className="text-xs text-slate-300 flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-slate-400" />
-                {activeArticle.readTime}
-              </span>
-            </div>
-
-            {/* Editorial Title */}
-            <h1 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-white tracking-tight leading-[1.18] mb-4 text-left max-w-4xl">
-              {activeArticle.title}
-            </h1>
-
-            {/* Lead Summary */}
-            <p className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed text-left max-w-3xl mb-6">
-              {activeArticle.summary}
-            </p>
-
-            {/* Author Profile Byline */}
-            <div className="flex items-center gap-3.5 pt-4 border-t border-slate-800/80">
-              <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-800 shadow-xs">
-                <img
-                  src="/cliente.webp"
-                  alt={activeArticle.author}
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
-                />
-              </div>
-              <div className="text-left">
-                <div className="text-sm font-bold text-white leading-tight font-heading">
-                  {activeArticle.author}
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+              
+              {/* Left Column: Category, Title, Summary & Author Profile */}
+              <div className="max-w-3xl">
+                {/* Category Badge & Metadata */}
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-3.5">
+                  <span className="px-3 py-1 rounded-md text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#0A66FF]/25 text-[#60A5FA] border border-[#0A66FF]/40 shadow-xs font-heading">
+                    {activeArticle.category}
+                  </span>
+                  <span className="text-xs text-slate-300 flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                    {activeArticle.date}
+                  </span>
+                  <span className="text-slate-500">•</span>
+                  <span className="text-xs text-slate-300 flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-slate-400" />
+                    {activeArticle.readTime}
+                  </span>
                 </div>
-                <div className="text-xs text-slate-300 mt-0.5">
-                  Socio Director en SmartLegalEC • Especialista en Datos, Tecnología y Telecomunicaciones
+
+                {/* Editorial Title */}
+                <h1 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-white tracking-tight leading-[1.18] mb-4 text-left">
+                  {activeArticle.title}
+                </h1>
+
+                {/* Lead Summary */}
+                <p className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed text-left mb-6">
+                  {activeArticle.summary}
+                </p>
+
+                {/* Author Profile Byline */}
+                <div className="flex items-center gap-3.5 pt-4 border-t border-slate-800/80">
+                  <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-800 shadow-xs">
+                    <img
+                      src="/cliente.webp"
+                      alt={activeArticle.author}
+                      className="w-full h-full object-cover object-top"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm font-bold text-white leading-tight font-heading">
+                      {activeArticle.author}
+                    </div>
+                    <div className="text-xs text-slate-300 mt-0.5">
+                      Socio Director en SmartLegalEC • Especialista en Datos, Tecnología y Telecomunicaciones
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              {/* Right Column (Exact Red Box Location): Back Button */}
+              <div className="shrink-0 flex items-center self-start lg:self-end pb-1">
+                <button
+                  onClick={handleBackToList}
+                  className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold text-[#D4AF37] hover:text-white bg-slate-900/90 hover:bg-slate-800 border border-[#D4AF37]/40 hover:border-[#D4AF37] transition-all cursor-pointer group shadow-md"
+                >
+                  <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-[#D4AF37]" />
+                  <span>Volver a Casos de Éxito</span>
+                </button>
+              </div>
+
             </div>
           </div>
         </section>
