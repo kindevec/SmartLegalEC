@@ -82,14 +82,12 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
 
   const totalItems = items.length;
 
-  // Accurately determines active index based on scroll position
+  // Accurately determines active dot index based on actual scroll progress
   const updateScrollState = useCallback(() => {
-    if (isProgrammaticScroll.current) return;
-
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
     rafRef.current = requestAnimationFrame(() => {
       const container = scrollContainerRef.current;
-      if (!container || container.children.length === 0) return;
+      if (!container || totalItems <= 1) return;
 
       const { scrollLeft, scrollWidth, clientWidth } = container;
       const maxScroll = scrollWidth - clientWidth;
@@ -99,35 +97,10 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
         return;
       }
 
-      // If scrolled all the way to the right end
-      if (scrollLeft >= maxScroll - 16) {
-        setActiveSlideIndex(totalItems - 1);
-        return;
-      }
-
-      // If scrolled all the way to the left beginning
-      if (scrollLeft <= 12) {
-        setActiveSlideIndex(0);
-        return;
-      }
-
-      // Proportional matching: interpolate index based on scroll progress and card positions
-      const containerRect = container.getBoundingClientRect();
-      const containerLeft = containerRect.left;
-      let closestIndex = 0;
-      let minDistance = Infinity;
-
-      for (let i = 0; i < container.children.length; i++) {
-        const child = container.children[i] as HTMLElement;
-        const childRect = child.getBoundingClientRect();
-        const distance = Math.abs(childRect.left - containerLeft);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIndex = i;
-        }
-      }
-
-      setActiveSlideIndex(closestIndex);
+      // Exact linear interpolation from 0 (start) to totalItems - 1 (end)
+      const progress = Math.max(0, Math.min(1, scrollLeft / maxScroll));
+      const calculatedIndex = Math.round(progress * (totalItems - 1));
+      setActiveSlideIndex(calculatedIndex);
     });
   }, [totalItems]);
 
@@ -149,7 +122,6 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
   useEffect(() => {
     return () => {
       if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
-      if (programmaticTimeoutRef.current) clearTimeout(programmaticTimeoutRef.current);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
@@ -161,68 +133,65 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     return () => window.removeEventListener('resize', updateScrollState);
   }, [updateScrollState]);
 
-  // Smooth slide to specific index
+  // Smooth slide to specific index (maps 0..N-1 directly to 0..maxScroll)
   const scrollToSlide = useCallback(
     (targetIndex: number) => {
       const container = scrollContainerRef.current;
-      if (!container || totalItems === 0) return;
+      if (!container || totalItems <= 1) return;
 
       const boundedIndex = Math.max(0, Math.min(totalItems - 1, targetIndex));
-      setActiveSlideIndex(boundedIndex);
-
-      // Lock programmatic scroll for smooth transition duration
-      isProgrammaticScroll.current = true;
-      if (programmaticTimeoutRef.current) clearTimeout(programmaticTimeoutRef.current);
-      programmaticTimeoutRef.current = setTimeout(() => {
-        isProgrammaticScroll.current = false;
-      }, 650);
-
       const maxScroll = container.scrollWidth - container.clientWidth;
+      if (maxScroll <= 0) return;
 
-      if (boundedIndex === 0) {
-        container.scrollTo({ left: 0, behavior: 'smooth' });
-        return;
-      }
-
-      if (boundedIndex === totalItems - 1) {
-        container.scrollTo({ left: maxScroll, behavior: 'smooth' });
-        return;
-      }
-
-      const targetChild = container.children[boundedIndex] as HTMLElement | null;
-      if (targetChild) {
-        const containerRect = container.getBoundingClientRect();
-        const targetRect = targetChild.getBoundingClientRect();
-        const targetScroll = container.scrollLeft + (targetRect.left - containerRect.left);
-        container.scrollTo({
-          left: Math.min(maxScroll, Math.max(0, targetScroll)),
-          behavior: 'smooth'
-        });
-      } else {
-        const firstChild = container.firstElementChild as HTMLElement | null;
-        const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 20 : 250;
-        container.scrollTo({
-          left: Math.min(maxScroll, Math.max(0, boundedIndex * cardWidth)),
-          behavior: 'smooth'
-        });
-      }
+      const targetScroll = (boundedIndex / (totalItems - 1)) * maxScroll;
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+      setActiveSlideIndex(boundedIndex);
     },
     [totalItems]
   );
 
-  // Manual Previous Navigation
+  // Manual Previous Navigation (moves 1 card back)
   const scrollPrev = useCallback(() => {
     handleUserManipulation();
-    const nextIndex = activeSlideIndex === 0 ? totalItems - 1 : activeSlideIndex - 1;
-    scrollToSlide(nextIndex);
-  }, [activeSlideIndex, totalItems, handleUserManipulation, scrollToSlide]);
+    const container = scrollContainerRef.current;
+    if (!container) return;
 
-  // Manual Next Navigation
+    const firstChild = container.firstElementChild as HTMLElement | null;
+    const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+
+    if (container.scrollLeft <= 10) {
+      container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+    } else {
+      container.scrollTo({
+        left: Math.max(0, container.scrollLeft - cardWidth),
+        behavior: 'smooth'
+      });
+    }
+  }, [handleUserManipulation]);
+
+  // Manual Next Navigation (moves 1 card forward)
   const scrollNext = useCallback(() => {
     handleUserManipulation();
-    const nextIndex = (activeSlideIndex + 1) % totalItems;
-    scrollToSlide(nextIndex);
-  }, [activeSlideIndex, totalItems, handleUserManipulation, scrollToSlide]);
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const firstChild = container.firstElementChild as HTMLElement | null;
+    const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+
+    if (container.scrollLeft >= maxScroll - 15) {
+      container.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      container.scrollTo({
+        left: Math.min(maxScroll, container.scrollLeft + cardWidth),
+        behavior: 'smooth'
+      });
+    }
+  }, [handleUserManipulation]);
 
   // Auto-play Interval: active only when NOT hovered, NOT manipulated, and NOT dragging
   useEffect(() => {
@@ -230,40 +199,32 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     if (isPaused || totalItems <= 1) return;
 
     const interval = setInterval(() => {
-      setActiveSlideIndex((current) => {
-        const nextIndex = direction === 'right'
-          ? (current === 0 ? totalItems - 1 : current - 1)
-          : (current + 1) % totalItems;
+      const container = scrollContainerRef.current;
+      if (!container) return;
 
-        const container = scrollContainerRef.current;
-        if (container) {
-          const maxScroll = container.scrollWidth - container.clientWidth;
-          isProgrammaticScroll.current = true;
-          if (programmaticTimeoutRef.current) clearTimeout(programmaticTimeoutRef.current);
-          programmaticTimeoutRef.current = setTimeout(() => {
-            isProgrammaticScroll.current = false;
-          }, 650);
+      const firstChild = container.firstElementChild as HTMLElement | null;
+      const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
+      const maxScroll = container.scrollWidth - container.clientWidth;
 
-          if (nextIndex === 0) {
-            container.scrollTo({ left: 0, behavior: 'smooth' });
-          } else if (nextIndex === totalItems - 1) {
-            container.scrollTo({ left: maxScroll, behavior: 'smooth' });
-          } else {
-            const targetChild = container.children[nextIndex] as HTMLElement | null;
-            if (targetChild) {
-              const containerRect = container.getBoundingClientRect();
-              const targetRect = targetChild.getBoundingClientRect();
-              const targetScroll = container.scrollLeft + (targetRect.left - containerRect.left);
-              container.scrollTo({
-                left: Math.min(maxScroll, Math.max(0, targetScroll)),
-                behavior: 'smooth'
-              });
-            }
-          }
+      if (direction === 'right') {
+        if (container.scrollLeft <= 10) {
+          container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        } else {
+          container.scrollTo({
+            left: Math.max(0, container.scrollLeft - cardWidth),
+            behavior: 'smooth'
+          });
         }
-
-        return nextIndex;
-      });
+      } else {
+        if (container.scrollLeft >= maxScroll - 15) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          container.scrollTo({
+            left: Math.min(maxScroll, container.scrollLeft + cardWidth),
+            behavior: 'smooth'
+          });
+        }
+      }
     }, autoAdvanceSeconds * 1000);
 
     return () => clearInterval(interval);
