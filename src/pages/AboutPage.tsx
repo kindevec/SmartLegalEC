@@ -139,7 +139,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               const tagMap = [
                 'Cumplimiento & LOPDP',
                 'Software & Negocios Digitales',
-                'Regulación & ARCOTEL',
+                'Regulación & Telecomunicaciones',
                 'Contratos & Estrategia',
               ];
 

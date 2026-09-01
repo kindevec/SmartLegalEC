@@ -46,7 +46,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     {
       id: 'telecom',
       label: 'Telecomunicaciones y Regulación',
-      description: 'Títulos habilitantes, ARCOTEL y TIC',
+      description: 'Títulos habilitantes, regulación y servicios TIC',
       icon: Radio,
       colorClass: 'text-[#38BDF8]',
       bgClass: 'bg-sky-500/15 border-sky-500/30',

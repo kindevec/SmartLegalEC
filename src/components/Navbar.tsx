@@ -107,7 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenD
     {
       id: 'telecom',
       label: 'Telecomunicaciones y Regulación',
-      description: 'Títulos habilitantes, gestión ARCOTEL y servicios TIC',
+      description: 'Títulos habilitantes, gestión regulatoria y servicios TIC',
       icon: Radio,
       colorClass: 'text-[#38BDF8]',
       bgClass: 'bg-sky-500/15 border-sky-500/30',

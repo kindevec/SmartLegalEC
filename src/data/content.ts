@@ -46,7 +46,7 @@ export const METRICS: Metric[] = [
   {
     value: '50+',
     label: 'Organizaciones y proyectos',
-    detail: 'Acompañados con éxito en adecuación LOPDP, contratos tecnológicos y títulos ARCOTEL.',
+    detail: 'Acompañados con éxito en adecuación LOPDP, contratos tecnológicos y títulos habilitantes.',
   },
   {
     value: '12+',
@@ -290,7 +290,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
   {
     id: 'telecom',
     name: 'Telecomunicaciones y Regulación',
-    badge: 'Regulación ARCOTEL & Telco',
+    badge: 'Regulación & Telecomunicaciones',
     tagline: 'Asesoría jurídica para un sector altamente regulado y en constante evolución',
     description:
       'El desarrollo de servicios de telecomunicaciones requiere comprender no solamente el negocio y la tecnología, sino también un marco regulatorio especializado que condiciona su implementación y operación. SmartLegalEC asesora a empresas nacionales e internacionales en proyectos relacionados con telecomunicaciones, conectividad y servicios tecnológicos regulados en Ecuador.',
@@ -298,11 +298,11 @@ export const PRACTICE_AREAS: PracticeArea[] = [
     closingText:
       '¿Estás desarrollando un proyecto de telecomunicaciones en Ecuador? Podemos ayudarte a determinar sus requisitos regulatorios y acompañarte durante su implementación.',
     ctaText: 'Consultar proyectos de telecomunicaciones',
-    whatsappMessage: 'Hola SmartLegalEC, necesito asesoría jurídica y regulatoria en proyectos de telecomunicaciones / títulos ARCOTEL.',
+    whatsappMessage: 'Hola SmartLegalEC, necesito asesoría jurídica y regulatoria en proyectos de telecomunicaciones / títulos habilitantes.',
     regulations: [
       'Ley Orgánica de Telecomunicaciones (LOT)',
       'Reglamento General a la Ley Orgánica de Telecomunicaciones',
-      'Resoluciones y Regulaciones Técnicas emitidas por ARCOTEL',
+      'Resoluciones y Regulaciones Técnicas del sector',
       'Plan Nacional de Frecuencias y Régimen Tarifario de Espectro Radioeléctrico',
       'Disposiciones de la Unión Internacional de Telecomunicaciones (UIT)',
     ],
@@ -319,7 +319,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         category: 'telecom',
         tag: 'Títulos Habilitantes',
         title: 'Títulos habilitantes',
-        shortDesc: 'Solicitud, modificación, renovación y gestión de títulos ante ARCOTEL.',
+        shortDesc: 'Solicitud, modificación, renovación y gestión de títulos habilitantes.',
         fullDesc:
           'Asesoramos en la identificación, solicitud, modificación, renovación y gestión de títulos habilitantes necesarios para la prestación de servicios de telecomunicaciones.',
         image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80',
@@ -387,11 +387,11 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'telecom-8',
         category: 'telecom',
-        tag: 'Relaciones ARCOTEL',
+        tag: 'Relaciones Institucionales',
         title: 'Relaciones con autoridades',
-        shortDesc: 'Gestiones y acompañamiento jurídico ante ARCOTEL y demás autoridades.',
+        shortDesc: 'Gestiones y acompañamiento jurídico ante las autoridades del sector.',
         fullDesc:
-          'Acompañamos jurídicamente las gestiones que deban realizarse ante ARCOTEL y otras autoridades o instituciones relacionadas con el proyecto.',
+          'Acompañamos jurídicamente las gestiones que deban realizarse ante las autoridades del sector y otras instituciones relacionadas con el proyecto.',
         image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
       },
     ],
@@ -659,7 +659,7 @@ export const ABOUT_QUADRANTS: AboutQuadrant[] = [
     items: [
       'Trayectoria profesional consolidada en protección de datos, tecnología, telecomunicaciones y asesoría empresarial.',
       'Implementación integral de programas LOPDP, función de DPD externo y estructuración de contratos de software & SaaS.',
-      'Asesoría técnica y regulatoria en proyectos de conectividad, telecomunicaciones y gestiones ante ARCOTEL.',
+      'Asesoría técnica y regulatoria en proyectos de conectividad, telecomunicaciones y gestiones regulatorias.',
     ],
   },
   {
@@ -768,9 +768,9 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   },
   {
     id: 'q4',
-    title: '4. ¿Prestas servicios de conectividad, enlaces satelitales o requieres títulos habilitantes de ARCOTEL?',
+    title: '4. ¿Prestas servicios de conectividad, enlaces satelitales o requieres títulos habilitantes?',
     options: [
-      { label: 'Sí, somos ISP, operador o prestador de telecomunicaciones', score: 4, riskNote: 'Requiere cumplimiento estricto de títulos ARCOTEL' },
+      { label: 'Sí, somos ISP, operador o prestador de telecomunicaciones', score: 4, riskNote: 'Requiere cumplimiento estricto de títulos habilitantes' },
       { label: 'Estamos planificando desplegar infraestructura o servicios de red', score: 3, riskNote: 'Requiere viabilidad regulatoria previa' },
       { label: 'No operamos en telecomunicaciones', score: 0 },
     ],
