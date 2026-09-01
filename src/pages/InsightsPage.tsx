@@ -103,116 +103,125 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
 
   if (activeArticle) {
     return (
-      <div className="w-full bg-[#FFFFFF] min-h-screen pb-28 sm:pb-20 text-slate-900 selection:bg-[#0A66FF] selection:text-white">
+      <div className="w-full bg-[#F8FAFC] min-h-screen pb-28 sm:pb-24 text-slate-900 selection:bg-[#0A66FF] selection:text-white">
         
-        {/* 1. TOP EDITORIAL NAVIGATION & BREADCRUMB BAR */}
-        <nav aria-label="Navegación del artículo" className="border-b border-slate-200 bg-white/95 backdrop-blur-md pt-20 sm:pt-24 pb-3">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+        {/* 1. SEAMLESS CINEMATIC NAVY HERO HEADER (Azul Marino Institucional) */}
+        <section className="relative bg-[#071326] text-white pt-20 sm:pt-24 lg:pt-28 pb-10 sm:pb-14 border-b border-slate-800 overflow-hidden">
+          
+          {/* Full-Bleed Thematic Background Image */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <picture className="w-full h-full">
+              <source srcSet="/header-insights.avif" type="image/avif" />
+              <source srcSet="/header-insights.webp" type="image/webp" />
+              <img
+                src="/header-insights.webp"
+                alt={activeArticle.title}
+                width="1920"
+                height="1080"
+                className="w-full h-full object-cover object-center lg:object-right opacity-40"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
             
-            {/* Back Button */}
-            <button
-              onClick={handleBackToList}
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-[#0A66FF] transition-colors cursor-pointer group py-1"
-            >
-              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-[#0A66FF]" />
-              <span>Volver a Casos de Éxito</span>
-            </button>
+            {/* Smooth Cinematic Deep Navy Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#071326] via-[#071326]/90 via-50% to-[#071326]/60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#071326] via-transparent to-[#071326]/50" />
+          </div>
 
-            {/* Breadcrumb Info (Desktop Only) */}
-            <div className="hidden md:flex items-center gap-2 text-xs text-slate-500 overflow-hidden text-ellipsis whitespace-nowrap max-w-md">
-              <span onClick={handleBackToList} className="hover:text-slate-900 cursor-pointer transition-colors">Publicaciones</span>
-              <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-              <span className="text-[#0A66FF] font-semibold shrink-0">{activeArticle.category}</span>
-            </div>
-
-            {/* Quick Share & WhatsApp Actions */}
-            <div className="flex items-center gap-2">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            {/* Top Navigation Strip */}
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800/80">
               <button
-                onClick={() => handleShare(activeArticle)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
-                title="Compartir publicación"
+                onClick={handleBackToList}
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#D4AF37] hover:text-white transition-colors cursor-pointer group py-1"
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5" />}
-                <span>{copied ? '¡Copiado!' : 'Compartir'}</span>
+                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+                <span>Volver a Casos de Éxito</span>
               </button>
 
-              <a
-                href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(`Hola Luis Fernando Guerra, leí su publicación "${activeArticle.title}" y quisiera consultar un caso para mi organización.`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-xs"
-              >
-                <WhatsAppIcon className="w-3.5 h-3.5" />
-                <span>Consultar</span>
-              </a>
-            </div>
-          </div>
-        </nav>
-
-        {/* 2. MAIN EDITORIAL ARTICLE CONTAINER */}
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            
-            {/* Left 8 Cols: Article Content */}
-            <article className="lg:col-span-8 space-y-7 sm:space-y-9">
-              
-              {/* Header: Category Badge + Title + Summary Deck */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-2.5">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-extrabold uppercase tracking-wider bg-blue-50 text-[#0A66FF] border border-blue-200/80 font-heading">
-                    {activeArticle.category}
-                  </span>
-                  <span className="text-xs text-slate-400 font-medium">•</span>
-                  <span className="text-xs text-slate-500 font-medium flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-slate-400" />
-                    {activeArticle.readTime}
-                  </span>
-                </div>
-
-                <h1 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-[1.18] text-left">
-                  {activeArticle.title}
-                </h1>
-
-                <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed text-left border-l-2 border-[#0A66FF] pl-4 py-0.5">
-                  {activeArticle.summary}
-                </p>
-              </div>
-
-              {/* Author Byline Strip */}
-              <div className="flex items-center justify-between gap-4 py-4 border-y border-slate-200">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-100 shadow-xs">
-                    <img
-                      src="/cliente.webp"
-                      alt={activeArticle.author}
-                      className="w-full h-full object-cover object-top"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-sm font-bold text-slate-900 leading-tight font-heading">
-                      {activeArticle.author}
-                    </div>
-                    <div className="text-xs text-slate-500 mt-0.5">
-                      Socio Director • {activeArticle.date}
-                    </div>
-                  </div>
-                </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleShare(activeArticle)}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white transition-all border border-slate-700 cursor-pointer shadow-xs min-h-[34px]"
+                  title="Compartir publicación"
+                >
+                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
+                  <span>{copied ? '¡Copiado!' : 'Compartir'}</span>
+                </button>
 
                 <a
-                  href={BRAND_INFO.linkedinUrl}
+                  href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(`Hola Luis Fernando Guerra, leí su publicación "${activeArticle.title}" y quisiera consultar un caso para mi organización.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-blue-50 hover:text-[#0A66FF] transition-colors"
+                  className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-xs min-h-[34px]"
                 >
-                  <LinkedInIcon className="w-3.5 h-3.5" />
-                  <span>LinkedIn</span>
+                  <WhatsAppIcon className="w-3.5 h-3.5" />
+                  <span>Consultar</span>
                 </a>
               </div>
+            </div>
 
+            {/* Category Badge & Metadata */}
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-3.5">
+              <span className="px-3 py-1 rounded-md text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#0A66FF]/25 text-[#60A5FA] border border-[#0A66FF]/40 shadow-xs font-heading">
+                {activeArticle.category}
+              </span>
+              <span className="text-xs text-slate-300 flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                {activeArticle.date}
+              </span>
+              <span className="text-slate-500">•</span>
+              <span className="text-xs text-slate-300 flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-slate-400" />
+                {activeArticle.readTime}
+              </span>
+            </div>
+
+            {/* Editorial Title */}
+            <h1 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-white tracking-tight leading-[1.18] mb-4 text-left max-w-4xl">
+              {activeArticle.title}
+            </h1>
+
+            {/* Lead Summary */}
+            <p className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed text-left max-w-3xl mb-6">
+              {activeArticle.summary}
+            </p>
+
+            {/* Author Profile Byline */}
+            <div className="flex items-center gap-3.5 pt-4 border-t border-slate-800/80">
+              <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-800 shadow-xs">
+                <img
+                  src="/cliente.webp"
+                  alt={activeArticle.author}
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div className="text-left">
+                <div className="text-sm font-bold text-white leading-tight font-heading">
+                  {activeArticle.author}
+                </div>
+                <div className="text-xs text-slate-300 mt-0.5">
+                  Socio Director en SmartLegalEC • Especialista en Datos, Tecnología y Telecomunicaciones
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. MAIN EDITORIAL CONTENT + STICKY SIDEBAR LAYOUT */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10 relative z-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            
+            {/* Left 8 Cols: Full Article Content */}
+            <article className="lg:col-span-8 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200 space-y-8">
+              
               {/* Featured High-Resolution Image Banner */}
               {activeArticle.image && (
-                <div className="w-full h-60 sm:h-80 md:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-md relative bg-slate-100">
+                <div className="w-full h-60 sm:h-80 md:h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-md relative bg-slate-100">
                   <picture className="w-full h-full block">
                     <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.avif')} type="image/avif" />
                     <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
@@ -230,14 +239,14 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               )}
 
               {/* Key Takeaways Box (Aspectos Clave del Análisis Jurídico) */}
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50/40 border border-blue-100 rounded-2xl p-5 sm:p-7">
+              <div className="bg-gradient-to-br from-blue-50/80 to-indigo-50/40 border border-blue-100 rounded-2xl p-5 sm:p-7">
                 <div className="flex items-center gap-2 mb-4">
                   <Sparkles className="w-4 h-4 text-[#0A66FF]" />
-                  <h3 className="text-xs sm:text-sm font-extrabold text-slate-900 uppercase tracking-wider font-heading text-left">
-                    Puntos Clave del Análisis:
+                  <h3 className="text-xs sm:text-sm font-extrabold text-blue-950 uppercase tracking-wider font-heading text-left">
+                    Aspectos Clave del Análisis Jurídico:
                   </h3>
                 </div>
-                <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-800">
                   {activeArticle.keyPoints.map((kp, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-left">
                       <div className="w-5 h-5 rounded-full bg-[#0A66FF] text-white flex items-center justify-center shrink-0 mt-0.5 text-[11px] font-bold shadow-xs">
@@ -250,7 +259,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </div>
 
               {/* Full Article Content Sections */}
-              <div className="space-y-6 pt-2 text-slate-800 leading-relaxed text-left text-sm sm:text-base">
+              <div className="space-y-6 pt-2 text-slate-800 leading-relaxed text-left text-sm sm:text-base border-t border-slate-100">
                 {activeArticle.content.map((paragraph, idx) => {
                   const isHeaderBlock = paragraph.startsWith('PREVENCIÓN:') || 
                                         paragraph.startsWith('CONTENCIÓN:') || 
@@ -280,7 +289,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </div>
 
               {/* Author Bio Box */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-slate-900 text-white border border-slate-800 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 shadow-lg">
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#071326] text-white border border-slate-800 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 shadow-lg">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-800 shadow-xs">
                   <img
                     src="/cliente.webp"
@@ -339,9 +348,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-28 self-start w-full">
               
               {/* Sidebar 1: Direct Consultation Card */}
-              <div className="bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-200 space-y-4 text-left">
+              <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200 space-y-4 text-left">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shrink-0 shadow-xs">
+                  <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 shadow-xs">
                     <Scale className="w-5 h-5 text-[#0A66FF]" />
                   </div>
                   <div>
@@ -379,7 +388,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </div>
 
               {/* Sidebar 2: Related Publications */}
-              <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 space-y-4 text-left shadow-xs">
+              <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200 space-y-4 text-left">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                   <h4 className="text-xs font-bold text-slate-900 font-heading uppercase tracking-wider">
                     Otras Publicaciones
