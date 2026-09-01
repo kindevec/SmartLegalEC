@@ -49,3 +49,16 @@
 .bottom-safe {
   bottom: env(safe-area-inset-bottom, 0px);
 }
+
+/* Editorial Clean Justification (100% Justified with auto-hyphenation, inter-word spacing, and natural last-line alignment) */
+.text-justify-clean {
+  text-align: justify !important;
+  text-align-last: left !important;
+  text-justify: inter-word !important;
+  -webkit-hyphens: auto !important;
+  -moz-hyphens: auto !important;
+  -ms-hyphens: auto !important;
+  hyphens: auto !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
