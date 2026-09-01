@@ -381,14 +381,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
           {/* Header Strip with Linear Divider */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 pb-4 border-b border-slate-800/80 gap-3">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 pb-4 border-b border-slate-800/80 gap-3">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/15 text-[#93C5FD] mb-1.5 border border-[#0A66FF]/30 font-heading">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse" />
-                <span>NUESTROS SERVICIOS</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-[#0A66FF]/15 text-[#93C5FD] mb-2 border border-[#0A66FF]/30 font-heading">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF] animate-pulse shadow-[0_0_6px_#0A66FF]" />
+                <span>EXPERIENCIA DE CONFIANZA</span>
               </div>
-              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
-                Experiencia de Confianza
+              <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-tight">
+                Nuestros <span className="text-[#D4AF37]">Servicios</span>
               </h2>
             </div>
 
