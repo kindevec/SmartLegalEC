@@ -368,10 +368,10 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
                       <div
                         key={serv.id}
                         onClick={() => onNavigate('area-detail', { areaId: area.id })}
-                        className="w-[210px] sm:w-[230px] md:w-[250px] bg-white hover:bg-slate-50/95 border border-slate-200/90 hover:border-blue-300/80 rounded-2xl overflow-hidden transition-all duration-300 group flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer select-none shrink-0"
+                        className="w-[230px] sm:w-[250px] md:w-[265px] h-[300px] sm:h-[315px] bg-white hover:bg-slate-50/95 border border-slate-200/90 hover:border-blue-300/80 rounded-2xl overflow-hidden transition-all duration-300 group flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer select-none shrink-0"
                       >
                         {/* Service Thematic Image Banner */}
-                        <div className="relative w-full h-32 sm:h-34 bg-slate-100 overflow-hidden">
+                        <div className="relative w-full h-32 sm:h-36 bg-slate-100 overflow-hidden shrink-0">
                           <picture className="w-full h-full block">
                             <source srcSet={cardImg.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
                             <img
@@ -382,23 +382,23 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
                             />
                           </picture>
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
-                          <span className="absolute bottom-2 left-2.5 px-2 py-0.5 rounded-md text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider bg-[#071326]/90 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-xs shadow-xs">
+                          <span className="absolute bottom-2 left-2.5 max-w-[calc(100%-20px)] truncate px-2 py-0.5 rounded-md text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider bg-[#071326]/90 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-xs shadow-xs">
                             {serv.tag}
                           </span>
                         </div>
 
                         <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
                           <div>
-                            <h4 className="text-xs sm:text-sm font-bold text-slate-900 mb-1 group-hover:text-[#0A66FF] transition-colors leading-snug font-heading line-clamp-2">
+                            <h4 className="text-xs sm:text-sm font-bold text-slate-900 mb-1 group-hover:text-[#0A66FF] transition-colors leading-snug font-heading line-clamp-2 h-9 sm:h-10 flex items-start">
                               {serv.title}
                             </h4>
-                            <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed line-clamp-2 text-justify">
+                            <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed line-clamp-2 text-left">
                               {serv.shortDesc}
                             </p>
                           </div>
 
-                          {/* Action Button: Leer más (Full-page navigation) */}
-                          <div className="pt-2.5 mt-2.5 border-t border-slate-100 flex items-center justify-between">
+                          {/* Action Button: Leer más */}
+                          <div className="pt-2 mt-2 border-t border-slate-100 flex items-center justify-between">
                             <span className="text-[11px] sm:text-xs font-bold text-[#0B1D3A] group-hover:text-[#0A66FF] transition-colors inline-flex items-center gap-1">
                               <span>Leer más</span>
                               <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
