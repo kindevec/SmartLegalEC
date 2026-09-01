@@ -392,7 +392,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Gestiones y acompañamiento jurídico ante las autoridades del sector.',
         fullDesc:
           'Acompañamos jurídicamente las gestiones que deban realizarse ante las autoridades del sector y otras instituciones relacionadas con el proyecto.',
-        image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
+        image: '/services/telecom/relaciones-autoridades.jpg',
       },
     ],
   },
