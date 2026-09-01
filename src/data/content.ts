@@ -51,7 +51,7 @@ export const METRICS: Metric[] = [
   {
     value: '12+',
     label: 'Industrias y sectores',
-    detail: 'Consumo masivo, salud, educación, telecomunicaciones, SaaS, seguros e industria.',
+    detail: 'Consumo masivo, salud, educación, telecomunicaciones, tecnología, seguros e industria.',
   },
   {
     value: '100%',
@@ -198,8 +198,8 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       'Estándares contractuales internacionales (UNIDROIT / CISG en software)',
     ],
     targetAudience: [
-      'Empresas de desarrollo de software, plataformas SaaS y aplicaciones móviles',
-      'Compañías en procesos de transformación digital y contratación de servicios Cloud',
+      'Empresas de desarrollo de software, plataformas digitales y aplicaciones móviles',
+      'Compañías en procesos de transformación digital y contratación de servicios en la nube',
       'Distribuidores de tecnología, canales, integradores y fabricantes de software',
       'Negocios digitales, comercio electrónico y plataformas de intermediación',
       'Startups tecnológicas y proveedores de servicios de Inteligencia Artificial',
@@ -209,7 +209,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         id: 'tech-1',
         category: 'tech',
         tag: 'Licencias & Suscripciones',
-        title: 'Contratos de software y SaaS',
+        title: 'Contratos de software y suscripciones digitales',
         shortDesc: 'Licenciamiento, suscripción, implementación, soporte y mantenimiento.',
         fullDesc:
           'Elaboramos, revisamos y negociamos contratos de licenciamiento, suscripción, implementación, soporte, mantenimiento y prestación de servicios tecnológicos.',
@@ -229,8 +229,8 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         id: 'tech-3',
         category: 'tech',
         tag: 'Servicios en la Nube',
-        title: 'Cloud computing y servicios tecnológicos',
-        shortDesc: 'Contratación de infraestructura Cloud, seguridad y continuidad de servicio.',
+        title: 'Servicios en la nube e infraestructura digital',
+        shortDesc: 'Contratación de infraestructura en la nube, seguridad y continuidad de servicio.',
         fullDesc:
           'Asesoramos en la contratación de infraestructura, plataformas y servicios en la nube, incluyendo responsabilidades, seguridad, disponibilidad, tratamiento de información y continuidad del servicio.',
         image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
@@ -239,7 +239,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         id: 'tech-4',
         category: 'tech',
         tag: 'Proveedores Tecnológicos',
-        title: 'Outsourcing y proveedores tecnológicos',
+        title: 'Tercerización y proveedores tecnológicos',
         shortDesc: 'Riesgos contractuales, confidencialidad, propiedad intelectual y datos.',
         fullDesc:
           'Analizamos y estructuramos relaciones con proveedores tecnológicos, considerando riesgos contractuales, confidencialidad, seguridad, propiedad intelectual y protección de datos.',
@@ -308,7 +308,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
     ],
     targetAudience: [
       'Operadores de telecomunicaciones portadores, móviles y de valor agregado',
-      'Proveedores de Servicio de Acceso a Internet (ISPs) y redes privadas',
+      'Proveedores de Acceso a Internet y conectividad y redes privadas',
       'Empresas internacionales de comunicaciones satelitales y segmento espacial',
       'Empresas de infraestructura de torres, coubicación y tendido de fibra óptica',
       'Empresas que implementan proyectos de conectividad y redes privadas de datos',
@@ -405,7 +405,7 @@ export const FOUNDER_PROFILE = {
     'Soy Luis Fernando Guerra Padilla, abogado ecuatoriano con más de 15 años de experiencia profesional, especializado en protección de datos personales, tecnología, telecomunicaciones y asesoría jurídica empresarial.',
     'Mi carrera se ha desarrollado principalmente en sectores en los que el derecho debe convivir permanentemente con la tecnología, la regulación y las necesidades del negocio.',
     'Durante cerca de diez años formé parte del equipo jurídico - regulatorio del principal operador de telecomunicaciones del Ecuador. Esta experiencia me permitió trabajar desde dentro de una organización de gran escala, asesorando a distintas áreas de negocio en regulación de telecomunicaciones, protección de datos, derecho digital, contratos y nuevos productos, así como en procedimientos administrativos ante autoridades regulatorias.',
-    'Posteriormente, me incorporé a una firma jurídica con amplia trayectoria en el sector tecnológico, donde asesoré a empresas nacionales e internacionales y consolidé mi especialización en privacidad, protección de datos y tecnología, sobre la base de la experiencia corporativa y regulatoria adquirida durante cerca de nueve años como abogado in-house.',
+    'Posteriormente, me incorporé a una firma jurídica con amplia trayectoria en el sector tecnológico, donde asesoré a empresas nacionales e internacionales y consolidé mi especialización en privacidad, protección de datos y tecnología, sobre la base de la experiencia corporativa y regulatoria adquirida durante cerca de nueve años como abogado corporativo interno.',
     'Actualmente asesoro a organizaciones de distintos sectores y actúo como Delegado de Protección de Datos externo, acompañando a empresas no solo en el cumplimiento de la Ley Orgánica de Protección de Datos Personales, sino también en la toma de decisiones relacionadas con riesgos, proveedores, contratos, nuevas tecnologías, incidentes y proyectos que involucran tratamiento de información personal.',
   ],
   workingPhilosophy: {
@@ -421,7 +421,7 @@ export const FOUNDER_PROFILE = {
     },
     {
       area: 'Tecnología',
-      description: 'Contratos tecnológicos, software y SaaS, licenciamiento, servicios digitales, outsourcing, cloud computing, propiedad intelectual y acompañamiento jurídico en proyectos de transformación digital.',
+      description: 'Contratos tecnológicos, software y licenciamiento, suscripciones digitales, tercerización de servicios, computación en la nube, propiedad intelectual y acompañamiento jurídico en proyectos de transformación digital.',
       icon: 'Code2',
     },
     {
@@ -506,7 +506,7 @@ export const TRUSTED_CLIENTS: ClientItem[] = [
     name: 'MEDICGO S.A.S.',
     category: 'Salud Digital & Asistencia Médica',
     description: 'Plataforma y servicios de atención médica y telemedicina.',
-    badge: 'HealthTech',
+    badge: 'Salud Digital',
     url: 'https://medicgo.com.ec/',
   },
   {
@@ -544,7 +544,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     readTime: '6 min de lectura',
     author: 'Luis Fernando Guerra Padilla',
     image: '/articles/ecosistema-tecnologico.jpg',
-    summary: 'En los negocios tecnológicos, un contrato rara vez funciona de manera aislada. Claves para modelar las distintas relaciones entre fabricantes, distribuidores, partners, canales, clientes y usuarios finales manteniendo coherencia jurídica y comercial.',
+    summary: 'En los negocios tecnológicos, un contrato rara vez funciona de manera aislada. Claves para modelar las distintas relaciones entre fabricantes, distribuidores, aliados comerciales, canales de venta, clientes y usuarios finales manteniendo coherencia jurídica y comercial.',
     keyPoints: [
       'Condiciones comerciales y reglas aplicables a cada canal de distribución.',
       'Licenciamiento, condiciones de uso y propiedad intelectual a lo largo de la cadena.',
@@ -554,9 +554,9 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     content: [
       'En los negocios tecnológicos, un contrato rara vez funciona de manera aislada.',
       'Tuve la oportunidad de participar en la estructuración integral del modelo contractual y comercial regional de un grupo dedicado a la distribución de tecnología, con operaciones en varios países.',
-      'El proyecto implicó modelar las distintas relaciones que forman parte del negocio: fabricantes, distribuidores, partners, canales, clientes y usuarios finales, procurando que las condiciones jurídicas y comerciales mantuvieran coherencia a lo largo de toda la cadena.',
+      'El proyecto implicó modelar las distintas relaciones que forman parte del negocio: fabricantes, distribuidores, aliados comerciales, canales de venta, clientes y usuarios finales, procurando que las condiciones jurídicas y comerciales mantuvieran coherencia a lo largo de toda la cadena.',
       'El trabajo comprendió no solo contratos, sino también aspectos como:\n• Condiciones comerciales y reglas aplicables a cada canal.\n• Licenciamiento y condiciones de uso.\n• Responsabilidades de los distintos participantes.\n• Precios, pagos y condiciones asociadas a la comercialización.\n• Garantías y niveles de servicio.\n• Soporte técnico.\n• Propiedad intelectual.\n• Confidencialidad y protección de datos personales.\n• Limitaciones de responsabilidad.\n• Terminación y efectos posteriores de las relaciones comerciales.',
-      'Uno de los principales retos de este tipo de estructuras es evitar vacíos entre lo que una empresa asume frente a un fabricante y aquello que puede trasladar o exigir a sus partners, clientes o usuarios finales.',
+      'Uno de los principales retos de este tipo de estructuras es evitar vacíos entre lo que una empresa asume frente a un fabricante y aquello que puede trasladar o exigir a sus aliados comerciales, clientes o usuarios finales.',
       'Por eso, estructurar jurídicamente un negocio tecnológico exige algo más que redactar buenos contratos.',
       'Es necesario entender cómo se comercializa el producto, cómo se relacionan sus participantes, cómo circulan las obligaciones y dónde se encuentran los riesgos.',
       'Cuando el modelo contractual acompaña correctamente al modelo comercial, el Derecho deja de ser únicamente un mecanismo de protección y se convierte también en una herramienta para hacer viable y escalable el negocio.',
@@ -565,7 +565,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
   {
     id: 'art-2',
     slug: 'abogado-in-house-prevenir-contener-generar-oportunidades',
-    title: 'Abogado in-house: prevenir, contener y generar oportunidades',
+    title: 'Abogado corporativo interno: prevenir, contener y generar oportunidades',
     category: 'Asesoría Corporativa',
     date: '12 de Febrero, 2026',
     readTime: '7 min de lectura',
@@ -579,12 +579,12 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
       'El rol del asesor legal como facilitador estratégico que comprende a fondo la operación.',
     ],
     content: [
-      'Trabajar durante varios años como abogado in-house en una de las principales compañías de telecomunicaciones del país me permitió entender que la función jurídica dentro de una empresa va mucho más allá de responder consultas o gestionar contingencias.',
+      'Trabajar durante varios años como abogado corporativo interno en una de las principales compañías de telecomunicaciones del país me permitió entender que la función jurídica dentro de una empresa va mucho más allá de responder consultas o gestionar contingencias.',
       'La asesoría legal puede aportar al negocio desde tres dimensiones: prevención, contención y generación de oportunidades.',
       'PREVENCIÓN:\nEl primer trabajo del abogado es anticiparse. Participar oportunamente en nuevos productos, contratos, decisiones comerciales, proyectos tecnológicos o cambios regulatorios permite identificar riesgos antes de que se conviertan en contingencias. Prevenir no significa impedir que el negocio avance. Significa encontrar alternativas que permitan alcanzar el objetivo empresarial con un nivel de riesgo jurídicamente razonable.',
-      'CONTENCIÓN:\nNo todos los riesgos pueden evitarse. Durante mi experiencia in-house tuve a mi cargo aproximadamente 25 procedimientos administrativos sancionatorios, además de otros asuntos regulatorios y de competencia, alcanzando resultados favorables en alrededor del 80 % de los casos. Cuando una contingencia se materializa, el rol jurídico cambia: hay que entender los hechos, coordinar con las áreas técnicas y comerciales, reconstruir decisiones, analizar evidencia y desarrollar una estrategia que permita reducir su impacto.',
+      'CONTENCIÓN:\nNo todos los riesgos pueden evitarse. Durante mi trayectoria corporativa interna tuve a mi cargo aproximadamente 25 procedimientos administrativos sancionatorios, además de otros asuntos regulatorios y de competencia, alcanzando resultados favorables en alrededor del 80 % de los casos. Cuando una contingencia se materializa, el rol jurídico cambia: hay que entender los hechos, coordinar con las áreas técnicas y comerciales, reconstruir decisiones, analizar evidencia y desarrollar una estrategia que permita reducir su impacto.',
       'GENERACIÓN DE OPORTUNIDADES:\nEsta es probablemente la dimensión menos visible de la asesoría jurídica. Conocer profundamente la regulación permite también identificar qué sí puede hacerse. Una interpretación regulatoria, una estructura contractual diferente o la identificación temprana de una alternativa jurídica pueden permitir lanzar un producto, desarrollar una alianza o ejecutar una operación que inicialmente parecía compleja.',
-      'Por eso, el abogado in-house no debería ser únicamente quien identifica riesgos. Debe entender el negocio lo suficiente para prevenir cuando sea posible, contener cuando sea necesario y encontrar oportunidades cuando el marco jurídico lo permita.',
+      'Por eso, el abogado corporativo interno no debería ser únicamente quien identifica riesgos. Debe entender el negocio lo suficiente para prevenir cuando sea posible, contener cuando sea necesario y encontrar oportunidades cuando el marco jurídico lo permita.',
     ],
   },
   {
@@ -598,7 +598,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     image: '/articles/proteccion-datos-implementacion.jpg',
     summary: 'Implementar un marco de protección de datos personales no consiste en replicar políticas, formatos o plantillas de una organización a otra. La metodología real exige entender la organización antes de diseñar su cumplimiento.',
     keyPoints: [
-      'Diversidad sectorial: Salud, educación, telecomunicaciones, Fintech, retail, construcción y consumo masivo manejan riesgos totalmente distintos.',
+      'Diversidad sectorial: Salud, educación, telecomunicaciones, tecnología financiera, comercio minorista, construcción y consumo masivo manejan riesgos totalmente distintos.',
       'Escenarios regionales y locales: Armonización de marcos multinacionales con las exigencias puntuales de la LOPDP en Ecuador.',
       'Metodología práctica: Conocer procesos, tratamientos, proveedores, sistemas y estructura antes de redactar documentos.',
       'La protección de datos no se implementa desde una plantilla. Se implementa desde la realidad de cada organización.',
@@ -606,7 +606,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     content: [
       'Implementar un marco de protección de datos personales no consiste en replicar políticas, formatos o procedimientos de una organización a otra.',
       'A lo largo de los últimos años he tenido la oportunidad de participar en implementaciones y proyectos de cumplimiento de protección de datos en organizaciones nacionales y grupos con presencia regional, pertenecientes a sectores muy distintos.',
-      'Entre ellos: tecnología y distribución de software, telecomunicaciones, instituciones financieras, salud, educación, retail, productos de consumo masivo, construcción, industria, asistencia social, organizaciones no gubernamentales y entidades vinculadas al deporte, entre otros.',
+      'Entre ellos: tecnología y distribución de software, telecomunicaciones, instituciones financieras, salud, educación, comercio minorista, productos de consumo masivo, construcción, industria, asistencia social, organizaciones no gubernamentales y entidades vinculadas al deporte, entre otros.',
       'Algunos proyectos han implicado implementar integralmente la normativa ecuatoriana. Otros han requerido estructurar marcos de privacidad para grupos con operaciones en distintos países, armonizando criterios y necesidades regionales con las exigencias locales.',
       'También existen escenarios distintos: organizaciones que empiezan desde cero y otras que deben fortalecer su cumplimiento como consecuencia de observaciones, procesos de control o medidas dispuestas por la Autoridad de Protección de Datos Personales.',
       'Cada realidad exige una aproximación diferente. Una institución de salud maneja información y riesgos distintos a los de un distribuidor regional de tecnología. Una organización de asistencia humanitaria enfrenta desafíos diferentes a una institución financiera. Y una organización sometida a medidas correctivas necesita prioridades distintas a una empresa que está construyendo preventivamente su programa de cumplimiento.',
@@ -626,14 +626,14 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     image: '/articles/delegado-proteccion-datos.jpg',
     summary: 'El verdadero valor del Delegado de Protección de Datos aparece cuando conoce suficientemente la organización para convertirse en un punto de conexión entre la normativa y la operación, manteniendo una independencia fundamental.',
     keyPoints: [
-      'El DPD como punto de conexión: Integrar la normativa a la operación en sectores como educación, salud, retail, construcción y tecnología.',
+      'El DPD como punto de conexión: Integrar la normativa a la operación en sectores como educación, salud, comercio minorista, construcción y tecnología.',
       'Actividades operativas: Asesoría en proyectos, revisión de contratos de proveedores, gestión de riesgos, EIPD y atención de derechos.',
       'Independencia fundamental: El DPD asesora, supervisa y advierte sin sustituir a la administración ni entrar en conflictos de interés.',
       'Acompañamiento preventivo: Lograr involucrarse oportunamente para ayudar a que muchos problemas no lleguen a producirse.',
     ],
     content: [
       'El Delegado de Protección de Datos Personales no debería convertirse en una figura que existe únicamente para cumplir una obligación normativa.',
-      'Actualmente ejerzo como Delegado de Protección de Datos externo para organizaciones de distintos sectores, entre ellos educación, salud, tecnología, productos de consumo masivo, construcción, asistencia social, servicios, retail y tecnologías de la información.',
+      'Actualmente ejerzo como Delegado de Protección de Datos externo para organizaciones de distintos sectores, entre ellos educación, salud, tecnología, productos de consumo masivo, construcción, asistencia social, servicios, comercio minorista y tecnologías de la información.',
       'Esa diversidad me ha permitido comprobar que el verdadero valor del DPD aparece cuando conoce suficientemente la organización para convertirse en un punto de conexión entre la normativa y la operación.',
       'En la práctica, el trabajo va mucho más allá de responder consultas sobre la Ley. Implica, entre otras actividades:\n• Asesorar sobre nuevos tratamientos y proyectos.\n• Revisar contratos y relaciones con proveedores.\n• Evaluar riesgos relacionados con datos personales.\n• Acompañar evaluaciones de impacto.\n• Asesorar frente a incidentes y vulneraciones de seguridad.\n• Supervisar la atención de derechos de los titulares.\n• Capacitar y generar cultura interna.\n• Realizar seguimiento al programa de cumplimiento.\n• Emitir criterios con independencia cuando una decisión puede generar riesgos para los titulares o para la propia organización.\n• Servir como punto de contacto frente a la Autoridad de Protección de Datos Personales.',
       'Existe además un elemento que considero fundamental: la independencia. El DPD asesora, supervisa y advierte. No sustituye a la administración ni debe convertirse en quien toma las decisiones que posteriormente tendrá que supervisar.',
@@ -658,7 +658,7 @@ export const ABOUT_QUADRANTS: AboutQuadrant[] = [
     iconName: 'Briefcase',
     items: [
       'Trayectoria profesional consolidada en protección de datos, tecnología, telecomunicaciones y asesoría empresarial.',
-      'Implementación integral de programas LOPDP, función de DPD externo y estructuración de contratos de software & SaaS.',
+      'Implementación integral de programas LOPDP, función de DPD externo y estructuración de contratos de software y suscripciones digitales.',
       'Asesoría técnica y regulatoria en proyectos de conectividad, telecomunicaciones y gestiones regulatorias.',
     ],
   },
@@ -691,7 +691,7 @@ export const FOUNDER_EXPERIENCE_AREAS = [
   {
     title: 'Tecnología',
     description:
-      'Contratos tecnológicos, software y SaaS, licenciamiento, servicios digitales, outsourcing, cloud computing, propiedad intelectual y acompañamiento jurídico en proyectos de transformación digital.',
+      'Contratos tecnológicos, software y licenciamiento, suscripciones digitales, tercerización de servicios, computación en la nube, propiedad intelectual y acompañamiento jurídico en proyectos de transformación digital.',
   },
   {
     title: 'Telecomunicaciones',
@@ -759,9 +759,9 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   },
   {
     id: 'q3',
-    title: '3. ¿Tu empresa desarrolla software, contrata SaaS, utiliza infraestructura Cloud o implementa Inteligencia Artificial?',
+    title: '3. ¿Tu empresa desarrolla software, contrata suscripciones digitales, utiliza infraestructura en la nube o implementa Inteligencia Artificial?',
     options: [
-      { label: 'Sí, contratamos o desarrollamos software y servicios en la nube', score: 3, riskNote: 'Requiere blindaje contractual y SLA' },
+      { label: 'Sí, contratamos o desarrollamos software y servicios en la nube', score: 3, riskNote: 'Requiere blindaje contractual y acuerdos de nivel de servicio' },
       { label: 'Operamos plataformas digitales o comercio electrónico', score: 3, riskNote: 'Requiere términos, condiciones y privacidad' },
       { label: 'Nuestra operación es mayoritariamente tradicional', score: 1 },
     ],
@@ -770,7 +770,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
     id: 'q4',
     title: '4. ¿Prestas servicios de conectividad, enlaces satelitales o requieres títulos habilitantes?',
     options: [
-      { label: 'Sí, somos ISP, operador o prestador de telecomunicaciones', score: 4, riskNote: 'Requiere cumplimiento estricto de títulos habilitantes' },
+      { label: 'Sí, somos proveedor de internet, operador o prestador de telecomunicaciones', score: 4, riskNote: 'Requiere cumplimiento estricto de títulos habilitantes' },
       { label: 'Estamos planificando desplegar infraestructura o servicios de red', score: 3, riskNote: 'Requiere viabilidad regulatoria previa' },
       { label: 'No operamos en telecomunicaciones', score: 0 },
     ],

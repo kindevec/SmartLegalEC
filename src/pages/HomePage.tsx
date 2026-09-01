@@ -58,7 +58,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       imageJpg: '/hero-slider-2.webp',
       imageWebp: '/hero-slider-2.webp',
       imageAvif: '/hero-slider-2.avif',
-      alt: 'Laboratorio de Desarrollo de Software, Cloud Computing e IA - SmartLegalEC',
+      alt: 'Laboratorio de Desarrollo de Software, Servicios en la Nube e IA - SmartLegalEC',
     },
     {
       id: 'slide-3',
@@ -166,7 +166,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       icon: Code2,
       iconColor: 'text-[#38BDF8]',
       iconBg: 'bg-sky-50 border-sky-100',
-      description: 'Modelado integral de la estructura contractual regional para distribución de software y tecnología entre fabricantes, distribuidores, partners, canales y clientes finales.',
+      description: 'Modelado integral de la estructura contractual regional para distribución de software y tecnología entre fabricantes, distribuidores, aliados comerciales, canales y clientes finales.',
       outcome: 'Coherencia jurídica y comercial integral, protegiendo propiedad intelectual y evitando vacíos contractuales.',
       tags: ['Software & Nube', 'Canales & Distribución', 'Propiedad Intelectual', 'Garantías & Acuerdos'],
       image: '/articles/ecosistema-tecnologico.jpg',
@@ -175,15 +175,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       id: 'art-2',
       slug: 'abogado-in-house-prevenir-contener-generar-oportunidades',
       sector: 'DEFENSA REGULATORIA & LITIGIO',
-      title: 'Abogado in-house: prevenir, contener y generar oportunidades',
+      title: 'Abogado corporativo interno: prevenir, contener y generar oportunidades',
       category: 'TELECOM & REGULACIÓN',
       date: '12 FEB 2026',
       icon: Radio,
       iconColor: 'text-[#D4AF37]',
       iconBg: 'bg-amber-50 border-amber-100',
-      description: 'Estrategia jurídica forjada en casi una década como abogado in-house en el principal operador de telecomunicaciones del país, gestionando nuevos productos y litigios.',
+      description: 'Estrategia jurídica forjada en casi una década como abogado corporativo interno en el principal operador de telecomunicaciones del país, gestionando nuevos productos y litigios.',
       outcome: 'Alrededor del 80% de resultados favorables en ~25 procedimientos administrativos sancionatorios.',
-      tags: ['Abogado In-House', 'Sancionatorios (~80% Favorable)', 'Telecomunicaciones', 'Estrategia Legal'],
+      tags: ['Abogado Interno', 'Sancionatorios (~80% Favorable)', 'Telecomunicaciones', 'Estrategia Legal'],
       image: '/articles/abogado-in-house.jpg',
     },
     {
@@ -196,7 +196,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       icon: ShieldCheck,
       iconColor: 'text-[#0A66FF]',
       iconBg: 'bg-blue-50 border-blue-100',
-      description: 'Metodología de adecuación integral a la LOPDP para organizaciones de salud, educación, telecomunicaciones, Fintech, retail y grupos corporativos con presencia regional.',
+      description: 'Metodología de adecuación integral a la LOPDP para organizaciones de salud, educación, telecomunicaciones, tecnología financiera, comercio minorista y grupos corporativos con presencia regional.',
       outcome: 'Adecuación basada en la realidad operativa del negocio, mapeo de transferencias y cumplimiento ante la SPDP.',
       tags: ['LOPDP Ecuador', 'Diagnóstico Operativo', 'RAT & Flujos', 'Multisectorial'],
       image: '/articles/proteccion-datos-implementacion.jpg',
@@ -561,7 +561,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 <div className="pl-2 sm:pl-4 flex flex-col justify-start">
                   <Cpu className="w-4 h-4 text-purple-600 mb-1 shrink-0" />
                   <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Derecho Digital & IA</div>
-                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Contratos software</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Contratos tecnológicos</div>
                 </div>
               </div>
 

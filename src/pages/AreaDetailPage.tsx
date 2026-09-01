@@ -41,7 +41,7 @@ export const AreaDetailPage: React.FC<AreaDetailPageProps> = ({ areaId, onNaviga
 
   const relatedArticles = LEGAL_ARTICLES.filter((art) => {
     if (areaId === 'lopdp') return art.category === 'LOPDP & Privacidad';
-    if (areaId === 'tech') return art.category === 'Contratos Tech & SaaS' || art.category === 'Inteligencia Artificial';
+    if (areaId === 'tech') return art.category === 'Contratos Tecnológicos' || art.category === 'Inteligencia Artificial';
     if (areaId === 'telecom') return art.category === 'Telecomunicaciones y Regulación';
     return true;
   });

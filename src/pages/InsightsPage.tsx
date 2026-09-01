@@ -120,7 +120,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             </h1>
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal text-justify">
-              Análisis exhaustivo sobre la estructuración de <strong className="text-white font-semibold">ecosistemas tecnológicos</strong>, el rol estratégico del <strong className="text-white font-semibold">abogado in-house</strong>, adecuación a la <strong className="text-white font-semibold">LOPDP</strong> y la función del <strong className="text-white font-semibold">Delegado de Protección de Datos (DPD)</strong> en Ecuador.
+              Análisis exhaustivo sobre la estructuración de <strong className="text-white font-semibold">ecosistemas tecnológicos</strong>, el rol estratégico del <strong className="text-white font-semibold">abogado corporativo interno</strong>, adecuación a la <strong className="text-white font-semibold">LOPDP</strong> y la función del <strong className="text-white font-semibold">Delegado de Protección de Datos (DPD)</strong> en Ecuador.
             </p>
           </motion.div>
         </div>
