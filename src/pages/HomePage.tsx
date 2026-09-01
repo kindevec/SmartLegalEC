@@ -62,11 +62,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
     },
     {
       id: 'slide-3',
-      badge: 'Contratos Tech • Telecomunicaciones & Regulación • IA',
+      badge: 'Contratos Tecnológicos • Telecomunicaciones & Regulación • IA',
       titleLine1: 'Innovación Legal para',
       titleLine2: 'Modelos de Negocio',
       titleHighlight: 'Digitales',
-      description: 'Soluciones legales para negocios que incorporan tecnología: contratos SaaS y Cloud, modelos y plataformas digitales, relaciones con proveedores tecnológicos y adopción responsable de Inteligencia Artificial.',
+      description: 'Soluciones legales para negocios que incorporan tecnología: contratos de software y servicios en la nube, plataformas digitales, relaciones con proveedores tecnológicos y adopción responsable de Inteligencia Artificial.',
       imageJpg: '/hero-slider-3.webp',
       imageWebp: '/hero-slider-3.webp',
       imageAvif: '/hero-slider-3.avif',
@@ -133,12 +133,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       num: '02',
       tag: 'TECNOLOGÍA Y NEGOCIOS DIGITALES',
       title: 'Tecnología y Negocios Digitales',
-      desc: 'Contratos y asesoría jurídica para negocios que dependen de la tecnología, SaaS, cloud computing e inteligencia artificial.',
+      desc: 'Contratos y asesoría jurídica para negocios que dependen de la tecnología, software, servicios en la nube e inteligencia artificial.',
       image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
-      badge: 'CONTRATOS & TECH',
+      badge: 'CONTRATOS & TECNOLOGÍA',
       icon: Cpu,
       iconColor: 'text-[#38BDF8]',
-      deliverables: ['Contratos de software, SaaS y SLAs', 'Cloud computing e infraestructura TI', 'Inteligencia artificial y negocios digitales'],
+      deliverables: ['Contratos de software y licencias', 'Servicios en la nube e infraestructura TI', 'Inteligencia artificial y negocios digitales'],
     },
     {
       id: 'telecom',
@@ -538,7 +538,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   Luis Fernando Guerra
                 </h2>
                 <p className="text-sm sm:text-base font-semibold text-[#0A66FF] font-heading mt-1">
-                  Managing Partner
+                  Socio Director
                 </p>
               </div>
 
@@ -560,7 +560,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 </div>
                 <div className="pl-2 sm:pl-4 flex flex-col justify-start">
                   <Cpu className="w-4 h-4 text-purple-600 mb-1 shrink-0" />
-                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Tech Law & IA</div>
+                  <div className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Derecho Digital & IA</div>
                   <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">Contratos software</div>
                 </div>
               </div>

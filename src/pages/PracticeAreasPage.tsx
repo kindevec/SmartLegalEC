@@ -49,7 +49,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
       case 'lopdp':
         return 'Protección de Datos';
       case 'tech':
-        return 'Tecnología & SaaS';
+        return 'Tecnología & Negocios Digitales';
       case 'telecom':
         return 'Telecomunicaciones';
       default:
