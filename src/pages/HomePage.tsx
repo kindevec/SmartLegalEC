@@ -393,7 +393,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-              <p className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed text-justify font-normal">
+              <p className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed text-left [text-wrap:pretty] font-normal">
                 Asesoramiento estratégico y blindaje preventivo adaptado a la economía digital y tecnológica en Ecuador.
               </p>
               <button
@@ -448,7 +448,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-white mb-1.5 leading-snug group-hover:text-[#D4AF37] transition-colors">
                         {service.title}
                       </h3>
-                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal line-clamp-3 text-justify">
+                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal line-clamp-3 text-left [text-wrap:pretty]">
                         {service.desc}
                       </p>
                     </div>
@@ -542,7 +542,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 </p>
               </div>
 
-              <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed text-justify">
+              <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed text-left [text-wrap:pretty]">
                 Abogado especializado en protección de datos personales, derecho de la tecnología y telecomunicaciones, con amplia experiencia asesorando a empresas nacionales e internacionales en entornos regulados y proyectos de transformación digital.
               </p>
 
@@ -617,7 +617,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
 
               <div className="flex items-start justify-center lg:justify-start gap-2 max-w-2xl">
                 <Quote className="w-4 h-4 text-[#D4AF37] shrink-0 rotate-180 mt-0.5 opacity-90" />
-                <p className="text-xs sm:text-sm text-slate-300 italic font-normal leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-300 italic font-normal leading-relaxed text-left [text-wrap:pretty]">
                   "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
                 </p>
               </div>
@@ -706,7 +706,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-              <p className="text-xs text-slate-500 max-w-sm text-justify sm:text-right">
+              <p className="text-xs text-slate-500 max-w-sm text-left [text-wrap:pretty]">
                 Precedentes en litigio regulatorio, adecuación a la LOPDP y estructuración de ecosistemas tecnológicos en Ecuador.
               </p>
               <button
@@ -771,13 +771,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                     {work.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed text-justify font-normal line-clamp-3">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal line-clamp-3 text-left [text-wrap:pretty]">
                     {work.description}
                   </p>
 
                   <div className="pt-1 flex items-start gap-2 text-xs">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1.5" />
-                    <p className="font-medium text-slate-200 leading-snug text-xs">
+                    <p className="font-medium text-slate-200 leading-snug text-xs text-left [text-wrap:pretty]">
                       <strong className="text-white font-bold">Impacto:</strong> {work.outcome}
                     </p>
                   </div>

@@ -122,7 +122,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       subtitle: "Sectores Clave de Asesoría Jurídica",
       content: (
         <div className="space-y-4 w-full">
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-left [text-wrap:pretty]">
             Práctica jurídica especializada con enfoque transversal en sectores altamente regulados y proyectos tecnológicos:
           </p>
 
@@ -175,7 +175,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                     <h4 className="text-base sm:text-lg font-extrabold text-white leading-snug font-heading tracking-tight group-hover:text-white transition-colors">
                       {exp.area}
                     </h4>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal text-justify">
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal text-left [text-wrap:pretty]">
                       {exp.description}
                     </p>
                   </div>
@@ -201,7 +201,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       subtitle: "Principios de Nuestra Práctica",
       content: (
         <div className="space-y-4 w-full">
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-justify">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal px-4 sm:px-0 text-left [text-wrap:pretty]">
             Cuatro pilares que aseguran precisión técnica, ética inquebrantable y visión anticipatoria:
           </p>
 
@@ -222,7 +222,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
                 </div>
               </div>
-              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-left [text-wrap:pretty]">
                 {CORPORATE_VALUES[0].description}
               </p>
             </div>
@@ -242,7 +242,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A66FF]" />
                 </div>
               </div>
-              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-left [text-wrap:pretty]">
                 {CORPORATE_VALUES[1].description}
               </p>
             </div>
@@ -262,7 +262,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600" />
                 </div>
               </div>
-              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-left [text-wrap:pretty]">
                 {CORPORATE_VALUES[2].description}
               </p>
             </div>
@@ -282,7 +282,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <HeartHandshake className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
                 </div>
               </div>
-              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-justify">
+              <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed text-left [text-wrap:pretty]">
                 {CORPORATE_VALUES[3].description}
               </p>
             </div>
@@ -313,7 +313,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 <div className="text-xs sm:text-sm font-bold text-slate-900 mb-1 font-heading">
                   {metric.label}
                 </div>
-                <div className="text-[11px] sm:text-xs text-slate-500 leading-relaxed text-justify">
+                <div className="text-[11px] sm:text-xs text-slate-500 leading-relaxed text-left [text-wrap:pretty]">
                   {metric.detail}
                 </div>
               </div>
@@ -341,7 +341,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <h4 className="text-xl sm:text-2xl font-extrabold text-white font-heading tracking-tight max-w-xl">
               ¿Tu empresa enfrenta un desafío jurídico?
             </h4>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed font-normal text-justify">
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed font-normal text-left [text-wrap:pretty]">
               Si tu empresa enfrenta un desafío jurídico relacionado con protección de datos, tecnología o telecomunicaciones, estaré encantado de conocer el proyecto y analizar cómo podemos ayudarte.
             </p>
           </div>
