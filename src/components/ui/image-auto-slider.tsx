@@ -49,6 +49,10 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
   const [isManipulated, setIsManipulated] = useState(false);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
+  // Programmatic scroll lock to prevent onScroll from overriding user click / auto-advance target
+  const isProgrammaticScroll = useRef(false);
+  const programmaticTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   // Mouse Drag state
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef(0);
@@ -57,6 +61,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
 
   // 10-Second Resume Timer Reference
   const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const rafRef = useRef<number | null>(null);
 
   // Normalize items
   const items = children
@@ -77,29 +82,57 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
 
   const totalItems = items.length;
 
-  // Calculates current scroll progress and active slide index based on actual element offsets
+  // Accurately determines active index based on scroll position
   const updateScrollState = useCallback(() => {
-    const container = scrollContainerRef.current;
-    if (!container || container.children.length === 0) return;
+    if (isProgrammaticScroll.current) return;
 
-    const { scrollLeft } = container;
-    let closestIndex = 0;
-    let minDistance = Infinity;
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const container = scrollContainerRef.current;
+      if (!container || container.children.length === 0) return;
 
-    for (let i = 0; i < container.children.length; i++) {
-      const child = container.children[i] as HTMLElement;
-      const childLeft = child.offsetLeft - container.offsetLeft;
-      const distance = Math.abs(childLeft - scrollLeft);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = i;
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+      const maxScroll = scrollWidth - clientWidth;
+
+      if (maxScroll <= 5) {
+        setActiveSlideIndex(0);
+        return;
       }
-    }
-    setActiveSlideIndex(closestIndex);
-  }, []);
+
+      // If scrolled all the way to the right end
+      if (scrollLeft >= maxScroll - 16) {
+        setActiveSlideIndex(totalItems - 1);
+        return;
+      }
+
+      // If scrolled all the way to the left beginning
+      if (scrollLeft <= 12) {
+        setActiveSlideIndex(0);
+        return;
+      }
+
+      // Proportional matching: interpolate index based on scroll progress and card positions
+      const containerRect = container.getBoundingClientRect();
+      const containerLeft = containerRect.left;
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      for (let i = 0; i < container.children.length; i++) {
+        const child = container.children[i] as HTMLElement;
+        const childRect = child.getBoundingClientRect();
+        const distance = Math.abs(childRect.left - containerLeft);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = i;
+        }
+      }
+
+      setActiveSlideIndex(closestIndex);
+    });
+  }, [totalItems]);
 
   // Handles any user interaction (drag, click arrows, touch, dots)
-  // Pauses auto-play and sets a 10-second timer to resume
+  // Pauses auto-play and sets a resume timer
   const handleUserManipulation = useCallback(() => {
     setIsManipulated(true);
 
@@ -112,16 +145,16 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     }, resumeDelayMs);
   }, [resumeDelayMs]);
 
-  // Clean up timer on unmount
+  // Clean up timers on unmount
   useEffect(() => {
     return () => {
-      if (resumeTimeoutRef.current) {
-        clearTimeout(resumeTimeoutRef.current);
-      }
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+      if (programmaticTimeoutRef.current) clearTimeout(programmaticTimeoutRef.current);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
-  // Update scroll boundaries on mount and resize
+  // Update scroll state on mount and resize
   useEffect(() => {
     updateScrollState();
     window.addEventListener('resize', updateScrollState);
@@ -130,95 +163,107 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
 
   // Smooth slide to specific index
   const scrollToSlide = useCallback(
-    (index: number) => {
-      handleUserManipulation();
+    (targetIndex: number) => {
       const container = scrollContainerRef.current;
-      if (!container) return;
+      if (!container || totalItems === 0) return;
 
-      const targetChild = container.children[index] as HTMLElement | null;
+      const boundedIndex = Math.max(0, Math.min(totalItems - 1, targetIndex));
+      setActiveSlideIndex(boundedIndex);
+
+      // Lock programmatic scroll for smooth transition duration
+      isProgrammaticScroll.current = true;
+      if (programmaticTimeoutRef.current) clearTimeout(programmaticTimeoutRef.current);
+      programmaticTimeoutRef.current = setTimeout(() => {
+        isProgrammaticScroll.current = false;
+      }, 650);
+
+      const maxScroll = container.scrollWidth - container.clientWidth;
+
+      if (boundedIndex === 0) {
+        container.scrollTo({ left: 0, behavior: 'smooth' });
+        return;
+      }
+
+      if (boundedIndex === totalItems - 1) {
+        container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        return;
+      }
+
+      const targetChild = container.children[boundedIndex] as HTMLElement | null;
       if (targetChild) {
-        const targetScroll = targetChild.offsetLeft - container.offsetLeft;
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = targetChild.getBoundingClientRect();
+        const targetScroll = container.scrollLeft + (targetRect.left - containerRect.left);
         container.scrollTo({
-          left: Math.max(0, targetScroll),
+          left: Math.min(maxScroll, Math.max(0, targetScroll)),
           behavior: 'smooth'
         });
       } else {
         const firstChild = container.firstElementChild as HTMLElement | null;
-        const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
+        const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 20 : 250;
         container.scrollTo({
-          left: index * cardWidth,
+          left: Math.min(maxScroll, Math.max(0, boundedIndex * cardWidth)),
           behavior: 'smooth'
         });
       }
-      setActiveSlideIndex(index);
     },
-    [handleUserManipulation]
+    [totalItems]
   );
 
   // Manual Previous Navigation
   const scrollPrev = useCallback(() => {
     handleUserManipulation();
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const firstChild = container.firstElementChild as HTMLElement | null;
-    const scrollAmount = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
-
-    if (container.scrollLeft <= 10) {
-      // Loop to end if at beginning
-      container.scrollTo({
-        left: container.scrollWidth - container.clientWidth,
-        behavior: 'smooth'
-      });
-    } else {
-      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    }
-  }, [handleUserManipulation]);
+    const nextIndex = activeSlideIndex === 0 ? totalItems - 1 : activeSlideIndex - 1;
+    scrollToSlide(nextIndex);
+  }, [activeSlideIndex, totalItems, handleUserManipulation, scrollToSlide]);
 
   // Manual Next Navigation
   const scrollNext = useCallback(() => {
     handleUserManipulation();
-    const container = scrollContainerRef.current;
-    if (!container) return;
+    const nextIndex = (activeSlideIndex + 1) % totalItems;
+    scrollToSlide(nextIndex);
+  }, [activeSlideIndex, totalItems, handleUserManipulation, scrollToSlide]);
 
-    const firstChild = container.firstElementChild as HTMLElement | null;
-    const scrollAmount = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
-    const maxScroll = container.scrollWidth - container.clientWidth;
-
-    if (container.scrollLeft >= maxScroll - 15) {
-      // Loop back to start
-      container.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  }, [handleUserManipulation]);
-
-  // Auto-play Interval: active only when NOT hovered and NOT manipulated by user
+  // Auto-play Interval: active only when NOT hovered, NOT manipulated, and NOT dragging
   useEffect(() => {
     const isPaused = (pauseOnHover && isHovered) || isManipulated || isDragging;
-    if (isPaused) return;
+    if (isPaused || totalItems <= 1) return;
 
     const interval = setInterval(() => {
-      const container = scrollContainerRef.current;
-      if (!container) return;
+      setActiveSlideIndex((current) => {
+        const nextIndex = direction === 'right'
+          ? (current === 0 ? totalItems - 1 : current - 1)
+          : (current + 1) % totalItems;
 
-      const firstChild = container.firstElementChild as HTMLElement | null;
-      const scrollAmount = firstChild ? firstChild.clientWidth + 16 : 260;
-      const maxScroll = container.scrollWidth - container.clientWidth;
+        const container = scrollContainerRef.current;
+        if (container) {
+          const maxScroll = container.scrollWidth - container.clientWidth;
+          isProgrammaticScroll.current = true;
+          if (programmaticTimeoutRef.current) clearTimeout(programmaticTimeoutRef.current);
+          programmaticTimeoutRef.current = setTimeout(() => {
+            isProgrammaticScroll.current = false;
+          }, 650);
 
-      if (direction === 'right') {
-        if (container.scrollLeft <= 10) {
-          container.scrollTo({ left: maxScroll, behavior: 'smooth' });
-        } else {
-          container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+          if (nextIndex === 0) {
+            container.scrollTo({ left: 0, behavior: 'smooth' });
+          } else if (nextIndex === totalItems - 1) {
+            container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+          } else {
+            const targetChild = container.children[nextIndex] as HTMLElement | null;
+            if (targetChild) {
+              const containerRect = container.getBoundingClientRect();
+              const targetRect = targetChild.getBoundingClientRect();
+              const targetScroll = container.scrollLeft + (targetRect.left - containerRect.left);
+              container.scrollTo({
+                left: Math.min(maxScroll, Math.max(0, targetScroll)),
+                behavior: 'smooth'
+              });
+            }
+          }
         }
-      } else {
-        if (container.scrollLeft >= maxScroll - 15) {
-          container.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-      }
+
+        return nextIndex;
+      });
     }, autoAdvanceSeconds * 1000);
 
     return () => clearInterval(interval);
@@ -228,10 +273,11 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     isDragging,
     pauseOnHover,
     autoAdvanceSeconds,
-    direction
+    direction,
+    totalItems
   ]);
 
-  // Mouse Drag Handlers for Desktop Manipulation
+  // Mouse Drag Handlers for Desktop
   const handleMouseDown = (e: React.MouseEvent) => {
     const container = scrollContainerRef.current;
     if (!container) return;
@@ -264,10 +310,11 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     if (isDragging) {
       setIsDragging(false);
       handleUserManipulation();
+      updateScrollState();
     }
   };
 
-  // Prevent accidental clicks on child links if user was dragging/swiping
+  // Prevent accidental clicks on child links if user was dragging
   const handleClickCapture = (e: React.MouseEvent) => {
     if (hasDraggedDistance.current) {
       e.stopPropagation();
@@ -276,7 +323,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     }
   };
 
-  // Touch Handlers for Mobile Manipulation
+  // Touch Handlers for Mobile
   const handleTouchStart = () => {
     handleUserManipulation();
   };
@@ -295,6 +342,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
         if (isDragging) {
           setIsDragging(false);
           handleUserManipulation();
+          updateScrollState();
         }
       }}
     >
@@ -304,6 +352,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
           <div className="flex items-center gap-1.5">
             <button
               onClick={scrollPrev}
+              type="button"
               aria-label="Servicio anterior"
               className="p-1.5 sm:p-2 rounded-full bg-white hover:bg-slate-100 active:bg-slate-200 text-slate-700 hover:text-[#0A66FF] border border-slate-200 shadow-xs transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0A66FF]/40"
             >
@@ -311,6 +360,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
             </button>
             <button
               onClick={scrollNext}
+              type="button"
               aria-label="Siguiente servicio"
               className="p-1.5 sm:p-2 rounded-full bg-white hover:bg-slate-100 active:bg-slate-200 text-slate-700 hover:text-[#0A66FF] border border-slate-200 shadow-xs transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0A66FF]/40"
             >
@@ -360,6 +410,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
+                  handleUserManipulation();
                   scrollToSlide(idx);
                 }}
                 aria-label={`Ir al elemento ${idx + 1}`}

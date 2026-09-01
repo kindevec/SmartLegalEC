@@ -1,4 +1,4 @@
-export type PageRoute = 'home' | 'areas' | 'area-detail' | 'about' | 'insights' | 'diagnostic' | 'contact';
+export type PageRoute = 'home' | 'areas' | 'area-detail' | 'about' | 'insights' | 'diagnostic' | 'contact' | 'privacy';
 
 export interface LegalArticle {
   id: string;

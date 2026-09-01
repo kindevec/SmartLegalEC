@@ -277,35 +277,35 @@ export const ClientTrustLogos: React.FC<ClientTrustLogosProps> = ({
       {/* Background Subtle Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-24 bg-[#0A66FF]/5 blur-3xl pointer-events-none" />
 
+      {/* Title with decorative horizontal accent lines */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Title with decorative horizontal accent lines */}
-        <div className="flex items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+        <div className="flex items-center justify-center gap-3 sm:gap-4 mb-5 sm:mb-7">
           <div className="w-8 sm:w-14 h-[1.5px] bg-[#0A66FF]" />
           <h3 className="text-[10px] sm:text-[11px] md:text-xs font-extrabold uppercase tracking-widest text-[#93C5FD] font-heading text-center">
             EMPRESAS QUE CONFÍAN EN NOSOTROS
           </h3>
           <div className="w-8 sm:w-14 h-[1.5px] bg-[#0A66FF]" />
         </div>
+      </div>
 
-        {/* Infinite Rotating Marquee Panel with Edge Fade Mask */}
-        <div 
-          className="client-marquee-container relative w-full overflow-hidden flex items-center select-none"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
-          }}
-        >
-          <div className="client-marquee-track gap-10 sm:gap-14 md:gap-18 lg:gap-20 py-2">
-            {marqueeItems.map((client, index) => (
-              <div
-                key={`${client.id}-${index}`}
-                className="group cursor-default py-2 px-4 rounded-xl hover:bg-white/[0.04] transition-all duration-300 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 hover:scale-105"
-                title={client.name}
-              >
-                {client.render()}
-              </div>
-            ))}
-          </div>
+      {/* Infinite Rotating Marquee Panel - Full Screen Width (100% edge-to-edge) */}
+      <div 
+        className="client-marquee-container relative w-full overflow-hidden flex items-center select-none z-10"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+        }}
+      >
+        <div className="client-marquee-track gap-10 sm:gap-14 md:gap-18 lg:gap-20 py-2">
+          {marqueeItems.map((client, index) => (
+            <div
+              key={`${client.id}-${index}`}
+              className="group cursor-default py-2 px-4 rounded-xl hover:bg-white/[0.04] transition-all duration-300 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 hover:scale-105"
+              title={client.name}
+            >
+              {client.render()}
+            </div>
+          ))}
         </div>
       </div>
     </section>

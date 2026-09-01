@@ -54,7 +54,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       titleLine1: 'Seguridad y',
       titleLine2: 'Cumplimiento Normativo',
       titleHighlight: 'Empresarial',
-      description: 'Adecuación integral a la LOPDP, designación de DPD externo y gestión de riesgos regulatorios frente a la Autoridad de Protección de Datos.',
+      description: 'Gestión preventiva de riesgos legales y regulatorios en protección de datos, seguridad de la información y cumplimiento empresarial, con acompañamiento especializado frente a autoridades de control.',
       imageJpg: '/hero-slider-2.webp',
       imageWebp: '/hero-slider-2.webp',
       imageAvif: '/hero-slider-2.avif',
@@ -66,7 +66,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       titleLine1: 'Innovación Legal para',
       titleLine2: 'Modelos de Negocio',
       titleHighlight: 'Digitales',
-      description: 'Estructuración de contratos SaaS y Cloud, títulos habilitantes y asesoría en gobernanza e integración responsable de Inteligencia Artificial.',
+      description: 'Soluciones legales para negocios que incorporan tecnología: contratos SaaS y Cloud, modelos y plataformas digitales, relaciones con proveedores tecnológicos y adopción responsable de Inteligencia Artificial.',
       imageJpg: '/hero-slider-3.webp',
       imageWebp: '/hero-slider-3.webp',
       imageAvif: '/hero-slider-3.avif',
@@ -154,79 +154,67 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
     },
   ];
 
-  // Case Studies & Strategic Legal Works dataset
+  // Case Studies & Real Legal Publications dataset (Single Source of Truth)
   const legalWorks = [
     {
-      id: 'case-fintech',
-      sector: 'FINTECH & PAGOS DIGITALES',
-      title: 'Auditoría LOPDP y Blindaje de Pasarelas de Pago Cloud',
-      category: 'PROTECCIÓN DE DATOS',
-      categoryKey: 'lopdp',
-      date: 'ENE 2026',
-      icon: ShieldCheck,
-      iconColor: 'text-[#0A66FF]',
-      iconBg: 'bg-blue-50 border-blue-100',
-      description: 'Adecuación integral del flujo de datos transaccionales, mapeo de transferencias internacionales y Registro de Actividades de Tratamiento (RAT) para procesador regional de pagos.',
-      outcome: '100% de cumplimiento ante la SPDP sin observaciones ni multas regulatorias.',
-      tags: ['LOPDP Ecuador', 'PCI-DSS', 'Encargo Cloud', 'Evaluación EIPD'],
-      image: '/case-fintech.webp',
-      imageWebp: '/case-fintech.webp',
-      imageAvif: '/case-fintech.avif',
-      routeId: 'lopdp' as const,
-    },
-    {
-      id: 'case-saas',
-      sector: 'SOFTWARE ENTERPRISE & IA',
-      title: 'Estructuración de Contratos Master SaaS y SLAs de Alta Disponibilidad',
-      category: 'CONTRATOS TECH',
-      categoryKey: 'tech',
-      date: 'DIC 2025',
+      id: 'art-1',
+      slug: 'estructurar-juridicamente-ecosistema-tecnologico',
+      sector: 'CONTRATOS TECH & DISTRIBUCIÓN',
+      title: 'Estructurar jurídicamente un ecosistema tecnológico',
+      category: 'CONTRATOS TECH & SAAS',
+      date: '20 FEB 2026',
       icon: Code2,
-      iconColor: 'text-purple-600',
-      iconBg: 'bg-purple-50 border-purple-100',
-      description: 'Redacción de Acuerdos de Nivel de Servicio (SLA 99.9%), cesión y custodia de código fuente, limitación de responsabilidad transfronteriza y políticas de uso ético de IA.',
-      outcome: 'Blindaje de propiedad intelectual de código y contratos listos para rondas de inversión.',
-      tags: ['SaaS B2B', 'SLA 99.9%', 'IP Protection', 'Modelos IA'],
-      image: '/case-saas.webp',
-      imageWebp: '/case-saas.webp',
-      imageAvif: '/case-saas.avif',
-      routeId: 'tech' as const,
+      iconColor: 'text-[#38BDF8]',
+      iconBg: 'bg-sky-50 border-sky-100',
+      description: 'Modelado integral de la estructura contractual regional para distribución de software y tecnología entre fabricantes, distribuidores, partners, canales y clientes finales.',
+      outcome: 'Coherencia jurídica y comercial integral, protegiendo propiedad intelectual y evitando vacíos contractuales.',
+      tags: ['SaaS & Software', 'Canales & Distribución', 'Propiedad Intelectual', 'SLA & Garantías'],
+      image: '/articles/ecosistema-tecnologico.jpg',
     },
     {
-      id: 'case-telco',
-      sector: 'ISP & TELECOMUNICACIONES',
-      title: 'Regularización de Concesión y Régimen de Cumplimiento Regulatorio',
-      category: 'TELECOMUNICACIONES',
-      categoryKey: 'telecom',
-      date: 'MAR 2026',
+      id: 'art-2',
+      slug: 'abogado-in-house-prevenir-contener-generar-oportunidades',
+      sector: 'DEFENSA REGULATORIA & LITIGIO',
+      title: 'Abogado in-house: prevenir, contener y generar oportunidades',
+      category: 'TELECOM & REGULACIÓN',
+      date: '12 FEB 2026',
       icon: Radio,
       iconColor: 'text-[#D4AF37]',
       iconBg: 'bg-amber-50 border-amber-100',
-      description: 'Tramitación y defensa técnica-jurídica para renovación de títulos habilitantes, adecuación al régimen de tarifas y homologación de servicios de valor agregado.',
-      outcome: 'Resolución favorable y título habilitante otorgado por la autoridad reguladora.',
-      tags: ['Telecomunicaciones', 'Títulos Habilitantes', 'Servicios Regulados', 'Espectro'],
-      image: '/case-telco.webp',
-      imageWebp: '/case-telco.webp',
-      imageAvif: '/case-telco.avif',
-      routeId: 'telecom' as const,
+      description: 'Estrategia jurídica forjada en casi una década como abogado in-house en el principal operador de telecomunicaciones del país, gestionando nuevos productos y litigios.',
+      outcome: 'Alrededor del 80% de resultados favorables en ~25 procedimientos administrativos sancionatorios.',
+      tags: ['Abogado In-House', 'Sancionatorios (~80% Favorable)', 'Telecomunicaciones', 'Estrategia Legal'],
+      image: '/articles/abogado-in-house.jpg',
     },
     {
-      id: 'case-health',
-      sector: 'RED DE SALUD & DATOS SENSIBLES',
-      title: 'Implementación de Programa DPD Externo para Red de Clínicas',
-      category: 'GOBERNANZA DPD',
-      categoryKey: 'lopdp',
-      date: 'FEB 2026',
+      id: 'art-3',
+      slug: 'proteccion-de-datos-no-existe-implementacion-igual-a-otra',
+      sector: 'PROTECCIÓN DE DATOS & PRIVACIDAD',
+      title: 'Protección de datos: no existe una implementación igual a otra',
+      category: 'CUMPLIMIENTO LOPDP ECUADOR',
+      date: '25 ENE 2026',
+      icon: ShieldCheck,
+      iconColor: 'text-[#0A66FF]',
+      iconBg: 'bg-blue-50 border-blue-100',
+      description: 'Metodología de adecuación integral a la LOPDP para organizaciones de salud, educación, telecomunicaciones, Fintech, retail y grupos corporativos con presencia regional.',
+      outcome: 'Adecuación basada en la realidad operativa del negocio, mapeo de transferencias y cumplimiento ante la SPDP.',
+      tags: ['LOPDP Ecuador', 'Diagnóstico Operativo', 'RAT & Flujos', 'Multisectorial'],
+      image: '/articles/proteccion-datos-implementacion.jpg',
+    },
+    {
+      id: 'art-4',
+      slug: 'ser-delegado-de-proteccion-de-datos-mucho-mas-que-cumplir-un-requisito',
+      sector: 'GOBERNANZA & OFICIAL DPD',
+      title: 'Ser Delegado de Protección de Datos: mucho más que cumplir un requisito',
+      category: 'DELEGADO DE PROTECCIÓN DE DATOS',
+      date: '10 ENE 2026',
       icon: Building2,
-      iconColor: 'text-emerald-600',
+      iconColor: 'text-emerald-500',
       iconBg: 'bg-emerald-50 border-emerald-100',
-      description: 'Designación de Delegado de Protección de Datos (DPD) certificado para salvaguardar historiales clínicos digitales, consentimiento informado y atención de derechos ARCO.',
-      outcome: 'Gobernanza continua y blindaje sobre más de 250,000 registros médicos sensibles.',
-      tags: ['Oficial DPD', 'Datos de Salud', 'Derechos ARCO', 'Auditoría SPDP'],
-      image: '/case-health.webp',
-      imageWebp: '/case-health.webp',
-      imageAvif: '/case-health.avif',
-      routeId: 'lopdp' as const,
+      description: 'Ejercicio como DPD externo certificado para organizaciones de múltiples sectores: supervisión independiente, evaluación de riesgos, EIPD y atención de derechos ARCO.',
+      outcome: 'Gobernanza continua, conexión entre la norma y la operación, y canal oficial ante la SPDP.',
+      tags: ['Oficial DPD Externo', 'Evaluación EIPD', 'Derechos ARCO', 'Auditoría SPDP'],
+      image: '/articles/delegado-proteccion-datos.jpg',
     },
   ];
 
@@ -674,7 +662,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
 
                 {/* TikTok */}
                 <motion.a
-                  href={BRAND_INFO.tiktokUrl || "https://www.tiktok.com/@smartlegal_ec"}
+                  href={BRAND_INFO.tiktokUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.07, y: -2 }}
@@ -710,28 +698,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 mb-2 font-heading">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0A66FF]" />
-                <span>PRECEDENTES & TRAYECTORIA</span>
+                <span>PRECEDENTES & EXPERIENCIA REAL</span>
               </div>
               <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight leading-tight">
-                Casos de Éxito & Asesorías Clave
+                Casos de Éxito & Publicaciones Clave
               </h2>
             </div>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <p className="text-xs text-slate-500 max-w-sm text-justify sm:text-right">
-                Precedentes en blindaje normativo, gobernanza de datos y regulación tecnológica en Ecuador.
+                Precedentes en litigio regulatorio, adecuación a la LOPDP y estructuración de ecosistemas tecnológicos en Ecuador.
               </p>
               <button
-                onClick={() => onNavigate('areas')}
+                onClick={() => onNavigate('insights')}
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-[#0B1D3A] hover:bg-slate-900 text-white transition-all cursor-pointer shadow-xs whitespace-nowrap group"
               >
-                <span>Ver todas las áreas</span>
+                <span>Ver todas las publicaciones</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
           </div>
 
-          {/* Full-Space Visual Grid of Cases (No encapsulated thumbnails) */}
+          {/* Full-Space Visual Grid of Cases */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-4">
             {legalWorks.map((work, idx) => (
               <motion.article
@@ -740,26 +728,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                onClick={() => onNavigate('area-detail', { areaId: work.routeId })}
+                onClick={() => onNavigate('insights', { articleSlug: work.slug })}
                 className="relative rounded-2xl overflow-hidden min-h-[380px] sm:min-h-[420px] p-5 sm:p-7 flex flex-col justify-between group border border-slate-200/80 shadow-md hover:shadow-xl hover:border-[#0A66FF]/60 transition-all duration-300 cursor-pointer"
               >
-                {/* Full-Bleed Background Image (Occupies 100% of the case space) */}
-                <picture className="absolute inset-0 w-full h-full block">
-                  <source srcSet={work.imageAvif} type="image/avif" />
-                  <source srcSet={work.imageWebp} type="image/webp" />
-                  <img 
-                    src={work.image} 
-                    alt={work.title} 
-                    width="1200"
-                    height="800"
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-106"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
+                {/* Full-Bleed Background Image with Subtle Natural Depth */}
+                <div className="absolute inset-0 w-full h-full block overflow-hidden">
+                  <picture className="w-full h-full block">
+                    <source srcSet={work.image.replace('.jpg', '.avif')} type="image/avif" />
+                    <source srcSet={work.image.replace('.jpg', '.webp')} type="image/webp" />
+                    <img 
+                      src={work.image} 
+                      alt={work.title} 
+                      width="1200"
+                      height="800"
+                      className="w-full h-full object-cover scale-[1.02] blur-[0.5px] group-hover:blur-none group-hover:scale-106 transition-all duration-700 ease-out brightness-[0.88] group-hover:brightness-95"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                </div>
 
                 {/* Dark Gradient Overlay for Maximum Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 via-45% to-slate-950/30 group-hover:via-slate-950/80 transition-colors" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 via-45% to-slate-950/35 group-hover:via-slate-950/85 transition-colors" />
 
                 {/* Top Bar: Sector Badge, Number & Date */}
                 <div className="relative z-10 flex items-center justify-between gap-2">
@@ -805,7 +795,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                     </div>
 
                     <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#D4AF37] group-hover:text-white transition-colors">
-                      <span>Consultar</span>
+                      <span>Leer análisis</span>
                       <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>

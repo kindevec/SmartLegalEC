@@ -184,7 +184,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                       onClick={() => setActiveArticle(article)}
                       className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden shadow-xs border border-slate-200 group-hover:shadow-md cursor-pointer transition-all duration-300 bg-slate-100"
                     >
-                      <picture className="w-full h-full">
+                      <picture className="w-full h-full block">
                         <source srcSet={article.image.replace(/\.(jpg|png|jpeg)$/, '.avif')} type="image/avif" />
                         <source srcSet={article.image.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
                         <img
@@ -305,7 +305,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             <div className="pr-10 mb-6">
               {activeArticle.image && (
                 <div className="w-full h-44 sm:h-60 rounded-2xl overflow-hidden mb-5 border border-slate-200 shadow-xs relative">
-                  <picture className="w-full h-full">
+                  <picture className="w-full h-full block">
                     <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.avif')} type="image/avif" />
                     <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
                     <img

@@ -35,6 +35,7 @@ const AboutPage = lazyWithRetry(() => import('./pages/AboutPage').then(m => ({ d
 const InsightsPage = lazyWithRetry(() => import('./pages/InsightsPage').then(m => ({ default: m.InsightsPage })));
 const DiagnosticPage = lazyWithRetry(() => import('./pages/DiagnosticPage').then(m => ({ default: m.DiagnosticPage })));
 const ContactPage = lazyWithRetry(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const PrivacyPolicyPage = lazyWithRetry(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageRoute>('home');
@@ -75,6 +76,8 @@ export default function App() {
         setCurrentPage('diagnostic');
       } else if (path === 'contacto' || path === 'contact') {
         setCurrentPage('contact');
+      } else if (path === 'politica-de-privacidad' || path === 'privacidad' || path === 'privacy') {
+        setCurrentPage('privacy');
       }
     };
 
@@ -142,6 +145,9 @@ export default function App() {
           break;
         case 'contact':
           targetPath = '/contacto';
+          break;
+        case 'privacy':
+          targetPath = '/politica-de-privacidad';
           break;
       }
     }
@@ -216,6 +222,12 @@ export default function App() {
             <ContactPage
               onNavigate={navigateTo}
               onOpenDiagnostic={() => setDiagnosticModalOpen(true)}
+            />
+          )}
+
+          {currentPage === 'privacy' && (
+            <PrivacyPolicyPage
+              onNavigate={navigateTo}
             />
           )}
         </Suspense>

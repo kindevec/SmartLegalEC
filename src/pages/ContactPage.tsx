@@ -240,7 +240,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenDiag
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+593 99 866 8139"
+                      placeholder="+593 98 442 4134"
                       className="w-full px-1 py-2.5 sm:py-3 bg-transparent border-0 border-b-2 border-slate-300 text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:border-[#0A66FF] transition-colors rounded-none"
                     />
                   </div>

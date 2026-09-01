@@ -213,6 +213,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
                   Contacto
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => { onNavigate('privacy'); scrollToTop(); }}
+                  className="text-[#D4AF37] hover:text-white transition-colors cursor-pointer text-left font-medium"
+                >
+                  Política de Privacidad
+                </button>
+              </li>
             </ul>
           </AnimatedContainer>
 
@@ -251,9 +259,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDiagnostic }) 
         </div>
 
         {/* Bottom Bar: Copyright & Compliance */}
-        <AnimatedContainer delay={0.5} className="pt-3 flex flex-row items-center justify-between gap-2 text-slate-400 text-[10px] sm:text-[11px]">
-          <div>
-            © {new Date().getFullYear()} {BRAND_INFO.name}
+        <AnimatedContainer delay={0.5} className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-slate-400 text-[10px] sm:text-[11px]">
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center sm:justify-start">
+            <span>© {new Date().getFullYear()} {BRAND_INFO.name}</span>
+            <span className="text-slate-600">•</span>
+            <button
+              onClick={() => { onNavigate('privacy'); scrollToTop(); }}
+              className="text-slate-400 hover:text-[#D4AF37] transition-colors cursor-pointer underline font-medium"
+            >
+              Política de Privacidad
+            </button>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             <span className="hidden sm:inline">

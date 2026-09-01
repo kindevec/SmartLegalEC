@@ -9,14 +9,14 @@ export const BRAND_INFO = {
   founderTitle: 'Especializado en Protección de Datos, Tecnología y Telecomunicaciones',
   founderEmail: 'info@smartlegalec.com',
   email: 'info@smartlegalec.com',
-  founderPhone: '+593 99 866 8139',
+  founderPhone: '+593 98 442 4134',
   address: 'Quito, Ecuador',
   schedule: 'Lunes a Viernes: 08:30 - 18:00 (Presencial & Virtual)',
-  whatsappNumber: '593998668139',
-  whatsappUrl: 'https://wa.me/593998668139',
-  linkedinUrl: 'https://www.linkedin.com/company/99569327',
+  whatsappNumber: '593984424134',
+  whatsappUrl: 'https://wa.me/593984424134',
+  linkedinUrl: 'https://www.linkedin.com/company/smartlegalec',
   instagramUrl: 'https://www.instagram.com/smartlegal_ec?igshid=YTQwZjQ0NmI0OA%3D%3D',
-  tiktokUrl: 'https://www.tiktok.com/@smartlegal_ec',
+  tiktokUrl: 'https://www.tiktok.com/@smartlegalec',
 };
 
 export const HERO_PILLARS: Pillar[] = [
@@ -95,7 +95,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Evaluación de brechas y desarrollo de medidas jurídicas y organizativas necesarias.',
         fullDesc:
           'Evaluamos el nivel de cumplimiento de la organización, identificamos brechas y desarrollamos las medidas jurídicas y organizativas necesarias para adecuar sus procesos.',
-        image: 'https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=600&q=80',
+        image: '/services/lopdp/implementacion-lopdp.jpg',
       },
       {
         id: 'lopdp-2',
@@ -105,7 +105,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Supervisión independiente, asesoramiento continuo y acompañamiento.',
         fullDesc:
           'Prestamos el servicio de DPD externo para organizaciones que requieren o deciden contar con esta figura, brindando asesoramiento, supervisión y acompañamiento independiente en materia de protección de datos.',
-        image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80',
+        image: '/services/lopdp/dpd-externo.jpg',
       },
       {
         id: 'lopdp-3',
@@ -115,7 +115,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Revisión de procesos, documentos y prácticas operativas.',
         fullDesc:
           'Revisamos procesos, documentos y prácticas para identificar incumplimientos, riesgos y oportunidades de mejora.',
-        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80',
+        image: '/services/lopdp/auditorias-cumplimiento.jpg',
       },
       {
         id: 'lopdp-4',
@@ -125,7 +125,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Identificación de riesgos y desarrollo de evaluaciones de impacto.',
         fullDesc:
           'Identificamos y evaluamos los riesgos derivados del tratamiento de datos personales y desarrollamos evaluaciones de impacto cuando la naturaleza del tratamiento lo requiere.',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
+        image: '/services/lopdp/gestion-riesgos-eipd.jpg',
       },
       {
         id: 'lopdp-5',
@@ -135,7 +135,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Contratos de encargo, transferencias y corresponsabilidad.',
         fullDesc:
           'Elaboramos y revisamos contratos de encargo, transferencia, corresponsabilidad y otras relaciones jurídicas que involucren tratamiento o intercambio de datos personales.',
-        image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80',
+        image: '/services/lopdp/contratos-terceros.jpg',
       },
       {
         id: 'lopdp-6',
@@ -145,7 +145,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Protección de datos desde el diseño en apps, IA, biometría y videovigilancia.',
         fullDesc:
           'Asesoramos en la incorporación de protección de datos desde el diseño en aplicaciones, plataformas, inteligencia artificial, biometría, videovigilancia y otros proyectos tecnológicos.',
-        image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80',
+        image: '/services/lopdp/privacidad-tecnologias.jpg',
       },
       {
         id: 'lopdp-7',
@@ -155,7 +155,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Evaluación jurídica inmediata y determinación de acciones y notificaciones.',
         fullDesc:
           'Acompañamos la evaluación jurídica de incidentes de seguridad y la determinación de las acciones y notificaciones que correspondan.',
-        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80',
+        image: '/services/lopdp/gestion-incidentes.jpg',
       },
       {
         id: 'lopdp-8',
@@ -165,7 +165,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Instrumentos jurídicos y organizativos para integrar la protección a los procesos.',
         fullDesc:
           'Desarrollamos instrumentos jurídicos y organizativos que permitan integrar la protección de datos a los procesos de la organización.',
-        image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80',
+        image: '/services/lopdp/politicas-documentacion.jpg',
       },
       {
         id: 'lopdp-9',
@@ -175,7 +175,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Capacitaciones generales o especializadas para directivos y equipos operativos.',
         fullDesc:
           'Diseñamos capacitaciones generales o especializadas para equipos directivos, jurídicos, comerciales, tecnológicos, talento humano y demás áreas que intervienen en el tratamiento de información.',
-        image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80',
+        image: '/services/lopdp/capacitacion-corporativa.jpg',
       },
     ],
   },

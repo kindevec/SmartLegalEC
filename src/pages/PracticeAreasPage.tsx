@@ -372,12 +372,15 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
                       >
                         {/* Service Thematic Image Banner */}
                         <div className="relative w-full h-32 sm:h-34 bg-slate-100 overflow-hidden">
-                          <img
-                            src={cardImg}
-                            alt={serv.title}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                            loading="lazy"
-                          />
+                          <picture className="w-full h-full block">
+                            <source srcSet={cardImg.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
+                            <img
+                              src={cardImg}
+                              alt={serv.title}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                              loading="lazy"
+                            />
+                          </picture>
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
                           <span className="absolute bottom-2 left-2.5 px-2 py-0.5 rounded-md text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider bg-[#071326]/90 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-xs shadow-xs">
                             {serv.tag}
