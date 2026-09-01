@@ -393,7 +393,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-              <p className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed text-justify sm:text-left font-normal">
+              <p className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed text-justify font-normal">
                 Asesoramiento estratégico y blindaje preventivo adaptado a la economía digital y tecnológica en Ecuador.
               </p>
               <button
@@ -448,7 +448,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-white mb-1.5 leading-snug group-hover:text-[#D4AF37] transition-colors">
                         {service.title}
                       </h3>
-                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal line-clamp-3 text-justify sm:text-left">
+                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal line-clamp-3 text-justify">
                         {service.desc}
                       </p>
                     </div>
@@ -542,7 +542,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 </p>
               </div>
 
-              <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed text-justify">
                 Abogado especializado en protección de datos personales, derecho de la tecnología y telecomunicaciones, con amplia experiencia asesorando a empresas nacionales e internacionales en entornos regulados y proyectos de transformación digital.
               </p>
 

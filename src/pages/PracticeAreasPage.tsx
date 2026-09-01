@@ -392,7 +392,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
                             <h4 className="text-xs sm:text-sm font-bold text-slate-900 mb-1 group-hover:text-[#0A66FF] transition-colors leading-snug font-heading line-clamp-2 h-9 sm:h-10 flex items-start">
                               {serv.title}
                             </h4>
-                            <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed line-clamp-2 text-left">
+                            <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed line-clamp-2 text-justify">
                               {serv.shortDesc}
                             </p>
                           </div>

@@ -175,7 +175,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                     <h4 className="text-base sm:text-lg font-extrabold text-white leading-snug font-heading tracking-tight group-hover:text-white transition-colors">
                       {exp.area}
                     </h4>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal text-justify sm:text-left">
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal text-justify">
                       {exp.description}
                     </p>
                   </div>

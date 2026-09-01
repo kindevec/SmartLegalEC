@@ -158,7 +158,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                 </h1>
 
                 {/* Lead Summary */}
-                <p className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed text-left mb-6">
+                <p className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed text-justify mb-6">
                   {activeArticle.summary}
                 </p>
 
@@ -245,7 +245,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </div>
 
               {/* Full Article Content Sections */}
-              <div className="space-y-6 pt-2 text-slate-800 leading-relaxed text-left text-sm sm:text-base border-t border-slate-100">
+              <div className="space-y-6 pt-2 text-slate-800 leading-relaxed text-sm sm:text-base border-t border-slate-100">
                 {activeArticle.content.map((paragraph, idx) => {
                   const isHeaderBlock = paragraph.startsWith('PREVENCIÓN:') || 
                                         paragraph.startsWith('CONTENCIÓN:') || 
@@ -259,7 +259,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                           <span className="w-2 h-2 rounded-full bg-[#0A66FF]" />
                           {titlePart}
                         </h4>
-                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed text-left">
+                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
                           {bodyParts.join('\n')}
                         </p>
                       </div>
@@ -267,7 +267,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   }
 
                   return (
-                    <p key={idx} className="whitespace-pre-line text-sm sm:text-base text-slate-700 leading-relaxed text-left">
+                    <p key={idx} className="whitespace-pre-line text-sm sm:text-base text-slate-700 leading-relaxed text-justify">
                       {paragraph}
                     </p>
                   );
@@ -572,7 +572,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                       {article.title}
                     </h2>
 
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-4 text-left">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-4 text-justify">
                       {article.summary}
                     </p>
 
