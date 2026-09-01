@@ -44,46 +44,63 @@ export default function App() {
   const [selectedArticleSlug, setSelectedArticleSlug] = useState<string | undefined>(undefined);
   const [diagnosticModalOpen, setDiagnosticModalOpen] = useState(false);
 
-  // Sync route with clean browser pathname (HTML5 History API)
+  // Robust Sync route with browser Hash and Pathname (Fluid Back/Forward navigation)
   useEffect(() => {
     const handleLocationChange = () => {
-      // Support migration if a user arrives with a legacy hash URL
+      // 1. Get raw path from either Hash (#/insights/slug) or Pathname (/insights/slug)
+      let rawPath = '';
       if (window.location.hash) {
-        const legacyHash = window.location.hash.replace('#', '').replace('/', '');
-        window.history.replaceState({}, '', legacyHash ? `/${legacyHash}` : '/');
+        rawPath = window.location.hash.replace(/^#\/?/, '');
+      } else {
+        rawPath = window.location.pathname.replace(/^\/+|\/+$/g, '');
       }
 
-      const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
-      if (path === '' || path === 'inicio' || path === 'home') {
+      // Clean query params or trailing slashes
+      const cleanPath = rawPath.split('?')[0].replace(/^\/+|\/+$/g, '');
+
+      if (cleanPath === '' || cleanPath === 'inicio' || cleanPath === 'home') {
         setCurrentPage('home');
-      } else if (path === 'areas' || path === 'servicios') {
+        setSelectedArticleSlug(undefined);
+      } else if (cleanPath === 'areas' || cleanPath === 'servicios') {
         setCurrentPage('areas');
-      } else if (path.startsWith('area-')) {
-        const area = path.replace('area-', '') as 'lopdp' | 'tech' | 'telecom';
+        setSelectedArticleSlug(undefined);
+      } else if (cleanPath.startsWith('area-')) {
+        const area = cleanPath.replace('area-', '') as 'lopdp' | 'tech' | 'telecom';
         if (['lopdp', 'tech', 'telecom'].includes(area)) {
           setSelectedAreaId(area);
           setCurrentPage('area-detail');
+          setSelectedArticleSlug(undefined);
         }
-      } else if (path === 'sobre-nosotros' || path === 'sobre-mi' || path === 'about') {
+      } else if (cleanPath === 'sobre-nosotros' || cleanPath === 'sobre-mi' || cleanPath === 'about') {
         setCurrentPage('about');
-      } else if (path.startsWith('insights') || path.startsWith('articulos')) {
-        const parts = path.split('/');
-        if (parts.length > 1) {
-          setSelectedArticleSlug(parts[1]);
+        setSelectedArticleSlug(undefined);
+      } else if (cleanPath.startsWith('insights') || cleanPath.startsWith('articulos')) {
+        const parts = cleanPath.split('/');
+        if (parts.length > 1 && parts[1].trim() !== '') {
+          setSelectedArticleSlug(parts[1].trim());
+        } else {
+          setSelectedArticleSlug(undefined);
         }
         setCurrentPage('insights');
-      } else if (path === 'diagnostico' || path === 'test-lopdp') {
+      } else if (cleanPath === 'diagnostico' || cleanPath === 'test-lopdp') {
         setCurrentPage('diagnostic');
-      } else if (path === 'contacto' || path === 'contact') {
+        setSelectedArticleSlug(undefined);
+      } else if (cleanPath === 'contacto' || cleanPath === 'contact') {
         setCurrentPage('contact');
-      } else if (path === 'politica-de-privacidad' || path === 'privacidad' || path === 'privacy') {
+        setSelectedArticleSlug(undefined);
+      } else if (cleanPath === 'politica-de-privacidad' || cleanPath === 'privacidad' || cleanPath === 'privacy') {
         setCurrentPage('privacy');
+        setSelectedArticleSlug(undefined);
       }
     };
 
     handleLocationChange();
     window.addEventListener('popstate', handleLocationChange);
-    return () => window.removeEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   // Dynamic Theme-Aware Smart Favicon Sync (Light & Dark Browser Theme)
@@ -114,7 +131,7 @@ export default function App() {
       areaFilter?: 'all' | 'lopdp' | 'tech' | 'telecom';
     }
   ) => {
-    let targetPath = '/';
+    let targetHash = '#/';
 
     if (params?.areaFilter) {
       setSelectedAreaFilter(params.areaFilter);
@@ -122,38 +139,47 @@ export default function App() {
 
     if (params?.areaId) {
       setSelectedAreaId(params.areaId);
-      targetPath = `/area-${params.areaId}`;
+      setSelectedArticleSlug(undefined);
+      targetHash = `#/area-${params.areaId}`;
     } else if (params?.articleSlug) {
       setSelectedArticleSlug(params.articleSlug);
-      targetPath = `/insights/${params.articleSlug}`;
+      targetHash = `#/insights/${params.articleSlug}`;
     } else {
       switch (route) {
         case 'home':
-          targetPath = '/';
+          targetHash = '#/';
+          setSelectedArticleSlug(undefined);
           break;
         case 'areas':
-          targetPath = '/areas';
+          targetHash = '#/areas';
+          setSelectedArticleSlug(undefined);
           break;
         case 'about':
-          targetPath = '/sobre-nosotros';
+          targetHash = '#/sobre-nosotros';
+          setSelectedArticleSlug(undefined);
           break;
         case 'insights':
-          targetPath = '/insights';
+          targetHash = '#/insights';
+          setSelectedArticleSlug(undefined);
           break;
         case 'diagnostic':
-          targetPath = '/diagnostico';
+          targetHash = '#/diagnostico';
+          setSelectedArticleSlug(undefined);
           break;
         case 'contact':
-          targetPath = '/contacto';
+          targetHash = '#/contacto';
+          setSelectedArticleSlug(undefined);
           break;
         case 'privacy':
-          targetPath = '/politica-de-privacidad';
+          targetHash = '#/politica-de-privacidad';
+          setSelectedArticleSlug(undefined);
           break;
       }
     }
 
-    if (window.location.pathname !== targetPath) {
-      window.history.pushState({}, '', targetPath);
+    // Update URL hash smoothly, enabling native browser back/forward history
+    if (window.location.hash !== targetHash) {
+      window.location.hash = targetHash;
     }
     setCurrentPage(route);
     window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -83,12 +83,13 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
   };
 
   const handleShare = (art: LegalArticle) => {
-    const shareText = `${art.title} — Análisis por SmartLegalEC: ${window.location.origin}/insights/${art.slug}`;
+    const shareUrl = `${window.location.origin}/#/insights/${art.slug}`;
+    const shareText = `${art.title} — Análisis por SmartLegalEC: ${shareUrl}`;
     if (navigator.share) {
       navigator.share({
         title: art.title,
         text: shareText,
-        url: `${window.location.origin}/insights/${art.slug}`,
+        url: shareUrl,
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(`${shareText}`);
