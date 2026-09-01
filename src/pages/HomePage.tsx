@@ -529,7 +529,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
             </div>
 
             {/* RIGHT: Section Editorial & Firm Story */}
-            <div className="lg:col-span-7 space-y-4 pb-8 sm:pb-12">
+            <div className="lg:col-span-7 space-y-4 pb-6 sm:pb-8 lg:pb-12">
               <div>
                 <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 mb-2 font-heading">
                   LIDERAZGO Y EXPERIENCIA
@@ -541,10 +541,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   Socio Director
                 </p>
               </div>
-
-              <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed text-justify-clean">
-                Abogado especializado en protección de datos personales, derecho de la tecnología y telecomunicaciones, con amplia experiencia asesorando a empresas nacionales e internacionales en entornos regulados y proyectos de transformación digital.
-              </p>
 
               {/* 3 Credential Badges */}
               <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1.5">
