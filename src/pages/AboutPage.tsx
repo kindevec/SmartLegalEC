@@ -87,7 +87,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
 
             {/* Right: High-Impact Visual Photo Card */}
             <div className="lg:col-span-5 flex flex-col justify-start space-y-4">
-              <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md group min-h-[300px] sm:min-h-[360px] lg:min-h-[420px] h-full w-full">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md group aspect-[4/5] sm:aspect-auto min-h-[390px] sm:min-h-[360px] lg:min-h-[420px] h-full w-full">
                 <picture className="absolute inset-0 w-full h-full block">
                   <source srcSet="/cliente.avif" type="image/avif" />
                   <source srcSet="/cliente.webp" type="image/webp" />
@@ -96,13 +96,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                     alt={FOUNDER_PROFILE.name}
                     width="896"
                     height="1200"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover object-top scale-[1.08] -translate-y-2.5 sm:scale-100 sm:translate-y-0 group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                     decoding="async"
                   />
                 </picture>
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-5 sm:p-6 z-10 pointer-events-none">
-                  <p className="text-xs sm:text-sm font-medium text-slate-200 leading-relaxed text-justify">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent flex flex-col justify-end p-4 sm:p-6 z-10 pointer-events-none">
+                  <p className="text-xs sm:text-sm font-medium text-slate-200 leading-relaxed text-left [text-wrap:pretty]">
                     "Atención personalizada y estratégica en cada proceso de adecuación y contrato digital."
                   </p>
                 </div>
