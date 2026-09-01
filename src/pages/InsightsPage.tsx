@@ -45,7 +45,8 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
   const categories = [
     'all',
     'LOPDP & Privacidad',
-    'Contratos Tech & SaaS'
+    'Contratos Tecnológicos',
+    'Asesoría Corporativa'
   ];
 
   const filteredArticles = LEGAL_ARTICLES.filter((art) => {

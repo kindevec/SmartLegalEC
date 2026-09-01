@@ -100,7 +100,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'lopdp-2',
         category: 'lopdp',
-        tag: 'DPO / DPD Agente Externo',
+        tag: 'Delegado DPD Externo',
         title: 'Delegado de Protección de Datos externo',
         shortDesc: 'Supervisión independiente, asesoramiento continuo y acompañamiento.',
         fullDesc:
@@ -110,7 +110,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'lopdp-3',
         category: 'lopdp',
-        tag: 'Diagnóstico & Auditoría',
+        tag: 'Auditoría & Diagnóstico',
         title: 'Auditorías y evaluaciones de cumplimiento',
         shortDesc: 'Revisión de procesos, documentos y prácticas operativas.',
         fullDesc:
@@ -120,7 +120,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'lopdp-4',
         category: 'lopdp',
-        tag: 'EIPD & Riesgos',
+        tag: 'Evaluación de Impacto',
         title: 'Gestión de riesgos y evaluaciones de impacto',
         shortDesc: 'Identificación de riesgos y desarrollo de evaluaciones de impacto.',
         fullDesc:
@@ -130,7 +130,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'lopdp-5',
         category: 'lopdp',
-        tag: 'Contratos & Terceros',
+        tag: 'Contratos con Terceros',
         title: 'Contratos y relaciones con terceros',
         shortDesc: 'Contratos de encargo, transferencias y corresponsabilidad.',
         fullDesc:
@@ -140,7 +140,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'lopdp-6',
         category: 'lopdp',
-        tag: 'Privacy by Design',
+        tag: 'Privacidad desde el Diseño',
         title: 'Privacidad en proyectos y nuevas tecnologías',
         shortDesc: 'Protección de datos desde el diseño en apps, IA, biometría y videovigilancia.',
         fullDesc:
@@ -150,7 +150,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'lopdp-7',
         category: 'lopdp',
-        tag: 'Incident Response',
+        tag: 'Respuesta a Incidentes',
         title: 'Gestión de incidentes y vulneraciones',
         shortDesc: 'Evaluación jurídica inmediata y determinación de acciones y notificaciones.',
         fullDesc:
@@ -170,7 +170,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'lopdp-9',
         category: 'lopdp',
-        tag: 'Cultura Corporativa',
+        tag: 'Capacitación y Cultura',
         title: 'Capacitación',
         shortDesc: 'Capacitaciones generales o especializadas para directivos y equipos operativos.',
         fullDesc:
@@ -182,7 +182,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
   {
     id: 'tech',
     name: 'Tecnología y Negocios Digitales',
-    badge: 'LegalTech & Negocios Digitales',
+    badge: 'Derecho Digital & Tecnología',
     tagline: 'Contratos y asesoría jurídica para negocios que dependen de la tecnología',
     description:
       'La tecnología transforma la manera en que las empresas contratan, prestan servicios, gestionan información y desarrollan nuevos modelos de negocio. Esa transformación también genera riesgos jurídicos que deben gestionarse desde el inicio. En SmartLegalEC asesoramos a empresas, proveedores tecnológicos y organizaciones que contratan tecnología, procurando que sus relaciones jurídicas reflejen adecuadamente la realidad técnica, comercial y operativa de cada proyecto.',
@@ -208,7 +208,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'tech-1',
         category: 'tech',
-        tag: 'SaaS & Licencias',
+        tag: 'Licencias & Suscripciones',
         title: 'Contratos de software y SaaS',
         shortDesc: 'Licenciamiento, suscripción, implementación, soporte y mantenimiento.',
         fullDesc:
@@ -228,7 +228,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'tech-3',
         category: 'tech',
-        tag: 'Cloud & Infraestructura',
+        tag: 'Servicios en la Nube',
         title: 'Cloud computing y servicios tecnológicos',
         shortDesc: 'Contratación de infraestructura Cloud, seguridad y continuidad de servicio.',
         fullDesc:
@@ -238,7 +238,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'tech-4',
         category: 'tech',
-        tag: 'Outsourcing TI',
+        tag: 'Proveedores Tecnológicos',
         title: 'Outsourcing y proveedores tecnológicos',
         shortDesc: 'Riesgos contractuales, confidencialidad, propiedad intelectual y datos.',
         fullDesc:
@@ -248,7 +248,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'tech-5',
         category: 'tech',
-        tag: 'E-Commerce',
+        tag: 'Comercio Electrónico',
         title: 'Comercio electrónico y negocios digitales',
         shortDesc: 'Términos y condiciones, contratación electrónica y privacidad en plataformas.',
         fullDesc:
@@ -278,7 +278,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'tech-8',
         category: 'tech',
-        tag: 'Negociación Tech',
+        tag: 'Negociación Contractual',
         title: 'Negociación de contratos tecnológicos',
         shortDesc: 'Acuerdos jurídicamente sólidos y comercialmente viables.',
         fullDesc:
@@ -327,7 +327,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'telecom-2',
         category: 'telecom',
-        tag: 'Servicios Telco',
+        tag: 'Servicios de Telecomunicaciones',
         title: 'Servicios de telecomunicaciones',
         shortDesc: 'Requisitos jurídicos y regulatorios para modelos de negocio de telecomunicaciones.',
         fullDesc:
@@ -337,7 +337,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'telecom-3',
         category: 'telecom',
-        tag: 'Espectro',
+        tag: 'Espectro Radioeléctrico',
         title: 'Espectro radioeléctrico',
         shortDesc: 'Asesoría en uso, asignación y regulación de frecuencias del espectro.',
         fullDesc:
@@ -347,7 +347,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'telecom-4',
         category: 'telecom',
-        tag: 'Satélites & Espacio',
+        tag: 'Servicios Satelitales',
         title: 'Servicios satelitales y segmento espacial',
         shortDesc: 'Segmento espacial, Internet satelital y comunicaciones móviles por satélite.',
         fullDesc:
@@ -357,7 +357,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'telecom-5',
         category: 'telecom',
-        tag: 'Cumplimiento',
+        tag: 'Cumplimiento Regulatorio',
         title: 'Cumplimiento regulatorio',
         shortDesc: 'Obligaciones derivadas de títulos habilitantes y disposiciones sectoriales.',
         fullDesc:
@@ -367,7 +367,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'telecom-6',
         category: 'telecom',
-        tag: 'Administrativo',
+        tag: 'Procedimientos Administrativos',
         title: 'Procedimientos administrativos',
         shortDesc: 'Acompañamiento en trámites, requerimientos y procedimientos sancionadores.',
         fullDesc:
@@ -377,7 +377,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
       {
         id: 'telecom-7',
         category: 'telecom',
-        tag: 'Contratos Telco',
+        tag: 'Contratos de Infraestructura',
         title: 'Contratos de telecomunicaciones y tecnología',
         shortDesc: 'Contratos de infraestructura, conectividad, proveedores y proyectos.',
         fullDesc:
@@ -539,7 +539,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     id: 'art-1',
     slug: 'estructurar-juridicamente-ecosistema-tecnologico',
     title: 'Estructurar jurídicamente un ecosistema tecnológico',
-    category: 'Contratos Tech & SaaS',
+    category: 'Contratos Tecnológicos',
     date: '20 de Febrero, 2026',
     readTime: '6 min de lectura',
     author: 'Luis Fernando Guerra Padilla',
@@ -566,7 +566,7 @@ export const LEGAL_ARTICLES: LegalArticle[] = [
     id: 'art-2',
     slug: 'abogado-in-house-prevenir-contener-generar-oportunidades',
     title: 'Abogado in-house: prevenir, contener y generar oportunidades',
-    category: 'Contratos Tech & SaaS',
+    category: 'Asesoría Corporativa',
     date: '12 de Febrero, 2026',
     readTime: '7 min de lectura',
     author: 'Luis Fernando Guerra Padilla',
