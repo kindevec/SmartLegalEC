@@ -731,7 +731,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 onClick={() => onNavigate('insights', { articleSlug: work.slug })}
                 className="relative rounded-2xl overflow-hidden min-h-[380px] sm:min-h-[420px] p-5 sm:p-7 flex flex-col justify-between group border border-slate-200/80 shadow-md hover:shadow-xl hover:border-[#0A66FF]/60 transition-all duration-300 cursor-pointer"
               >
-                {/* Full-Bleed Background Image with Subtle Natural Depth */}
+                {/* Full-Bleed Background Image with Deep Blur Effect */}
                 <div className="absolute inset-0 w-full h-full block overflow-hidden">
                   <picture className="w-full h-full block">
                     <source srcSet={work.image.replace('.jpg', '.avif')} type="image/avif" />
@@ -741,7 +741,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                       alt={work.title} 
                       width="1200"
                       height="800"
-                      className="w-full h-full object-cover scale-[1.02] blur-[0.5px] group-hover:blur-none group-hover:scale-106 transition-all duration-700 ease-out brightness-[0.88] group-hover:brightness-95"
+                      className="w-full h-full object-cover scale-110 blur-[4px] group-hover:blur-[2px] group-hover:scale-115 transition-all duration-700 ease-out brightness-[0.75] group-hover:brightness-[0.85]"
                       loading="lazy"
                       decoding="async"
                     />
