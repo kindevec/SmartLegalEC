@@ -382,7 +382,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Contratos de infraestructura, conectividad, proveedores y proyectos.',
         fullDesc:
           'Elaboramos y revisamos contratos vinculados con infraestructura, conectividad, servicios, proveedores y proyectos del sector.',
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80',
+        image: '/services/telecom/contratos-telecomunicaciones.jpg',
       },
       {
         id: 'telecom-8',
