@@ -103,58 +103,55 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
 
   if (activeArticle) {
     return (
-      <div className="w-full bg-[#F8FAFC] min-h-screen pb-24 text-slate-900 selection:bg-[#0A66FF] selection:text-white">
-        <section className="bg-[#071326] text-white border-b border-slate-800 sticky top-16 sm:top-20 z-30 backdrop-blur-md bg-opacity-95">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-            <button
-              onClick={handleBackToList}
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-300 hover:text-white transition-colors cursor-pointer group shrink-0"
-            >
-              <div className="w-7 h-7 rounded-full bg-slate-800 group-hover:bg-[#0A66FF] flex items-center justify-center transition-colors">
-                <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" />
-              </div>
-              <span className="hidden sm:inline">Volver a Casos de Éxito</span>
-              <span className="sm:hidden">Volver</span>
-            </button>
-
-            <div className="hidden md:flex items-center gap-2 text-xs text-slate-400 overflow-hidden text-ellipsis whitespace-nowrap max-w-lg">
-              <span onClick={handleBackToList} className="hover:text-white cursor-pointer transition-colors">Publicaciones</span>
-              <ChevronRight className="w-3 h-3 text-slate-600 shrink-0" />
-              <span className="text-[#D4AF37] font-semibold shrink-0">{activeArticle.category}</span>
-              <ChevronRight className="w-3 h-3 text-slate-600 shrink-0" />
-              <span className="text-slate-300 truncate">{activeArticle.title}</span>
-            </div>
-
-            <div className="flex items-center gap-2 shrink-0">
-              <button
-                onClick={() => handleShare(activeArticle)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white transition-all border border-slate-700 cursor-pointer shadow-xs"
-                title="Compartir publicación"
-              >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
-                <span>{copied ? '¡Copiado!' : 'Compartir'}</span>
-              </button>
-
-              <a
-                href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(`Hola Luis Fernando Guerra, leí su publicación "${activeArticle.title}" y quisiera consultar un caso para mi organización.`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-xs"
-              >
-                <WhatsAppIcon className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Consultar</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="relative bg-gradient-to-b from-[#071326] via-[#0B1D3A] to-[#0F274A] text-white pt-10 sm:pt-14 pb-12 sm:pb-16 overflow-hidden">
+      <div className="w-full bg-[#F8FAFC] min-h-screen pb-32 sm:pb-24 text-slate-900 selection:bg-[#0A66FF] selection:text-white">
+        
+        {/* 1. ARTICLE HERO SECTION WITH SEAMLESS INTEGRATED NAVIGATION */}
+        <section className="relative bg-gradient-to-b from-[#071326] via-[#0B1D3A] to-[#0F274A] text-white pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-16 overflow-hidden border-b border-slate-800">
+          {/* Ambient Lighting Depth */}
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0A66FF]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Top Navigation & Breadcrumbs Bar (Non-sticky, completely clean on Mobile & PC) */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 border-b border-slate-700/60">
+              
+              {/* Back Button with Animated Hover */}
+              <button
+                onClick={handleBackToList}
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-200 hover:text-white transition-colors cursor-pointer group py-1 shrink-0"
+              >
+                <div className="w-8 h-8 rounded-full bg-slate-800 group-hover:bg-[#0A66FF] border border-slate-700 group-hover:border-[#0A66FF] flex items-center justify-center transition-all shadow-xs">
+                  <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+                </div>
+                <span>Volver a Casos de Éxito</span>
+              </button>
+
+              {/* Action Buttons: Share & WhatsApp */}
+              <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                <button
+                  onClick={() => handleShare(activeArticle)}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white transition-all border border-slate-700 cursor-pointer shadow-xs min-h-[36px]"
+                  title="Compartir publicación"
+                >
+                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
+                  <span>{copied ? '¡Enlace copiado!' : 'Compartir'}</span>
+                </button>
+
+                <a
+                  href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(`Hola Luis Fernando Guerra, leí su publicación "${activeArticle.title}" y quisiera consultar un caso para mi organización.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-xs min-h-[36px]"
+                >
+                  <WhatsAppIcon className="w-3.5 h-3.5" />
+                  <span>Consultar</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Category & Metadata Strip */}
             <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-4">
-              <span className="px-3 py-1 rounded-full text-[11px] sm:text-xs font-extrabold uppercase tracking-wider bg-[#071326] text-[#D4AF37] border border-[#D4AF37]/40 shadow-xs font-heading">
+              <span className="px-3 py-1 rounded-md text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#071326] text-[#D4AF37] border border-[#D4AF37]/40 shadow-xs font-heading">
                 {activeArticle.category}
               </span>
               <span className="text-xs text-slate-300 flex items-center gap-1.5">
@@ -168,12 +165,14 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </span>
             </div>
 
-            <h1 className="font-heading font-extrabold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.2] mb-6">
+            {/* Main Editorial Headline */}
+            <h1 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white tracking-tight leading-[1.2] mb-6 sm:mb-8 text-left">
               {activeArticle.title}
             </h1>
 
+            {/* Author Profile Strip */}
             <div className="flex items-center gap-3.5 pt-4 border-t border-slate-700/60">
-              <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-[#D4AF37]/80 shrink-0 bg-slate-800">
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-800 shadow-md">
                 <img
                   src="/cliente.webp"
                   alt={activeArticle.author}
@@ -181,7 +180,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   loading="lazy"
                 />
               </div>
-              <div>
+              <div className="text-left">
                 <div className="text-sm font-bold text-white leading-tight">
                   {activeArticle.author}
                 </div>
@@ -193,12 +192,16 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
           </div>
         </section>
 
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-20">
+        {/* 2. MAIN EDITORIAL CONTENT + STICKY SIDEBAR LAYOUT */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10 relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             
-            <div className="lg:col-span-8 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200/90 space-y-8">
+            {/* Left 8 Cols: Full In-Depth Analysis Content */}
+            <div className="lg:col-span-8 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border border-slate-200/90 space-y-7 sm:space-y-8">
+              
+              {/* Featured Panoramic Image Banner */}
               {activeArticle.image && (
-                <div className="w-full h-60 sm:h-80 md:h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-md relative group">
+                <div className="w-full h-56 sm:h-72 md:h-[380px] lg:h-[420px] rounded-2xl overflow-hidden border border-slate-200 shadow-md relative group bg-slate-100">
                   <picture className="w-full h-full block">
                     <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.avif')} type="image/avif" />
                     <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
@@ -209,28 +212,30 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                     />
                   </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute bottom-4 left-4 right-4 text-xs text-slate-200 font-medium italic">
+                  <div className="absolute bottom-3 left-4 right-4 text-[11px] sm:text-xs text-slate-200 font-medium italic text-left">
                     Análisis técnico-jurídico preparado para empresas y organizaciones en Ecuador.
                   </div>
                 </div>
               )}
 
-              <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border-l-4 border-[#0A66FF] shadow-xs">
+              {/* Executive Summary Box */}
+              <div className="p-4 sm:p-6 rounded-2xl bg-slate-50 border-l-4 border-[#0A66FF] shadow-xs">
                 <p className="text-sm sm:text-base text-slate-800 font-medium leading-relaxed text-left">
                   {activeArticle.summary}
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50/90 to-indigo-50/50 border border-blue-100 rounded-2xl p-5 sm:p-7">
+              {/* Key Takeaways Box (Aspectos Clave del Análisis Jurídico) */}
+              <div className="bg-gradient-to-br from-blue-50/90 to-indigo-50/40 border border-blue-100 rounded-2xl p-5 sm:p-7">
                 <div className="flex items-center gap-2 mb-4">
                   <Sparkles className="w-4 h-4 text-[#0A66FF]" />
-                  <h3 className="text-xs sm:text-sm font-extrabold text-blue-950 uppercase tracking-wider font-heading">
+                  <h3 className="text-xs sm:text-sm font-extrabold text-blue-950 uppercase tracking-wider font-heading text-left">
                     Aspectos Clave del Análisis Jurídico:
                   </h3>
                 </div>
                 <ul className="space-y-3 text-xs sm:text-sm text-slate-800">
                   {activeArticle.keyPoints.map((kp, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
+                    <li key={idx} className="flex items-start gap-3 text-left">
                       <div className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0 mt-0.5 text-[11px] font-bold shadow-xs">
                         ✓
                       </div>
@@ -240,7 +245,8 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                 </ul>
               </div>
 
-              <div className="space-y-6 pt-4 border-t border-slate-100 text-slate-800 leading-relaxed text-left">
+              {/* Full Article Content Sections with Clean Headings */}
+              <div className="space-y-6 pt-2 border-t border-slate-100 text-slate-800 leading-relaxed text-left">
                 {activeArticle.content.map((paragraph, idx) => {
                   const isHeaderBlock = paragraph.startsWith('PREVENCIÓN:') || 
                                         paragraph.startsWith('CONTENCIÓN:') || 
@@ -250,7 +256,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                     const [titlePart, ...bodyParts] = paragraph.split('\n');
                     return (
                       <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-slate-50/90 border border-slate-200/80 space-y-2">
-                        <h4 className="text-sm sm:text-base font-extrabold text-[#0B1D3A] uppercase tracking-wide font-heading flex items-center gap-2">
+                        <h4 className="text-sm sm:text-base font-extrabold text-[#0B1D3A] uppercase tracking-wide font-heading flex items-center gap-2 text-left">
                           <span className="w-2 h-2 rounded-full bg-[#0A66FF]" />
                           {titlePart}
                         </h4>
@@ -269,8 +275,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                 })}
               </div>
 
-              <div className="p-6 rounded-2xl bg-[#071326] text-white border border-slate-800 flex flex-col sm:flex-row items-center gap-5 shadow-xl">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-800 shadow-md">
+              {/* Author Biography Footer Card */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#071326] text-white border border-slate-800 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 shadow-xl">
+                <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-800 shadow-md">
                   <img
                     src="/cliente.webp"
                     alt={activeArticle.author}
@@ -302,7 +309,8 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-slate-900 via-[#0B1D3A] to-[#071326] text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl">
+              {/* Bottom In-Page Consultation Strip */}
+              <div className="bg-gradient-to-r from-slate-900 via-[#0B1D3A] to-[#071326] text-white rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-5 shadow-xl">
                 <div className="space-y-1 text-center sm:text-left">
                   <h4 className="text-base sm:text-lg font-bold text-white font-heading">
                     ¿Requieres estructurar este tema en tu empresa?
@@ -323,8 +331,11 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </div>
             </div>
 
-            <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-36 self-start">
-              <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200/90 space-y-4">
+            {/* Right 4 Cols: Sticky Strategic Sidebar */}
+            <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-28 self-start w-full">
+              
+              {/* Sidebar Card 1: Fast Contact Action */}
+              <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200/90 space-y-4 text-left">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
                     <Scale className="w-6 h-6 text-[#0A66FF]" />
@@ -363,7 +374,8 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200/90 space-y-4">
+              {/* Sidebar Card 2: Other Related Publications */}
+              <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200/90 space-y-4 text-left">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                   <h4 className="text-xs sm:text-sm font-bold text-slate-900 font-heading uppercase tracking-wider">
                     Otros Casos de Éxito
@@ -393,7 +405,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                           />
                         </div>
                       )}
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 text-left">
                         <span className="text-[9px] font-extrabold uppercase text-[#0A66FF] tracking-wider block font-heading mb-0.5">
                           {relArt.category}
                         </span>
