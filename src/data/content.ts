@@ -342,7 +342,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Asesoría en uso, asignación y regulación de frecuencias del espectro.',
         fullDesc:
           'Brindamos asesoría jurídica en asuntos relacionados con el uso, asignación y regulación del espectro.',
-        image: 'https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&w=600&q=80',
+        image: '/services/telecom/espectro-radioelectrico.jpg',
       },
       {
         id: 'telecom-4',
