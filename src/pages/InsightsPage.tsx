@@ -106,7 +106,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
       <div className="w-full bg-[#F8FAFC] min-h-screen pb-28 sm:pb-24 text-slate-900 selection:bg-[#0A66FF] selection:text-white">
         
         {/* 1. SEAMLESS CINEMATIC NAVY HERO HEADER (Azul Marino Institucional) */}
-        <section className="relative bg-[#071326] text-white pt-20 sm:pt-24 lg:pt-28 pb-10 sm:pb-14 border-b border-slate-800 overflow-hidden">
+        <section className="relative bg-[#071326] text-white pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 border-b border-slate-800 overflow-hidden">
           
           {/* Full-Bleed Thematic Background Image */}
           <div className="absolute inset-0 z-0 pointer-events-none">
@@ -132,40 +132,8 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            {/* Top Navigation Strip */}
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800/80">
-              <button
-                onClick={handleBackToList}
-                className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#D4AF37] hover:text-white transition-colors cursor-pointer group py-1"
-              >
-                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-                <span>Volver a Casos de Éxito</span>
-              </button>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => handleShare(activeArticle)}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white transition-all border border-slate-700 cursor-pointer shadow-xs min-h-[34px]"
-                  title="Compartir publicación"
-                >
-                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
-                  <span>{copied ? '¡Copiado!' : 'Compartir'}</span>
-                </button>
-
-                <a
-                  href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(`Hola Luis Fernando Guerra, leí su publicación "${activeArticle.title}" y quisiera consultar un caso para mi organización.`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-xs min-h-[34px]"
-                >
-                  <WhatsAppIcon className="w-3.5 h-3.5" />
-                  <span>Consultar</span>
-                </a>
-              </div>
-            </div>
-
             {/* Category Badge & Metadata */}
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-3.5">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-4">
               <span className="px-3 py-1 rounded-md text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#0A66FF]/25 text-[#60A5FA] border border-[#0A66FF]/40 shadow-xs font-heading">
                 {activeArticle.category}
               </span>
@@ -341,6 +309,17 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   <WhatsAppIcon className="w-4 h-4" />
                   <span>Consultar por WhatsApp</span>
                 </a>
+              </div>
+
+              {/* Bottom Back Button (Volver a Casos de Éxito) */}
+              <div className="pt-4 flex items-center justify-between border-t border-slate-100">
+                <button
+                  onClick={handleBackToList}
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-[#0A66FF] transition-colors cursor-pointer group py-2.5 px-5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white shadow-xs"
+                >
+                  <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-[#0A66FF]" />
+                  <span>Volver a Casos de Éxito</span>
+                </button>
               </div>
             </article>
 
