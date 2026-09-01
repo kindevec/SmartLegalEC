@@ -82,7 +82,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
   });
 
   return (
-    <div className="w-full bg-[#F8FAFC] min-h-screen pb-20 overflow-hidden">
+    <div className="w-full bg-[#F8FAFC] min-h-screen pb-20">
       {/* 1. HEADER SECTION with Seamless Full-Bleed Background */}
       <section className="relative bg-[#071326] text-white min-h-[420px] sm:min-h-[480px] lg:min-h-[540px] h-auto pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12 lg:pb-16 flex flex-col justify-center border-b border-slate-800 overflow-hidden">
         
