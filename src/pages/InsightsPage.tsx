@@ -202,15 +202,15 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
         </section>
 
         {/* 2. MAIN EDITORIAL CONTENT + STICKY SIDEBAR LAYOUT */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10 relative z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-5 sm:mt-8 lg:mt-10 relative z-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
             
-            {/* Left 8 Cols: Full Article Content */}
-            <article className="lg:col-span-8 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200 space-y-8">
+            {/* Left 8 Cols: Full Article Content (Direct on Canvas on Mobile, Card on Desktop) */}
+            <article className="lg:col-span-8 bg-transparent lg:bg-white rounded-none lg:rounded-3xl p-0 lg:p-10 shadow-none lg:shadow-lg border-0 lg:border lg:border-slate-200 space-y-6 sm:space-y-8">
               
               {/* Featured High-Resolution Image Banner */}
               {activeArticle.image && (
-                <div className="w-full h-60 sm:h-80 md:h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-md relative bg-slate-100">
+                <div className="w-full h-52 sm:h-72 md:h-[380px] lg:h-[400px] rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm relative bg-slate-100">
                   <picture className="w-full h-full block">
                     <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.avif')} type="image/avif" />
                     <source srcSet={activeArticle.image.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
@@ -221,24 +221,24 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                     />
                   </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute bottom-3 left-4 right-4 text-[11px] sm:text-xs text-slate-200 font-medium italic text-left">
+                  <div className="absolute bottom-2.5 sm:bottom-3 left-3 sm:left-4 right-3 sm:right-4 text-[10px] sm:text-xs text-slate-200 font-medium italic text-left">
                     SmartLegalEC • Análisis jurídico y estratégico en Ecuador.
                   </div>
                 </div>
               )}
 
               {/* Key Takeaways Box (Aspectos Clave del Análisis Jurídico) */}
-              <div className="bg-gradient-to-br from-blue-50/80 to-indigo-50/40 border border-blue-100 rounded-2xl p-5 sm:p-7">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gradient-to-br from-blue-50/90 to-indigo-50/50 border border-blue-100/90 rounded-2xl p-4 sm:p-6 lg:p-7">
+                <div className="flex items-center gap-2 mb-3 sm:mb-4">
                   <Sparkles className="w-4 h-4 text-[#0A66FF]" />
                   <h3 className="text-xs sm:text-sm font-extrabold text-blue-950 uppercase tracking-wider font-heading text-left">
                     Aspectos Clave del Análisis Jurídico:
                   </h3>
                 </div>
-                <ul className="space-y-3 text-xs sm:text-sm text-slate-800">
+                <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-slate-800">
                   {activeArticle.keyPoints.map((kp, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-left">
-                      <div className="w-5 h-5 rounded-full bg-[#0A66FF] text-white flex items-center justify-center shrink-0 mt-0.5 text-[11px] font-bold shadow-xs">
+                    <li key={idx} className="flex items-start gap-2.5 sm:gap-3 text-left">
+                      <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 rounded-full bg-[#0A66FF] text-white flex items-center justify-center shrink-0 mt-0.5 text-[10px] sm:text-[11px] font-bold shadow-xs">
                         ✓
                       </div>
                       <span className="leading-relaxed">{kp}</span>
@@ -248,7 +248,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </div>
 
               {/* Full Article Content Sections */}
-              <div className="space-y-6 pt-2 text-slate-800 leading-relaxed text-sm sm:text-base border-t border-slate-100">
+              <div className="space-y-5 sm:space-y-6 pt-2 text-slate-800 leading-relaxed text-sm sm:text-base border-t border-slate-200/80">
                 {activeArticle.content.map((paragraph, idx) => {
                   const isHeaderBlock = paragraph.startsWith('PREVENCIÓN:') || 
                                         paragraph.startsWith('CONTENCIÓN:') || 
@@ -257,7 +257,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   if (isHeaderBlock) {
                     const [titlePart, ...bodyParts] = paragraph.split('\n');
                     return (
-                      <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                      <div key={idx} className="p-4 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
                         <h4 className="text-sm sm:text-base font-extrabold text-[#0B1D3A] uppercase tracking-wide font-heading flex items-center gap-2 text-left">
                           <span className="w-2 h-2 rounded-full bg-[#0A66FF]" />
                           {titlePart}
@@ -278,8 +278,8 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </div>
 
               {/* Author Bio Box */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-[#071326] text-white border border-slate-800 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 shadow-lg">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-800 shadow-xs">
+              <div className="p-4 sm:p-6 rounded-2xl bg-[#071326] text-white border border-slate-800 flex flex-col sm:flex-row items-center sm:items-start gap-3.5 sm:gap-5 shadow-lg">
+                <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-[#D4AF37] shrink-0 bg-slate-800 shadow-xs">
                   <img
                     src="/cliente.webp"
                     alt={activeArticle.author}
@@ -291,7 +291,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   <span className="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] uppercase tracking-wider font-heading">
                     Sobre el Autor
                   </span>
-                  <h4 className="text-base font-extrabold text-white font-heading">
+                  <h4 className="text-sm sm:text-base font-extrabold text-white font-heading">
                     {activeArticle.author}
                   </h4>
                   <p className="text-xs text-slate-300 leading-relaxed">
@@ -312,9 +312,9 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </div>
 
               {/* Bottom Consultation CTA Banner */}
-              <div className="bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-5 shadow-xl">
+              <div className="bg-gradient-to-br from-[#071326] via-[#0B1D3A] to-[#132742] text-white rounded-2xl p-4 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-5 shadow-xl">
                 <div className="space-y-1 text-center sm:text-left">
-                  <h4 className="text-base sm:text-lg font-bold text-white font-heading">
+                  <h4 className="text-sm sm:text-lg font-bold text-white font-heading">
                     ¿Requieres estructurar este tema en tu empresa?
                   </h4>
                   <p className="text-xs text-slate-300">
@@ -325,7 +325,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   href={`${BRAND_INFO.whatsappUrl}?text=${encodeURIComponent(`Hola Luis Fernando, leí su publicación "${activeArticle.title}" y quisiera agendar una asesoría legal para mi empresa.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md shrink-0 text-center"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all shadow-md shrink-0 text-center"
                 >
                   <WhatsAppIcon className="w-4 h-4" />
                   <span>Consultar por WhatsApp</span>
@@ -333,10 +333,10 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
               </div>
 
               {/* Bottom Back Button (Volver a Casos de Éxito) */}
-              <div className="pt-4 flex items-center justify-between border-t border-slate-100">
+              <div className="pt-3 sm:pt-4 flex items-center justify-between border-t border-slate-200/80">
                 <button
                   onClick={handleBackToList}
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-[#0A66FF] transition-colors cursor-pointer group py-2.5 px-5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white shadow-xs"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-[#0A66FF] transition-colors cursor-pointer group py-2.5 px-4 sm:px-5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 shadow-xs"
                 >
                   <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-[#0A66FF]" />
                   <span>Volver a Casos de Éxito</span>
@@ -345,10 +345,10 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
             </article>
 
             {/* Right 4 Cols: Sticky Sidebar */}
-            <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-28 self-start w-full">
+            <aside className="lg:col-span-4 space-y-4 sm:space-y-6 lg:sticky lg:top-28 self-start w-full">
               
               {/* Sidebar 1: Direct Consultation Card */}
-              <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200 space-y-4 text-left">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-md border border-slate-200 space-y-3.5 sm:space-y-4 text-left">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 shadow-xs">
                     <Scale className="w-5 h-5 text-[#0A66FF]" />
