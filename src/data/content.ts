@@ -322,7 +322,7 @@ export const PRACTICE_AREAS: PracticeArea[] = [
         shortDesc: 'Solicitud, modificación, renovación y gestión de títulos habilitantes.',
         fullDesc:
           'Asesoramos en la identificación, solicitud, modificación, renovación y gestión de títulos habilitantes necesarios para la prestación de servicios de telecomunicaciones.',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80',
+        image: '/services/telecom/titulos-habilitantes.jpg',
       },
       {
         id: 'telecom-2',
