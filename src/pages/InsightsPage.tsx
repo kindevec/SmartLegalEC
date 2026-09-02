@@ -22,6 +22,7 @@ import {
   ChevronRight,
   Check,
   ChevronDown,
+  ChevronUp,
   Filter,
   X
 } from 'lucide-react';
@@ -41,16 +42,19 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeArticle, setActiveArticle] = useState<LegalArticle | null>(null);
   const [copied, setCopied] = useState(false);
+  const [isMobileArticleExpanded, setIsMobileArticleExpanded] = useState(false);
 
   useEffect(() => {
     if (initialArticleSlug) {
       const art = LEGAL_ARTICLES.find(a => a.slug === initialArticleSlug);
       if (art) {
         setActiveArticle(art);
+        setIsMobileArticleExpanded(false);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else {
       setActiveArticle(null);
+      setIsMobileArticleExpanded(false);
     }
   }, [initialArticleSlug]);
 
@@ -75,6 +79,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
 
   const handleSelectArticle = (art: LegalArticle) => {
     setActiveArticle(art);
+    setIsMobileArticleExpanded(false);
     onNavigate('insights', { articleSlug: art.slug });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -247,8 +252,8 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                 </ul>
               </div>
 
-              {/* Full Article Content Sections */}
-              <div className="space-y-5 sm:space-y-6 pt-2 text-slate-800 leading-relaxed text-sm sm:text-base border-t border-slate-200/80">
+              {/* DESKTOP VIEW: Full Article Content (All paragraphs visible unconditionally) */}
+              <div className="hidden md:block space-y-6 pt-2 text-slate-800 leading-relaxed text-sm sm:text-base border-t border-slate-200/80">
                 {activeArticle.content.map((paragraph, idx) => {
                   const isHeaderBlock = paragraph.startsWith('PREVENCIÓN:') || 
                                         paragraph.startsWith('CONTENCIÓN:') || 
@@ -257,12 +262,12 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   if (isHeaderBlock) {
                     const [titlePart, ...bodyParts] = paragraph.split('\n');
                     return (
-                      <div key={idx} className="p-4 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
-                        <h4 className="text-sm sm:text-base font-extrabold text-[#0B1D3A] uppercase tracking-wide font-heading flex items-center gap-2 text-left">
+                      <div key={idx} className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                        <h4 className="text-base font-extrabold text-[#0B1D3A] uppercase tracking-wide font-heading flex items-center gap-2 text-left">
                           <span className="w-2 h-2 rounded-full bg-[#0A66FF]" />
                           {titlePart}
                         </h4>
-                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify-clean">
+                        <p className="text-sm text-slate-700 leading-relaxed text-justify-clean">
                           {bodyParts.join('\n')}
                         </p>
                       </div>
@@ -270,11 +275,76 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
                   }
 
                   return (
-                    <p key={idx} className="whitespace-pre-line text-sm sm:text-base text-slate-700 leading-relaxed text-justify-clean">
+                    <p key={idx} className="whitespace-pre-line text-slate-700 leading-relaxed text-justify-clean">
                       {paragraph}
                     </p>
                   );
                 })}
+              </div>
+
+              {/* MOBILE VIEW: 1st Paragraph preview + 'Ver más' Expand/Collapse Toggle Button */}
+              <div className="block md:hidden space-y-3.5 pt-2 text-slate-800 leading-relaxed text-sm border-t border-slate-200/80">
+                {/* 1st Paragraph Always Visible */}
+                <p className="whitespace-pre-line text-slate-700 leading-relaxed text-justify-clean">
+                  {activeArticle.content[0]}
+                </p>
+
+                {/* Remaining Paragraphs (Expanded on demand) */}
+                <AnimatePresence>
+                  {isMobileArticleExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.35 }}
+                      className="space-y-3.5 overflow-hidden"
+                    >
+                      {activeArticle.content.slice(1).map((paragraph, idx) => {
+                        const isHeaderBlock = paragraph.startsWith('PREVENCIÓN:') || 
+                                              paragraph.startsWith('CONTENCIÓN:') || 
+                                              paragraph.startsWith('GENERACIÓN DE OPORTUNIDADES:');
+
+                        if (isHeaderBlock) {
+                          const [titlePart, ...bodyParts] = paragraph.split('\n');
+                          return (
+                            <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
+                              <h4 className="text-xs font-extrabold text-[#0B1D3A] uppercase tracking-wide font-heading flex items-center gap-2 text-left">
+                                <span className="w-2 h-2 rounded-full bg-[#0A66FF]" />
+                                {titlePart}
+                              </h4>
+                              <p className="text-xs text-slate-700 leading-relaxed text-justify-clean">
+                                {bodyParts.join('\n')}
+                              </p>
+                            </div>
+                          );
+                        }
+
+                        return (
+                          <p key={idx} className="whitespace-pre-line text-slate-700 leading-relaxed text-justify-clean">
+                            {paragraph}
+                          </p>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Toggle Button on Mobile */}
+                <button
+                  onClick={() => setIsMobileArticleExpanded(!isMobileArticleExpanded)}
+                  className={`w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold transition-all cursor-pointer shadow-xs active:scale-98 ${
+                    isMobileArticleExpanded
+                      ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
+                      : 'bg-blue-50 hover:bg-blue-100 text-[#0A66FF] border border-blue-200/80'
+                  }`}
+                >
+                  <span>{isMobileArticleExpanded ? 'Mostrar menos' : 'Ver más (Leer artículo completo)'}</span>
+                  {isMobileArticleExpanded ? (
+                    <ChevronUp className="w-3.5 h-3.5 shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-3.5 h-3.5 shrink-0" />
+                  )}
+                </button>
               </div>
 
               {/* Author Bio Box */}
