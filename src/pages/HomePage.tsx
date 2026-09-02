@@ -122,7 +122,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       tag: 'PROTECCIÓN DE DATOS Y PRIVACIDAD',
       title: 'Protección de Datos y Privacidad',
       desc: 'Protección de datos más allá del cumplimiento. Soluciones jurídicas adaptadas a la operación diaria y cumplimiento normativo integral.',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+      image: '/services/lopdp/implementacion-lopdp.webp',
       badge: 'PROTECCIÓN DE DATOS',
       icon: ShieldCheck,
       iconColor: 'text-[#0A66FF]',
