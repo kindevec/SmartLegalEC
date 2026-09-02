@@ -679,26 +679,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           </div>
         </div>
 
-        {/* MOBILE ONLY: Section Editorial & Firm Story (Rendered underneath the dark strip on mobile) */}
-        <div className="block lg:hidden max-w-7xl mx-auto px-4 sm:px-6 relative z-10 pt-6 pb-8 space-y-4">
-          <div>
-            <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 mb-2 font-heading">
-              LIDERAZGO Y EXPERIENCIA
-            </div>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight leading-tight">
-              Luis Fernando Guerra
-            </h2>
-            <p className="text-sm font-semibold text-[#0A66FF] font-heading mt-1">
-              Socio Director
-            </p>
-          </div>
-
-          <p className="text-sm text-slate-700 font-normal leading-relaxed text-justify-clean">
-            Abogado especializado en protección de datos personales, derecho de la tecnología y telecomunicaciones, con amplia experiencia asesorando a empresas nacionales e internacionales en entornos regulados y proyectos de transformación digital.
-          </p>
-
+        {/* MOBILE ONLY: Credentials & Action Buttons (Rendered underneath the dark strip on mobile) */}
+        <div className="block lg:hidden max-w-7xl mx-auto px-4 sm:px-6 relative z-10 pt-4 pb-8 space-y-4">
           {/* 3 Credential Badges */}
-          <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1.5">
+          <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1">
             <div className="pr-2 flex flex-col justify-start">
               <Shield className="w-4 h-4 text-[#0A66FF] mb-1 shrink-0" />
               <div className="text-[11px] font-bold text-slate-900 leading-tight">Oficial DPD</div>
@@ -717,7 +701,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           </div>
 
           {/* Primary Action Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
