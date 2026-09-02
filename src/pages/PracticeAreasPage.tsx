@@ -15,6 +15,7 @@ import {
   ChevronDown,
   Filter,
   Layers,
+  Check,
   X
 } from 'lucide-react';
 
@@ -32,6 +33,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'lopdp' | 'tech' | 'telecom'>(initialFilter);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (initialFilter && initialFilter !== selectedFilter) {
@@ -141,7 +143,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8 relative z-20"
       >
         {/* ========================================================================= */}
-        {/* MOBILE VIEW: Direct Canvas Search & Category Dropdown Selector (Desplegable) */}
+        {/* MOBILE VIEW: Luxury Custom Dropdown Menu with SmartLegalEC Theme */}
         {/* ========================================================================= */}
         <div className="block md:hidden space-y-2.5 pb-3.5 border-b border-slate-200/80">
           {/* Search Input on Mobile Canvas */}
@@ -165,31 +167,163 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
             )}
           </div>
 
-          {/* Clean Category Dropdown Selector directly on Canvas */}
+          {/* Luxury Executive Dropdown Trigger Button */}
           <div className="relative w-full">
-            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none">
-              <Filter className="w-3.5 h-3.5 text-[#0A66FF]" />
-            </div>
-            <select
-              value={selectedFilter}
-              onChange={(e) => handleFilterSelect(e.target.value as 'all' | 'lopdp' | 'tech' | 'telecom')}
-              aria-label="Filtrar materias y servicios jurídicos"
-              className="w-full pl-9.5 pr-9 py-2.5 text-xs font-semibold rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A66FF]/20 focus:border-[#0A66FF] bg-white text-slate-900 shadow-xs cursor-pointer appearance-none transition-all"
+            <button
+              type="button"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-[#071326] via-[#0B1E3F] to-[#071326] text-white border border-[#D4AF37]/40 shadow-md hover:border-[#D4AF37] transition-all cursor-pointer text-left group active:scale-98"
             >
-              <option value="all">
-                Todas las áreas ({PRACTICE_AREAS.length} materias especializadas)
-              </option>
-              <option value="lopdp">
-                Protección de Datos y Privacidad (LOPDP)
-              </option>
-              <option value="tech">
-                Tecnología y Negocios Digitales
-              </option>
-              <option value="telecom">
-                Telecomunicaciones y Regulación
-              </option>
-            </select>
-            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-7 h-7 rounded-lg bg-[#071326] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
+                  {selectedFilter === 'all' && <Scale className="w-3.5 h-3.5 text-[#D4AF37]" />}
+                  {selectedFilter === 'lopdp' && <ShieldCheck className="w-3.5 h-3.5 text-[#0A66FF]" />}
+                  {selectedFilter === 'tech' && <Code2 className="w-3.5 h-3.5 text-purple-400" />}
+                  {selectedFilter === 'telecom' && <Radio className="w-3.5 h-3.5 text-[#0284C7]" />}
+                </div>
+                <div className="truncate">
+                  <span className="text-[9px] font-extrabold text-[#D4AF37] uppercase tracking-wider block font-heading leading-none mb-0.5">
+                    Materia Seleccionada
+                  </span>
+                  <span className="text-xs font-bold text-white truncate block">
+                    {selectedFilter === 'all' && `Todas las materias (${PRACTICE_AREAS.length} áreas)`}
+                    {selectedFilter === 'lopdp' && 'Protección de Datos y Privacidad'}
+                    {selectedFilter === 'tech' && 'Tecnología y Negocios Digitales'}
+                    {selectedFilter === 'telecom' && 'Telecomunicaciones y Regulación'}
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5 pl-2 shrink-0">
+                <span className="text-[10px] font-bold text-slate-300 group-hover:text-white">
+                  {isDropdownOpen ? 'Cerrar' : 'Filtrar'}
+                </span>
+                <ChevronDown className={`w-4 h-4 text-[#D4AF37] transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </div>
+            </button>
+
+            {/* Luxury Animated Dropdown Popover */}
+            <AnimatePresence>
+              {isDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full left-0 right-0 mt-2 z-50 rounded-2xl bg-gradient-to-b from-[#071326] via-[#0B1E3F] to-[#061224] border border-[#D4AF37]/50 shadow-2xl p-2 space-y-1.5 backdrop-blur-md overflow-hidden"
+                >
+                  {/* Ambient gold glow */}
+                  <div className="absolute top-0 right-0 w-36 h-36 bg-[#D4AF37]/10 rounded-full blur-2xl pointer-events-none" />
+
+                  {/* Option 1: Todas */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleFilterSelect('all');
+                      setIsDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-center justify-between p-2.5 rounded-xl transition-all cursor-pointer text-left ${
+                      selectedFilter === 'all'
+                        ? 'bg-slate-800/90 border border-[#D4AF37]/70 text-white shadow-xs'
+                        : 'hover:bg-slate-800/50 text-slate-300 hover:text-white border border-transparent'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
+                        <Scale className="w-3.5 h-3.5 text-[#D4AF37]" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-bold block text-white font-heading">Todas las Áreas</span>
+                        <span className="text-[10px] text-slate-400">Ver catálogo completo ({PRACTICE_AREAS.length} materias)</span>
+                      </div>
+                    </div>
+                    {selectedFilter === 'all' && (
+                      <Check className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                    )}
+                  </button>
+
+                  {/* Option 2: LOPDP */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleFilterSelect('lopdp');
+                      setIsDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-center justify-between p-2.5 rounded-xl transition-all cursor-pointer text-left ${
+                      selectedFilter === 'lopdp'
+                        ? 'bg-slate-800/90 border border-[#0A66FF]/70 text-white shadow-xs'
+                        : 'hover:bg-slate-800/50 text-slate-300 hover:text-white border border-transparent'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-[#0A66FF]/15 border border-[#0A66FF]/30 flex items-center justify-center shrink-0">
+                        <ShieldCheck className="w-3.5 h-3.5 text-[#0A66FF]" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-bold block text-white font-heading">Protección de Datos & Privacidad</span>
+                        <span className="text-[10px] text-[#93C5FD]">LOPDP • DPD • Evaluaciones de Impacto</span>
+                      </div>
+                    </div>
+                    {selectedFilter === 'lopdp' && (
+                      <Check className="w-4 h-4 text-[#0A66FF] shrink-0" />
+                    )}
+                  </button>
+
+                  {/* Option 3: Tech */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleFilterSelect('tech');
+                      setIsDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-center justify-between p-2.5 rounded-xl transition-all cursor-pointer text-left ${
+                      selectedFilter === 'tech'
+                        ? 'bg-slate-800/90 border border-purple-500/70 text-white shadow-xs'
+                        : 'hover:bg-slate-800/50 text-slate-300 hover:text-white border border-transparent'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
+                        <Code2 className="w-3.5 h-3.5 text-purple-400" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-bold block text-white font-heading">Tecnología & Negocios Digitales</span>
+                        <span className="text-[10px] text-purple-300">Contratos SaaS • E-commerce • IA</span>
+                      </div>
+                    </div>
+                    {selectedFilter === 'tech' && (
+                      <Check className="w-4 h-4 text-purple-400 shrink-0" />
+                    )}
+                  </button>
+
+                  {/* Option 4: Telecom */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleFilterSelect('telecom');
+                      setIsDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-center justify-between p-2.5 rounded-xl transition-all cursor-pointer text-left ${
+                      selectedFilter === 'telecom'
+                        ? 'bg-slate-800/90 border border-sky-500/70 text-white shadow-xs'
+                        : 'hover:bg-slate-800/50 text-slate-300 hover:text-white border border-transparent'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center shrink-0">
+                        <Radio className="w-3.5 h-3.5 text-sky-400" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-bold block text-white font-heading">Telecomunicaciones & Regulación</span>
+                        <span className="text-[10px] text-sky-300">ARCOTEL • Títulos Habilitantes • Compliance</span>
+                      </div>
+                    </div>
+                    {selectedFilter === 'telecom' && (
+                      <Check className="w-4 h-4 text-sky-400 shrink-0" />
+                    )}
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
