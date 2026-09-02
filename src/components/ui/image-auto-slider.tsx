@@ -160,7 +160,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     if (!container) return;
 
     const firstChild = container.firstElementChild as HTMLElement | null;
-    const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
+    const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 16 : 280;
     const maxScroll = container.scrollWidth - container.clientWidth;
 
     if (container.scrollLeft <= 10) {
@@ -180,7 +180,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
     if (!container) return;
 
     const firstChild = container.firstElementChild as HTMLElement | null;
-    const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
+    const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 16 : 280;
     const maxScroll = container.scrollWidth - container.clientWidth;
 
     if (container.scrollLeft >= maxScroll - 15) {
@@ -203,7 +203,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
       if (!container) return;
 
       const firstChild = container.firstElementChild as HTMLElement | null;
-      const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 24 : 260;
+      const cardWidth = firstChild ? firstChild.getBoundingClientRect().width + 16 : 280;
       const maxScroll = container.scrollWidth - container.clientWidth;
 
       if (direction === 'right') {
@@ -342,7 +342,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
           onClickCapture={handleClickCapture}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          className={`flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth px-4 sm:px-6 lg:px-0 py-2 ${
+          className={`flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth px-4 sm:px-6 lg:px-0 py-2 snap-x snap-mandatory ${
             isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'
           }`}
           style={{
@@ -352,7 +352,7 @@ export const ImageAutoSlider: React.FC<ImageAutoSliderProps> = ({
           }}
         >
           {items.map((item, idx) => (
-            <div key={idx} className="shrink-0">
+            <div key={idx} className="shrink-0 snap-start snap-always">
               {item}
             </div>
           ))}

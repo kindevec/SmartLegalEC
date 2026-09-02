@@ -494,7 +494,7 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
                       <div
                         key={serv.id}
                         onClick={() => onNavigate('area-detail', { areaId: area.id })}
-                        className="w-[230px] sm:w-[250px] md:w-[265px] h-[300px] sm:h-[315px] bg-white hover:bg-slate-50/95 border border-slate-200/90 hover:border-blue-300/80 rounded-2xl overflow-hidden transition-all duration-300 group flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer select-none shrink-0"
+                        className="w-[82vw] max-w-[310px] sm:w-[250px] md:w-[265px] h-[305px] sm:h-[315px] bg-white hover:bg-slate-50/95 border border-slate-200/90 hover:border-blue-300/80 rounded-2xl overflow-hidden transition-all duration-300 group flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer select-none shrink-0"
                       >
                         {/* Service Thematic Image Banner */}
                         <div className="relative w-full h-32 sm:h-36 bg-slate-100 overflow-hidden shrink-0">
