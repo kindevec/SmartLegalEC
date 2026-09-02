@@ -494,16 +494,16 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
                       <div
                         key={serv.id}
                         onClick={() => onNavigate('area-detail', { areaId: area.id })}
-                        className="w-[82vw] max-w-[310px] sm:w-[250px] md:w-[265px] h-[305px] sm:h-[315px] bg-white hover:bg-slate-50/95 border border-slate-200/90 hover:border-blue-300/80 rounded-2xl overflow-hidden transition-all duration-300 group flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer select-none shrink-0"
+                        className="w-[84vw] max-w-[320px] sm:w-[250px] md:w-[265px] h-[315px] sm:h-[320px] bg-white hover:bg-slate-50/95 border border-slate-200/90 hover:border-blue-300/80 rounded-2xl overflow-hidden transition-all duration-300 group flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer select-none shrink-0"
                       >
                         {/* Service Thematic Image Banner */}
-                        <div className="relative w-full h-32 sm:h-36 bg-slate-100 overflow-hidden shrink-0">
+                        <div className="relative w-full h-34 sm:h-36 bg-slate-100 overflow-hidden shrink-0">
                           <picture className="w-full h-full block">
                             <source srcSet={cardImg.replace(/\.(jpg|png|jpeg)$/, '.webp')} type="image/webp" />
                             <img
                               src={cardImg}
                               alt={serv.title}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-108"
                               loading="lazy"
                             />
                           </picture>

@@ -146,7 +146,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
       tag: 'TELECOMUNICACIONES Y REGULACIÓN',
       title: 'Telecomunicaciones y Regulación',
       desc: 'Asesoría jurídica para un sector altamente regulado y en constante evolución, conectividad y servicios tecnológicos regulados.',
-      image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
+      image: '/services/telecom/titulos-habilitantes.webp',
       badge: 'TELECOMUNICACIONES',
       icon: Radio,
       iconColor: 'text-[#D4AF37]',
