@@ -13,6 +13,7 @@ import {
   Search, 
   FileText,
   ChevronDown,
+  Filter,
   Layers,
   X
 } from 'lucide-react';
@@ -140,9 +141,9 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8 relative z-20"
       >
         {/* ========================================================================= */}
-        {/* MOBILE VIEW: Direct Canvas Search & Category Scroll Pills (No Box-in-Box) */}
+        {/* MOBILE VIEW: Direct Canvas Search & Category Dropdown Selector (Desplegable) */}
         {/* ========================================================================= */}
-        <div className="block md:hidden space-y-3 pb-3 border-b border-slate-200/80">
+        <div className="block md:hidden space-y-2.5 pb-3.5 border-b border-slate-200/80">
           {/* Search Input on Mobile Canvas */}
           <div className="relative w-full">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -164,59 +165,31 @@ export const PracticeAreasPage: React.FC<PracticeAreasPageProps> = ({
             )}
           </div>
 
-          {/* Quick Category Horizontal Scroll directly on canvas with full bleed edge-to-edge */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 snap-x">
-            {/* Todas */}
-            <button
-              onClick={() => handleFilterSelect('all')}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
-                selectedFilter === 'all'
-                  ? 'bg-[#0B1D3A] text-white shadow-sm border border-[#0B1D3A]'
-                  : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs'
-              }`}
+          {/* Clean Category Dropdown Selector directly on Canvas */}
+          <div className="relative w-full">
+            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none">
+              <Filter className="w-3.5 h-3.5 text-[#0A66FF]" />
+            </div>
+            <select
+              value={selectedFilter}
+              onChange={(e) => handleFilterSelect(e.target.value as 'all' | 'lopdp' | 'tech' | 'telecom')}
+              aria-label="Filtrar materias y servicios jurídicos"
+              className="w-full pl-9.5 pr-9 py-2.5 text-xs font-semibold rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A66FF]/20 focus:border-[#0A66FF] bg-white text-slate-900 shadow-xs cursor-pointer appearance-none transition-all"
             >
-              <Scale className={`w-3.5 h-3.5 ${selectedFilter === 'all' ? 'text-[#D4AF37]' : 'text-slate-500'}`} />
-              <span>Todas ({PRACTICE_AREAS.length})</span>
-            </button>
-
-            {/* LOPDP */}
-            <button
-              onClick={() => handleFilterSelect('lopdp')}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
-                selectedFilter === 'lopdp'
-                  ? 'bg-[#0A66FF] text-white shadow-sm shadow-[#0A66FF]/25 border border-[#0A66FF]'
-                  : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs'
-              }`}
-            >
-              <ShieldCheck className={`w-3.5 h-3.5 ${selectedFilter === 'lopdp' ? 'text-white' : 'text-[#0A66FF]'}`} />
-              <span>Protección de Datos</span>
-            </button>
-
-            {/* Tech */}
-            <button
-              onClick={() => handleFilterSelect('tech')}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
-                selectedFilter === 'tech'
-                  ? 'bg-purple-600 text-white shadow-sm shadow-purple-600/25 border border-purple-600'
-                  : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs'
-              }`}
-            >
-              <Code2 className={`w-3.5 h-3.5 ${selectedFilter === 'tech' ? 'text-white' : 'text-purple-600'}`} />
-              <span>Tecnología & Digital</span>
-            </button>
-
-            {/* Telecom */}
-            <button
-              onClick={() => handleFilterSelect('telecom')}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all shrink-0 cursor-pointer snap-start active:scale-95 ${
-                selectedFilter === 'telecom'
-                  ? 'bg-[#0284C7] text-white shadow-sm shadow-sky-600/25 border border-[#0284C7]'
-                  : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-2xs'
-              }`}
-            >
-              <Radio className={`w-3.5 h-3.5 ${selectedFilter === 'telecom' ? 'text-white' : 'text-[#0284C7]'}`} />
-              <span>Telecomunicaciones</span>
-            </button>
+              <option value="all">
+                Todas las áreas ({PRACTICE_AREAS.length} materias especializadas)
+              </option>
+              <option value="lopdp">
+                Protección de Datos y Privacidad (LOPDP)
+              </option>
+              <option value="tech">
+                Tecnología y Negocios Digitales
+              </option>
+              <option value="telecom">
+                Telecomunicaciones y Regulación
+              </option>
+            </select>
+            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
 
