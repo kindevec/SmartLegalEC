@@ -528,8 +528,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
               </div>
             </div>
 
-            {/* RIGHT: Section Editorial & Firm Story */}
-            <div className="lg:col-span-7 space-y-4 pb-6 sm:pb-8 lg:pb-12">
+            {/* RIGHT: Section Editorial & Firm Story (DESKTOP: lg:block) */}
+            <div className="hidden lg:block lg:col-span-7 space-y-4 pb-8 sm:pb-12">
               <div>
                 <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 mb-2 font-heading">
                   LIDERAZGO Y EXPERIENCIA
@@ -541,6 +541,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                   Socio Director
                 </p>
               </div>
+
+              <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed text-justify-clean">
+                Abogado especializado en protección de datos personales, derecho de la tecnología y telecomunicaciones, con amplia experiencia asesorando a empresas nacionales e internacionales en entornos regulados y proyectos de transformación digital.
+              </p>
 
               {/* 3 Credential Badges */}
               <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1.5">
@@ -587,7 +591,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
           </div>
         </div>
 
-        {/* FULL-WIDTH LUXURY HORIZONTAL FOUNDER STRIP */}
+        {/* FULL-WIDTH LUXURY HORIZONTAL FOUNDER STRIP (Sits right underneath cutout photo on mobile) */}
         <div className="w-full bg-gradient-to-r from-[#061224] via-[#091E3D] to-[#061224] border-y border-slate-800 text-white py-5 sm:py-6 relative z-20 shadow-2xl overflow-hidden">
           {/* Subtle Ambient Lighting & Glowing Accent Accents */}
           <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#0A66FF]/60 via-[#D4AF37]/50 to-transparent pointer-events-none z-10" />
@@ -672,6 +676,67 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenDiagnostic
                 </motion.a>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* MOBILE ONLY: Section Editorial & Firm Story (Rendered underneath the dark strip on mobile) */}
+        <div className="block lg:hidden max-w-7xl mx-auto px-4 sm:px-6 relative z-10 pt-6 pb-8 space-y-4">
+          <div>
+            <div className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0A66FF]/10 text-[#0A66FF] border border-[#0A66FF]/20 mb-2 font-heading">
+              LIDERAZGO Y EXPERIENCIA
+            </div>
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 tracking-tight leading-tight">
+              Luis Fernando Guerra
+            </h2>
+            <p className="text-sm font-semibold text-[#0A66FF] font-heading mt-1">
+              Socio Director
+            </p>
+          </div>
+
+          <p className="text-sm text-slate-700 font-normal leading-relaxed text-justify-clean">
+            Abogado especializado en protección de datos personales, derecho de la tecnología y telecomunicaciones, con amplia experiencia asesorando a empresas nacionales e internacionales en entornos regulados y proyectos de transformación digital.
+          </p>
+
+          {/* 3 Credential Badges */}
+          <div className="grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-3 my-1.5">
+            <div className="pr-2 flex flex-col justify-start">
+              <Shield className="w-4 h-4 text-[#0A66FF] mb-1 shrink-0" />
+              <div className="text-[11px] font-bold text-slate-900 leading-tight">Oficial DPD</div>
+              <div className="text-[10px] text-slate-500 leading-tight mt-0.5">Certificado SPDP</div>
+            </div>
+            <div className="px-2 flex flex-col justify-start">
+              <Scale className="w-4 h-4 text-[#D4AF37] mb-1 shrink-0" />
+              <div className="text-[11px] font-bold text-slate-900 leading-tight">Telecom & Regulación</div>
+              <div className="text-[10px] text-slate-500 leading-tight mt-0.5">Títulos habilitantes</div>
+            </div>
+            <div className="pl-2 flex flex-col justify-start">
+              <Cpu className="w-4 h-4 text-purple-600 mb-1 shrink-0" />
+              <div className="text-[11px] font-bold text-slate-900 leading-tight">Derecho Digital & IA</div>
+              <div className="text-[10px] text-slate-500 leading-tight mt-0.5">Contratos tecnológicos</div>
+            </div>
+          </div>
+
+          {/* Primary Action Buttons */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => onNavigate('about')}
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-[#D4AF37] hover:bg-[#C59B27] text-slate-950 shadow-xs transition-colors cursor-pointer active:scale-95 text-center"
+            >
+              <span>Conocer más sobre mí</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-slate-950" />
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => onNavigate('contact')}
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 transition-colors cursor-pointer text-center"
+            >
+              <span>Contactar al Abogado</span>
+              <ArrowRight className="w-3.5 h-3.5 text-slate-700" />
+            </motion.button>
           </div>
         </div>
       </section>
